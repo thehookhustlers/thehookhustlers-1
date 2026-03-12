@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Use — The Hook Hustlers</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>/* SHARED STYLES FOR ALL PAGES */
+:root {
+  --black: #050508;
+  --deep: #080810;
+  --card: #0d0d1a;
+  --card2: #0a0a15;
+  --gold: #d4a843;
+  --gold2: #f0c060;
+  --gold-dim: rgba(212,168,67,0.1);
+  --gold-glow: rgba(212,168,67,0.25);
+  --navy: #0a1628;
+  --blue: #1a6cff;
+  --blue-dim: rgba(26,108,255,0.1);
+  --emerald: #00d084;
+  --emerald-dim: rgba(0,208,132,0.1);
+  --crimson: #e63946;
+  --crimson-dim: rgba(230,57,70,0.1);
+  --white: #f0ede8;
+  --muted: rgba(240,237,232,0.4);
+  --border: rgba(212,168,67,0.08);
+  --border2: rgba(255,255,255,0.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,opacity .15s ease;opacity:.6;}@media(max-width:768px){.cursor,.cursor-ring{display:none!important;}body{cursor:auto!important;}}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 64px;background:rgba(5,5,8,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;background:linear-gradient(135deg,var(--gold),var(--gold2),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);transition:color .2s;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-btn{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.82rem;padding:9px 22px;border-radius:6px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.nav-btn-outline{border:1px solid rgba(212,168,67,0.3);color:var(--gold);}
+.nav-btn-outline:hover{background:var(--gold-dim);}
+.nav-btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);}
+.nav-btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 24px var(--gold-glow);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,5,8,.98);backdrop-filter:blur(20px);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
+.mobile-menu a:hover{color:var(--gold);}
+.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:61px;left:0;right:0;z-index:99;}
+.ticker{display:flex;gap:60px;animation:ticker 30s linear infinite;white-space:nowrap;}
+.ticker-item{font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;color:rgba(240,237,232,0.6);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.ticker-item span{color:var(--emerald);font-weight:600;}
+.ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+section{padding:120px 64px;position:relative;z-index:1;}
+.page-hero{padding:160px 64px 80px;position:relative;z-index:1;overflow:hidden;}
+.page-hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,0.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(26,108,255,0.05) 0%,transparent 60%);}
+.page-hero-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(212,168,67,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 100%);}
+.page-hero-content{position:relative;z-index:1;max-width:800px;}
+.sec-label{display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;font-family:'Rajdhani',sans-serif;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,4.5rem);letter-spacing:.04em;line-height:1;}
+.sec-sub{margin-top:16px;color:var(--muted);max-width:600px;font-size:1rem;line-height:1.8;}
+.sec-inner{max-width:1200px;margin:0 auto;}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;padding:15px 36px;border-radius:8px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .25s;display:inline-block;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px var(--gold-glow);}
+.btn-secondary{background:transparent;color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.9rem;padding:15px 36px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .25s;display:inline-block;}
+.btn-secondary:hover{border-color:rgba(26,108,255,0.4);background:var(--blue-dim);}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64px 0;position:relative;z-index:1;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;}
+.footer-brand p{font-size:.85rem;color:var(--muted);line-height:1.85;max-width:280px;margin-bottom:24px;margin-top:16px;}
+.footer-contact a{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);text-decoration:none;margin-bottom:10px;transition:color .2s;}
+.footer-contact a:hover{color:var(--gold);}
+.footer-col h5{font-family:'Rajdhani',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-col a{display:block;font-size:.82rem;color:var(--muted);text-decoration:none;margin-bottom:12px;transition:color .2s;}
+.footer-col a:hover{color:var(--white);}
+.footer-socials{display:flex;gap:10px;margin-top:8px;}
+.social-icon{width:36px;height:36px;border-radius:8px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s;text-decoration:none;}
+.social-icon:hover{background:var(--gold-dim);border-color:rgba(212,168,67,0.3);}
+.footer-bottom{max-width:1200px;margin:0 auto;padding:24px 0;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom-text{font-size:.75rem;color:rgba(240,237,232,0.25);letter-spacing:.06em;}
+.footer-legal{display:flex;gap:24px;}
+.footer-legal a{font-size:.72rem;color:rgba(240,237,232,0.25);text-decoration:none;letter-spacing:.06em;transition:color .2s;}
+.footer-legal a:hover{color:var(--gold);}
+.badge{font-size:.68rem;padding:3px 9px;border-radius:4px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:'Rajdhani',sans-serif;}
+.badge-gold{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(212,168,67,0.2);}
+.badge-blue{background:var(--blue-dim);color:#6aa3ff;border:1px solid rgba(26,108,255,0.2);}
+.badge-green{background:var(--emerald-dim);color:var(--emerald);border:1px solid rgba(0,208,132,0.2);}
+.badge-red{background:var(--crimson-dim);color:#ff8080;border:1px solid rgba(230,57,70,0.2);}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+@media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:140px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
+@media(max-width:768px){nav{padding:14px 20px;}.nav-links,.nav-right{display:none;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:57px;}}
+
+.legal-wrap{max-width:860px;margin:0 auto;padding:160px 64px 80px;position:relative;z-index:1;}
+.legal-header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.legal-header h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.04em;margin-bottom:12px;}
+.legal-header p{font-size:.85rem;color:var(--muted);letter-spacing:.04em;}
+.legal-section{margin-bottom:40px;}
+.legal-section h2{font-family:"Rajdhani",sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border2);}
+.legal-section p{font-size:.88rem;color:var(--muted);line-height:1.9;margin-bottom:12px;}
+.legal-section ul{list-style:none;margin-bottom:12px;}
+.legal-section ul li{font-size:.87rem;color:var(--muted);padding:6px 0;padding-left:16px;position:relative;line-height:1.7;}
+.legal-section ul li::before{content:"—";position:absolute;left:0;color:var(--gold);}
+.legal-highlight{background:var(--card);border:1px solid rgba(212,168,67,.15);border-radius:12px;padding:20px 24px;margin:16px 0;}
+.legal-highlight p{color:rgba(240,237,232,.7)!important;margin-bottom:0!important;}
+@media(max-width:768px){.legal-wrap{padding:120px 20px 60px;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="particles"></canvas>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="home.html" onclick="closeMobile()">Home</a>
+  <a href="startups.html" onclick="closeMobile()">Startups</a>
+  <a href="investors.html" onclick="closeMobile()">Investors</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="pricing.html" onclick="closeMobile()">Pricing</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="signup.html" onclick="closeMobile()" style="color:var(--gold)">Join Now →</a>
+</div>
+<nav>
+  <a href="home.html" class="nav-logo">THE HOOK HUSTLERS</a>
+  <div class="nav-links">
+    <a href="startups.html">Startups</a>
+    <a href="investors.html">Investors</a>
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+    <a href="signup.html" class="nav-btn nav-btn-gold">Join Now</a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><div class="dot"></div>🔥 TechVentures India raised <span>₹2.4 Cr</span> — Series A</div>
+    <div class="ticker-item"><div class="dot"></div>🚀 AgriSmart Bharat secured <span>₹85 L</span> — Seed</div>
+    <div class="ticker-item"><div class="dot"></div>💡 EduReach connects with Peak XV Partners</div>
+    <div class="ticker-item"><div class="dot"></div>🌱 CleanEnergy UP raises <span>₹1.2 Cr</span> — Pre-Series A</div>
+    <div class="ticker-item"><div class="dot"></div>🏥 HealthFirst Bihar secured <span>₹60 L</span> — Angel</div>
+    <div class="ticker-item"><div class="dot"></div>🤖 DeepTech Bangalore secured <span>₹5 Cr</span> — Series B</div>
+    <div class="ticker-item"><div class="dot"></div>🔥 TechVentures India raised <span>₹2.4 Cr</span> — Series A</div>
+    <div class="ticker-item"><div class="dot"></div>🚀 AgriSmart Bharat secured <span>₹85 L</span> — Seed</div>
+    <div class="ticker-item"><div class="dot"></div>💡 EduReach connects with Peak XV Partners</div>
+    <div class="ticker-item"><div class="dot"></div>🌱 CleanEnergy UP raises <span>₹1.2 Cr</span> — Pre-Series A</div>
+    <div class="ticker-item"><div class="dot"></div>🏥 HealthFirst Bihar secured <span>₹60 L</span> — Angel</div>
+    <div class="ticker-item"><div class="dot"></div>🤖 DeepTech Bangalore secured <span>₹5 Cr</span> — Series B</div>
+  </div>
+</div>
+
+<div style="position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(212,168,67,.04) 0%,transparent 70%);"></div>
+<div class="legal-wrap">
+  <div class="legal-header reveal">
+    <div class="sec-label">Legal Document</div>
+    <h1>Terms of Use</h1>
+    <p>Last Updated: March 2026 · The Hook Hustlers · Lucknow, Uttar Pradesh, India</p>
+  </div>
+  <div class="legal-section reveal"><h2>1. Acceptance of Terms</h2><p>By accessing or using The Hook Hustlers platform ("Platform"), you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, you must not access or use the Platform. These Terms constitute a legally binding agreement between you and The Hook Hustlers ("Company", "we", "us", "our").</p></div>
+  <div class="legal-section reveal"><h2>2. Platform Description</h2><p>The Hook Hustlers is an online startup-investor matchmaking platform operating in India. We connect DPIIT-verified startups with verified investors including angel investors, venture capital firms, corporate investors, government funds, and private equity firms. The Platform provides tools for matching, communication, deal tracking, and documentation.</p></div>
+  <div class="legal-section reveal"><h2>3. Eligibility & Verification</h2><p>To list as a startup on the Platform, you must:</p><ul><li>Be registered as a startup under the DPIIT Startup India scheme with a valid DPIIT registration number</li><li>Upload valid DPIIT registration documents during the signup process</li><li>Provide accurate and truthful information about your company</li><li>Be authorised to represent the company you are registering</li></ul><p>To list as an investor, you must provide valid LinkedIn profile and AUM (Assets Under Management) proof for verification by our team.</p></div>
+  <div class="legal-section reveal"><h2>4. Commission & Deal Confirmation Policy</h2>
+  <div class="legal-highlight"><p>⚠️ IMPORTANT: All investment deals between startups and investors that were facilitated through connections made on The Hook Hustlers platform MUST be confirmed through the Platform. Failure to confirm a deal and pay the applicable commission constitutes a breach of this agreement.</p></div>
+  <p>Commission rates are as follows:</p><ul><li>₹1 Lakh – ₹3 Lakh: 3-4% of deal value</li><li>₹3 Lakh – ₹5 Lakh: 2-3% of deal value</li><li>₹5 Lakh – ₹10 Lakh: 1.5% of deal value</li><li>₹10 Lakh – ₹20 Lakh: 1% of deal value</li><li>₹20 Lakh – ₹50 Lakh: 0.75-1% of deal value</li><li>₹50 Lakh – ₹1 Crore: 0.5% of deal value</li><li>₹1 Crore and above: Flat fee of ₹75,000</li></ul><p>Commission is payable by the startup within 30 days of deal confirmation on the Platform.</p></div>
+  <div class="legal-section reveal"><h2>5. Legal Action for Circumvention</h2>
+  <div class="legal-highlight"><p>⚠️ Any startup or investor found to have intentionally closed a deal outside the Platform to avoid commission payment, after having been introduced through the Platform, will be subject to immediate account termination and legal action. The Company reserves the right to pursue full recovery of commissions owed plus legal costs under applicable Indian law.</p></div></div>
+  <div class="legal-section reveal"><h2>6. Subscription & Refund Policy</h2><p>The Hook Hustlers maintains a strict NO REFUND policy on all subscription fees and membership fees. This includes:</p><ul><li>Startup monthly subscription fee of ₹499/month</li><li>Investor annual membership fee of ₹4,599/year</li><li>Post-deal continuation fee of ₹4,599/month</li></ul><p>Subscriptions may be cancelled at any time to prevent future charges. No refunds will be issued for any period already paid, whether used or unused.</p></div>
+  <div class="legal-section reveal"><h2>7. Prohibited Conduct</h2><p>Users must not:</p><ul><li>Provide false or misleading information during registration or on their profile</li><li>Attempt to contact investors or startups outside the Platform to circumvent commission obligations</li><li>Share another user's personal or confidential information</li><li>Use the Platform for any purpose other than genuine startup-investor matching</li><li>Engage in any fraudulent, deceptive or harmful activity</li></ul></div>
+  <div class="legal-section reveal"><h2>8. Intellectual Property</h2><p>All content on the Platform including text, graphics, logos, and software is the property of The Hook Hustlers and is protected under Indian intellectual property law. Users may not reproduce, distribute or create derivative works without prior written consent.</p></div>
+  <div class="legal-section reveal"><h2>9. Disclaimer of Warranties</h2><p>The Platform is provided "as is" without warranties of any kind. The Hook Hustlers does not guarantee any particular investment outcome, match quality, or deal closure. We are a matchmaking platform and are not a party to any investment transaction.</p></div>
+  <div class="legal-section reveal"><h2>10. Governing Law & Jurisdiction</h2><p>These Terms shall be governed by the laws of India. Any disputes arising from these Terms or use of the Platform shall be subject to the exclusive jurisdiction of courts in Lucknow, Uttar Pradesh, India.</p></div>
+  <div class="legal-section reveal"><h2>11. Contact</h2><p>For any questions regarding these Terms, contact us at: <a href="mailto:_thehookhustlers@gmail.com" style="color:var(--gold)">_thehookhustlers@gmail.com</a> or call +91 89249 52608.</p></div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="home.html" class="nav-logo">THE HOOK HUSTLERS</a>
+      <p>India's #1 startup-investor matchmaking platform. Connecting DPIIT-verified startups with verified investors across every state, sector and stage.</p>
+      <div class="footer-contact">
+        <a href="mailto:_thehookhustlers@gmail.com">📧 _thehookhustlers@gmail.com</a>
+        <a href="tel:+918924952608">📱 +91 89249 52608</a>
+        <a href="https://wa.me/918924952608" target="_blank">💬 WhatsApp Us</a>
+      </div>
+      <div class="footer-socials" style="margin-top:16px;">
+        <a href="https://instagram.com" target="_blank" class="social-icon">📸</a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon">💼</a>
+        <a href="https://twitter.com" target="_blank" class="social-icon">🐦</a>
+        <a href="https://wa.me/918924952608" target="_blank" class="social-icon">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <a href="startups.html">For Startups</a>
+      <a href="investors.html">For Investors</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="signup.html">Join Now</a>
+      <a href="login.html">Login</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+    <div class="footer-col">
+      <h5>Legal & Support</h5>
+      <a href="help.html">Help Centre</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-text">© 2026 The Hook Hustlers. All Rights Reserved. | Varanasi, Uttar Pradesh, India 🇮🇳</span>
+    <div class="footer-legal">
+      <a href="help.html">Help Centre</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+<script>// SHARED JS FOR ALL PAGES
+document.addEventListener('DOMContentLoaded', function() {
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if(cursor && ring) {
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+    });
+  }
+
+  // PARTICLES
+  const canvas = document.getElementById('particles');
+  if(canvas) {
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    const particles = [];
+    const colors = ['rgba(212,168,67,','rgba(26,108,255,','rgba(0,208,132,','rgba(230,57,70,'];
+    for(let i=0;i<70;i++) particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:colors[Math.floor(Math.random()*colors.length)],opacity:Math.random()*.4+.1});
+    function animateP(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateP);}
+    animateP();
+  }
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+
+  // REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+  reveals.forEach(r => obs.observe(r));
+
+  // COUNTERS
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const el=e.target,target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
+        let start=0;const step=target/(2000/16);
+        const timer=setInterval(()=>{start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=prefix+Math.floor(start).toLocaleString('en-IN')+suffix;},16);
+        counterObs.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
+});
+
+function closeMobile(){
+  const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
+  if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+}
+</script>
+</body>
+</html>
