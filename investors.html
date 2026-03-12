@@ -137,7 +137,6 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
   <a href="startups.html" onclick="closeMobile()">Startups</a>
   <a href="investors.html" class="active" onclick="closeMobile()">Investors</a>
   <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="pricing.html" onclick="closeMobile()">Pricing</a>
   <a href="contact.html" onclick="closeMobile()">Contact</a>
   <a href="signup.html" onclick="closeMobile()" style="color:var(--gold)">Join Now →</a>
 </div>
@@ -147,7 +146,6 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
     <a href="startups.html">Startups</a>
     <a href="investors.html" class="active">Investors</a>
     <a href="about.html">About</a>
-    <a href="pricing.html">Pricing</a>
     <a href="contact.html">Contact</a>
   </div>
   <div class="nav-right">
@@ -157,19 +155,25 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 <div class="ticker-wrap">
-  🔥 TechVentures India raised <span>₹2.4 Cr</span> — Series A</div>
-    <div class="ticker-item"><div class="dot"></div>🚀 AgriSmart Bharat secured <span>₹85 L</span> — Seed</div>
-    <div class="ticker-item"><div class="dot"></div>💡 EduReach connects with Peak XV Partners</div>
-    <div class="ticker-item"><div class="dot"></div>🌱 CleanEnergy UP raises <span>₹1.2 Cr</span> — Pre-Series A</div>
-    <div class="ticker-item"><div class="dot"></div>🏥 HealthFirst Bihar secured <span>₹60 L</span> — Angel</div>
-    <div class="ticker-item"><div class="dot"></div>🤖 DeepTech Bangalore secured <span>₹5 Cr</span> — Series B</div>
-    <div class="ticker-item"><div class="dot"></div>🔥 TechVentures India raised <span>₹2.4 Cr</span> — Series A</div>
-    <div class="ticker-item"><div class="dot"></div>🚀 AgriSmart Bharat secured <span>₹85 L</span> — Seed</div>
-    <div class="ticker-item"><div class="dot"></div>💡 EduReach connects with Peak XV Partners</div>
-    <div class="ticker-item"><div class="dot"></div>🌱 CleanEnergy UP raises <span>₹1.2 Cr</span> — Pre-Series A</div>
-    <div class="ticker-item"><div class="dot"></div>🏥 HealthFirst Bihar secured <span>₹60 L</span> — Angel</div>
-    <div class="ticker-item"><div class="dot"></div>🤖 DeepTech Bangalore secured <span>₹5 Cr</span> — Series B</div>
+  <div class="ticker">
+    <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
+    <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
+    <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
+    <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
+    <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
+    <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
+    <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
+    <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
+    <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
+    <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
+    <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
+    <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
+    <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
+    <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
+    <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
+    <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
   </div>
+</div>
 </div>
 
 <div class="page-hero">
@@ -331,6 +335,32 @@ function closeMobile(){
   const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
   if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
 }
+</script>
+
+<script>
+// Show pricing in nav only if user is logged in
+(function(){
+  if(localStorage.getItem('hhLoggedIn') === 'true') {
+    var links = document.querySelector('.nav-links');
+    var mobile = document.getElementById('mobileMenu');
+    if(links) {
+      var a = document.createElement('a');
+      a.href = 'pricing.html';
+      a.textContent = 'Pricing';
+      // Insert before last child
+      var ref = links.querySelector('a[href="contact.html"]');
+      if(ref) links.insertBefore(a, ref);
+    }
+    if(mobile) {
+      var ma = document.createElement('a');
+      ma.href = 'pricing.html';
+      ma.textContent = 'Pricing';
+      ma.onclick = function(){closeMobile();};
+      var mref = mobile.querySelector('a[href="contact.html"]');
+      if(mref) mobile.insertBefore(ma, mref);
+    }
+  }
+})();
 </script>
 </body>
 </html>
