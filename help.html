@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+// Instant login-state class on <html> before render
+if(localStorage.getItem('hhLoggedIn')==='true'){document.documentElement.classList.add('is-logged-in');}
+</script>
+<style>
+/* Hide Login button instantly when logged in — no flash */
+html.is-logged-in .nav-btn-outline[href="login.html"],
+html.is-logged-in a.nav-btn-outline { display:none !important; }
+</style>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Help Centre — The Hook Hustlers</title>
@@ -505,26 +514,64 @@ function closeMobile(){
 </script>
 
 <script>
+
+// Hide Login button if already logged in
+(function(){
+  if(localStorage.getItem('hhLoggedIn') === 'true'){
+    var loginBtns = document.querySelectorAll('a[href="login.html"], a[href="login.html?next=signup"]');
+    loginBtns.forEach(function(btn){
+      if(btn.classList.contains('nav-btn-outline') || btn.textContent.trim() === 'Login'){
+        btn.style.display = 'none';
+      }
+    });
+    // Show logged-in indicator in nav
+    var navRight = document.querySelector('.nav-right');
+    if(navRight && !document.getElementById('nav-user-badge')){
+      var name = localStorage.getItem('hhUserName') || 'Account';
+      var first = name.split(' ')[0];
+      var badge = document.createElement('div');
+      badge.id = 'nav-user-badge';
+      badge.style.cssText = 'display:flex;align-items:center;gap:8px;font-family:"Rajdhani",sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.06em;color:var(--gold);cursor:pointer;';
+      badge.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;">' + first.charAt(0).toUpperCase() + '</div>' + first;
+      badge.title = 'Logged in as ' + name;
+      badge.onclick = function(){
+        if(confirm('Log out of The Hook Hustlers?')){
+          localStorage.removeItem('hhLoggedIn');
+          localStorage.removeItem('hhUserName');
+          localStorage.removeItem('hhUserEmail');
+          localStorage.removeItem('hhUserPicture');
+          window.location.href = 'home.html';
+        }
+      };
+      navRight.insertBefore(badge, navRight.firstChild);
+    }
+  }
+})();
 // Show pricing in nav only if user is logged in
 (function(){
   if(localStorage.getItem('hhLoggedIn') === 'true') {
     var links = document.querySelector('.nav-links');
     var mobile = document.getElementById('mobileMenu');
     if(links) {
-      var a = document.createElement('a');
-      a.href = 'pricing.html';
-      a.textContent = 'Pricing';
-      // Insert before last child
-      var ref = links.querySelector('a[href="contact.html"]');
-      if(ref) links.insertBefore(a, ref);
+      // Only add Pricing if not already in nav
+      if(!links.querySelector('a[href="pricing.html"]')){
+        var a = document.createElement('a');
+        a.href = 'pricing.html';
+        a.textContent = 'Pricing';
+        var ref = links.querySelector('a[href="contact.html"]');
+        if(ref) links.insertBefore(a, ref);
+      }
     }
     if(mobile) {
-      var ma = document.createElement('a');
-      ma.href = 'pricing.html';
-      ma.textContent = 'Pricing';
-      ma.onclick = function(){closeMobile();};
-      var mref = mobile.querySelector('a[href="contact.html"]');
-      if(mref) mobile.insertBefore(ma, mref);
+      // Only add Pricing to mobile if not already there
+      if(!mobile.querySelector('a[href="pricing.html"]')){
+        var ma = document.createElement('a');
+        ma.href = 'pricing.html';
+        ma.textContent = 'Pricing';
+        ma.onclick = function(){closeMobile();};
+        var mref = mobile.querySelector('a[href="contact.html"]');
+        if(mref) mobile.insertBefore(ma, mref);
+      }
     }
   }
 })();
