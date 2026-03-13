@@ -61,7 +61,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu a:hover{color:var(--gold);}
 
 /* TICKER */
-.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:61px;left:0;right:0;z-index:99;}
+.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:62px;left:0;right:0;z-index:99;}
 .ticker{display:flex;gap:60px;animation:ticker 30s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;color:rgba(240,237,232,0.6);display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .ticker-item span{color:var(--emerald);font-weight:600;}
@@ -371,7 +371,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
   .footer-inner{grid-template-columns:1fr;gap:32px;}
   .footer-bottom{flex-direction:column;text-align:center;}
   .footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}
-  .ticker-wrap{top:57px;}
+  .ticker-wrap{top:57px;} .page-hero{padding-top:150px!important;}
 }
 @media(max-width:480px){
   .hero h1{font-size:clamp(2.4rem,10vw,4rem);}
@@ -379,6 +379,17 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
   .sectors-grid{grid-template-columns:repeat(2,1fr);}
   .tier-grid{grid-template-columns:1fr 1fr;}
 }
+
+.journey-steps{display:flex;flex-direction:column;gap:24px;}
+.jstep{display:flex;gap:16px;align-items:flex-start;}
+.jstep-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.06em;color:#000;flex-shrink:0;margin-top:2px;}
+.jstep-title{font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.jstep-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+@media(max-width:768px){.how .sec-inner>div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+.how .sec-inner>div>div[style*="padding-right"]{padding-right:0!important;}
+.how .sec-inner>div>div[style*="padding-left"]{padding-left:0!important;border-top:1px solid var(--border2);padding-top:32px!important;}
+.how .sec-inner>div>div[style*="position:absolute;left:50%"]{display:none;}}
+
 </style>
 </head>
 <body>
@@ -489,45 +500,116 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 </div>
 
 <!-- HOW IT WORKS -->
-<section class="how" id="how">
+<section class="how" id="how" style="background:var(--deep);overflow:hidden;padding:120px 64px;">
+  <style>
+    .journey-col{padding:0 40px;}
+    .journey-header{display:flex;align-items:center;gap:14px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+    .journey-badge{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+    .jstep{display:flex;gap:16px;margin-bottom:28px;opacity:0;transform:translateX(-20px);transition:all .6s ease;}
+    .jstep.inv-step{transform:translateX(20px);}
+    .jstep.animated{opacity:1;transform:translateX(0);}
+    .jstep-num{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+    .jstep-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+    .jstep-desc{font-size:.85rem;color:var(--muted);line-height:1.7;}
+    .jstep-connector{width:1px;height:20px;margin:4px 0 4px 19px;background:linear-gradient(to bottom,rgba(212,168,67,0.3),transparent);}
+    .match-pulse{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--blue));display:flex;align-items:center;justify-content:center;font-size:1.4rem;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 0 0 rgba(212,168,67,0.4);}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,168,67,0.4);}50%{box-shadow:0 0 0 16px rgba(212,168,67,0);}}
+    @media(max-width:768px){.how-grid{grid-template-columns:1fr!important;}.how-divider{display:none!important;}.journey-col{padding:0;}}
+  </style>
   <div class="sec-inner">
-    <div class="how-head reveal">
-      <div class="sec-label">Process</div>
-      <h2 class="sec-title">From Idea to Term Sheet</h2>
-      <p class="sec-sub">Our platform handles everything — matching, introductions, data rooms and deal confirmation — so you can focus on building.</p>
+    <div style="text-align:center;margin-bottom:72px;" class="reveal">
+      <div class="sec-label">The Platform</div>
+      <h2 class="sec-title">Two Journeys. One Platform.</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:560px;">Whether you are raising or deploying — The Hook Hustlers is built around your workflow, not the other way around.</p>
     </div>
-    <div class="how-tabs reveal">
-      <button class="tab-btn active" onclick="switchTab('startup')">For Startups</button>
-      <button class="tab-btn" onclick="switchTab('investor')">For Investors</button>
-    </div>
-    <div class="steps reveal" id="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-icon" style="background:var(--gold-dim)">📋</div>
-        <h4>Build Your Profile</h4>
-        <p>Upload your DPIIT certificate, pitch deck, financials and team info. Get verified within 48 hours by our team.</p>
+    <div class="how-grid" style="display:grid;grid-template-columns:1fr 56px 1fr;gap:0;align-items:start;position:relative;">
+
+      <!-- STARTUP JOURNEY -->
+      <div class="journey-col">
+        <div class="journey-header reveal">
+          <div class="journey-badge" style="background:linear-gradient(135deg,rgba(212,168,67,0.2),rgba(212,168,67,0.05));border:1px solid rgba(212,168,67,0.3);">🚀</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:var(--gold);">For Startups</div>
+            <div style="font-size:.78rem;color:var(--muted);">From verified listing to funded round</div>
+          </div>
+        </div>
+        <div class="jstep" data-delay="100">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);">1</div>
+          <div><div class="jstep-title" style="color:var(--gold);">Register & Verify</div><div class="jstep-desc">Upload your DPIIT certificate. We verify within 24 hours — no lengthy back-and-forth, no gatekeeping.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(212,168,67,0.25),transparent);"></div>
+        <div class="jstep" data-delay="200">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);">2</div>
+          <div><div class="jstep-title" style="color:var(--gold);">Build Your Profile</div><div class="jstep-desc">Pitch deck, financials, team, traction — structured for investor decision-making. Your profile is your pitch.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(212,168,67,0.25),transparent);"></div>
+        <div class="jstep" data-delay="300">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);">3</div>
+          <div><div class="jstep-title" style="color:var(--gold);">Get Your Score</div><div class="jstep-desc">Receive your Funding Readiness Score out of 100. Know exactly where you stand — and how to improve.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(212,168,67,0.25),transparent);"></div>
+        <div class="jstep" data-delay="400">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);">4</div>
+          <div><div class="jstep-title" style="color:var(--gold);">AI Matching</div><div class="jstep-desc">Our AI cross-references your sector, stage, geography and traction against 100+ investor mandates. Relevant intros only.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(212,168,67,0.25),transparent);"></div>
+        <div class="jstep" data-delay="500">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);">5</div>
+          <div><div class="jstep-title" style="color:var(--gold);">Close the Deal</div><div class="jstep-desc">Connect, negotiate, close — all documented through the platform. From intro to term sheet, we stay with you.</div></div>
+        </div>
+        <div style="margin-top:36px;" class="reveal">
+          <a href="signup.html" class="btn-primary" style="font-size:.85rem;">List My Startup →</a>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-icon" style="background:var(--blue-dim)">🤖</div>
-        <h4>AI Matching</h4>
-        <p>Our algorithm matches you with investors whose thesis aligns with your sector, stage, city and traction metrics.</p>
+
+      <!-- CENTER DIVIDER -->
+      <div class="how-divider" style="display:flex;flex-direction:column;align-items:center;padding-top:80px;gap:0;">
+        <div style="width:1px;height:60px;background:linear-gradient(to bottom,transparent,rgba(212,168,67,0.4));"></div>
+        <div class="match-pulse">⚡</div>
+        <div style="width:1px;flex:1;background:linear-gradient(to bottom,rgba(26,108,255,0.4),transparent);"></div>
       </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-icon" style="background:var(--emerald-dim)">🤝</div>
-        <h4>Connect & Pitch</h4>
-        <p>Message investors directly, share your data room securely, and schedule a Zoom Live Room call — all in one place.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-icon" style="background:var(--crimson-dim)">🚀</div>
-        <h4>Close the Deal</h4>
-        <p>Confirm your deal through the platform, sign legal documents and celebrate — India's next big startup is born.</p>
+
+      <!-- INVESTOR JOURNEY -->
+      <div class="journey-col">
+        <div class="journey-header reveal">
+          <div class="journey-badge" style="background:linear-gradient(135deg,rgba(26,108,255,0.2),rgba(26,108,255,0.05));border:1px solid rgba(26,108,255,0.3);">💼</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:var(--blue);">For Investors</div>
+            <div style="font-size:.78rem;color:var(--muted);">From mandate to portfolio-ready deal</div>
+          </div>
+        </div>
+        <div class="jstep inv-step" data-delay="100">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);">1</div>
+          <div><div class="jstep-title" style="color:var(--blue);">Verify & Set Mandate</div><div class="jstep-desc">LinkedIn and AUM verification. Define your investment thesis — sector, stage, ticket size, geography. Set it once.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(26,108,255,0.25),transparent);"></div>
+        <div class="jstep inv-step" data-delay="200">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);">2</div>
+          <div><div class="jstep-title" style="color:var(--blue);">Receive Curated Deals</div><div class="jstep-desc">No more inboxes flooded with irrelevant pitches. Every startup surfaced to you matches your mandate — precisely.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(26,108,255,0.25),transparent);"></div>
+        <div class="jstep inv-step" data-delay="300">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);">3</div>
+          <div><div class="jstep-title" style="color:var(--blue);">Deep Dive & Diligence</div><div class="jstep-desc">Full profiles, financials, pitch decks, Funding Readiness Scores — everything you need before the first call.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(26,108,255,0.25),transparent);"></div>
+        <div class="jstep inv-step" data-delay="400">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);">4</div>
+          <div><div class="jstep-title" style="color:var(--blue);">Connect Directly</div><div class="jstep-desc">One click to express interest. We facilitate the warm introduction — no awkward cold outreach, ever.</div></div>
+        </div>
+        <div class="jstep-connector" style="background:linear-gradient(to bottom,rgba(26,108,255,0.25),transparent);"></div>
+        <div class="jstep inv-step" data-delay="500">
+          <div class="jstep-num" style="background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);">5</div>
+          <div><div class="jstep-title" style="color:var(--blue);">Invest with Confidence</div><div class="jstep-desc">DPIIT-verified startups, documented deals, legal framework in place. Invest in India's next chapter — confidently.</div></div>
+        </div>
+        <div style="margin-top:36px;" class="reveal">
+          <a href="signup.html" class="btn-secondary" style="font-size:.85rem;">Join as Investor →</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- FEATURED STARTUPS -->
 <section class="startups-section" id="startups" style="background:var(--deep);">
@@ -566,51 +648,145 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 </section>
 
 <!-- INVESTORS SECTION -->
-<section style="background:var(--black);padding:80px 64px;">
-  <div class="sec-inner">
-    <div style="text-align:center;margin-bottom:60px;" class="reveal">
+
+<!-- ── INDIA BY THE NUMBERS ── -->
+<section style="background:var(--black);padding:100px 64px;overflow:hidden;position:relative;">
+  <style>
+    .stat-number{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1;margin-bottom:6px;}
+    .stat-sub{font-size:.7rem;color:rgba(212,168,67,0.45);margin-top:6px;font-style:italic;}
+    .chart-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+    .chart-bar-label{font-size:.78rem;color:var(--muted);width:120px;flex-shrink:0;text-align:right;}
+    .chart-bar-track{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:100px;overflow:hidden;}
+    .chart-bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+    .chart-bar-val{font-size:.78rem;color:var(--muted);width:60px;flex-shrink:0;}
+  </style>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:72px;" class="reveal">
       <div class="sec-label">India by the Numbers</div>
       <h2 class="sec-title">Why This Platform Had to Exist</h2>
-      <p class="sec-sub" style="margin:16px auto 0;">The data tells a clear story. India's startup ecosystem is massive — but the funding infrastructure hasn't kept up. Until now.</p>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:560px;">The data tells the story better than words can. India's startup ecosystem is vast. The funding gap is real. The Hook Hustlers is the bridge.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:60px;">
-      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(212,168,67,0.12);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;" data-target="653000" data-suffix="+">0</div>
-        <div style="font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;">DPIIT Registered Startups</div>
-        <div style="font-size:.72rem;color:rgba(212,168,67,0.5);margin-top:6px;font-style:italic;">and growing by the day</div>
+
+    <!-- ROW 1: Animated counting cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:60px;">
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(212,168,67,0.1);border-radius:16px;padding:28px;text-align:center;">
+        <div class="stat-number" style="background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;" data-target="653000" data-suffix="+">0</div>
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;">DPIIT Registered Startups</div>
+        <div class="stat-sub">3rd largest ecosystem globally</div>
       </div>
-      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(230,57,70,0.12);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:linear-gradient(135deg,var(--crimson),#ff8080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;" data-target="2" data-suffix="%">0</div>
-        <div style="font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;">Ever Get Funded</div>
-        <div style="font-size:.72rem;color:rgba(230,57,70,0.5);margin-top:6px;font-style:italic;">98% never find the right investor</div>
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(230,57,70,0.1);border-radius:16px;padding:28px;text-align:center;" data-delay="50">
+        <div class="stat-number" style="color:var(--crimson);" data-target="2" data-suffix="%">0</div>
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;">Ever Get Formal Funding</div>
+        <div class="stat-sub">98% never find the right investor</div>
       </div>
-      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(26,108,255,0.12);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:linear-gradient(135deg,var(--blue),#6aa3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;" data-target="48" data-suffix="%">0</div>
-        <div style="font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;">From Tier 2 & 3 Cities</div>
-        <div style="font-size:.72rem;color:rgba(26,108,255,0.5);margin-top:6px;font-style:italic;">yet most funding stays in metros</div>
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(26,108,255,0.1);border-radius:16px;padding:28px;text-align:center;" data-delay="100">
+        <div class="stat-number" style="color:var(--blue);" data-target="48" data-suffix="%">0</div>
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;">From Tier 2 & 3 Cities</div>
+        <div class="stat-sub">Yet most funding stays in metros</div>
       </div>
-      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(0,208,132,0.12);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:linear-gradient(135deg,var(--emerald),#80ffcc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;" data-target="125">0</div>
-        <div style="font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;">Indian Unicorns</div>
-        <div style="font-size:.72rem;color:rgba(0,208,132,0.5);margin-top:6px;font-style:italic;">3rd largest in the world</div>
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(0,208,132,0.1);border-radius:16px;padding:28px;text-align:center;" data-delay="150">
+        <div class="stat-number" style="color:var(--emerald);" data-target="125">0</div>
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;">Indian Unicorns</div>
+        <div class="stat-sub">3rd largest in the world</div>
       </div>
-      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(212,168,67,0.12);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">₹10K Cr</div>
-        <div style="font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;">Govt. Fund of Funds</div>
-        <div style="font-size:.72rem;color:rgba(212,168,67,0.5);margin-top:6px;font-style:italic;">available for Indian startups</div>
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(212,168,67,0.1);border-radius:16px;padding:28px;text-align:center;" data-delay="200">
+        <div class="stat-number" style="background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">₹10K Cr</div>
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;">Govt. Fund of Funds</div>
+        <div class="stat-sub">Available for Indian startups</div>
       </div>
-      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(26,108,255,0.12);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;background:linear-gradient(135deg,var(--blue),#6aa3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$13B+</div>
-        <div style="font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;">Funding Projected 2026</div>
-        <div style="font-size:.72rem;color:rgba(26,108,255,0.5);margin-top:6px;font-style:italic;">recovery after 2025 slowdown</div>
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#0d0d22);border:1px solid rgba(181,123,255,0.1);border-radius:16px;padding:28px;text-align:center;" data-delay="250">
+        <div class="stat-number" style="color:#a78bfa;">$13B+</div>
+        <div style="font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;">Projected Funding 2026</div>
+        <div class="stat-sub">Recovery from 2025 slowdown</div>
       </div>
     </div>
-    <div style="background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(26,108,255,0.04));border:1px solid rgba(212,168,67,0.12);border-radius:20px;padding:48px;text-align:center;" class="reveal">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:rgba(240,237,232,0.7);max-width:720px;margin:0 auto 24px;line-height:1.6;">"India doesn't have a shortage of great startup ideas. It has a shortage of great startup-investor connections. That's the only problem The Hook Hustlers is here to solve."</p>
+
+    <!-- ROW 2: Bar chart + infographic -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:60px;" class="how-grid">
+      <!-- Bar chart -->
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:20px;padding:36px;">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Sector Funding in India (2024)</div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">AI & Deep Tech</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" data-width="97" style="background:linear-gradient(90deg,#a78bfa,#8040ff);"></div></div>
+          <div class="chart-bar-val" style="color:#a78bfa;">₹12,600 Cr</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">Fintech</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" data-width="91" style="background:linear-gradient(90deg,var(--gold),var(--gold2));"></div></div>
+          <div class="chart-bar-val" style="color:var(--gold);">₹18,400 Cr</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">Cleantech</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" data-width="88" style="background:linear-gradient(90deg,#7cff6b,#3ddc34);"></div></div>
+          <div class="chart-bar-val" style="color:#7cff6b;">₹6,800 Cr</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">Healthtech</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" data-width="79" style="background:linear-gradient(90deg,var(--crimson),#ff8080);"></div></div>
+          <div class="chart-bar-val" style="color:var(--crimson);">₹5,200 Cr</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">Agritech</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" data-width="72" style="background:linear-gradient(90deg,var(--emerald),#80ffcc);"></div></div>
+          <div class="chart-bar-val" style="color:var(--emerald);">₹4,200 Cr</div>
+        </div>
+        <div class="chart-bar-row">
+          <div class="chart-bar-label">Edtech</div>
+          <div class="chart-bar-track"><div class="chart-bar-fill" data-width="62" style="background:linear-gradient(90deg,var(--blue),#5a9aff);"></div></div>
+          <div class="chart-bar-val" style="color:var(--blue);">₹3,100 Cr</div>
+        </div>
+        <div style="font-size:.65rem;color:rgba(240,237,232,0.2);margin-top:20px;text-align:right;">Source: Inc42, NASSCOM, DPIIT · 2024 data</div>
+      </div>
+      <!-- Infographic -->
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:20px;padding:36px;" data-delay="100">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;">The Funding Gap — Visualised</div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,rgba(212,168,67,0.15),rgba(212,168,67,0.05));border:1px solid rgba(212,168,67,0.2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🇮🇳</div>
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:4px;">653,000 registered startups</div><div style="font-size:.78rem;color:var(--muted);">The pool of potential — massive, spread across every state, every sector, every tier</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,rgba(26,108,255,0.15),rgba(26,108,255,0.05));border:1px solid rgba(26,108,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">📋</div>
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:4px;">~50,000 ever pitch investors</div><div style="font-size:.78rem;color:var(--muted);">The ones who can even get a meeting — mostly from metro cities, mostly through networks</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,rgba(0,208,132,0.15),rgba(0,208,132,0.05));border:1px solid rgba(0,208,132,0.2);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">💼</div>
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:4px;">~13,000 ever raise funding</div><div style="font-size:.78rem;color:var(--muted);">The fortunate 2% — most of them well-connected, well-located, well-networked</div></div>
+          </div>
+          <div style="border-top:1px solid var(--border2);padding-top:20px;background:rgba(212,168,67,0.04);border-radius:10px;padding:16px;margin-top:4px;">
+            <div style="font-size:.82rem;color:var(--white);font-weight:600;margin-bottom:6px;">The Hook Hustlers closes this gap.</div>
+            <div style="font-size:.78rem;color:var(--muted);">By making great startups discoverable — regardless of where they're from or who they know.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOUNDER QUOTE -->
+    <div style="background:linear-gradient(135deg,rgba(212,168,67,0.05),rgba(26,108,255,0.03));border:1px solid rgba(212,168,67,0.1);border-radius:20px;padding:48px;text-align:center;max-width:780px;margin:0 auto;" class="reveal">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-style:italic;color:rgba(240,237,232,0.75);max-width:680px;margin:0 auto 24px;line-height:1.65;">"India doesn't have a shortage of great startup ideas. It has a shortage of great connections between those ideas and the capital that can unlock them. That is the only problem we are here to solve."</p>
       <div style="font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;">— Aniket Singh, Founder & Chief Hustler</div>
     </div>
   </div>
 </section>
+
+<script>
+// Animate chart bars on scroll
+(function(){
+  var barObs2 = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var bars = e.target.querySelectorAll('.chart-bar-fill[data-width]');
+        bars.forEach(function(b){b.style.width=b.dataset.width+'%';});
+        barObs2.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.chart-bar-track').forEach(function(t){barObs2.observe(t.parentElement.parentElement);});
+})();
+</script>
+
+
 
 <section class="investors-section" id="investors" style="background:var(--black);">
   <div class="sec-inner">
@@ -667,25 +843,92 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 </section>
 
 <!-- SECTORS -->
-<section class="sectors-section">
+<section class="sectors-section" style="background:var(--deep);padding:120px 64px;">
+  <style>
+    .sector-card{background:linear-gradient(135deg,var(--card),#0a0a1a);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;overflow:hidden;transition:all .4s ease;cursor:default;}
+    .sector-card:hover{transform:translateY(-6px);border-color:rgba(212,168,67,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+    .sector-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.02),transparent);pointer-events:none;}
+    .sector-icon{font-size:2.2rem;margin-bottom:16px;}
+    .sector-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.06em;margin-bottom:6px;}
+    .sector-market{font-size:.78rem;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+    .sector-bar-wrap{background:rgba(255,255,255,0.05);border-radius:100px;height:4px;overflow:hidden;margin-bottom:8px;}
+    .sector-bar{height:100%;border-radius:100px;width:0%;transition:width 1.5s ease;}
+    .sector-meta{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);}
+    .sector-tag{display:inline-block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-top:16px;font-weight:600;}
+    @media(max-width:768px){.sectors-grid{grid-template-columns:1fr!important;}}
+  </style>
   <div class="sec-inner">
-    <div class="reveal" style="text-align:center;margin-bottom:0;">
-      <div class="sec-label">Sectors</div>
-      <h2 class="sec-title">All of Bharat's Industries</h2>
+    <div style="text-align:center;margin-bottom:72px;" class="reveal">
+      <div class="sec-label">Sector Intelligence</div>
+      <h2 class="sec-title">Where India's Money is Moving</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:600px;">These aren't just categories on a form. Each sector represents a generational opportunity in India. Here's where we are focused — and why.</p>
     </div>
-    <div class="sectors-grid">
-      <div class="sector-card reveal" style="border-color:rgba(0,208,132,0.1)"><span class="sector-icon">🌾</span><div class="sector-name">AgriTech</div><div class="sector-trend" style="color:var(--emerald)">↑ 34% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(26,108,255,0.1)"><span class="sector-icon">📚</span><div class="sector-name">EdTech</div><div class="sector-trend" style="color:#6aa3ff">↑ 28% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(230,57,70,0.1)"><span class="sector-icon">🏥</span><div class="sector-name">HealthTech</div><div class="sector-trend" style="color:#ff8080">↑ 41% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(212,168,67,0.1)"><span class="sector-icon">🤖</span><div class="sector-name">Deep Tech</div><div class="sector-trend" style="color:var(--gold)">↑ 52% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(26,108,255,0.1)"><span class="sector-icon">🛒</span><div class="sector-name">D2C / E-comm</div><div class="sector-trend" style="color:#6aa3ff">↑ 22% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(0,208,132,0.1)"><span class="sector-icon">💻</span><div class="sector-name">SaaS / B2B</div><div class="sector-trend" style="color:var(--emerald)">↑ 38% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(0,208,132,0.15)"><span class="sector-icon">⚡</span><div class="sector-name">CleanTech/EV</div><div class="sector-trend" style="color:var(--emerald)">↑ 45% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(212,168,67,0.1)"><span class="sector-icon">🎮</span><div class="sector-name">Gaming</div><div class="sector-trend" style="color:var(--gold)">↑ 19% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(26,108,255,0.1)"><span class="sector-icon">📦</span><div class="sector-name">Logistics</div><div class="sector-trend" style="color:#6aa3ff">↑ 31% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(230,57,70,0.1)"><span class="sector-icon">🍔</span><div class="sector-name">FoodTech</div><div class="sector-trend" style="color:#ff8080">↑ 17% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(212,168,67,0.15)"><span class="sector-icon">🚀</span><div class="sector-name">SpaceTech</div><div class="sector-trend" style="color:var(--gold)">↑ 67% Funded</div></div>
-      <div class="sector-card reveal" style="border-color:rgba(212,168,67,0.1)"><span class="sector-icon">🏦</span><div class="sector-name">FinTech</div><div class="sector-trend" style="color:var(--gold)">↑ 36% Funded</div></div>
+    <div class="sectors-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+      <div class="sector-card reveal" data-delay="0">
+        <div class="sector-icon">🌾</div>
+        <div class="sector-name" style="color:var(--emerald);">Agritech & Rural</div>
+        <div class="sector-market">India's agricultural economy is valued at <strong style="color:var(--white);">$370 Billion</strong> — yet less than 1% of farmers have access to structured finance or modern supply chain tech.</div>
+        <div class="sector-bar-wrap"><div class="sector-bar" data-width="82" style="background:linear-gradient(90deg,var(--emerald),#80ffcc);"></div></div>
+        <div class="sector-meta"><span>Investor Interest</span><span style="color:var(--emerald);">82%</span></div>
+        <div class="sector-tag" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.3);color:var(--emerald);">🔥 High Demand</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:12px;">Key areas: Precision farming · Cold chain · Kisan credit · FPO tech</div>
+      </div>
+
+      <div class="sector-card reveal" data-delay="100">
+        <div class="sector-icon">💳</div>
+        <div class="sector-name" style="color:var(--gold);">Fintech & BFSI</div>
+        <div class="sector-market">India has <strong style="color:var(--white);">190 Million unbanked adults</strong>. UPI processed ₹18.3 Lakh Crore in Jan 2025 alone. The fintech runway is unprecedented.</div>
+        <div class="sector-bar-wrap"><div class="sector-bar" data-width="91" style="background:linear-gradient(90deg,var(--gold),var(--gold2));"></div></div>
+        <div class="sector-meta"><span>Investor Interest</span><span style="color:var(--gold);">91%</span></div>
+        <div class="sector-tag" style="background:rgba(212,168,67,0.1);border:1px solid rgba(212,168,67,0.3);color:var(--gold);">⚡ Top Funded</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:12px;">Key areas: Lending · Insurance · Wealthtech · B2B payments</div>
+      </div>
+
+      <div class="sector-card reveal" data-delay="200">
+        <div class="sector-icon">📚</div>
+        <div class="sector-name" style="color:var(--blue);">Edtech</div>
+        <div class="sector-market">India's edtech market is projected to reach <strong style="color:var(--white);">$10.4 Billion by 2025</strong>. With 600M+ people under 25, education access is still one of India's biggest unsolved problems.</div>
+        <div class="sector-bar-wrap"><div class="sector-bar" data-width="74" style="background:linear-gradient(90deg,var(--blue),#6aa3ff);"></div></div>
+        <div class="sector-meta"><span>Investor Interest</span><span style="color:var(--blue);">74%</span></div>
+        <div class="sector-tag" style="background:rgba(26,108,255,0.1);border:1px solid rgba(26,108,255,0.3);color:var(--blue);">📈 Growing</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:12px;">Key areas: Vernacular learning · Skilling · K-12 · EdAI</div>
+      </div>
+
+      <div class="sector-card reveal" data-delay="100">
+        <div class="sector-icon">☀️</div>
+        <div class="sector-name" style="color:var(--emerald);">Cleantech & EV</div>
+        <div class="sector-market">India aims for <strong style="color:var(--white);">500 GW renewable energy by 2030</strong>. EV adoption hit 1.7 million units in FY24. Government incentives are reshaping the entire energy economy.</div>
+        <div class="sector-bar-wrap"><div class="sector-bar" data-width="88" style="background:linear-gradient(90deg,#00d484,#80ffcc);"></div></div>
+        <div class="sector-meta"><span>Investor Interest</span><span style="color:var(--emerald);">88%</span></div>
+        <div class="sector-tag" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.3);color:var(--emerald);">🌱 Impact Capital</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:12px;">Key areas: Solar · EV infra · Green hydrogen · Battery tech</div>
+      </div>
+
+      <div class="sector-card reveal" data-delay="200">
+        <div class="sector-icon">🏥</div>
+        <div class="sector-name" style="color:var(--crimson);">Healthtech</div>
+        <div class="sector-market">India's healthcare market will hit <strong style="color:var(--white);">$638 Billion by 2025</strong>. With 1 doctor per 1,511 patients, technology is the only viable path to universal health access.</div>
+        <div class="sector-bar-wrap"><div class="sector-bar" data-width="79" style="background:linear-gradient(90deg,var(--crimson),#ff8080);"></div></div>
+        <div class="sector-meta"><span>Investor Interest</span><span style="color:var(--crimson);">79%</span></div>
+        <div class="sector-tag" style="background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.3);color:var(--crimson);">❤️ Mission Critical</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:12px;">Key areas: Diagnostics · Telemedicine · MedAI · Digital pharmacy</div>
+      </div>
+
+      <div class="sector-card reveal" data-delay="300">
+        <div class="sector-icon">🤖</div>
+        <div class="sector-name" style="color:#a78bfa;">AI & Deep Tech</div>
+        <div class="sector-market">India produces <strong style="color:var(--white);">1.5 Million engineers annually</strong>. Indian AI startups attracted $1.2 Billion in 2024 alone. The global AI race has a strong Indian chapter.</div>
+        <div class="sector-bar-wrap"><div class="sector-bar" data-width="95" style="background:linear-gradient(90deg,#a78bfa,#c4b5fd);"></div></div>
+        <div class="sector-meta"><span>Investor Interest</span><span style="color:#a78bfa;">95%</span></div>
+        <div class="sector-tag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);color:#a78bfa;">🚀 Most Sought After</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:12px;">Key areas: GenAI · SaaS · Robotics · Space tech</div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:48px;padding:28px;background:rgba(212,168,67,0.04);border:1px solid rgba(212,168,67,0.1);border-radius:16px;" class="reveal">
+      <p style="font-size:.88rem;color:var(--muted);">These 6 sectors represent <strong style="color:var(--gold);">over 70%</strong> of all Indian startup funding. We cover all 11 major sectors — including Logistics, SaaS, Consumer, Media & Gaming.</p>
+      <a href="signup.html" style="color:var(--gold);font-size:.85rem;font-weight:600;text-decoration:none;margin-top:8px;display:inline-block;">List your startup in any sector →</a>
     </div>
   </div>
 </section>
@@ -784,33 +1027,137 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 </section>
 
 <!-- PRICING PREVIEW -->
-<section class="pricing-preview" style="background:var(--deep);">
-  <div class="sec-inner">
-    <div style="text-align:center;max-width:700px;margin:0 auto;" class="reveal">
-      <div class="sec-label">Members Only</div>
-      <h2 class="sec-title">Built for India's Most Ambitious Founders</h2>
-      <p class="sec-sub" style="margin:16px auto 28px;">The Hook Hustlers is India's most verified startup-investor platform. Join a network of DPIIT-verified startups and serious investors — all in one place.</p>
-      <div style="background:var(--card);border:1px solid rgba(212,168,67,0.2);border-radius:20px;padding:60px 40px;position:relative;overflow:hidden;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,168,67,0.04),rgba(26,108,255,0.03));"></div>
-        <div style="font-size:3rem;margin-bottom:20px;">🚀</div>
-        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:12px;position:relative;z-index:1;">Exclusive Access for Members Only</h3>
-        <p style="font-size:.9rem;color:var(--muted);max-width:460px;margin:0 auto 32px;line-height:1.8;position:relative;z-index:1;">The Hook Hustlers is a verified, members-only platform. Create your account to get full access to our startup listings, investor network, AI matching and everything in between.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
-          <a href="signup.html" class="btn-primary">Create Your Account →</a>
-          <a href="login.html" class="btn-secondary">Already a Member? Login</a>
+<section style="background:var(--deep);padding:120px 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(212,168,67,0.06),transparent);pointer-events:none;"></div>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal">
+      <div class="sec-label" style="color:var(--gold);">Early Access</div>
+      <h2 class="sec-title" style="background:linear-gradient(135deg,var(--white),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">The Doors Open Soon.</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:540px;">We are in the final stages of onboarding our first wave of verified startups and investors. Early members get priority visibility, reduced rates, and direct access to the founding team.</p>
+    </div>
+
+    <!-- Urgency Counter -->
+    <div style="display:flex;justify-content:center;margin-bottom:48px;" class="reveal">
+      <div style="background:linear-gradient(135deg,rgba(212,168,67,0.08),rgba(212,168,67,0.02));border:1px solid rgba(212,168,67,0.25);border-radius:20px;padding:32px 48px;text-align:center;min-width:320px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:.04em;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;" id="spotsLeft">73</div>
+        <div style="font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px;">Early Access Spots Remaining</div>
+        <div style="margin-top:16px;background:rgba(212,168,67,0.1);border-radius:100px;height:6px;overflow:hidden;">
+          <div style="width:27%;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:100px;"></div>
         </div>
-        <div style="display:flex;gap:32px;justify-content:center;margin-top:36px;flex-wrap:wrap;position:relative;z-index:1;">
-          <div style="text-align:center;"><div style="font-size:1.3rem;margin-bottom:6px;">✅</div><div style="font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">Verified Members Only</div></div>
-          <div style="text-align:center;"><div style="font-size:1.3rem;margin-bottom:6px;">🇮🇳</div><div style="font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">Made for India</div></div>
-          <div style="text-align:center;"><div style="font-size:1.3rem;margin-bottom:6px;">⚡</div><div style="font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">AI-Powered Matching</div></div>
-          <div style="text-align:center;"><div style="font-size:1.3rem;margin-bottom:6px;">🔒</div><div style="font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">Legally Protected</div></div>
-        </div>
+        <div style="font-size:.72rem;color:rgba(212,168,67,0.6);margin-top:8px;">27 of 100 spots claimed</div>
+      </div>
+    </div>
+
+    <!-- Email Form -->
+    <div style="max-width:560px;margin:0 auto;" class="reveal">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <input type="email" id="waitlistEmail" placeholder="Enter your email address" style="flex:1;min-width:240px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:14px 20px;font-family:'Rajdhani',sans-serif;font-size:.95rem;color:var(--white);outline:none;transition:border .3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="joinWaitlist()" class="btn-primary" style="padding:14px 28px;white-space:nowrap;">Claim My Spot →</button>
+      </div>
+      <p style="font-size:.72rem;color:var(--muted);margin-top:12px;text-align:center;">No spam. No cold calls. Just an early invite when we go live.</p>
+    </div>
+
+    <!-- Perks -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:56px;" class="reveal">
+      <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:10px;">⚡</div>
+        <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;margin-bottom:6px;">Priority Listing</div>
+        <div style="font-size:.74rem;color:var(--muted);">Your profile appears first when investors search your sector</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:10px;">🎯</div>
+        <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;margin-bottom:6px;">Founding Member Rate</div>
+        <div style="font-size:.74rem;color:var(--muted);">Locked-in pricing. Early members never pay the full rate.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:10px;">🤝</div>
+        <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;margin-bottom:6px;">Founder Access</div>
+        <div style="font-size:.74rem;color:var(--muted);">Direct WhatsApp line to the founding team. Real humans. Fast responses.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:10px;">🏆</div>
+        <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;margin-bottom:6px;">Badge of Honour</div>
+        <div style="font-size:.74rem;color:var(--muted);">"Founding Member" badge on your profile. Forever.</div>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- CTA -->
+<!-- EARLY ACCESS WAITLIST -->
+<section style="background:var(--black);padding:120px 64px;position:relative;overflow:hidden;">
+  <style>
+    .waitlist-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(212,168,67,0.06) 0%,transparent 70%);pointer-events:none;}
+    .waitlist-card{background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(26,108,255,0.04));border:1px solid rgba(212,168,67,0.2);border-radius:28px;padding:64px;text-align:center;position:relative;overflow:hidden;max-width:720px;margin:0 auto;}
+    .waitlist-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,168,67,0.03),transparent);pointer-events:none;}
+    .spots-counter{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;background:linear-gradient(135deg,var(--gold),var(--gold2),#fff8e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+    .spots-bar-wrap{background:rgba(255,255,255,0.06);border-radius:100px;height:8px;overflow:hidden;margin:20px 0;}
+    .spots-bar{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold2));animation:fillBar 2s 0.5s ease both;width:0%;}
+    @keyframes fillBar{to{width:67%;}}
+    .waitlist-input-wrap{display:flex;gap:12px;max-width:480px;margin:32px auto 0;flex-wrap:wrap;justify-content:center;}
+    .waitlist-input{flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1px solid rgba(212,168,67,0.2);border-radius:12px;padding:14px 20px;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:.95rem;outline:none;transition:border .3s;}
+    .waitlist-input::placeholder{color:var(--muted);}
+    .waitlist-input:focus{border-color:var(--gold);}
+    .waitlist-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);border:none;padding:14px 28px;border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.08em;cursor:pointer;transition:all .3s;white-space:nowrap;}
+    .waitlist-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,168,67,0.35);}
+    .joined-avatars{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;}
+    .joined-dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--black);background:linear-gradient(135deg,var(--gold),var(--blue));display:flex;align-items:center;justify-content:center;font-size:.8rem;margin-left:-8px;}
+    .joined-dot:first-child{margin-left:0;}
+    .urgency-badge{display:inline-block;background:rgba(230,57,70,0.15);border:1px solid rgba(230,57,70,0.3);color:var(--crimson);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:24px;font-weight:700;}
+  </style>
+  <div class="waitlist-glow"></div>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div class="waitlist-card reveal">
+      <div class="urgency-badge">⏳ Founding Access — Limited Spots</div>
+      <div class="spots-counter" id="spotsLeft">33</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">Founding spots remaining out of 100</div>
+      <div class="spots-bar-wrap"><div class="spots-bar"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:-12px;">
+        <span>0</span><span style="color:var(--gold);font-weight:700;">67 claimed</span><span>100</span>
+      </div>
+
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:.04em;margin:32px 0 12px;line-height:1.1;">Be a Founding Member.<br><span style="color:var(--gold);">Shape the Platform.</span></h2>
+      <p style="font-size:.92rem;color:var(--muted);max-width:480px;margin:0 auto 8px;line-height:1.8;">Founding members get priority listing, reduced fees at launch, direct access to Aniket, and the satisfaction of being early to something that matters.</p>
+      <p style="font-size:.8rem;color:rgba(212,168,67,0.6);margin-bottom:0;font-style:italic;">The first 100 people always have the best story to tell.</p>
+
+      <div class="waitlist-input-wrap">
+        <input class="waitlist-input" type="email" placeholder="Enter your email address" id="waitlistEmail" />
+        <button class="waitlist-btn" onclick="joinWaitlist()">Claim My Spot</button>
+      </div>
+
+      <div class="joined-avatars" style="margin-top:24px;">
+        <div class="joined-dot">🧑</div>
+        <div class="joined-dot">👩</div>
+        <div class="joined-dot">🧑</div>
+        <div class="joined-dot">👨</div>
+        <div class="joined-dot">👩</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-left:8px;"><strong style="color:var(--white);">67 founders & investors</strong> already on the list</div>
+      </div>
+
+      <div style="display:flex;gap:24px;justify-content:center;margin-top:32px;padding-top:28px;border-top:1px solid var(--border2);flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> No spam, ever</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> Priority access at launch</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> Founding member benefits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function joinWaitlist(){
+  var email = document.getElementById('waitlistEmail').value.trim();
+  if(!email || !email.includes('@')){alert('Please enter a valid email address.');return;}
+  var btn = document.querySelector('.waitlist-btn');
+  btn.textContent = '✓ You are on the list!';
+  btn.style.background = 'linear-gradient(135deg,var(--emerald),#80ffcc)';
+  btn.disabled = true;
+  document.getElementById('waitlistEmail').disabled = true;
+  var spots = document.getElementById('spotsLeft');
+  if(spots) spots.textContent = parseInt(spots.textContent) - 1;
+}
+</script>
+
 <section class="cta-section">
   <div class="cta-glow1"></div>
   <div class="cta-glow2"></div>
@@ -1037,5 +1384,64 @@ document.querySelectorAll('.filter-chip').forEach(chip => {
   }
 })();
 </script>
+
+<script>
+function joinWaitlist(){
+  var email = document.getElementById('waitlistEmail').value.trim();
+  if(!email || !email.includes('@')){
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // Save to localStorage
+  var list = JSON.parse(localStorage.getItem('hhWaitlist')||'[]');
+  if(!list.includes(email)){
+    list.push(email);
+    localStorage.setItem('hhWaitlist', JSON.stringify(list));
+    // Decrease counter visually
+    var el = document.getElementById('spotsLeft');
+    if(el){
+      var n = parseInt(el.textContent);
+      if(n > 1){ el.textContent = n-1; }
+    }
+  }
+  document.getElementById('waitlistEmail').value = '';
+  // Show success
+  var btn = event.target;
+  var orig = btn.textContent;
+  btn.textContent = '✓ You're on the list!';
+  btn.style.background = 'linear-gradient(135deg,var(--emerald),#00a86b)';
+  setTimeout(function(){ btn.textContent = orig; btn.style.background = ''; }, 3000);
+}
+
+// Animate sector bars on scroll
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.sector-bar').forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        if(w) setTimeout(()=>{bar.style.width = w + '%';}, 200);
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.sector-card').forEach(c => barObs.observe(c));
+
+// Animate journey steps on scroll
+const stepObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const steps = e.target.querySelectorAll('.jstep');
+      steps.forEach((s,i) => {
+        setTimeout(()=>s.classList.add('animated'), i * 120);
+      });
+      stepObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.how-grid').forEach(g => stepObs.observe(g));
+
+</script>
+
 </body>
 </html>

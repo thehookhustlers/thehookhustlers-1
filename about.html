@@ -53,13 +53,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu.open{opacity:1;pointer-events:all;}
 .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
 .mobile-menu a:hover{color:var(--gold);}
-.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:61px;left:0;right:0;z-index:99;}
+.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:62px;left:0;right:0;z-index:99;}
 .ticker{display:flex;gap:60px;animation:ticker 30s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;color:rgba(240,237,232,0.6);display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .ticker-item span{color:var(--emerald);font-weight:600;}
 .ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 section{padding:120px 64px;position:relative;z-index:1;}
-.page-hero{padding:160px 64px 80px;position:relative;z-index:1;overflow:hidden;}
+.page-hero{padding:170px 64px 80px;position:relative;z-index:1;overflow:hidden;}
 .page-hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,0.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(26,108,255,0.05) 0%,transparent 60%);}
 .page-hero-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(212,168,67,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 100%);}
 .page-hero-content{position:relative;z-index:1;max-width:800px;}
@@ -98,7 +98,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
 @media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:140px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
-@media(max-width:768px){nav{padding:14px 20px;}.nav-links,.nav-right{display:none;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:57px;}}
+@media(max-width:768px){nav{padding:14px 20px;}.nav-links,.nav-right{display:none;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:57px;} .page-hero{padding-top:150px!important;}}
 
 .about-mission{background:var(--deep);}
 .mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;}
@@ -586,113 +586,3 @@ function closeMobile(){
 </script>
 </body>
 </html<section style="background:var(--black);padding:120px 64px;overflow:hidden;position:relative;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,0.05) 0%,transparent 60%);pointer-events:none;"></div>
-  <style>
-    .roadmap-item{display:grid;grid-template-columns:140px 1fr;gap:40px;margin-bottom:0;position:relative;}
-    .roadmap-item::before{content:'';position:absolute;left:69px;top:52px;bottom:-40px;width:1px;background:linear-gradient(to bottom,rgba(212,168,67,0.3),rgba(26,108,255,0.1));}
-    .roadmap-item:last-child::before{display:none;}
-    .rm-date{text-align:right;padding-top:8px;}
-    .rm-quarter{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.08em;}
-    .rm-year{font-size:.72rem;color:var(--muted);letter-spacing:.1em;}
-    .rm-dot{width:14px;height:14px;border-radius:50%;position:absolute;left:63px;top:10px;border:2px solid var(--black);}
-    .rm-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 32px;margin-bottom:24px;transition:border-color .3s;}
-    .rm-card:hover{border-color:rgba(212,168,67,0.2);}
-    .rm-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;}
-    .rm-desc{font-size:.87rem;color:var(--muted);line-height:1.75;}
-    .rm-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-    .rm-tag{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;font-weight:600;}
-    @media(max-width:768px){.roadmap-item{grid-template-columns:1fr!important;}.rm-date{text-align:left!important;}.roadmap-item::before{display:none;}}
-  </style>
-  <div class="sec-inner" style="position:relative;z-index:1;">
-    <div style="text-align:center;margin-bottom:80px;" class="reveal">
-      <div class="sec-label">The Roadmap</div>
-      <h2 class="sec-title">The Vision for 2027</h2>
-      <p class="sec-sub" style="margin:16px auto 0;max-width:560px;">This isn't a pitch deck slide. This is a working plan — transparent, specific, and updated as we build.</p>
-    </div>
-
-    <div style="max-width:800px;margin:0 auto;position:relative;">
-
-      <div class="roadmap-item reveal">
-        <div class="rm-date">
-          <div class="rm-quarter" style="color:var(--gold);">Q2</div>
-          <div class="rm-year">2026</div>
-        </div>
-        <div style="position:relative;">
-          <div class="rm-dot" style="background:var(--gold);"></div>
-          <div class="rm-card" style="border-color:rgba(212,168,67,0.2);">
-            <div class="rm-title" style="color:var(--gold);">🚀 Platform Launch — Founding Wave</div>
-            <div class="rm-desc">Public launch with first 100 verified startups and 50 investors onboarded. AI matching engine live. Funding Readiness Scores operational. Full DPIIT verification pipeline running.</div>
-            <div class="rm-tags">
-              <span class="rm-tag" style="background:rgba(212,168,67,0.1);border:1px solid rgba(212,168,67,0.25);color:var(--gold);">In Progress</span>
-              <span class="rm-tag" style="background:rgba(0,208,132,0.08);border:1px solid rgba(0,208,132,0.2);color:var(--emerald);">100 Founding Spots</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="roadmap-item reveal" style="padding-top:40px;">
-        <div class="rm-date">
-          <div class="rm-quarter" style="color:var(--blue);">Q3–Q4</div>
-          <div class="rm-year">2026</div>
-        </div>
-        <div style="position:relative;">
-          <div class="rm-dot" style="background:var(--blue);"></div>
-          <div class="rm-card" style="border-color:rgba(26,108,255,0.2);">
-            <div class="rm-title" style="color:var(--blue);">📈 Scale & First Deals</div>
-            <div class="rm-desc">500+ active startup listings. 200+ verified investors. First 10 documented deal connections. Mobile app in beta. Sector-specific investor filters live. Pan India reach including Northeast and rural UP.</div>
-            <div class="rm-tags">
-              <span class="rm-tag" style="background:rgba(26,108,255,0.1);border:1px solid rgba(26,108,255,0.25);color:var(--blue);">Q3 2026</span>
-              <span class="rm-tag" style="background:rgba(26,108,255,0.08);border:1px solid rgba(26,108,255,0.2);color:var(--blue);">Mobile App</span>
-              <span class="rm-tag" style="background:rgba(26,108,255,0.08);border:1px solid rgba(26,108,255,0.2);color:var(--blue);">First Deals</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="roadmap-item reveal" style="padding-top:40px;">
-        <div class="rm-date">
-          <div class="rm-quarter" style="color:var(--emerald);">Q1–Q2</div>
-          <div class="rm-year">2027</div>
-        </div>
-        <div style="position:relative;">
-          <div class="rm-dot" style="background:var(--emerald);"></div>
-          <div class="rm-card" style="border-color:rgba(0,208,132,0.2);">
-            <div class="rm-title" style="color:var(--emerald);">🌱 Ecosystem Expansion</div>
-            <div class="rm-desc">2,000+ verified startups. Integration with SIDBI and government fund schemes. Vernacular language support for Hindi, Tamil, Telugu, Bengali. Dedicated Tier 2/3 city investor program. First cohort of Hook Hustlers-connected funded startups.</div>
-            <div class="rm-tags">
-              <span class="rm-tag" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.25);color:var(--emerald);">Govt. Integration</span>
-              <span class="rm-tag" style="background:rgba(0,208,132,0.08);border:1px solid rgba(0,208,132,0.2);color:var(--emerald);">Vernacular</span>
-              <span class="rm-tag" style="background:rgba(0,208,132,0.08);border:1px solid rgba(0,208,132,0.2);color:var(--emerald);">2,000+ Startups</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="roadmap-item reveal" style="padding-top:40px;">
-        <div class="rm-date">
-          <div class="rm-quarter" style="color:#a78bfa);">Q3–Q4</div>
-          <div class="rm-year">2027</div>
-        </div>
-        <div style="position:relative;">
-          <div class="rm-dot" style="background:#a78bfa;"></div>
-          <div class="rm-card" style="border-color:rgba(167,139,250,0.2);">
-            <div class="rm-title" style="color:#a78bfa;">🦁 India's #1 Matchmaking Infrastructure</div>
-            <div class="rm-desc">₹100 Crore+ in documented deal flow. India's most trusted startup-investor platform by verified users. Institutional partnerships with leading VCs and DPIIT. Aniket turns 19. The door he built is now open for thousands.</div>
-            <div class="rm-tags">
-              <span class="rm-tag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:#a78bfa;">₹100Cr+ Deal Flow</span>
-              <span class="rm-tag" style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);color:#a78bfa;">VC Partnerships</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="text-align:center;margin-top:80px;padding:40px;background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(26,108,255,0.04));border:1px solid rgba(212,168,67,0.12);border-radius:20px;max-width:680px;margin-left:auto;margin-right:auto;" class="reveal">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:rgba(240,237,232,0.72);line-height:1.65;margin-bottom:20px;">"We are not building for an exit. We are building the infrastructure that India's startup ecosystem deserved a decade ago — and we are building it from Lucknow."</p>
-      <div style="font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;">— Aniket Singh, Founder & Chief Hustler</div>
-    </div>
-  </div>
-</section>
-
->

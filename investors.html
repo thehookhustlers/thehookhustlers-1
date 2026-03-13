@@ -53,13 +53,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu.open{opacity:1;pointer-events:all;}
 .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
 .mobile-menu a:hover{color:var(--gold);}
-.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:61px;left:0;right:0;z-index:99;}
+.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:62px;left:0;right:0;z-index:99;}
 .ticker{display:flex;gap:60px;animation:ticker 30s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;color:rgba(240,237,232,0.6);display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .ticker-item span{color:var(--emerald);font-weight:600;}
 .ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 section{padding:120px 64px;position:relative;z-index:1;}
-.page-hero{padding:160px 64px 80px;position:relative;z-index:1;overflow:hidden;}
+.page-hero{padding:170px 64px 80px;position:relative;z-index:1;overflow:hidden;}
 .page-hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,0.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(26,108,255,0.05) 0%,transparent 60%);}
 .page-hero-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(212,168,67,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 100%);}
 .page-hero-content{position:relative;z-index:1;max-width:800px;}
@@ -98,7 +98,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
 @media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:140px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
-@media(max-width:768px){nav{padding:14px 20px;}.nav-links,.nav-right{display:none;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:57px;}}
+@media(max-width:768px){nav{padding:14px 20px;}.nav-links,.nav-right{display:none;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:57px;} .page-hero{padding-top:150px!important;}}
 
 .inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
 .inv-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;transition:all .3s;position:relative;overflow:hidden;}
@@ -226,6 +226,165 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
     </div>
   </div>
 </section>
+
+<!-- ── WHY JOIN EARLY ── -->
+<section style="background:var(--black);padding:100px 64px;">
+  <div class="sec-inner">
+    <div style="text-align:center;margin-bottom:60px;" class="reveal">
+      <div class="sec-label">Early Investor Advantage</div>
+      <h2 class="sec-title">First In. Best Positioned.</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:580px;">Early investors on The Hook Hustlers don't just get access — they get priority. The platform is being shaped around your needs right now, while there's still time to influence it.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
+      <div class="reveal" style="background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(212,168,67,0.02));border:1px solid rgba(212,168,67,0.15);border-radius:20px;padding:36px;">
+        <div style="font-size:2rem;margin-bottom:16px;">🎯</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Mandate-Perfect Deals</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">You set your investment thesis once — sector, stage, ticket size, geography. Every startup surfaced to you is matched against it. No inbox noise. No wasted calls.</div>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg,rgba(26,108,255,0.06),rgba(26,108,255,0.02));border:1px solid rgba(26,108,255,0.15);border-radius:20px;padding:36px;" data-delay="100">
+        <div style="font-size:2rem;margin-bottom:16px;">🔍</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">Pre-Diligenced Profiles</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Every startup comes with a verified DPIIT certificate, Funding Readiness Score, full financials and pitch deck. You walk into every first call already informed.</div>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg,rgba(0,208,132,0.06),rgba(0,208,132,0.02));border:1px solid rgba(0,208,132,0.15);border-radius:20px;padding:36px;" data-delay="200">
+        <div style="font-size:2rem;margin-bottom:16px;">🦁</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--emerald);margin-bottom:10px;">Tier 2 & 3 Deal Flow</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">The next Meesho, Nykaa or Zepto may not come from Bangalore. Our platform specifically surfaces high-quality startups from India's underserved markets — where valuations are still rational.</div>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg,rgba(181,123,255,0.06),rgba(181,123,255,0.02));border:1px solid rgba(181,123,255,0.15);border-radius:20px;padding:36px;" data-delay="100">
+        <div style="font-size:2rem;margin-bottom:16px;">⚖️</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:#a78bfa;margin-bottom:10px;">Legally Protected Introductions</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Every introduction is logged and governed by our platform T&Cs. No founder can close a deal introduced through our platform without our involvement — protecting your intro rights.</div>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg,rgba(230,57,70,0.06),rgba(230,57,70,0.02));border:1px solid rgba(230,57,70,0.15);border-radius:20px;padding:36px;" data-delay="200">
+        <div style="font-size:2rem;margin-bottom:16px;">📊</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--crimson);margin-bottom:10px;">Portfolio Dashboard</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Track all your expressions of interest, active conversations and closed deals in one place. Simple, clean, and built for investors who manage multiple parallel deals.</div>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(212,168,67,0.02));border:1px solid rgba(212,168,67,0.15);border-radius:20px;padding:36px;" data-delay="300">
+        <div style="font-size:2rem;margin-bottom:16px;">🔑</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Founding Member Status</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Early investors get a permanent Founding Investor badge, locked-in annual membership fee, and direct access to Aniket to shape what the platform becomes next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEAL FLOW PREVIEW ── -->
+<section style="background:var(--deep);padding:100px 64px;overflow:hidden;position:relative;">
+  <div style="position:absolute;left:-100px;top:50%;transform:translateY(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(212,168,67,0.05),transparent 70%);pointer-events:none;"></div>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:60px;" class="reveal">
+      <div class="sec-label">Deal Flow Intelligence</div>
+      <h2 class="sec-title">What's Coming Down the Pipeline</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:580px;">Here's the kind of deal flow you can expect on The Hook Hustlers — by sector, stage and ticket size. All startups DPIIT-verified before they ever reach your screen.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:20px;overflow:hidden;" class="reveal">
+      <div style="background:var(--card);padding:32px;text-align:center;">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">By Stage</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;padding:8px 12px;background:rgba(212,168,67,0.06);border-radius:8px;"><span>Pre-Seed</span><span style="color:var(--gold);font-weight:700;">₹25L–₹1Cr</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;padding:8px 12px;background:rgba(0,208,132,0.06);border-radius:8px;"><span>Seed</span><span style="color:var(--emerald);font-weight:700;">₹1Cr–₹5Cr</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;padding:8px 12px;background:rgba(26,108,255,0.06);border-radius:8px;"><span>Series A</span><span style="color:var(--blue);font-weight:700;">₹5Cr–₹30Cr</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:.85rem;padding:8px 12px;background:rgba(181,123,255,0.06);border-radius:8px;"><span>Series B+</span><span style="color:#a78bfa;font-weight:700;">₹30Cr+</span></div>
+        </div>
+      </div>
+      <div style="background:var(--card);padding:32px;text-align:center;">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">By Sector</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">🤖 AI & Deep Tech</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">💳 Fintech & BFSI</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">🌾 Agritech & Rural</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">⚡ Cleantech & EV</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">🏥 Healthtech</div>
+          <div style="font-size:.82rem;padding:7px;">📚 Edtech & SaaS</div>
+        </div>
+      </div>
+      <div style="background:var(--card);padding:32px;text-align:center;">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Investor Types Welcome</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">👼 Angel Investors</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">🏢 Venture Capital Firms</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">🏦 Corporate Venture Arms</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">🏛️ Government Funds</div>
+          <div style="font-size:.82rem;padding:7px;border-bottom:1px solid var(--border2);">👥 Angel Networks / Syndicates</div>
+          <div style="font-size:.82rem;padding:7px;">🌍 Family Offices</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERIFICATION PROCESS -->
+    <div style="margin-top:80px;">
+      <div style="text-align:center;margin-bottom:48px;" class="reveal">
+        <div class="sec-label">Verification Process</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:.04em;">How We Verify Every Investor</h3>
+        <p style="color:var(--muted);font-size:.88rem;max-width:480px;margin:12px auto 0;">Our verification process is thorough but fast. Most investors are verified within 48 hours.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0;position:relative;" class="reveal">
+        <div style="text-align:center;padding:32px 24px;position:relative;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">1</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;margin-bottom:8px;">Apply Online</div>
+          <div style="font-size:.78rem;color:var(--muted);line-height:1.7;">Complete the investor registration form with your investment background and mandate details</div>
+        </div>
+        <div style="text-align:center;padding:32px 24px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">2</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;margin-bottom:8px;">LinkedIn Check</div>
+          <div style="font-size:.78rem;color:var(--muted);line-height:1.7;">We verify your identity and investment history via your LinkedIn profile and public records</div>
+        </div>
+        <div style="text-align:center;padding:32px 24px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--emerald),#80ffcc);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">3</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;margin-bottom:8px;">AUM Documentation</div>
+          <div style="font-size:.78rem;color:var(--muted);line-height:1.7;">For institutional investors, we verify AUM through fund documents or bank references — confidentially</div>
+        </div>
+        <div style="text-align:center;padding:32px 24px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#c4b5fd);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">4</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;margin-bottom:8px;">Agreement Signed</div>
+          <div style="font-size:.78rem;color:var(--muted);line-height:1.7;">You sign the platform agreement outlining deal documentation requirements and legal protections</div>
+        </div>
+        <div style="text-align:center;padding:32px 24px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">5</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;margin-bottom:8px;">Access Granted</div>
+          <div style="font-size:.78rem;color:var(--muted);line-height:1.7;">Your dashboard is live. Start receiving matched deal flow within hours of going live.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:64px;" class="reveal">
+      <a href="signup.html" class="btn-primary" style="margin-right:12px;">Join as Investor →</a>
+      <a href="contact.html" class="btn-secondary">Schedule a Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WAITLIST ── -->
+<section style="background:var(--black);padding:100px 64px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(26,108,255,0.05),transparent);pointer-events:none;"></div>
+  <div class="sec-inner" style="position:relative;z-index:1;text-align:center;">
+    <div class="reveal">
+      <div style="display:inline-block;background:rgba(26,108,255,0.12);border:1px solid rgba(26,108,255,0.3);color:var(--blue);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 18px;border-radius:100px;font-weight:700;margin-bottom:24px;">⏳ Founding Investors — Limited Spots</div>
+      <h2 class="sec-title" style="font-size:clamp(2rem,5vw,3.8rem);background:linear-gradient(135deg,var(--white),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;max-width:700px;margin:0 auto 20px;">Be One of Our First Verified Investors.</h2>
+      <p style="color:var(--muted);font-size:.95rem;max-width:520px;margin:0 auto 40px;line-height:1.9;">Founding investors get priority deal flow, locked-in annual membership, and a direct line to the founding team. The earlier you join, the better your positioning.</p>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto;" class="reveal">
+      <input type="email" id="investorWaitlist" placeholder="Enter your email address" style="flex:1;min-width:220px;background:rgba(255,255,255,0.04);border:1px solid rgba(26,108,255,0.2);border-radius:10px;padding:14px 20px;font-family:'Rajdhani',sans-serif;font-size:.92rem;color:var(--white);outline:none;transition:border .3s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,108,255,0.2)'">
+      <button onclick="claimInvestorSpot()" style="background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);border:none;padding:14px 24px;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.08em;cursor:pointer;white-space:nowrap;transition:all .3s;">Apply for Access</button>
+    </div>
+    <p style="font-size:.72rem;color:var(--muted);margin-top:12px;">Verified within 48 hours. No spam.</p>
+  </div>
+</section>
+<script>
+function claimInvestorSpot(){
+  var e=document.getElementById('investorWaitlist').value.trim();
+  if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}
+  var btn=document.querySelector('[onclick="claimInvestorSpot()"]');
+  btn.textContent='✓ Application Received!';
+  btn.style.background='linear-gradient(135deg,var(--emerald),#80ffcc)';
+  btn.style.color='var(--black)';
+  btn.disabled=true;
+  document.getElementById('investorWaitlist').disabled=true;
+}
+</script>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
