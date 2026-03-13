@@ -54,13 +54,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu.open{opacity:1;pointer-events:all;}
 .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
 .mobile-menu a:hover{color:var(--gold);}
-.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:62px;left:0;right:0;z-index:99;}
+.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:9px 0;overflow:hidden;position:fixed;top:61px;left:0;right:0;z-index:99;}
 .ticker{display:flex;gap:60px;animation:ticker 30s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;color:rgba(240,237,232,0.6);display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .ticker-item span{color:var(--emerald);font-weight:600;}
 .ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 section{padding:120px 64px;position:relative;z-index:1;}
-.page-hero{padding:170px 64px 80px;position:relative;z-index:1;overflow:hidden;}
+.page-hero{padding:160px 64px 80px;position:relative;z-index:1;overflow:hidden;}
 .page-hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,0.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(26,108,255,0.05) 0%,transparent 60%);}
 .page-hero-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(212,168,67,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 100%);}
 .page-hero-content{position:relative;z-index:1;max-width:800px;}
@@ -565,6 +565,275 @@ function claimStartupSpot(){
   btn.style.background='linear-gradient(135deg,var(--emerald),#80ffcc)';
   btn.disabled=true;
   document.getElementById('startupWaitlist').disabled=true;
+}
+</script>
+
+
+<!-- ══ WHAT INVESTORS ACTUALLY LOOK FOR ══ -->
+<section style="background:var(--deep);padding:100px 64px;">
+  <style>
+    .checklist-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+    .checklist-group{background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:20px;padding:36px;}
+    .checklist-group-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border2);}
+    .check-item{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;}
+    .check-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;margin-top:1px;}
+    .check-title{font-size:.88rem;font-weight:600;letter-spacing:.03em;margin-bottom:3px;}
+    .check-desc{font-size:.78rem;color:var(--muted);line-height:1.7;}
+    .check-tag{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:100px;font-weight:700;margin-top:6px;}
+    @media(max-width:768px){.checklist-grid{grid-template-columns:1fr;}}
+  </style>
+  <div class="sec-inner">
+    <div style="text-align:center;margin-bottom:64px;" class="reveal">
+      <div class="sec-label">Investor Psychology</div>
+      <h2 class="sec-title">What Investors Actually Look For</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:580px;">Most founders pitch what they built. The best founders pitch what investors want to see. Here is the difference — based on real investor feedback from across the Indian ecosystem.</p>
+    </div>
+    <div class="checklist-grid">
+
+      <!-- MUST HAVES -->
+      <div class="checklist-group reveal">
+        <div class="checklist-group-title" style="color:var(--emerald);">✅ Must-Haves — Non-Negotiable</div>
+
+        <div class="check-item">
+          <div class="check-icon" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.2);">👥</div>
+          <div>
+            <div class="check-title">A coachable, committed founding team</div>
+            <div class="check-desc">Investors back people first, ideas second. They need to believe the team will adapt, persist and make hard calls when the original plan doesn't work.</div>
+            <div class="check-tag" style="background:rgba(0,208,132,0.1);color:var(--emerald);border:1px solid rgba(0,208,132,0.2);">Weighted: 35% of decision</div>
+          </div>
+        </div>
+
+        <div class="check-item">
+          <div class="check-icon" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.2);">📦</div>
+          <div>
+            <div class="check-title">A clearly defined problem worth solving</div>
+            <div class="check-desc">Not "we built an app." The problem must be real, painful, and large enough to justify capital. Bonus points if you've personally lived it.</div>
+            <div class="check-tag" style="background:rgba(0,208,132,0.1);color:var(--emerald);border:1px solid rgba(0,208,132,0.2);">Weighted: 25% of decision</div>
+          </div>
+        </div>
+
+        <div class="check-item">
+          <div class="check-icon" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.2);">📈</div>
+          <div>
+            <div class="check-title">Some form of traction or validation</div>
+            <div class="check-desc">Even early signals matter — beta users, LOIs, pilot contracts, waitlist signups. Investors don't need revenue; they need proof someone wants what you built.</div>
+            <div class="check-tag" style="background:rgba(0,208,132,0.1);color:var(--emerald);border:1px solid rgba(0,208,132,0.2);">Weighted: 20% of decision</div>
+          </div>
+        </div>
+
+        <div class="check-item" style="margin-bottom:0;">
+          <div class="check-icon" style="background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.2);">🏦</div>
+          <div>
+            <div class="check-title">A large enough addressable market (TAM)</div>
+            <div class="check-desc">VCs need exits. Angels need returns. If the market is too small, even a perfect execution can't generate the return they need. India's context: ₹500Cr+ TAM is a baseline.</div>
+            <div class="check-tag" style="background:rgba(0,208,132,0.1);color:var(--emerald);border:1px solid rgba(0,208,132,0.2);">Weighted: 15% of decision</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEAL KILLERS -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div class="checklist-group reveal" data-delay="100">
+          <div class="checklist-group-title" style="color:var(--crimson);">🚫 Deal Killers — Fix Before You Pitch</div>
+
+          <div class="check-item">
+            <div class="check-icon" style="background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.2);">💸</div>
+            <div>
+              <div class="check-title">Asking for too much, too early</div>
+              <div class="check-desc">A pre-revenue startup asking for ₹5 Crore with a ₹50 Crore valuation raises red flags instantly. Know the market rate for your stage and sector.</div>
+            </div>
+          </div>
+          <div class="check-item">
+            <div class="check-icon" style="background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.2);">🙈</div>
+            <div>
+              <div class="check-title">"No competition" answers</div>
+              <div class="check-desc">Every investor knows every market has competition. Saying you have none signals you haven't done your research — or you don't understand your own market.</div>
+            </div>
+          </div>
+          <div class="check-item" style="margin-bottom:0;">
+            <div class="check-icon" style="background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.2);">📄</div>
+            <div>
+              <div class="check-title">No documentation or financial model</div>
+              <div class="check-desc">Even a basic 3-year projection shows you've thought about the business. Arriving with nothing signals unpreparedness — and that's a fast no.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="checklist-group reveal" data-delay="200" style="background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(212,168,67,0.02));border-color:rgba(212,168,67,0.15);">
+          <div class="checklist-group-title" style="color:var(--gold);">💡 Hook Hustlers Advantage</div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.8;margin-bottom:16px;">Your Funding Readiness Score benchmarks you against all of the above — before you ever sit in front of an investor. Know your gaps. Fix them. Then pitch with confidence.</p>
+          <a href="signup.html" class="btn-primary" style="font-size:.82rem;padding:12px 28px;">Get My Score →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTERACTIVE FUNDING READINESS SELF-CHECKER ══ -->
+<section style="background:var(--black);padding:100px 64px;overflow:hidden;position:relative;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(26,108,255,0.04),transparent);pointer-events:none;"></div>
+  <style>
+    .checker-q{margin-bottom:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0;overflow:hidden;transition:border-color .3s;}
+    .checker-q.answered{border-color:rgba(0,208,132,0.2);}
+    .checker-q-head{padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+    .checker-q-title{font-size:.9rem;font-weight:600;letter-spacing:.02em;}
+    .checker-options{display:none;padding:0 22px 18px;display:flex;flex-direction:column;gap:8px;}
+    .checker-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;border:1px solid var(--border2);transition:all .2s;font-size:.85rem;}
+    .checker-opt:hover{background:rgba(255,255,255,0.03);border-color:rgba(212,168,67,0.2);}
+    .checker-opt input{accent-color:var(--gold);}
+    .checker-result{background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:20px;padding:36px;text-align:center;display:none;}
+    .result-score{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;}
+    .result-bar-wrap{height:10px;background:rgba(255,255,255,0.05);border-radius:100px;overflow:hidden;margin:20px 0 10px;}
+    .result-bar{height:100%;border-radius:100px;transition:width 1.2s ease;}
+    .result-label{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;margin-bottom:8px;}
+    .result-advice{font-size:.88rem;color:var(--muted);max-width:480px;margin:0 auto 28px;line-height:1.8;}
+  </style>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:64px;" class="reveal">
+      <div class="sec-label">Self Assessment</div>
+      <h2 class="sec-title">Quick Funding Readiness Check</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:540px;">Answer 6 honest questions. Get an instant snapshot of where your startup stands — and what to work on before approaching investors.</p>
+    </div>
+    <div style="max-width:700px;margin:0 auto;" class="reveal">
+      <div id="checkerForm">
+
+        <div class="checker-q" id="q1">
+          <div class="checker-q-head"><span class="checker-q-title">1. What best describes your current revenue stage?</span></div>
+          <div class="checker-options">
+            <label class="checker-opt"><input type="radio" name="q1" value="0"> No revenue yet, still building the product</label>
+            <label class="checker-opt"><input type="radio" name="q1" value="15"> Early users / beta, no paying customers yet</label>
+            <label class="checker-opt"><input type="radio" name="q1" value="25"> Paying customers, under ₹10L MRR</label>
+            <label class="checker-opt"><input type="radio" name="q1" value="35"> ₹10L+ MRR and growing consistently</label>
+          </div>
+        </div>
+
+        <div class="checker-q" id="q2">
+          <div class="checker-q-head"><span class="checker-q-title">2. How many founders are on the core team?</span></div>
+          <div class="checker-options">
+            <label class="checker-opt"><input type="radio" name="q2" value="5"> Solo founder</label>
+            <label class="checker-opt"><input type="radio" name="q2" value="15"> 2 founders with complementary skills</label>
+            <label class="checker-opt"><input type="radio" name="q2" value="20"> 3 founders, clear roles defined</label>
+            <label class="checker-opt"><input type="radio" name="q2" value="10"> 4+ founders (may raise cap table questions)</label>
+          </div>
+        </div>
+
+        <div class="checker-q" id="q3">
+          <div class="checker-q-head"><span class="checker-q-title">3. Do you have a pitch deck ready?</span></div>
+          <div class="checker-options">
+            <label class="checker-opt"><input type="radio" name="q3" value="0"> No deck at all yet</label>
+            <label class="checker-opt"><input type="radio" name="q3" value="5"> Basic slides, not investor-ready</label>
+            <label class="checker-opt"><input type="radio" name="q3" value="12"> A solid deck, covers key slides</label>
+            <label class="checker-opt"><input type="radio" name="q3" value="15"> Full deck with financials, traction & ask</label>
+          </div>
+        </div>
+
+        <div class="checker-q" id="q4">
+          <div class="checker-q-head"><span class="checker-q-title">4. How clear is your competitive moat?</span></div>
+          <div class="checker-options">
+            <label class="checker-opt"><input type="radio" name="q4" value="0"> We don't have competition (we're unique)</label>
+            <label class="checker-opt"><input type="radio" name="q4" value="5"> We're faster / cheaper than competitors</label>
+            <label class="checker-opt"><input type="radio" name="q4" value="12"> Clear differentiation — tech, distribution or data</label>
+            <label class="checker-opt"><input type="radio" name="q4" value="15"> Defensible moat — patents, network effects or exclusives</label>
+          </div>
+        </div>
+
+        <div class="checker-q" id="q5">
+          <div class="checker-q-head"><span class="checker-q-title">5. What stage of DPIIT registration are you at?</span></div>
+          <div class="checker-options">
+            <label class="checker-opt"><input type="radio" name="q5" value="0"> Not registered, not sure how</label>
+            <label class="checker-opt"><input type="radio" name="q5" value="5"> In process, applied but not received</label>
+            <label class="checker-opt"><input type="radio" name="q5" value="15"> DPIIT certificate in hand</label>
+          </div>
+        </div>
+
+        <div class="checker-q" id="q6">
+          <div class="checker-q-head"><span class="checker-q-title">6. Do you have a financial model or projections?</span></div>
+          <div class="checker-options">
+            <label class="checker-opt"><input type="radio" name="q6" value="0"> No financial model at all</label>
+            <label class="checker-opt"><input type="radio" name="q6" value="5"> Basic back-of-napkin numbers</label>
+            <label class="checker-opt"><input type="radio" name="q6" value="10"> 12-month projection with assumptions</label>
+            <label class="checker-opt"><input type="radio" name="q6" value="20"> 3-year model with unit economics & scenarios</label>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:32px;">
+          <button onclick="calculateScore()" class="btn-primary" style="padding:16px 48px;font-size:1rem;">Calculate My Score →</button>
+        </div>
+      </div>
+
+      <div class="checker-result" id="checkerResult">
+        <div style="margin-bottom:8px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">Your Funding Readiness Score</div>
+        <div class="result-score" id="resultScore">0</div><span style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--muted);">/100</span>
+        <div class="result-bar-wrap"><div class="result-bar" id="resultBar" style="width:0%;"></div></div>
+        <div class="result-label" id="resultLabel">—</div>
+        <div class="result-advice" id="resultAdvice">—</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="signup.html" class="btn-primary">List My Startup →</a>
+          <button onclick="resetChecker()" class="btn-secondary" style="border:none;cursor:pointer;background:transparent;color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.9rem;padding:15px 36px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);letter-spacing:.08em;text-transform:uppercase;">Retake Check</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.checker-q input[type="radio"]').forEach(function(inp){
+  inp.addEventListener('change', function(){
+    this.closest('.checker-q').classList.add('answered');
+  });
+});
+
+function calculateScore(){
+  var total = 0; var answered = 0;
+  ['q1','q2','q3','q4','q5','q6'].forEach(function(q){
+    var sel = document.querySelector('input[name="'+q+'"]:checked');
+    if(sel){ total += parseInt(sel.value); answered++; }
+  });
+  if(answered < 6){ alert('Please answer all 6 questions for an accurate score.'); return; }
+
+  // Normalize to 100
+  var score = Math.min(100, Math.round(total));
+
+  var label, advice, color;
+  if(score >= 80){
+    label = 'Strong Candidate 🔥'; color = 'var(--emerald)';
+    advice = 'Your startup is well-positioned for investor conversations. List on Hook Hustlers to get matched with investors who fit your stage and sector.';
+  } else if(score >= 60){
+    label = 'Nearly Ready ⚡'; color = 'var(--gold)';
+    advice = 'You are close — a few gaps to close before approaching investors. Your Funding Readiness Score on Hook Hustlers will identify exactly what to fix.';
+  } else if(score >= 40){
+    label = 'Foundation Stage 🏗️'; color = 'var(--blue)';
+    advice = 'Good foundation, but investors will have hard questions you may not be ready for yet. Focus on traction and documentation first.';
+  } else {
+    label = 'Early Days 🌱'; color = 'var(--crimson)';
+    advice = 'You are early — and that is fine. List on Hook Hustlers to understand what milestones to hit before your first investor conversation.';
+  }
+
+  document.getElementById('checkerForm').style.display = 'none';
+  var result = document.getElementById('checkerResult');
+  result.style.display = 'block';
+  var scoreEl = document.getElementById('resultScore');
+  scoreEl.style.color = color;
+  document.getElementById('resultBar').style.background = color;
+  document.getElementById('resultLabel').textContent = label;
+  document.getElementById('resultLabel').style.color = color;
+  document.getElementById('resultAdvice').textContent = advice;
+
+  // Animate score
+  var s = 0; var step = score / 60;
+  var t = setInterval(function(){
+    s = Math.min(score, s + step);
+    scoreEl.textContent = Math.round(s);
+    document.getElementById('resultBar').style.width = Math.round(s) + '%';
+    if(s >= score) clearInterval(t);
+  }, 16);
+}
+
+function resetChecker(){
+  document.querySelectorAll('.checker-q input').forEach(function(i){ i.checked = false; });
+  document.querySelectorAll('.checker-q').forEach(function(q){ q.classList.remove('answered'); });
+  document.getElementById('checkerForm').style.display = 'block';
+  document.getElementById('checkerResult').style.display = 'none';
 }
 </script>
 

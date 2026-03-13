@@ -53,13 +53,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu.open{opacity:1;pointer-events:all;}
 .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
 .mobile-menu a:hover{color:var(--gold);}
-.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:10px 0;overflow:hidden;position:fixed;top:62px;left:0;right:0;z-index:99;}
+.ticker-wrap{background:linear-gradient(90deg,var(--navy),#0d1f3c,var(--navy));border-bottom:1px solid rgba(26,108,255,0.2);padding:9px 0;overflow:hidden;position:fixed;top:61px;left:0;right:0;z-index:99;}
 .ticker{display:flex;gap:60px;animation:ticker 30s linear infinite;white-space:nowrap;}
 .ticker-item{font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;color:rgba(240,237,232,0.6);display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .ticker-item span{color:var(--emerald);font-weight:600;}
 .ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 section{padding:120px 64px;position:relative;z-index:1;}
-.page-hero{padding:170px 64px 80px;position:relative;z-index:1;overflow:hidden;}
+.page-hero{padding:160px 64px 80px;position:relative;z-index:1;overflow:hidden;}
 .page-hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,0.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(26,108,255,0.05) 0%,transparent 60%);}
 .page-hero-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(212,168,67,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 100%);}
 .page-hero-content{position:relative;z-index:1;max-width:800px;}
@@ -383,6 +383,250 @@ function claimInvestorSpot(){
   btn.disabled=true;
   document.getElementById('investorWaitlist').disabled=true;
 }
+</script>
+
+
+<!-- ══ INDIA INVESTMENT LANDSCAPE ══ -->
+<section style="background:var(--black);padding:100px 64px;overflow:hidden;position:relative;">
+  <style>
+    .inv-stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:56px;}
+    .inv-stat-card{background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;transition:transform .3s,border-color .3s;}
+    .inv-stat-card:hover{transform:translateY(-4px);}
+    .inv-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;line-height:1;margin-bottom:6px;}
+    .inv-stat-label{font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+    .inv-stat-note{font-size:.7rem;margin-top:6px;font-style:italic;}
+    .landscape-split{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    @media(max-width:768px){.landscape-split{grid-template-columns:1fr;}}
+  </style>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:64px;" class="reveal">
+      <div class="sec-label">India Investment Landscape</div>
+      <h2 class="sec-title">The Numbers Behind the Opportunity</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:580px;">India's venture ecosystem is the third largest in the world — and it is still early. Here is what the data shows for investors entering now.</p>
+    </div>
+
+    <div class="inv-stat-grid">
+      <div class="inv-stat-card reveal" style="border-color:rgba(212,168,67,0.12);">
+        <div class="inv-stat-num" style="color:var(--gold);" data-target="125">0</div>
+        <div class="inv-stat-label">Unicorns Produced</div>
+        <div class="inv-stat-note" style="color:rgba(212,168,67,0.5);">3rd largest globally</div>
+      </div>
+      <div class="inv-stat-card reveal" style="border-color:rgba(26,108,255,0.12);" data-delay="50">
+        <div class="inv-stat-num" style="color:var(--blue);">$13B+</div>
+        <div class="inv-stat-label">Projected Funding 2026</div>
+        <div class="inv-stat-note" style="color:rgba(26,108,255,0.5);">Recovery in full swing</div>
+      </div>
+      <div class="inv-stat-card reveal" style="border-color:rgba(0,208,132,0.12);" data-delay="100">
+        <div class="inv-stat-num" style="color:var(--emerald);" data-target="653000" data-suffix="+">0</div>
+        <div class="inv-stat-label">Registered Startups</div>
+        <div class="inv-stat-note" style="color:rgba(0,208,132,0.5);">Only 2% ever funded</div>
+      </div>
+      <div class="inv-stat-card reveal" style="border-color:rgba(181,123,255,0.12);" data-delay="150">
+        <div class="inv-stat-num" style="color:#a78bfa;" data-target="48" data-suffix="%">0</div>
+        <div class="inv-stat-label">From Tier 2 & 3 Cities</div>
+        <div class="inv-stat-note" style="color:rgba(181,123,255,0.5);">Underserved by capital</div>
+      </div>
+      <div class="inv-stat-card reveal" style="border-color:rgba(212,168,67,0.12);" data-delay="200">
+        <div class="inv-stat-num" style="color:var(--gold);">₹10K Cr</div>
+        <div class="inv-stat-label">Govt. Fund of Funds</div>
+        <div class="inv-stat-note" style="color:rgba(212,168,67,0.5);">Co-invest opportunity</div>
+      </div>
+      <div class="inv-stat-card reveal" style="border-color:rgba(230,57,70,0.12);" data-delay="250">
+        <div class="inv-stat-num" style="color:var(--crimson);" data-target="1500000">0</div>
+        <div class="inv-stat-label">Engineers Graduating/Year</div>
+        <div class="inv-stat-note" style="color:rgba(230,57,70,0.5);">#3 global AI talent pool</div>
+      </div>
+    </div>
+
+    <div class="landscape-split">
+      <!-- Sector ROI chart -->
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:20px;padding:36px;">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Sector Investment Interest</div>
+        <div style="font-size:.78rem;color:rgba(240,237,232,0.3);margin-bottom:24px;">Based on investor mandate data across Indian platforms</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;"><span>AI & Deep Tech</span><span style="color:#a78bfa;font-weight:700;">95%</span></div><div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"><div class="chart-bar-fill" data-width="95" style="height:100%;border-radius:3px;background:linear-gradient(90deg,#a78bfa,#8040ff);width:0%;transition:width 1.4s ease;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;"><span>Fintech & BFSI</span><span style="color:var(--gold);font-weight:700;">91%</span></div><div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"><div class="chart-bar-fill" data-width="91" style="height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:width 1.4s ease;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;"><span>Cleantech & EV</span><span style="color:#7cff6b;font-weight:700;">88%</span></div><div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"><div class="chart-bar-fill" data-width="88" style="height:100%;border-radius:3px;background:linear-gradient(90deg,#7cff6b,#3ddc34);width:0%;transition:width 1.4s ease;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;"><span>Agritech & Rural</span><span style="color:var(--emerald);font-weight:700;">82%</span></div><div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"><div class="chart-bar-fill" data-width="82" style="height:100%;border-radius:3px;background:linear-gradient(90deg,var(--emerald),#80ffcc);width:0%;transition:width 1.4s ease;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;"><span>Healthtech</span><span style="color:var(--crimson);font-weight:700;">79%</span></div><div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"><div class="chart-bar-fill" data-width="79" style="height:100%;border-radius:3px;background:linear-gradient(90deg,var(--crimson),#ff8080);width:0%;transition:width 1.4s ease;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px;"><span>Edtech</span><span style="color:var(--blue);font-weight:700;">74%</span></div><div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"><div class="chart-bar-fill" data-width="74" style="height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),#5a9aff);width:0%;transition:width 1.4s ease;"></div></div></div>
+        </div>
+        <div style="font-size:.64rem;color:rgba(240,237,232,0.2);margin-top:18px;text-align:right;">Source: Inc42, NASSCOM · 2024–25 data</div>
+      </div>
+
+      <!-- Ticket size guide -->
+      <div class="reveal" style="background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:20px;padding:36px;" data-delay="100">
+        <div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Typical Ticket Sizes by Investor Type</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(212,168,67,0.05);border:1px solid rgba(212,168,67,0.1);border-radius:10px;">
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:2px;">Angel Investor</div><div style="font-size:.72rem;color:var(--muted);">Individual HNI</div></div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);">₹5L–₹50L</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(26,108,255,0.05);border:1px solid rgba(26,108,255,0.1);border-radius:10px;">
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:2px;">Angel Network / Syndicate</div><div style="font-size:.72rem;color:var(--muted);">Pooled angels</div></div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--blue);">₹50L–₹3Cr</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(0,208,132,0.05);border:1px solid rgba(0,208,132,0.1);border-radius:10px;">
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:2px;">Micro-VC / Seed Fund</div><div style="font-size:.72rem;color:var(--muted);">Institutional seed</div></div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--emerald);">₹1Cr–₹10Cr</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(181,123,255,0.05);border:1px solid rgba(181,123,255,0.1);border-radius:10px;">
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:2px;">Venture Capital Fund</div><div style="font-size:.72rem;color:var(--muted);">Series A and beyond</div></div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:#a78bfa;">₹5Cr–₹100Cr+</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(212,168,67,0.05);border:1px solid rgba(212,168,67,0.1);border-radius:10px;">
+            <div><div style="font-size:.85rem;font-weight:600;margin-bottom:2px;">Government / Corp. Funds</div><div style="font-size:.72rem;color:var(--muted);">SIDBI, FoFs, CVC</div></div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);">₹10Cr–₹500Cr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PLATFORM COMPARISON ══ -->
+<section style="background:var(--deep);padding:100px 64px;">
+  <div class="sec-inner">
+    <div style="text-align:center;margin-bottom:64px;" class="reveal">
+      <div class="sec-label">Why Hook Hustlers</div>
+      <h2 class="sec-title">How We Compare</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:540px;">There are other platforms. Here is an honest breakdown of how The Hook Hustlers is different — and who it is built for.</p>
+    </div>
+    <div class="reveal" style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;min-width:640px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:16px 20px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600;width:30%;">Feature</th>
+            <th style="text-align:center;padding:16px 20px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:700;width:23%;">
+              <div style="background:linear-gradient(135deg,rgba(212,168,67,0.15),rgba(212,168,67,0.05));border:1px solid rgba(212,168,67,0.3);border-radius:10px;padding:10px 16px;color:var(--gold);">THE HOOK HUSTLERS</div>
+            </th>
+            <th style="text-align:center;padding:16px 20px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600;width:23%;">LetsVenture / Trica</th>
+            <th style="text-align:center;padding:16px 20px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600;width:24%;">Cold Email / Networking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border2);">
+            <td style="padding:16px 20px;font-size:.85rem;">Tier 2 & 3 startup focus</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--muted);font-size:.8rem;">Mostly metro</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border2);background:rgba(212,168,67,0.02);">
+            <td style="padding:16px 20px;font-size:.85rem;">DPIIT verification on every startup</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--muted);font-size:.8rem;">Partial</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border2);">
+            <td style="padding:16px 20px;font-size:.85rem;">AI mandate-matched deal flow</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--muted);font-size:.8rem;">Basic filters</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border2);background:rgba(212,168,67,0.02);">
+            <td style="padding:16px 20px;font-size:.85rem;">Funding Readiness Score per startup</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border2);">
+            <td style="padding:16px 20px;font-size:.85rem;">Legally protected introductions</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border2);background:rgba(212,168,67,0.02);">
+            <td style="padding:16px 20px;font-size:.85rem;">Direct founding team access</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--crimson);font-size:1.1rem;">✗</span></td>
+          </tr>
+          <tr>
+            <td style="padding:16px 20px;font-size:.85rem;">Affordable entry for angel investors</td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--muted);font-size:.8rem;">Premium pricing</span></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;font-size:.72rem;color:rgba(240,237,232,0.2);margin-top:16px;">Comparison based on publicly available platform information. Features may vary.</p>
+  </div>
+</section>
+
+<!-- ══ VERIFICATION PROCESS ══ -->
+<section style="background:var(--black);padding:100px 64px;overflow:hidden;position:relative;">
+  <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(26,108,255,0.05),transparent 70%);pointer-events:none;"></div>
+  <div class="sec-inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:64px;" class="reveal">
+      <div class="sec-label">Verification Process</div>
+      <h2 class="sec-title">Verified in 48 Hours. Here's How.</h2>
+      <p class="sec-sub" style="margin:16px auto 0;max-width:520px;">Our process is thorough but fast. Every step is designed to protect both you and the startups you invest in.</p>
+    </div>
+    <div style="max-width:860px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;" class="reveal">
+        <div style="position:absolute;top:26px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--emerald),#a78bfa,var(--gold));opacity:0.3;z-index:0;"></div>
+
+        <div style="text-align:center;padding:0 12px;position:relative;z-index:1;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 20px rgba(212,168,67,0.3);">1</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:var(--gold);">Apply Online</div>
+          <div style="font-size:.76rem;color:var(--muted);line-height:1.7;">Fill in your investor profile, investment mandate and background details</div>
+        </div>
+
+        <div style="text-align:center;padding:0 12px;position:relative;z-index:1;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#5b9aff);color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 20px rgba(26,108,255,0.3);">2</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:var(--blue);">LinkedIn Verify</div>
+          <div style="font-size:.76rem;color:var(--muted);line-height:1.7;">We check your professional identity and investment history via LinkedIn</div>
+        </div>
+
+        <div style="text-align:center;padding:0 12px;position:relative;z-index:1;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--emerald),#80ffcc);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 20px rgba(0,208,132,0.3);">3</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:var(--emerald);">AUM Docs</div>
+          <div style="font-size:.76rem;color:var(--muted);line-height:1.7;">For institutional investors — AUM verified via fund documents or bank reference</div>
+        </div>
+
+        <div style="text-align:center;padding:0 12px;position:relative;z-index:1;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#c4b5fd);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 20px rgba(167,139,250,0.3);">4</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:#a78bfa;">Sign Agreement</div>
+          <div style="font-size:.76rem;color:var(--muted);line-height:1.7;">Platform agreement signed — covering deal documentation and legal protections</div>
+        </div>
+
+        <div style="text-align:center;padding:0 12px;position:relative;z-index:1;">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 20px rgba(212,168,67,0.4);">5</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:var(--gold);">Access Live</div>
+          <div style="font-size:.76rem;color:var(--muted);line-height:1.7;">Dashboard live. Matched deal flow starts arriving within hours.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:56px;padding:28px;background:rgba(212,168,67,0.04);border:1px solid rgba(212,168,67,0.1);border-radius:16px;" class="reveal">
+        <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> No data shared without consent</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> AUM documentation kept confidential</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> Most investors verified within 48 hours</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--emerald);">✓</span> Full legal protection on all introductions</div>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;" class="reveal">
+        <a href="signup.html" class="btn-primary" style="margin-right:12px;">Apply for Investor Access →</a>
+        <a href="contact.html" class="btn-secondary">Schedule a Call First</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var bObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.chart-bar-fill[data-width]').forEach(function(b){
+          b.style.width = b.dataset.width + '%';
+        });
+        bObs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.landscape-split').forEach(function(el){ bObs.observe(el); });
+})();
 </script>
 
 <footer>
