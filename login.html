@@ -122,6 +122,8 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--gold-glow);}
 .auth-switch{text-align:center;margin-top:20px;font-size:.82rem;color:var(--muted);}
 .auth-switch a{color:var(--gold);text-decoration:none;font-weight:700;}
+.google-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:#fff;color:#1f1f1f;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;padding:13px 24px;border-radius:8px;border:none;cursor:pointer;letter-spacing:.04em;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,0.3);margin-bottom:4px;}
+.google-btn:hover{background:#f5f5f5;transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.4);}
 .auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--muted);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;}
 .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--border2);}
 @media(max-width:480px){.auth-box{padding:36px 24px;}}
@@ -379,6 +381,20 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
     <div class="form-group"><label>Password</label><input class="form-input" id="l_pass" type="password" placeholder="Enter your password"/></div>
     <div style="text-align:right;margin-bottom:20px;"><a href="#" style="font-size:.78rem;color:var(--gold);text-decoration:none;">Forgot password?</a></div>
 
+    <!-- Google Sign In Button -->
+    <button class="google-btn" onclick="googleSignIn()">
+      <svg width="20" height="20" viewBox="0 0 48 48" style="flex-shrink:0;">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        <path fill="none" d="M0 0h48v48H0z"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <div class="auth-divider">or sign in with email</div>
+
     <button class="form-submit" onclick="doLogin()">Login & Continue →</button>
 
     <div class="auth-divider">new here?</div>
@@ -386,7 +402,92 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
   </div>
 </div>
 
+<!-- Google Sign-In SDK -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 <script>
+// ── GOOGLE CLIENT ID ──
+// Replace this with your actual Google OAuth Client ID from console.cloud.google.com
+var GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE';
+
+function googleSignIn() {
+  // Check if Google SDK loaded
+  if (typeof google === 'undefined') {
+    // Fallback: show setup instructions if not configured yet
+    showGoogleNotice();
+    return;
+  }
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleResponse,
+    auto_select: false,
+    cancel_on_tap_outside: true,
+  });
+  google.accounts.id.prompt(function(notification) {
+    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+      // One Tap blocked — open full popup flow
+      google.accounts.oauth2.initTokenClient({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: 'email profile',
+        callback: handleGoogleToken,
+      }).requestAccessToken();
+    }
+  });
+}
+
+function handleGoogleResponse(response) {
+  // Decode JWT credential to get user info
+  var payload = JSON.parse(atob(response.credential.split('.')[1]));
+  finishGoogleLogin(payload.name, payload.email, payload.picture);
+}
+
+function handleGoogleToken(tokenResponse) {
+  if (tokenResponse && tokenResponse.access_token) {
+    // Fetch user info from Google
+    fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+      headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
+    })
+    .then(r => r.json())
+    .then(u => finishGoogleLogin(u.name, u.email, u.picture));
+  }
+}
+
+function finishGoogleLogin(name, email, picture) {
+  localStorage.setItem('hhLoggedIn', 'true');
+  localStorage.setItem('hhUserName', name);
+  localStorage.setItem('hhUserEmail', email);
+  localStorage.setItem('hhUserPicture', picture || '');
+  localStorage.setItem('hhLoginMethod', 'google');
+
+  var urlParams = new URLSearchParams(window.location.search);
+  var next = urlParams.get('next');
+  if (next === 'signup') {
+    window.location.href = 'signup.html';
+  } else {
+    window.location.href = 'home.html';
+  }
+}
+
+function showGoogleNotice() {
+  // Show a helpful modal if Google OAuth not yet configured
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(5,5,8,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
+  overlay.innerHTML = `
+    <div style="background:#0d0d1a;border:1px solid rgba(212,168,67,0.2);border-radius:20px;padding:40px;max-width:440px;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:16px;">🔧</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;margin-bottom:12px;color:#d4a843;">Google Sign-In Setup Needed</div>
+      <p style="font-size:.85rem;color:rgba(240,237,232,0.5);line-height:1.8;margin-bottom:24px;">To enable Google login, add your OAuth Client ID from <strong style="color:rgba(240,237,232,0.8);">Google Cloud Console</strong> to the login.html file. Replace <code style="color:#d4a843;font-size:.78rem;">YOUR_GOOGLE_CLIENT_ID_HERE</code> with your actual Client ID.</p>
+      <div style="background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.12);border-radius:10px;padding:16px;margin-bottom:24px;font-size:.78rem;color:rgba(240,237,232,0.5);text-align:left;line-height:2;">
+        1. Go to <strong style="color:#d4a843;">console.cloud.google.com</strong><br/>
+        2. Create OAuth 2.0 Client ID<br/>
+        3. Add your GitHub Pages domain to Authorized Origins<br/>
+        4. Replace the placeholder in login.html
+      </div>
+      <button onclick="this.closest('div[style*=fixed]').remove()" style="background:linear-gradient(135deg,#d4a843,#f0c060);color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;padding:12px 32px;border-radius:8px;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;">Got It</button>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
 // Read ?next= param from URL
 var urlParams = new URLSearchParams(window.location.search);
 var nextPage = urlParams.get('next'); // e.g. "signup"
