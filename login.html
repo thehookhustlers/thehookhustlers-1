@@ -29,7 +29,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;cursor:none;}
+body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;cursor:none;word-break:break-word;}
 .cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:difference;}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,opacity .15s ease;opacity:.6;}@media(max-width:768px){.cursor,.cursor-ring{display:none!important;}body{cursor:auto!important;}}
 #particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
@@ -124,6 +124,186 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--border2);}
 @media(max-width:480px){.auth-box{padding:36px 24px;}}
 </style>
+
+<style id="global-mobile-fix">
+/* ══════════════════════════════════════
+   GLOBAL MOBILE FIX — all pages
+   Target: screens ≤768px
+══════════════════════════════════════ */
+@media(max-width:768px){
+
+  /* ── SPACING ── */
+  section, .filter-section, .founder-section-about,
+  .about-mission, .inv-type-section {
+    padding: 60px 18px !important;
+  }
+  .page-hero { padding: 148px 18px 56px !important; }
+  .sec-inner { padding: 0 !important; }
+
+  /* ── TYPOGRAPHY ── */
+  .sec-title { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
+  .sec-sub { font-size: .88rem !important; }
+  h1 { font-size: clamp(2rem, 10vw, 4rem) !important; }
+  h2 { font-size: clamp(1.6rem, 7vw, 3rem) !important; }
+
+  /* ── ALL INLINE GRIDS → single column ── */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:1fr 1.6fr"],
+  [style*="grid-template-columns:1fr 2fr"],
+  [style*="grid-template-columns:2fr 1fr"],
+  [style*="grid-template-columns:1fr 1.5fr"],
+  [style*="grid-template-columns:repeat(2"],
+  [style*="grid-template-columns:repeat(3"],
+  [style*="grid-template-columns:repeat(4"],
+  [style*="grid-template-columns:repeat(5"],
+  [style*="grid-template-columns:3fr 1fr"],
+  [style*="grid-template-columns:140px 1fr"],
+  [style*="grid-template-columns:1fr 40px 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* ── NAMED GRID CLASSES → single column ── */
+  .why-grid, .checklist-grid, .landscape-split,
+  .inv-stat-grid, .how-grid, .sectors-grid,
+  .startups-grid, .inv-grid, .mission-grid,
+  .founder-about-inner, .value-grid,
+  .roadmap-item, .footer-inner { 
+    grid-template-columns: 1fr !important; 
+    gap: 20px !important;
+  }
+
+  /* ── TIMELINE middle column hide ── */
+  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(2) {
+    display: none !important;
+  }
+  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(1),
+  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(3) {
+    text-align: left !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* ── VERIFICATION STEPS → 2 col on mobile ── */
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  /* ── COMPARISON TABLE → scrollable ── */
+  table { font-size: .75rem !important; }
+  table td, table th { padding: 10px 10px !important; }
+  th div { font-size: .7rem !important; padding: 8px !important; }
+
+  /* ── HERO ACTIONS → stack ── */
+  .hero-actions, [style*="display:flex"][style*="gap:20px"],
+  [style*="display:flex"][style*="gap:12px"] {
+    flex-wrap: wrap !important;
+  }
+  .hero-actions a { text-align: center; width: 100%; }
+
+  /* ── STAT CARDS → 2 col ── */
+  .inv-stat-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section { padding: 72px 18px !important; }
+
+  /* ── WAITLIST INPUTS → stack ── */
+  .waitlist-input-wrap, 
+  [style*="display:flex"][style*="flex-wrap:wrap"] {
+    flex-direction: column !important;
+  }
+  .waitlist-input, .search-input { min-width: unset !important; width: 100% !important; }
+
+  /* ── FOOTER ── */
+  footer { padding: 48px 18px 0 !important; }
+  .footer-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .footer-bottom { flex-direction: column !important; text-align: center !important; }
+  .footer-legal { flex-wrap: wrap !important; justify-content: center !important; gap: 12px !important; }
+
+  /* ── FILTER CHIPS ── */
+  .filter-chip { font-size: .7rem !important; padding: 6px 14px !important; }
+
+  /* ── SECTOR CARDS → 1 col ── */
+  .sectors-grid, [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(auto-fill,minmax(260px"],
+  [style*="grid-template-columns:repeat(auto-fill,minmax(280px"],
+  [style*="grid-template-columns:repeat(auto-fill,minmax(220px"],
+  [style*="grid-template-columns:repeat(auto-fill,minmax(200px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── JOURNEY SIDE-BY-SIDE → stack ── */
+  .how-grid { grid-template-columns: 1fr !important; }
+  .how-divider { display: none !important; }
+  .journey-col { padding: 0 !important; }
+
+  /* ── STAT NUMBERS FONT SIZE ── */
+  .stat-number, .inv-stat-num, .spots-counter { 
+    font-size: clamp(2rem, 8vw, 3rem) !important; 
+  }
+
+  /* ── FOUNDER PHOTO ── */
+  .founder-photo, .founder-photo-wrap { 
+    max-width: 280px !important; 
+    margin: 0 auto !important; 
+  }
+
+  /* ── CHECKLIST GRID ── */
+  .checklist-grid { grid-template-columns: 1fr !important; }
+
+  /* ── FUNDING READINESS CARD ── */
+  .checker-q-head { padding: 14px 16px !important; }
+  .checker-options { padding: 0 16px 14px !important; }
+  .checker-opt { font-size: .8rem !important; }
+
+  /* ── ABOUT TIMELINE ── */
+  .roadmap-item { grid-template-columns: 1fr !important; }
+  .rm-date { text-align: left !important; }
+  .roadmap-item::before { display: none !important; }
+
+  /* ── INLINE PADDING OVERRIDES ── */
+  [style*="padding:80px 64px"],
+  [style*="padding:100px 64px"],
+  [style*="padding:120px 64px"] {
+    padding: 56px 18px !important;
+  }
+  [style*="padding:48px"] { padding: 28px 18px !important; }
+  [style*="padding:64px"] { padding: 28px 18px !important; }
+
+  /* ── HIDE ABSOLUTE DECORATIVE ELEMENTS ON MOBILE ── */
+  .page-hero-lines { display: none !important; }
+
+  /* ── HOW IT WORKS 5-STEP PROCESS ── */
+  [style*="repeat(5,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* ── WAITLIST CARD ── */
+  .waitlist-card { padding: 32px 20px !important; }
+  .spots-counter { font-size: 3.5rem !important; }
+
+  /* ── NAV ── */
+  nav { padding: 14px 18px !important; }
+}
+
+@media(max-width:480px){
+  .inv-stat-grid { grid-template-columns: 1fr 1fr !important; }
+  .sec-title { font-size: clamp(1.6rem, 9vw, 2.4rem) !important; }
+  .page-hero { padding: 140px 14px 48px !important; }
+  section { padding: 48px 14px !important; }
+  [style*="padding:80px 64px"],
+  [style*="padding:100px 64px"],
+  [style*="padding:120px 64px"] { padding: 48px 14px !important; }
+  .filter-section { padding: 120px 14px 24px !important; }
+}
+</style>
+
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
