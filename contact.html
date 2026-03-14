@@ -9,6 +9,13 @@ if(localStorage.getItem('hhLoggedIn')==='true'){document.documentElement.classLi
 /* Hide Login button instantly when logged in — no flash */
 html.is-logged-in .nav-btn-outline[href="login.html"],
 html.is-logged-in a.nav-btn-outline { display:none !important; }
+@media(max-width:768px){
+  nav{padding:10px 16px; display:flex; align-items:center;}
+  .nav-logo{flex:1;}
+  .nav-right{display:flex !important; align-items:center; gap:6px; margin-right:10px;}
+  #nav-user-badge{margin-right:0;}
+  .hamburger{flex-shrink:0;}
+}
 </style>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -49,7 +56,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a[href="home.html"]{color:rgba(240,237,232,0.65);font-weight:600;}
 .nav-links a[href="home.html"]:hover{color:var(--gold);}
 .nav-links a:hover,.nav-links a.active{color:var(--gold);}
-.nav-right{display:flex;gap:12px;align-items:center;}
+.nav-right{display:flex;gap:4px;align-items:center;}
 .nav-btn{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.82rem;padding:9px 22px;border-radius:6px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;}
 .nav-btn-outline{border:1px solid rgba(212,168,67,0.3);color:var(--gold);}
 .nav-btn-outline:hover{background:var(--gold-dim);}
@@ -60,7 +67,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,5,8,.98);backdrop-filter:blur(20px);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,5,8,.98);backdrop-filter:blur(20px);z-index:20000;flex-direction:column;align-items:center;justify-content:center;padding-top:90px;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s;}
 .mobile-menu.open{opacity:1;pointer-events:all;}
 .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;}
 .mobile-menu a:hover{color:var(--gold);}
@@ -567,7 +574,7 @@ function closeMobile(){
     var st = document.createElement('style');
     st.id = 'hhPopupStyle';
     st.textContent = `
-     #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;}
+     #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;} @media(max-width:768px){#nav-user-badge{margin-right:8px;}}
      #nav-user-badge .hh-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;box-shadow:0 0 8px rgba(212,168,67,0.45),0 0 20px rgba(212,168,67,0.15);transition:box-shadow .2s;}
      #nav-user-badge:hover .hh-av{box-shadow:0 0 16px rgba(212,168,67,0.7),0 0 30px rgba(212,168,67,0.3);}
      #nav-user-badge .hh-name{font-family:'Rajdhani',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.03em;color:var(--gold);text-transform:none;max-width:65px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;line-height:1;}
