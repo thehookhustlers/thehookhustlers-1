@@ -529,26 +529,83 @@ function closeMobile(){
         btn.style.display = 'none';
       }
     });
-    // Show logged-in indicator in nav
+    // Show logged-in avatar with popup
     var navRight = document.querySelector('.nav-right');
     if(navRight && !document.getElementById('nav-user-badge')){
       var name = localStorage.getItem('hhUserName') || 'Account';
+      var email = localStorage.getItem('hhUserEmail') || '';
       var first = name.split(' ')[0];
+      var initial = first.charAt(0).toUpperCase();
+
+      // Inject popup CSS once
+      if(!document.getElementById('hhPopupStyle')){
+        var st = document.createElement('style');
+        st.id = 'hhPopupStyle';
+        st.textContent = `
+          #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;}
+          #nav-user-badge .hh-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;box-shadow:0 0 10px rgba(212,168,67,0.45),0 0 20px rgba(212,168,67,0.15);transition:box-shadow .2s;}
+          #nav-user-badge:hover .hh-av{box-shadow:0 0 16px rgba(212,168,67,0.7),0 0 30px rgba(212,168,67,0.3);}
+          #nav-user-badge .hh-name{font-family:'Rajdhani',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:lowercase;line-height:1;}
+          #hh-popup{position:absolute;top:54px;right:0;width:230px;background:#111;border:1px solid rgba(212,168,67,0.3);border-radius:14px;padding:20px 18px 16px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 0 0 1px rgba(212,168,67,0.08);opacity:0;transform:translateY(-8px) scale(.97);pointer-events:none;transition:all .2s ease;}
+          #hh-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+          #hh-popup .pp-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin:0 auto 10px;box-shadow:0 0 16px rgba(212,168,67,0.5);}
+          #hh-popup .pp-uname{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
+          #hh-popup .pp-email{text-align:center;font-size:.72rem;color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;margin-bottom:14px;word-break:break-all;line-height:1.4;}
+          #hh-popup hr{border:none;border-top:1px solid rgba(212,168,67,0.12);margin-bottom:12px;}
+          #hh-popup .pp-signout{width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;border:none;cursor:pointer;margin-bottom:8px;transition:opacity .15s;}
+          #hh-popup .pp-signout:hover{opacity:.85;}
+          #hh-popup .pp-close{width:100%;padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(212,168,67,0.2);color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+          #hh-popup .pp-close:hover{border-color:rgba(212,168,67,0.5);color:var(--gold);}
+          @media(max-width:768px){#hh-popup{right:-8px;width:210px;}}
+        `;
+        document.head.appendChild(st);
+      }
+
+      // Build badge
       var badge = document.createElement('div');
       badge.id = 'nav-user-badge';
-      badge.style.cssText = 'display:flex;align-items:center;gap:8px;font-family:"Rajdhani",sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.06em;color:var(--gold);cursor:pointer;';
-      badge.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;">' + first.charAt(0).toUpperCase() + '</div>' + first;
-      badge.title = 'Logged in as ' + name;
-      badge.onclick = function(){
-        if(confirm('Log out of The Hook Hustlers?')){
-          localStorage.removeItem('hhLoggedIn');
-          localStorage.removeItem('hhUserName');
-          localStorage.removeItem('hhUserEmail');
-          localStorage.removeItem('hhUserPicture');
-          window.location.href = 'home.html';
-        }
-      };
+      badge.innerHTML = `
+        <div class="hh-av">${initial}</div>
+        <div class="hh-name">${first.toLowerCase()}</div>
+        <div id="hh-popup">
+          <div class="pp-av">${initial}</div>
+          <div class="pp-uname">${name.toUpperCase()}</div>
+          <div class="pp-email">${email}</div>
+          <hr/>
+          <button class="pp-signout" id="hh-signout-btn">SIGN OUT</button>
+          <button class="pp-close" id="hh-close-btn">✕ CLOSE</button>
+        </div>
+      `;
       navRight.insertBefore(badge, navRight.firstChild);
+
+      // Toggle popup
+      badge.addEventListener('click', function(e){
+        var popup = document.getElementById('hh-popup');
+        popup.classList.toggle('open');
+        e.stopPropagation();
+      });
+
+      // Sign out
+      document.getElementById('hh-signout-btn').addEventListener('click', function(e){
+        e.stopPropagation();
+        localStorage.removeItem('hhLoggedIn');
+        localStorage.removeItem('hhUserName');
+        localStorage.removeItem('hhUserEmail');
+        localStorage.removeItem('hhUserPicture');
+        window.location.href = 'home.html';
+      });
+
+      // Close btn
+      document.getElementById('hh-close-btn').addEventListener('click', function(e){
+        e.stopPropagation();
+        document.getElementById('hh-popup').classList.remove('open');
+      });
+
+      // Click outside closes
+      document.addEventListener('click', function(){
+        var p = document.getElementById('hh-popup');
+        if(p) p.classList.remove('open');
+      });
     }
   }
 })();
