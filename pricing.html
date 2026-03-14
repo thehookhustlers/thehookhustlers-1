@@ -361,7 +361,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
  </div>
  <div class="nav-right">
   <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
-  <a href="login.html?next=signup" class="nav-btn nav-btn-gold">Join Now</a>
+  <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="nav-btn nav-btn-gold">Join Now</a>
  </div>
  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -419,7 +419,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
      <li>Legal Document Templates</li>
      <li>Startup Valuation Tool</li>
     </ul>
-    <a href="login.html?next=signup" class="price-btn price-btn-outline">List My Startup</a>
+    <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="price-btn price-btn-outline">List My Startup</a>
    </div>
    <div class="price-card featured reveal">
     <div class="featured-tag">Best for Investors</div>
@@ -437,7 +437,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
      <li>Priority Customer Support</li>
      <li>Toggle Investment Preferences</li>
     </ul>
-    <a href="login.html?next=signup" class="price-btn price-btn-gold">Join as Investor</a>
+    <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="price-btn price-btn-gold">Join as Investor</a>
    </div>
    <div class="price-card reveal">
     <div class="price-name">Post-Deal Plan</div>
@@ -453,7 +453,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
      <li>Next round preparation tools</li>
      <li class="no">Not required before deal closes</li>
     </ul>
-    <a href="login.html?next=signup" class="price-btn price-btn-outline">Learn More</a>
+    <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="price-btn price-btn-outline">Learn More</a>
    </div>
   </div>
  </div>
@@ -529,7 +529,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
    <a href="startups.html">For Startups</a>
    <a href="investors.html">For Investors</a>
    <a href="pricing.html">Pricing</a>
-   <a href="login.html?next=signup">Join Now</a>
+   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}">Join Now</a>
    <a href="login.html">Login</a>
   </div>
   <div class="footer-col">

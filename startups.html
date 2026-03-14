@@ -376,7 +376,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
  </div>
  <div class="nav-right">
   <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
-  <a href="login.html?next=signup" class="nav-btn nav-btn-gold">Join Now</a>
+  <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="nav-btn nav-btn-gold">Join Now</a>
  </div>
  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -431,7 +431,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
      <div style="font-size:.88rem;color:var(--muted);margin-top:6px;max-width:560px;">India's first investor-matching platform that welcomes founders of all ages and academic backgrounds. If you have a Class 10th marksheet and a real startup idea — you qualify. That's it.</div>
     </div>
    </div>
-   <a href="login.html?next=signup" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">Register My Startup →</a>
+   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">Register My Startup →</a>
   </div>
  </div>
 </section>
@@ -617,7 +617,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
     <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:12px;">Be Among The First</h3>
     <p style="font-size:.92rem;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:1.85;">We are onboarding our first wave of DPIIT-verified startups right now. Every listing is manually reviewed — no fake profiles, no ghost companies.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-     <a href="login.html?next=signup" class="btn-primary">List My Startup →</a>
+     <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary">List My Startup →</a>
      <a href="contact.html" class="btn-secondary">Talk to Us First</a>
     </div>
     <div style="display:flex;gap:40px;justify-content:center;margin-top:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border2);">
@@ -629,7 +629,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
    </div>
   </div>
   <div style="text-align:center;margin-top:48px;">
-   <a href="login.html?next=signup" class="btn-primary">List My Startup</a>
+   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary">List My Startup</a>
   </div>
  </div>
 </section>
@@ -692,7 +692,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
    </div>
   </div>
   <div style="text-align:center;margin-top:64px;" class="reveal">
-   <a href="login.html?next=signup" class="btn-primary" style="margin-right:12px;">List My Startup →</a>
+   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary" style="margin-right:12px;">List My Startup →</a>
    <a href="contact.html" class="btn-secondary">Talk to the Team First</a>
   </div>
  </div>
@@ -715,7 +715,7 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
      <div style="display:flex;align-items:center;gap:12px;font-size:.88rem;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span><span>Competitive moat & differentiation</span></div>
      <div style="display:flex;align-items:center;gap:12px;font-size:.88rem;"><span style="color:var(--emerald);font-size:1.1rem;">✓</span><span>Financial documentation readiness</span></div>
     </div>
-    <a href="login.html?next=signup" class="btn-primary" style="margin-top:36px;display:inline-block;">Get Your Score →</a>
+    <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary" style="margin-top:36px;display:inline-block;">Get Your Score →</a>
    </div>
    <div class="reveal" data-delay="200">
     <div style="background:linear-gradient(135deg,var(--card),#080820);border:1px solid var(--border);border-radius:24px;padding:36px;">
@@ -879,7 +879,7 @@ function claimStartupSpot(){
     <div class="checklist-group reveal" data-delay="200" style="background:linear-gradient(135deg,rgba(212,168,67,0.06),rgba(212,168,67,0.02));border-color:rgba(212,168,67,0.15);">
      <div class="checklist-group-title" style="color:var(--gold);">💡 Hook Hustlers Advantage</div>
      <p style="font-size:.85rem;color:var(--muted);line-height:1.8;margin-bottom:16px;">Your Funding Readiness Score benchmarks you against all of the above — before you ever sit in front of an investor. Know your gaps. Fix them. Then pitch with confidence.</p>
-     <a href="login.html?next=signup" class="btn-primary" style="font-size:.82rem;padding:12px 28px;">Get My Score →</a>
+     <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary" style="font-size:.82rem;padding:12px 28px;">Get My Score →</a>
     </div>
    </div>
   </div>
@@ -985,7 +985,7 @@ function claimStartupSpot(){
     <div class="result-label" id="resultLabel">—</div>
     <div class="result-advice" id="resultAdvice">—</div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-     <a href="login.html?next=signup" class="btn-primary">List My Startup →</a>
+     <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary">List My Startup →</a>
      <button onclick="resetChecker()" class="btn-secondary" style="border:none;cursor:pointer;background:transparent;color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.9rem;padding:15px 36px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);letter-spacing:.08em;text-transform:uppercase;">Retake Check</button>
     </div>
    </div>
@@ -1079,7 +1079,7 @@ function resetChecker(){
    <a href="startups.html">For Startups</a>
    <a href="investors.html">For Investors</a>
    <a href="pricing.html">Pricing</a>
-   <a href="login.html?next=signup">Join Now</a>
+   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}">Join Now</a>
    <a href="login.html">Login</a>
   </div>
   <div class="footer-col">
