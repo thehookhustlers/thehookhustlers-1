@@ -16,25 +16,25 @@ html.is-logged-in a.nav-btn-outline { display:none !important; }
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>/* SHARED STYLES FOR ALL PAGES */
 :root {
-  --black: #050508;
-  --deep: #080810;
-  --card: #0d0d1a;
-  --card2: #0a0a15;
-  --gold: #d4a843;
-  --gold2: #f0c060;
-  --gold-dim: rgba(212,168,67,0.1);
-  --gold-glow: rgba(212,168,67,0.25);
-  --navy: #0a1628;
-  --blue: #1a6cff;
-  --blue-dim: rgba(26,108,255,0.1);
-  --emerald: #00d084;
-  --emerald-dim: rgba(0,208,132,0.1);
-  --crimson: #e63946;
-  --crimson-dim: rgba(230,57,70,0.1);
-  --white: #f0ede8;
-  --muted: rgba(240,237,232,0.4);
-  --border: rgba(212,168,67,0.08);
-  --border2: rgba(255,255,255,0.05);
+ --black: #050508;
+ --deep: #080810;
+ --card: #0d0d1a;
+ --card2: #0a0a15;
+ --gold: #d4a843;
+ --gold2: #f0c060;
+ --gold-dim: rgba(212,168,67,0.1);
+ --gold-glow: rgba(212,168,67,0.25);
+ --navy: #0a1628;
+ --blue: #1a6cff;
+ --blue-dim: rgba(26,108,255,0.1);
+ --emerald: #00d084;
+ --emerald-dim: rgba(0,208,132,0.1);
+ --crimson: #e63946;
+ --crimson-dim: rgba(230,57,70,0.1);
+ --white: #f0ede8;
+ --muted: rgba(240,237,232,0.4);
+ --border: rgba(212,168,67,0.08);
+ --border2: rgba(255,255,255,0.05);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -109,9 +109,9 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
 @media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:140px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
-@media(max-width:768px){nav{padding:14px 20px;}.nav-links{display:none;}.nav-right .nav-btn,.nav-right a.nav-btn-outline{display:none !important;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:48px;} .page-hero{padding-top:145px!important;}}
+@media(max-width:768px){nav{padding:10px 16px;} .nav-logo{gap:6px;} .nav-logo img{height:28px;width:28px;} .nav-logo-text{font-size:1rem;letter-spacing:.04em;white-space:nowrap;}}.nav-links{display:none;}.nav-right .nav-btn,.nav-right a.nav-btn-outline{display:none !important;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:110px 20px 48px !important;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:48px;} }
 
-.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 60px;position:relative;z-index:1;}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 24px 60px;position:relative;z-index:1;}
 .auth-mesh{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 90% 80%,rgba(26,108,255,.05) 0%,transparent 60%);}
 .auth-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:52px 44px;width:100%;max-width:480px;position:relative;z-index:1;}
 .auth-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--emerald));border-radius:24px 24px 0 0;}
@@ -140,180 +140,180 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 
 <style id="global-mobile-fix">
 /* ══════════════════════════════════════
-   GLOBAL MOBILE FIX — all pages
-   Target: screens ≤768px
+  GLOBAL MOBILE FIX — all pages
+  Target: screens ≤768px
 ══════════════════════════════════════ */
 @media(max-width:768px){
 
-  /* ── SPACING ── */
-  section, .filter-section, .founder-section-about,
-  .about-mission, .inv-type-section {
-    padding: 60px 18px !important;
-  }
-  .page-hero { padding: 148px 18px 56px !important; }
-  .sec-inner { padding: 0 !important; }
+ /* ── SPACING ── */
+ section, .filter-section, .founder-section-about,
+ .about-mission, .inv-type-section {
+  padding: 60px 18px !important;
+ }
+ 
+ .sec-inner { padding: 0 !important; }
 
-  /* ── TYPOGRAPHY ── */
-  .sec-title { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
-  .sec-sub { font-size: .88rem !important; }
-  h1 { font-size: clamp(2rem, 10vw, 4rem) !important; }
-  h2 { font-size: clamp(1.6rem, 7vw, 3rem) !important; }
+ /* ── TYPOGRAPHY ── */
+ .sec-title { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
+ .sec-sub { font-size: .88rem !important; }
+ h1 { font-size: clamp(2rem, 10vw, 4rem) !important; }
+ h2 { font-size: clamp(1.6rem, 7vw, 3rem) !important; }
 
-  /* ── ALL INLINE GRIDS → single column ── */
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns: 1fr 1fr"],
-  [style*="grid-template-columns:1fr 1.6fr"],
-  [style*="grid-template-columns:1fr 2fr"],
-  [style*="grid-template-columns:2fr 1fr"],
-  [style*="grid-template-columns:1fr 1.5fr"],
-  [style*="grid-template-columns:repeat(2"],
-  [style*="grid-template-columns:repeat(3"],
-  [style*="grid-template-columns:repeat(4"],
-  [style*="grid-template-columns:repeat(5"],
-  [style*="grid-template-columns:3fr 1fr"],
-  [style*="grid-template-columns:140px 1fr"],
-  [style*="grid-template-columns:1fr 40px 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
+ /* ── ALL INLINE GRIDS → single column ── */
+ [style*="grid-template-columns:1fr 1fr"],
+ [style*="grid-template-columns: 1fr 1fr"],
+ [style*="grid-template-columns:1fr 1.6fr"],
+ [style*="grid-template-columns:1fr 2fr"],
+ [style*="grid-template-columns:2fr 1fr"],
+ [style*="grid-template-columns:1fr 1.5fr"],
+ [style*="grid-template-columns:repeat(2"],
+ [style*="grid-template-columns:repeat(3"],
+ [style*="grid-template-columns:repeat(4"],
+ [style*="grid-template-columns:repeat(5"],
+ [style*="grid-template-columns:3fr 1fr"],
+ [style*="grid-template-columns:140px 1fr"],
+ [style*="grid-template-columns:1fr 40px 1fr"] {
+  grid-template-columns: 1fr !important;
+  gap: 24px !important;
+ }
 
-  /* ── NAMED GRID CLASSES → single column ── */
-  .why-grid, .checklist-grid, .landscape-split,
-  .inv-stat-grid, .how-grid, .sectors-grid,
-  .startups-grid, .inv-grid, .mission-grid,
-  .founder-about-inner, .value-grid,
-  .roadmap-item, .footer-inner { 
-    grid-template-columns: 1fr !important; 
-    gap: 20px !important;
-  }
+ /* ── NAMED GRID CLASSES → single column ── */
+ .why-grid, .checklist-grid, .landscape-split,
+ .inv-stat-grid, .how-grid, .sectors-grid,
+ .startups-grid, .inv-grid, .mission-grid,
+ .founder-about-inner, .value-grid,
+ .roadmap-item, .footer-inner { 
+  grid-template-columns: 1fr !important; 
+  gap: 20px !important;
+ }
 
-  /* ── TIMELINE middle column hide ── */
-  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(2) {
-    display: none !important;
-  }
-  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(1),
-  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(3) {
-    text-align: left !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    padding-top: 0 !important;
-  }
+ /* ── TIMELINE middle column hide ── */
+ [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(2) {
+  display: none !important;
+ }
+ [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(1),
+ [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(3) {
+  text-align: left !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+ }
 
-  /* ── VERIFICATION STEPS → 2 col on mobile ── */
-  [style*="grid-template-columns:repeat(5,1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
-  }
+ /* ── VERIFICATION STEPS → 2 col on mobile ── */
+ [style*="grid-template-columns:repeat(5,1fr)"] {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
+ }
 
-  /* ── COMPARISON TABLE → scrollable ── */
-  table { font-size: .75rem !important; }
-  table td, table th { padding: 10px 10px !important; }
-  th div { font-size: .7rem !important; padding: 8px !important; }
+ /* ── COMPARISON TABLE → scrollable ── */
+ table { font-size: .75rem !important; }
+ table td, table th { padding: 10px 10px !important; }
+ th div { font-size: .7rem !important; padding: 8px !important; }
 
-  /* ── HERO ACTIONS → stack ── */
-  .hero-actions, [style*="display:flex"][style*="gap:20px"],
-  [style*="display:flex"][style*="gap:12px"] {
-    flex-wrap: wrap !important;
-  }
-  .hero-actions a { text-align: center; width: 100%; }
+ /* ── HERO ACTIONS → stack ── */
+ .hero-actions, [style*="display:flex"][style*="gap:20px"],
+ [style*="display:flex"][style*="gap:12px"] {
+  flex-wrap: wrap !important;
+ }
+ .hero-actions a { text-align: center; width: 100%; }
 
-  /* ── STAT CARDS → 2 col ── */
-  .inv-stat-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+ /* ── STAT CARDS → 2 col ── */
+ .inv-stat-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+ }
 
-  /* ── CTA SECTION ── */
-  .cta-section { padding: 72px 18px !important; }
+ /* ── CTA SECTION ── */
+ .cta-section { padding: 72px 18px !important; }
 
-  /* ── WAITLIST INPUTS → stack ── */
-  .waitlist-input-wrap, 
-  [style*="display:flex"][style*="flex-wrap:wrap"] {
-    flex-direction: column !important;
-  }
-  .waitlist-input, .search-input { min-width: unset !important; width: 100% !important; }
+ /* ── WAITLIST INPUTS → stack ── */
+ .waitlist-input-wrap, 
+ [style*="display:flex"][style*="flex-wrap:wrap"] {
+  flex-direction: column !important;
+ }
+ .waitlist-input, .search-input { min-width: unset !important; width: 100% !important; }
 
-  /* ── FOOTER ── */
-  footer { padding: 48px 18px 0 !important; }
-  .footer-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .footer-bottom { flex-direction: column !important; text-align: center !important; }
-  .footer-legal { flex-wrap: wrap !important; justify-content: center !important; gap: 12px !important; }
+ /* ── FOOTER ── */
+ footer { padding: 48px 18px 0 !important; }
+ .footer-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+ .footer-bottom { flex-direction: column !important; text-align: center !important; }
+ .footer-legal { flex-wrap: wrap !important; justify-content: center !important; gap: 12px !important; }
 
-  /* ── FILTER CHIPS ── */
-  .filter-chip { font-size: .7rem !important; padding: 6px 14px !important; }
+ /* ── FILTER CHIPS ── */
+ .filter-chip { font-size: .7rem !important; padding: 6px 14px !important; }
 
-  /* ── SECTOR CARDS → 1 col ── */
-  .sectors-grid, [style*="grid-template-columns:repeat(3,1fr)"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(260px"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(280px"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(220px"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(200px"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* ── SECTOR CARDS → 1 col ── */
+ .sectors-grid, [style*="grid-template-columns:repeat(3,1fr)"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(260px"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(280px"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(220px"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(200px"] {
+  grid-template-columns: 1fr !important;
+ }
 
-  /* ── JOURNEY SIDE-BY-SIDE → stack ── */
-  .how-grid { grid-template-columns: 1fr !important; }
-  .how-divider { display: none !important; }
-  .journey-col { padding: 0 !important; }
+ /* ── JOURNEY SIDE-BY-SIDE → stack ── */
+ .how-grid { grid-template-columns: 1fr !important; }
+ .how-divider { display: none !important; }
+ .journey-col { padding: 0 !important; }
 
-  /* ── STAT NUMBERS FONT SIZE ── */
-  .stat-number, .inv-stat-num, .spots-counter { 
-    font-size: clamp(2rem, 8vw, 3rem) !important; 
-  }
+ /* ── STAT NUMBERS FONT SIZE ── */
+ .stat-number, .inv-stat-num, .spots-counter { 
+  font-size: clamp(2rem, 8vw, 3rem) !important; 
+ }
 
-  /* ── FOUNDER PHOTO ── */
-  .founder-photo, .founder-photo-wrap { 
-    max-width: 280px !important; 
-    margin: 0 auto !important; 
-  }
+ /* ── FOUNDER PHOTO ── */
+ .founder-photo, .founder-photo-wrap { 
+  max-width: 280px !important; 
+  margin: 0 auto !important; 
+ }
 
-  /* ── CHECKLIST GRID ── */
-  .checklist-grid { grid-template-columns: 1fr !important; }
+ /* ── CHECKLIST GRID ── */
+ .checklist-grid { grid-template-columns: 1fr !important; }
 
-  /* ── FUNDING READINESS CARD ── */
-  .checker-q-head { padding: 14px 16px !important; }
-  .checker-options { padding: 0 16px 14px !important; }
-  .checker-opt { font-size: .8rem !important; }
+ /* ── FUNDING READINESS CARD ── */
+ .checker-q-head { padding: 14px 16px !important; }
+ .checker-options { padding: 0 16px 14px !important; }
+ .checker-opt { font-size: .8rem !important; }
 
-  /* ── ABOUT TIMELINE ── */
-  .roadmap-item { grid-template-columns: 1fr !important; }
-  .rm-date { text-align: left !important; }
-  .roadmap-item::before { display: none !important; }
+ /* ── ABOUT TIMELINE ── */
+ .roadmap-item { grid-template-columns: 1fr !important; }
+ .rm-date { text-align: left !important; }
+ .roadmap-item::before { display: none !important; }
 
-  /* ── INLINE PADDING OVERRIDES ── */
-  [style*="padding:80px 64px"],
-  [style*="padding:100px 64px"],
-  [style*="padding:120px 64px"] {
-    padding: 56px 18px !important;
-  }
-  [style*="padding:48px"] { padding: 28px 18px !important; }
-  [style*="padding:64px"] { padding: 28px 18px !important; }
+ /* ── INLINE PADDING OVERRIDES ── */
+ [style*="padding:80px 64px"],
+ [style*="padding:100px 64px"],
+ [style*="padding:120px 64px"] {
+  padding: 56px 18px !important;
+ }
+ [style*="padding:48px"] { padding: 28px 18px !important; }
+ [style*="padding:64px"] { padding: 28px 18px !important; }
 
-  /* ── HIDE ABSOLUTE DECORATIVE ELEMENTS ON MOBILE ── */
-  .page-hero-lines { display: none !important; }
+ /* ── HIDE ABSOLUTE DECORATIVE ELEMENTS ON MOBILE ── */
+ .page-hero-lines { display: none !important; }
 
-  /* ── HOW IT WORKS 5-STEP PROCESS ── */
-  [style*="repeat(5,1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 20px !important;
-  }
+ /* ── HOW IT WORKS 5-STEP PROCESS ── */
+ [style*="repeat(5,1fr)"] {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+ }
 
-  /* ── WAITLIST CARD ── */
-  .waitlist-card { padding: 32px 20px !important; }
-  .spots-counter { font-size: 3.5rem !important; }
+ /* ── WAITLIST CARD ── */
+ .waitlist-card { padding: 32px 20px !important; }
+ .spots-counter { font-size: 3.5rem !important; }
 
-  /* ── NAV ── */
-  nav { padding: 14px 18px !important; }
+ /* ── NAV ── */
+ nav { padding: 14px 18px !important; }
 }
 
 @media(max-width:480px){
-  .inv-stat-grid { grid-template-columns: 1fr 1fr !important; }
-  .sec-title { font-size: clamp(1.6rem, 9vw, 2.4rem) !important; }
-  .page-hero { padding: 140px 14px 48px !important; }
-  section { padding: 48px 14px !important; }
-  [style*="padding:80px 64px"],
-  [style*="padding:100px 64px"],
-  [style*="padding:120px 64px"] { padding: 48px 14px !important; }
-  .filter-section { padding: 120px 14px 24px !important; }
+ .inv-stat-grid { grid-template-columns: 1fr 1fr !important; }
+ .sec-title { font-size: clamp(1.6rem, 9vw, 2.4rem) !important; }
+ 
+ section { padding: 48px 14px !important; }
+ [style*="padding:80px 64px"],
+ [style*="padding:100px 64px"],
+ [style*="padding:120px 64px"] { padding: 48px 14px !important; }
+ .filter-section { padding: 120px 14px 24px !important; }
 }
 </style>
 
@@ -323,95 +323,95 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 <div class="cursor-ring" id="cursorRing"></div>
 <canvas id="particles"></canvas>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="home.html" onclick="closeMobile()">Home</a>
-  <a href="startups.html" onclick="closeMobile()">Startups</a>
-  <a href="investors.html" onclick="closeMobile()">Investors</a>
-  <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="contact.html" onclick="closeMobile()">Contact</a>
-  <a href="signup.html" onclick="closeMobile()" style="color:var(--gold)">Join Now →</a>
+ <a href="home.html" onclick="closeMobile()">Home</a>
+ <a href="startups.html" onclick="closeMobile()">Startups</a>
+ <a href="investors.html" onclick="closeMobile()">Investors</a>
+ <a href="about.html" onclick="closeMobile()">About</a>
+ <a href="contact.html" onclick="closeMobile()">Contact</a>
+ <a href="signup.html" onclick="closeMobile()" style="color:var(--gold)">Join Now →</a>
 </div>
 <nav>
-  <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-    <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
-    <span class="nav-logo-text">THE HOOK HUSTLERS</span>
-  </a>
-  <div class="nav-links">
-    <a href="home.html">Home</a>
-    <a href="startups.html">Startups</a>
-    <a href="investors.html">Investors</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="nav-right">
-    <a href="login.html" class="active" class="nav-btn nav-btn-outline">Login</a>
-    <a href="signup.html" class="nav-btn nav-btn-gold">Join Now</a>
-  </div>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+ <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+  <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
+  <span class="nav-logo-text">THE HOOK HUSTLERS</span>
+ </a>
+ <div class="nav-links">
+  <a href="home.html">Home</a>
+  <a href="startups.html">Startups</a>
+  <a href="investors.html">Investors</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+ </div>
+ <div class="nav-right">
+  <a href="login.html" class="active" class="nav-btn nav-btn-outline">Login</a>
+  <a href="signup.html" class="nav-btn nav-btn-gold">Join Now</a>
+ </div>
+ <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 <div class="ticker-wrap">
-  <div class="ticker">
-    <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
-    <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
-    <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
-    <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
-    <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
-    <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
-    <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
-    <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
-    <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
-    <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
-    <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
-    <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
-    <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
-    <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
-    <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
-    <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
-  </div>
+ <div class="ticker">
+  <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
+  <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
+  <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
+  <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
+  <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
+  <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
+  <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
+  <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
+  <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
+  <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
+  <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
+  <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
+  <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
+  <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
+  <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
+  <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
+ </div>
 </div>
 </div>
 
 <div class="auth-mesh"></div>
 <div class="auth-wrap">
-  <div class="auth-box">
-    <div class="auth-logo"><a href="home.html">THE HOOK HUSTLERS</a></div>
+ <div class="auth-box">
+  <div class="auth-logo"><a href="home.html">THE HOOK HUSTLERS</a></div>
 
-    <!-- Dynamic banner shown when redirected from a signup link -->
-    <div id="nextBanner" style="display:none;background:linear-gradient(135deg,rgba(212,168,67,0.1),rgba(212,168,67,0.04));border:1px solid rgba(212,168,67,0.2);border-radius:12px;padding:14px 18px;margin-bottom:24px;text-align:center;">
-      <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px;">One Step First</div>
-      <div style="font-size:.82rem;color:var(--muted);line-height:1.6;">Login or create your account below — then we'll take you straight to registration.</div>
-    </div>
-
-    <h2 class="auth-title" id="loginTitle">Welcome Back</h2>
-    <p class="auth-sub" id="loginSub">Login to access your dashboard and continue your funding journey 🚀</p>
-
-    <div class="auth-tabs">
-      <div class="auth-tab active" onclick="switchTab(this)">🚀 Startup</div>
-      <div class="auth-tab" onclick="switchTab(this)">💼 Investor</div>
-    </div>
-
-    <div class="form-group"><label>Email Address</label><input class="form-input" id="l_email" type="email" placeholder="your@email.com"/></div>
-    <div class="form-group"><label>Password</label><input class="form-input" id="l_pass" type="password" placeholder="Enter your password"/></div>
-    <div style="text-align:right;margin-bottom:20px;"><a href="#" style="font-size:.78rem;color:var(--gold);text-decoration:none;">Forgot password?</a></div>
-
-    <!-- Google Sign In Button -->
-    <button class="google-btn" onclick="googleSignIn()">
-      <svg width="20" height="20" viewBox="0 0 48 48" style="flex-shrink:0;">
-        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        <path fill="none" d="M0 0h48v48H0z"/>
-      </svg>
-      Continue with Google
-    </button>
-
-    <div class="auth-divider">or sign in with email</div>
-
-    <button class="form-submit" onclick="doLogin()">Login & Continue →</button>
-
-    <div class="auth-divider">new here?</div>
-    <div class="auth-switch">Don't have an account yet? <a href="signup.html" id="signupLink" style="color:var(--gold);font-weight:700;">Create Account →</a></div>
+  <!-- Dynamic banner shown when redirected from a signup link -->
+  <div id="nextBanner" style="display:none;background:linear-gradient(135deg,rgba(212,168,67,0.1),rgba(212,168,67,0.04));border:1px solid rgba(212,168,67,0.2);border-radius:12px;padding:14px 18px;margin-bottom:24px;text-align:center;">
+   <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px;">One Step First</div>
+   <div style="font-size:.82rem;color:var(--muted);line-height:1.6;">Login or create your account below — then we'll take you straight to registration.</div>
   </div>
+
+  <h2 class="auth-title" id="loginTitle">Welcome Back</h2>
+  <p class="auth-sub" id="loginSub">Login to access your dashboard and continue your funding journey 🚀</p>
+
+  <div class="auth-tabs">
+   <div class="auth-tab active" onclick="switchTab(this)">🚀 Startup</div>
+   <div class="auth-tab" onclick="switchTab(this)">💼 Investor</div>
+  </div>
+
+  <div class="form-group"><label>Email Address</label><input class="form-input" id="l_email" type="email" placeholder="your@email.com"/></div>
+  <div class="form-group"><label>Password</label><input class="form-input" id="l_pass" type="password" placeholder="Enter your password"/></div>
+  <div style="text-align:right;margin-bottom:20px;"><a href="#" style="font-size:.78rem;color:var(--gold);text-decoration:none;">Forgot password?</a></div>
+
+  <!-- Google Sign In Button -->
+  <button class="google-btn" onclick="googleSignIn()">
+   <svg width="20" height="20" viewBox="0 0 48 48" style="flex-shrink:0;">
+    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+    <path fill="none" d="M0 0h48v48H0z"/>
+   </svg>
+   Continue with Google
+  </button>
+
+  <div class="auth-divider">or sign in with email</div>
+
+  <button class="form-submit" onclick="doLogin()">Login & Continue →</button>
+
+  <div class="auth-divider">new here?</div>
+  <div class="auth-switch">Don't have an account yet? <a href="signup.html" id="signupLink" style="color:var(--gold);font-weight:700;">Create Account →</a></div>
+ </div>
 </div>
 
 <!-- Google Sign-In SDK -->
@@ -423,81 +423,81 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 var GOOGLE_CLIENT_ID = '11657716794-qp7vu5t2toegcci3l4quqke1ft5rrdk8.apps.googleusercontent.com';
 
 function googleSignIn() {
-  // Check if Google SDK loaded
-  if (typeof google === 'undefined') {
-    // Fallback: show setup instructions if not configured yet
-    showGoogleNotice();
-    return;
-  }
-  google.accounts.id.initialize({
+ // Check if Google SDK loaded
+ if (typeof google === 'undefined') {
+  // Fallback: show setup instructions if not configured yet
+  showGoogleNotice();
+  return;
+ }
+ google.accounts.id.initialize({
+  client_id: GOOGLE_CLIENT_ID,
+  callback: handleGoogleResponse,
+  auto_select: false,
+  cancel_on_tap_outside: true,
+ });
+ google.accounts.id.prompt(function(notification) {
+  if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+   // One Tap blocked — open full popup flow
+   google.accounts.oauth2.initTokenClient({
     client_id: GOOGLE_CLIENT_ID,
-    callback: handleGoogleResponse,
-    auto_select: false,
-    cancel_on_tap_outside: true,
-  });
-  google.accounts.id.prompt(function(notification) {
-    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-      // One Tap blocked — open full popup flow
-      google.accounts.oauth2.initTokenClient({
-        client_id: GOOGLE_CLIENT_ID,
-        scope: 'email profile',
-        callback: handleGoogleToken,
-      }).requestAccessToken();
-    }
-  });
+    scope: 'email profile',
+    callback: handleGoogleToken,
+   }).requestAccessToken();
+  }
+ });
 }
 
 function handleGoogleResponse(response) {
-  // Decode JWT credential to get user info
-  var payload = JSON.parse(atob(response.credential.split('.')[1]));
-  finishGoogleLogin(payload.name, payload.email, payload.picture);
+ // Decode JWT credential to get user info
+ var payload = JSON.parse(atob(response.credential.split('.')[1]));
+ finishGoogleLogin(payload.name, payload.email, payload.picture);
 }
 
 function handleGoogleToken(tokenResponse) {
-  if (tokenResponse && tokenResponse.access_token) {
-    // Fetch user info from Google
-    fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
-    })
-    .then(r => r.json())
-    .then(u => finishGoogleLogin(u.name, u.email, u.picture));
-  }
+ if (tokenResponse && tokenResponse.access_token) {
+  // Fetch user info from Google
+  fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+   headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
+  })
+  .then(r => r.json())
+  .then(u => finishGoogleLogin(u.name, u.email, u.picture));
+ }
 }
 
 function finishGoogleLogin(name, email, picture) {
-  localStorage.setItem('hhLoggedIn', 'true');
-  localStorage.setItem('hhUserName', name);
-  localStorage.setItem('hhUserEmail', email);
-  localStorage.setItem('hhUserPicture', picture || '');
-  localStorage.setItem('hhLoginMethod', 'google');
+ localStorage.setItem('hhLoggedIn', 'true');
+ localStorage.setItem('hhUserName', name);
+ localStorage.setItem('hhUserEmail', email);
+ localStorage.setItem('hhUserPicture', picture || '');
+ localStorage.setItem('hhLoginMethod', 'google');
 
-  var urlParams = new URLSearchParams(window.location.search);
-  var next = urlParams.get('next');
-  if (next === 'signup') {
-    window.location.href = 'signup.html';
-  } else {
-    window.location.href = 'home.html';
-  }
+ var urlParams = new URLSearchParams(window.location.search);
+ var next = urlParams.get('next');
+ if (next === 'signup') {
+  window.location.href = 'signup.html';
+ } else {
+  window.location.href = 'home.html';
+ }
 }
 
 function showGoogleNotice() {
-  // Show a helpful modal if Google OAuth not yet configured
-  var overlay = document.createElement('div');
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(5,5,8,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
-  overlay.innerHTML = `
-    <div style="background:#0d0d1a;border:1px solid rgba(212,168,67,0.2);border-radius:20px;padding:40px;max-width:440px;text-align:center;">
-      <div style="font-size:2.5rem;margin-bottom:16px;">🔧</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;margin-bottom:12px;color:#d4a843;">Google Sign-In Setup Needed</div>
-      <p style="font-size:.85rem;color:rgba(240,237,232,0.5);line-height:1.8;margin-bottom:24px;">To enable Google login, add your OAuth Client ID from <strong style="color:rgba(240,237,232,0.8);">Google Cloud Console</strong> to the login.html file. Replace <code style="color:#d4a843;font-size:.78rem;">YOUR_GOOGLE_CLIENT_ID_HERE</code> with your actual Client ID.</p>
-      <div style="background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.12);border-radius:10px;padding:16px;margin-bottom:24px;font-size:.78rem;color:rgba(240,237,232,0.5);text-align:left;line-height:2;">
-        1. Go to <strong style="color:#d4a843;">console.cloud.google.com</strong><br/>
-        2. Create OAuth 2.0 Client ID<br/>
-        3. Add your GitHub Pages domain to Authorized Origins<br/>
-        4. Replace the placeholder in login.html
-      </div>
-      <button onclick="this.closest('div[style*=fixed]').remove()" style="background:linear-gradient(135deg,#d4a843,#f0c060);color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;padding:12px 32px;border-radius:8px;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;">Got It</button>
-    </div>`;
-  document.body.appendChild(overlay);
+ // Show a helpful modal if Google OAuth not yet configured
+ var overlay = document.createElement('div');
+ overlay.style.cssText = 'position:fixed;inset:0;background:rgba(5,5,8,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
+ overlay.innerHTML = `
+  <div style="background:#0d0d1a;border:1px solid rgba(212,168,67,0.2);border-radius:20px;padding:40px;max-width:440px;text-align:center;">
+   <div style="font-size:2.5rem;margin-bottom:16px;">🔧</div>
+   <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;margin-bottom:12px;color:#d4a843;">Google Sign-In Setup Needed</div>
+   <p style="font-size:.85rem;color:rgba(240,237,232,0.5);line-height:1.8;margin-bottom:24px;">To enable Google login, add your OAuth Client ID from <strong style="color:rgba(240,237,232,0.8);">Google Cloud Console</strong> to the login.html file. Replace <code style="color:#d4a843;font-size:.78rem;">YOUR_GOOGLE_CLIENT_ID_HERE</code> with your actual Client ID.</p>
+   <div style="background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.12);border-radius:10px;padding:16px;margin-bottom:24px;font-size:.78rem;color:rgba(240,237,232,0.5);text-align:left;line-height:2;">
+    1. Go to <strong style="color:#d4a843;">console.cloud.google.com</strong><br/>
+    2. Create OAuth 2.0 Client ID<br/>
+    3. Add your GitHub Pages domain to Authorized Origins<br/>
+    4. Replace the placeholder in login.html
+   </div>
+   <button onclick="this.closest('div[style*=fixed]').remove()" style="background:linear-gradient(135deg,#d4a843,#f0c060);color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;padding:12px 32px;border-radius:8px;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;">Got It</button>
+  </div>`;
+ document.body.appendChild(overlay);
 }
 
 // Read ?next= param from URL
@@ -506,147 +506,147 @@ var nextPage = urlParams.get('next'); // e.g. "signup"
 
 // If redirected here for signup, show banner and update CTA
 if (nextPage === 'signup') {
-  document.getElementById('nextBanner').style.display = 'block';
-  document.getElementById('loginTitle').textContent = 'First, Log In or Sign Up';
-  document.getElementById('loginSub').textContent = 'Create your account or log in — then complete your startup or investor registration.';
-  // Make "Create Account" link go directly to signup
-  document.getElementById('signupLink').href = 'signup.html';
+ document.getElementById('nextBanner').style.display = 'block';
+ document.getElementById('loginTitle').textContent = 'First, Log In or Sign Up';
+ document.getElementById('loginSub').textContent = 'Create your account or log in — then complete your startup or investor registration.';
+ // Make "Create Account" link go directly to signup
+ document.getElementById('signupLink').href = 'signup.html';
 }
 
 function switchTab(el) {
-  el.parentElement.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
+ el.parentElement.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+ el.classList.add('active');
 }
 
 function doLogin() {
-  var email = document.getElementById('l_email').value.trim();
-  var pass = document.getElementById('l_pass').value;
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  if (!pass || pass.length < 6) { alert('Please enter your password.'); return; }
+ var email = document.getElementById('l_email').value.trim();
+ var pass = document.getElementById('l_pass').value;
+ if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+ if (!pass || pass.length < 6) { alert('Please enter your password.'); return; }
 
-  // Set login flag
-  localStorage.setItem('hhLoggedIn', 'true');
+ // Set login flag
+ localStorage.setItem('hhLoggedIn', 'true');
 
-  // Redirect based on ?next= param
-  if (nextPage === 'signup') {
-    window.location.href = 'signup.html';
-  } else {
-    // Default — go home with a welcome back
-    window.location.href = 'home.html';
-  }
+ // Redirect based on ?next= param
+ if (nextPage === 'signup') {
+  window.location.href = 'signup.html';
+ } else {
+  // Default — go home with a welcome back
+  window.location.href = 'home.html';
+ }
 }
 </script>
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-    <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
-    <span class="nav-logo-text">THE HOOK HUSTLERS</span>
-  </a>
-      <p>India's #1 startup-investor matchmaking platform. Connecting DPIIT-verified startups with verified investors across every state, sector and stage.</p>
-      <div class="footer-contact">
-        <a href="mailto:_thehookhustlers@gmail.com">📧 _thehookhustlers@gmail.com</a>
-        <a href="tel:+918924952608">📱 +91 89249 52608</a>
-        <a href="https://wa.me/918924952608" target="_blank">💬 WhatsApp Us</a>
-      </div>
-      <div class="footer-socials" style="margin-top:16px;">
-        <a href="https://instagram.com" target="_blank" class="social-icon">📸</a>
-        <a href="https://linkedin.com" target="_blank" class="social-icon">💼</a>
-        <a href="https://twitter.com" target="_blank" class="social-icon">🐦</a>
-        <a href="https://wa.me/918924952608" target="_blank" class="social-icon">💬</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h5>Platform</h5>
-      <a href="startups.html">For Startups</a>
-      <a href="investors.html">For Investors</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="signup.html">Join Now</a>
-      <a href="login.html">Login</a>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-      <a href="reviews.html">Reviews</a>
-    </div>
-    <div class="footer-col">
-      <h5>Legal & Support</h5>
-      <a href="help.html">Help Centre</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </div>
+ <div class="footer-inner">
+  <div class="footer-brand">
+   <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+  <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
+  <span class="nav-logo-text">THE HOOK HUSTLERS</span>
+ </a>
+   <p>India's #1 startup-investor matchmaking platform. Connecting DPIIT-verified startups with verified investors across every state, sector and stage.</p>
+   <div class="footer-contact">
+    <a href="mailto:_thehookhustlers@gmail.com">📧 _thehookhustlers@gmail.com</a>
+    <a href="tel:+918924952608">📱 +91 89249 52608</a>
+    <a href="https://wa.me/918924952608" target="_blank">💬 WhatsApp Us</a>
+   </div>
+   <div class="footer-socials" style="margin-top:16px;">
+    <a href="https://instagram.com" target="_blank" class="social-icon">📸</a>
+    <a href="https://linkedin.com" target="_blank" class="social-icon">💼</a>
+    <a href="https://twitter.com" target="_blank" class="social-icon">🐦</a>
+    <a href="https://wa.me/918924952608" target="_blank" class="social-icon">💬</a>
+   </div>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-bottom-text">© 2026 The Hook Hustlers. All Rights Reserved. | Lucknow, Uttar Pradesh, India 🇮🇳</span>
-    <div class="footer-legal">
-      <a href="help.html">Help Centre</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </div>
+  <div class="footer-col">
+   <h5>Platform</h5>
+   <a href="startups.html">For Startups</a>
+   <a href="investors.html">For Investors</a>
+   <a href="pricing.html">Pricing</a>
+   <a href="signup.html">Join Now</a>
+   <a href="login.html">Login</a>
   </div>
+  <div class="footer-col">
+   <h5>Company</h5>
+   <a href="about.html">About Us</a>
+   <a href="contact.html">Contact</a>
+   <a href="reviews.html">Reviews</a>
+  </div>
+  <div class="footer-col">
+   <h5>Legal & Support</h5>
+   <a href="help.html">Help Centre</a>
+   <a href="privacy.html">Privacy Policy</a>
+   <a href="terms.html">Terms of Use</a>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 The Hook Hustlers. All Rights Reserved. | Lucknow, Uttar Pradesh, India 🇮🇳</span>
+  <div class="footer-legal">
+   <a href="help.html">Help Centre</a>
+   <a href="privacy.html">Privacy Policy</a>
+   <a href="terms.html">Terms of Use</a>
+  </div>
+ </div>
 </footer>
 <script>// SHARED JS FOR ALL PAGES
 document.addEventListener('DOMContentLoaded', function() {
-  // CURSOR
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  if(cursor && ring) {
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
-    });
-  }
+ // CURSOR
+ const cursor = document.getElementById('cursor');
+ const ring = document.getElementById('cursorRing');
+ if(cursor && ring) {
+  document.addEventListener('mousemove', e => {
+   cursor.style.left = e.clientX + 'px';
+   cursor.style.top = e.clientY + 'px';
+   ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+  });
+ }
 
-  // PARTICLES
-  const canvas = document.getElementById('particles');
-  if(canvas) {
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-    const particles = [];
-    const colors = ['rgba(212,168,67,','rgba(26,108,255,','rgba(0,208,132,','rgba(230,57,70,'];
-    for(let i=0;i<70;i++) particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:colors[Math.floor(Math.random()*colors.length)],opacity:Math.random()*.4+.1});
-    function animateP(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateP);}
-    animateP();
-  }
+ // PARTICLES
+ const canvas = document.getElementById('particles');
+ if(canvas) {
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+  const particles = [];
+  const colors = ['rgba(212,168,67,','rgba(26,108,255,','rgba(0,208,132,','rgba(230,57,70,'];
+  for(let i=0;i<70;i++) particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:colors[Math.floor(Math.random()*colors.length)],opacity:Math.random()*.4+.1});
+  function animateP(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateP);}
+  animateP();
+ }
 
-  // HAMBURGER
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if(hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-  }
+ // HAMBURGER
+ const hamburger = document.getElementById('hamburger');
+ const mobileMenu = document.getElementById('mobileMenu');
+ if(hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+   hamburger.classList.toggle('open');
+   mobileMenu.classList.toggle('open');
+   document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+ }
 
-  // REVEAL
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
-  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
-  reveals.forEach(r => obs.observe(r));
+ // REVEAL
+ const reveals = document.querySelectorAll('.reveal');
+ const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+ },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+ reveals.forEach(r => obs.observe(r));
 
-  // COUNTERS
-  const counterObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        const el=e.target,target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
-        let start=0;const step=target/(2000/16);
-        const timer=setInterval(()=>{start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=prefix+Math.floor(start).toLocaleString('en-IN')+suffix;},16);
-        counterObs.unobserve(el);
-      }
-    });
-  },{threshold:0.5});
-  document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
+ // COUNTERS
+ const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+   if(e.isIntersecting){
+    const el=e.target,target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
+    let start=0;const step=target/(2000/16);
+    const timer=setInterval(()=>{start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=prefix+Math.floor(start).toLocaleString('en-IN')+suffix;},16);
+    counterObs.unobserve(el);
+   }
+  });
+ },{threshold:0.5});
+ document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
 });
 
 function closeMobile(){
-  const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
-  if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+ const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
+ if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
 }
 </script>
 
@@ -654,120 +654,120 @@ function closeMobile(){
 
 // Hide Login button if already logged in
 (function(){
-  if(localStorage.getItem('hhLoggedIn') === 'true'){
-    var loginBtns = document.querySelectorAll('a[href="login.html"], a[href="login.html?next=signup"]');
-    loginBtns.forEach(function(btn){
-      if(btn.classList.contains('nav-btn-outline') || btn.textContent.trim() === 'Login'){
-        btn.style.display = 'none';
-      }
-    });
-    // Show logged-in avatar with popup
-    var navRight = document.querySelector('.nav-right');
-    if(navRight && !document.getElementById('nav-user-badge')){
-      var name = localStorage.getItem('hhUserName') || 'Account';
-      var email = localStorage.getItem('hhUserEmail') || '';
-      var first = name.split(' ')[0];
-      var initial = first.charAt(0).toUpperCase();
+ if(localStorage.getItem('hhLoggedIn') === 'true'){
+  var loginBtns = document.querySelectorAll('a[href="login.html"], a[href="login.html?next=signup"]');
+  loginBtns.forEach(function(btn){
+   if(btn.classList.contains('nav-btn-outline') || btn.textContent.trim() === 'Login'){
+    btn.style.display = 'none';
+   }
+  });
+  // Show logged-in avatar with popup
+  var navRight = document.querySelector('.nav-right');
+  if(navRight && !document.getElementById('nav-user-badge')){
+   var name = localStorage.getItem('hhUserName') || 'Account';
+   var email = localStorage.getItem('hhUserEmail') || '';
+   var first = name.split(' ')[0];
+   var initial = first.charAt(0).toUpperCase();
 
-      // Inject popup CSS once
-      if(!document.getElementById('hhPopupStyle')){
-        var st = document.createElement('style');
-        st.id = 'hhPopupStyle';
-        st.textContent = `
-          #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;}
-          #nav-user-badge .hh-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;box-shadow:0 0 8px rgba(212,168,67,0.45),0 0 20px rgba(212,168,67,0.15);transition:box-shadow .2s;}
-          #nav-user-badge:hover .hh-av{box-shadow:0 0 16px rgba(212,168,67,0.7),0 0 30px rgba(212,168,67,0.3);}
-          #nav-user-badge .hh-name{font-family:'Rajdhani',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.03em;color:var(--gold);text-transform:none;max-width:65px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;line-height:1;}
-          #hh-popup{position:fixed;top:70px;right:12px;width:230px;background:#111;border:1px solid rgba(212,168,67,0.3);border-radius:14px;padding:20px 18px 16px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 0 0 1px rgba(212,168,67,0.08);opacity:0;transform:translateY(-8px) scale(.97);pointer-events:none;transition:all .2s ease;}
-          #hh-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
-          #hh-popup .pp-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin:0 auto 10px;box-shadow:0 0 16px rgba(212,168,67,0.5);}
-          #hh-popup .pp-uname{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
-          #hh-popup .pp-email{text-align:center;font-size:.72rem;color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;margin-bottom:14px;word-break:break-all;line-height:1.4;}
-          #hh-popup hr{border:none;border-top:1px solid rgba(212,168,67,0.12);margin-bottom:12px;}
-          #hh-popup .pp-signout{width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;border:none;cursor:pointer;margin-bottom:8px;transition:opacity .15s;}
-          #hh-popup .pp-signout:hover{opacity:.85;}
-          #hh-popup .pp-close{width:100%;padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(212,168,67,0.2);color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all .15s;}
-          #hh-popup .pp-close:hover{border-color:rgba(212,168,67,0.5);color:var(--gold);}
-          @media(max-width:768px){#hh-popup{right:-8px;width:210px;}}
-        `;
-        document.head.appendChild(st);
-      }
+   // Inject popup CSS once
+   if(!document.getElementById('hhPopupStyle')){
+    var st = document.createElement('style');
+    st.id = 'hhPopupStyle';
+    st.textContent = `
+     #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;}
+     #nav-user-badge .hh-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;box-shadow:0 0 8px rgba(212,168,67,0.45),0 0 20px rgba(212,168,67,0.15);transition:box-shadow .2s;}
+     #nav-user-badge:hover .hh-av{box-shadow:0 0 16px rgba(212,168,67,0.7),0 0 30px rgba(212,168,67,0.3);}
+     #nav-user-badge .hh-name{font-family:'Rajdhani',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.03em;color:var(--gold);text-transform:none;max-width:65px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;line-height:1;}
+     #hh-popup{position:fixed;top:70px;right:12px;width:230px;background:#111;border:1px solid rgba(212,168,67,0.3);border-radius:14px;padding:20px 18px 16px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 0 0 1px rgba(212,168,67,0.08);opacity:0;transform:translateY(-8px) scale(.97);pointer-events:none;transition:all .2s ease;}
+     #hh-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+     #hh-popup .pp-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin:0 auto 10px;box-shadow:0 0 16px rgba(212,168,67,0.5);}
+     #hh-popup .pp-uname{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
+     #hh-popup .pp-email{text-align:center;font-size:.72rem;color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;margin-bottom:14px;word-break:break-all;line-height:1.4;}
+     #hh-popup hr{border:none;border-top:1px solid rgba(212,168,67,0.12);margin-bottom:12px;}
+     #hh-popup .pp-signout{width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;border:none;cursor:pointer;margin-bottom:8px;transition:opacity .15s;}
+     #hh-popup .pp-signout:hover{opacity:.85;}
+     #hh-popup .pp-close{width:100%;padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(212,168,67,0.2);color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+     #hh-popup .pp-close:hover{border-color:rgba(212,168,67,0.5);color:var(--gold);}
+     @media(max-width:768px){#hh-popup{right:-8px;width:210px;}}
+    `;
+    document.head.appendChild(st);
+   }
 
-      // Build badge
-      var badge = document.createElement('div');
-      badge.id = 'nav-user-badge';
-      badge.innerHTML = `
-        <div class="hh-av">${initial}</div>
-        <div class="hh-name">${name}</div>
-        <div id="hh-popup">
-          <div class="pp-av">${initial}</div>
-          <div class="pp-uname">${name.toUpperCase()}</div>
-          <div class="pp-email">${email}</div>
-          <hr/>
-          <button class="pp-signout" id="hh-signout-btn">SIGN OUT</button>
-          <button class="pp-close" id="hh-close-btn">✕ CLOSE</button>
-        </div>
-      `;
-      navRight.insertBefore(badge, navRight.firstChild);
+   // Build badge
+   var badge = document.createElement('div');
+   badge.id = 'nav-user-badge';
+   badge.innerHTML = `
+    <div class="hh-av">${initial}</div>
+    <div class="hh-name">${name}</div>
+    <div id="hh-popup">
+     <div class="pp-av">${initial}</div>
+     <div class="pp-uname">${name.toUpperCase()}</div>
+     <div class="pp-email">${email}</div>
+     <hr/>
+     <button class="pp-signout" id="hh-signout-btn">SIGN OUT</button>
+     <button class="pp-close" id="hh-close-btn">✕ CLOSE</button>
+    </div>
+   `;
+   navRight.insertBefore(badge, navRight.firstChild);
 
-      // Toggle popup
-      badge.addEventListener('click', function(e){
-        var popup = document.getElementById('hh-popup');
-        popup.classList.toggle('open');
-        e.stopPropagation();
-      });
+   // Toggle popup
+   badge.addEventListener('click', function(e){
+    var popup = document.getElementById('hh-popup');
+    popup.classList.toggle('open');
+    e.stopPropagation();
+   });
 
-      // Sign out
-      document.getElementById('hh-signout-btn').addEventListener('click', function(e){
-        e.stopPropagation();
-        localStorage.removeItem('hhLoggedIn');
-        localStorage.removeItem('hhUserName');
-        localStorage.removeItem('hhUserEmail');
-        localStorage.removeItem('hhUserPicture');
-        window.location.href = 'home.html';
-      });
+   // Sign out
+   document.getElementById('hh-signout-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    localStorage.removeItem('hhLoggedIn');
+    localStorage.removeItem('hhUserName');
+    localStorage.removeItem('hhUserEmail');
+    localStorage.removeItem('hhUserPicture');
+    window.location.href = 'home.html';
+   });
 
-      // Close btn
-      document.getElementById('hh-close-btn').addEventListener('click', function(e){
-        e.stopPropagation();
-        document.getElementById('hh-popup').classList.remove('open');
-      });
+   // Close btn
+   document.getElementById('hh-close-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    document.getElementById('hh-popup').classList.remove('open');
+   });
 
-      // Click outside closes
-      document.addEventListener('click', function(){
-        var p = document.getElementById('hh-popup');
-        if(p) p.classList.remove('open');
-      });
-    }
+   // Click outside closes
+   document.addEventListener('click', function(){
+    var p = document.getElementById('hh-popup');
+    if(p) p.classList.remove('open');
+   });
   }
+ }
 })();
 // Show pricing in nav only if user is logged in
 (function(){
-  if(localStorage.getItem('hhLoggedIn') === 'true') {
-    var links = document.querySelector('.nav-links');
-    var mobile = document.getElementById('mobileMenu');
-    if(links) {
-      // Only add Pricing if not already in nav
-      if(!links.querySelector('a[href="pricing.html"]')){
-        var a = document.createElement('a');
-        a.href = 'pricing.html';
-        a.textContent = 'Pricing';
-        var ref = links.querySelector('a[href="contact.html"]');
-        if(ref) links.insertBefore(a, ref);
-      }
-    }
-    if(mobile) {
-      // Only add Pricing to mobile if not already there
-      if(!mobile.querySelector('a[href="pricing.html"]')){
-        var ma = document.createElement('a');
-        ma.href = 'pricing.html';
-        ma.textContent = 'Pricing';
-        ma.onclick = function(){closeMobile();};
-        var mref = mobile.querySelector('a[href="contact.html"]');
-        if(mref) mobile.insertBefore(ma, mref);
-      }
-    }
+ if(localStorage.getItem('hhLoggedIn') === 'true') {
+  var links = document.querySelector('.nav-links');
+  var mobile = document.getElementById('mobileMenu');
+  if(links) {
+   // Only add Pricing if not already in nav
+   if(!links.querySelector('a[href="pricing.html"]')){
+    var a = document.createElement('a');
+    a.href = 'pricing.html';
+    a.textContent = 'Pricing';
+    var ref = links.querySelector('a[href="contact.html"]');
+    if(ref) links.insertBefore(a, ref);
+   }
   }
+  if(mobile) {
+   // Only add Pricing to mobile if not already there
+   if(!mobile.querySelector('a[href="pricing.html"]')){
+    var ma = document.createElement('a');
+    ma.href = 'pricing.html';
+    ma.textContent = 'Pricing';
+    ma.onclick = function(){closeMobile();};
+    var mref = mobile.querySelector('a[href="contact.html"]');
+    if(mref) mobile.insertBefore(ma, mref);
+   }
+  }
+ }
 })();
 </script>
 </body>

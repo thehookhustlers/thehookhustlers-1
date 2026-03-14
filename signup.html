@@ -16,25 +16,25 @@ html.is-logged-in a.nav-btn-outline { display:none !important; }
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>/* SHARED STYLES FOR ALL PAGES */
 :root {
-  --black: #050508;
-  --deep: #080810;
-  --card: #0d0d1a;
-  --card2: #0a0a15;
-  --gold: #d4a843;
-  --gold2: #f0c060;
-  --gold-dim: rgba(212,168,67,0.1);
-  --gold-glow: rgba(212,168,67,0.25);
-  --navy: #0a1628;
-  --blue: #1a6cff;
-  --blue-dim: rgba(26,108,255,0.1);
-  --emerald: #00d084;
-  --emerald-dim: rgba(0,208,132,0.1);
-  --crimson: #e63946;
-  --crimson-dim: rgba(230,57,70,0.1);
-  --white: #f0ede8;
-  --muted: rgba(240,237,232,0.4);
-  --border: rgba(212,168,67,0.08);
-  --border2: rgba(255,255,255,0.05);
+ --black: #050508;
+ --deep: #080810;
+ --card: #0d0d1a;
+ --card2: #0a0a15;
+ --gold: #d4a843;
+ --gold2: #f0c060;
+ --gold-dim: rgba(212,168,67,0.1);
+ --gold-glow: rgba(212,168,67,0.25);
+ --navy: #0a1628;
+ --blue: #1a6cff;
+ --blue-dim: rgba(26,108,255,0.1);
+ --emerald: #00d084;
+ --emerald-dim: rgba(0,208,132,0.1);
+ --crimson: #e63946;
+ --crimson-dim: rgba(230,57,70,0.1);
+ --white: #f0ede8;
+ --muted: rgba(240,237,232,0.4);
+ --border: rgba(212,168,67,0.08);
+ --border2: rgba(255,255,255,0.05);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -109,9 +109,9 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
 @media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:140px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
-@media(max-width:768px){nav{padding:14px 20px;}.nav-links{display:none;}.nav-right .nav-btn,.nav-right a.nav-btn-outline{display:none !important;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:120px 20px 48px;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:48px;} .page-hero{padding-top:145px!important;}}
+@media(max-width:768px){nav{padding:10px 16px;} .nav-logo{gap:6px;} .nav-logo img{height:28px;width:28px;} .nav-logo-text{font-size:1rem;letter-spacing:.04em;white-space:nowrap;}}.nav-links{display:none;}.nav-right .nav-btn,.nav-right a.nav-btn-outline{display:none !important;}.hamburger{display:flex;}.mobile-menu{display:flex;}section{padding:72px 20px;}.page-hero{padding:110px 20px 48px !important;}.footer-inner{grid-template-columns:1fr;gap:32px;}.footer-bottom{flex-direction:column;text-align:center;}.footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}.ticker-wrap{top:48px;} }
 
-.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 60px;position:relative;z-index:1;}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 24px 60px;position:relative;z-index:1;}
 .auth-mesh{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,168,67,.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 90% 80%,rgba(26,108,255,.05) 0%,transparent 60%);}
 .auth-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:52px 44px;width:100%;max-width:480px;position:relative;z-index:1;}
 .auth-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--emerald));border-radius:24px 24px 0 0;}
@@ -144,180 +144,180 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 
 <style id="global-mobile-fix">
 /* ══════════════════════════════════════
-   GLOBAL MOBILE FIX — all pages
-   Target: screens ≤768px
+  GLOBAL MOBILE FIX — all pages
+  Target: screens ≤768px
 ══════════════════════════════════════ */
 @media(max-width:768px){
 
-  /* ── SPACING ── */
-  section, .filter-section, .founder-section-about,
-  .about-mission, .inv-type-section {
-    padding: 60px 18px !important;
-  }
-  .page-hero { padding: 148px 18px 56px !important; }
-  .sec-inner { padding: 0 !important; }
+ /* ── SPACING ── */
+ section, .filter-section, .founder-section-about,
+ .about-mission, .inv-type-section {
+  padding: 60px 18px !important;
+ }
+ 
+ .sec-inner { padding: 0 !important; }
 
-  /* ── TYPOGRAPHY ── */
-  .sec-title { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
-  .sec-sub { font-size: .88rem !important; }
-  h1 { font-size: clamp(2rem, 10vw, 4rem) !important; }
-  h2 { font-size: clamp(1.6rem, 7vw, 3rem) !important; }
+ /* ── TYPOGRAPHY ── */
+ .sec-title { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
+ .sec-sub { font-size: .88rem !important; }
+ h1 { font-size: clamp(2rem, 10vw, 4rem) !important; }
+ h2 { font-size: clamp(1.6rem, 7vw, 3rem) !important; }
 
-  /* ── ALL INLINE GRIDS → single column ── */
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns: 1fr 1fr"],
-  [style*="grid-template-columns:1fr 1.6fr"],
-  [style*="grid-template-columns:1fr 2fr"],
-  [style*="grid-template-columns:2fr 1fr"],
-  [style*="grid-template-columns:1fr 1.5fr"],
-  [style*="grid-template-columns:repeat(2"],
-  [style*="grid-template-columns:repeat(3"],
-  [style*="grid-template-columns:repeat(4"],
-  [style*="grid-template-columns:repeat(5"],
-  [style*="grid-template-columns:3fr 1fr"],
-  [style*="grid-template-columns:140px 1fr"],
-  [style*="grid-template-columns:1fr 40px 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
+ /* ── ALL INLINE GRIDS → single column ── */
+ [style*="grid-template-columns:1fr 1fr"],
+ [style*="grid-template-columns: 1fr 1fr"],
+ [style*="grid-template-columns:1fr 1.6fr"],
+ [style*="grid-template-columns:1fr 2fr"],
+ [style*="grid-template-columns:2fr 1fr"],
+ [style*="grid-template-columns:1fr 1.5fr"],
+ [style*="grid-template-columns:repeat(2"],
+ [style*="grid-template-columns:repeat(3"],
+ [style*="grid-template-columns:repeat(4"],
+ [style*="grid-template-columns:repeat(5"],
+ [style*="grid-template-columns:3fr 1fr"],
+ [style*="grid-template-columns:140px 1fr"],
+ [style*="grid-template-columns:1fr 40px 1fr"] {
+  grid-template-columns: 1fr !important;
+  gap: 24px !important;
+ }
 
-  /* ── NAMED GRID CLASSES → single column ── */
-  .why-grid, .checklist-grid, .landscape-split,
-  .inv-stat-grid, .how-grid, .sectors-grid,
-  .startups-grid, .inv-grid, .mission-grid,
-  .founder-about-inner, .value-grid,
-  .roadmap-item, .footer-inner { 
-    grid-template-columns: 1fr !important; 
-    gap: 20px !important;
-  }
+ /* ── NAMED GRID CLASSES → single column ── */
+ .why-grid, .checklist-grid, .landscape-split,
+ .inv-stat-grid, .how-grid, .sectors-grid,
+ .startups-grid, .inv-grid, .mission-grid,
+ .founder-about-inner, .value-grid,
+ .roadmap-item, .footer-inner { 
+  grid-template-columns: 1fr !important; 
+  gap: 20px !important;
+ }
 
-  /* ── TIMELINE middle column hide ── */
-  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(2) {
-    display: none !important;
-  }
-  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(1),
-  [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(3) {
-    text-align: left !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    padding-top: 0 !important;
-  }
+ /* ── TIMELINE middle column hide ── */
+ [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(2) {
+  display: none !important;
+ }
+ [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(1),
+ [style*="grid-template-columns:1fr 40px 1fr"] > div:nth-child(3) {
+  text-align: left !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+ }
 
-  /* ── VERIFICATION STEPS → 2 col on mobile ── */
-  [style*="grid-template-columns:repeat(5,1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
-  }
+ /* ── VERIFICATION STEPS → 2 col on mobile ── */
+ [style*="grid-template-columns:repeat(5,1fr)"] {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
+ }
 
-  /* ── COMPARISON TABLE → scrollable ── */
-  table { font-size: .75rem !important; }
-  table td, table th { padding: 10px 10px !important; }
-  th div { font-size: .7rem !important; padding: 8px !important; }
+ /* ── COMPARISON TABLE → scrollable ── */
+ table { font-size: .75rem !important; }
+ table td, table th { padding: 10px 10px !important; }
+ th div { font-size: .7rem !important; padding: 8px !important; }
 
-  /* ── HERO ACTIONS → stack ── */
-  .hero-actions, [style*="display:flex"][style*="gap:20px"],
-  [style*="display:flex"][style*="gap:12px"] {
-    flex-wrap: wrap !important;
-  }
-  .hero-actions a { text-align: center; width: 100%; }
+ /* ── HERO ACTIONS → stack ── */
+ .hero-actions, [style*="display:flex"][style*="gap:20px"],
+ [style*="display:flex"][style*="gap:12px"] {
+  flex-wrap: wrap !important;
+ }
+ .hero-actions a { text-align: center; width: 100%; }
 
-  /* ── STAT CARDS → 2 col ── */
-  .inv-stat-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+ /* ── STAT CARDS → 2 col ── */
+ .inv-stat-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+ }
 
-  /* ── CTA SECTION ── */
-  .cta-section { padding: 72px 18px !important; }
+ /* ── CTA SECTION ── */
+ .cta-section { padding: 72px 18px !important; }
 
-  /* ── WAITLIST INPUTS → stack ── */
-  .waitlist-input-wrap, 
-  [style*="display:flex"][style*="flex-wrap:wrap"] {
-    flex-direction: column !important;
-  }
-  .waitlist-input, .search-input { min-width: unset !important; width: 100% !important; }
+ /* ── WAITLIST INPUTS → stack ── */
+ .waitlist-input-wrap, 
+ [style*="display:flex"][style*="flex-wrap:wrap"] {
+  flex-direction: column !important;
+ }
+ .waitlist-input, .search-input { min-width: unset !important; width: 100% !important; }
 
-  /* ── FOOTER ── */
-  footer { padding: 48px 18px 0 !important; }
-  .footer-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .footer-bottom { flex-direction: column !important; text-align: center !important; }
-  .footer-legal { flex-wrap: wrap !important; justify-content: center !important; gap: 12px !important; }
+ /* ── FOOTER ── */
+ footer { padding: 48px 18px 0 !important; }
+ .footer-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+ .footer-bottom { flex-direction: column !important; text-align: center !important; }
+ .footer-legal { flex-wrap: wrap !important; justify-content: center !important; gap: 12px !important; }
 
-  /* ── FILTER CHIPS ── */
-  .filter-chip { font-size: .7rem !important; padding: 6px 14px !important; }
+ /* ── FILTER CHIPS ── */
+ .filter-chip { font-size: .7rem !important; padding: 6px 14px !important; }
 
-  /* ── SECTOR CARDS → 1 col ── */
-  .sectors-grid, [style*="grid-template-columns:repeat(3,1fr)"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(260px"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(280px"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(220px"],
-  [style*="grid-template-columns:repeat(auto-fill,minmax(200px"] {
-    grid-template-columns: 1fr !important;
-  }
+ /* ── SECTOR CARDS → 1 col ── */
+ .sectors-grid, [style*="grid-template-columns:repeat(3,1fr)"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(260px"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(280px"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(220px"],
+ [style*="grid-template-columns:repeat(auto-fill,minmax(200px"] {
+  grid-template-columns: 1fr !important;
+ }
 
-  /* ── JOURNEY SIDE-BY-SIDE → stack ── */
-  .how-grid { grid-template-columns: 1fr !important; }
-  .how-divider { display: none !important; }
-  .journey-col { padding: 0 !important; }
+ /* ── JOURNEY SIDE-BY-SIDE → stack ── */
+ .how-grid { grid-template-columns: 1fr !important; }
+ .how-divider { display: none !important; }
+ .journey-col { padding: 0 !important; }
 
-  /* ── STAT NUMBERS FONT SIZE ── */
-  .stat-number, .inv-stat-num, .spots-counter { 
-    font-size: clamp(2rem, 8vw, 3rem) !important; 
-  }
+ /* ── STAT NUMBERS FONT SIZE ── */
+ .stat-number, .inv-stat-num, .spots-counter { 
+  font-size: clamp(2rem, 8vw, 3rem) !important; 
+ }
 
-  /* ── FOUNDER PHOTO ── */
-  .founder-photo, .founder-photo-wrap { 
-    max-width: 280px !important; 
-    margin: 0 auto !important; 
-  }
+ /* ── FOUNDER PHOTO ── */
+ .founder-photo, .founder-photo-wrap { 
+  max-width: 280px !important; 
+  margin: 0 auto !important; 
+ }
 
-  /* ── CHECKLIST GRID ── */
-  .checklist-grid { grid-template-columns: 1fr !important; }
+ /* ── CHECKLIST GRID ── */
+ .checklist-grid { grid-template-columns: 1fr !important; }
 
-  /* ── FUNDING READINESS CARD ── */
-  .checker-q-head { padding: 14px 16px !important; }
-  .checker-options { padding: 0 16px 14px !important; }
-  .checker-opt { font-size: .8rem !important; }
+ /* ── FUNDING READINESS CARD ── */
+ .checker-q-head { padding: 14px 16px !important; }
+ .checker-options { padding: 0 16px 14px !important; }
+ .checker-opt { font-size: .8rem !important; }
 
-  /* ── ABOUT TIMELINE ── */
-  .roadmap-item { grid-template-columns: 1fr !important; }
-  .rm-date { text-align: left !important; }
-  .roadmap-item::before { display: none !important; }
+ /* ── ABOUT TIMELINE ── */
+ .roadmap-item { grid-template-columns: 1fr !important; }
+ .rm-date { text-align: left !important; }
+ .roadmap-item::before { display: none !important; }
 
-  /* ── INLINE PADDING OVERRIDES ── */
-  [style*="padding:80px 64px"],
-  [style*="padding:100px 64px"],
-  [style*="padding:120px 64px"] {
-    padding: 56px 18px !important;
-  }
-  [style*="padding:48px"] { padding: 28px 18px !important; }
-  [style*="padding:64px"] { padding: 28px 18px !important; }
+ /* ── INLINE PADDING OVERRIDES ── */
+ [style*="padding:80px 64px"],
+ [style*="padding:100px 64px"],
+ [style*="padding:120px 64px"] {
+  padding: 56px 18px !important;
+ }
+ [style*="padding:48px"] { padding: 28px 18px !important; }
+ [style*="padding:64px"] { padding: 28px 18px !important; }
 
-  /* ── HIDE ABSOLUTE DECORATIVE ELEMENTS ON MOBILE ── */
-  .page-hero-lines { display: none !important; }
+ /* ── HIDE ABSOLUTE DECORATIVE ELEMENTS ON MOBILE ── */
+ .page-hero-lines { display: none !important; }
 
-  /* ── HOW IT WORKS 5-STEP PROCESS ── */
-  [style*="repeat(5,1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 20px !important;
-  }
+ /* ── HOW IT WORKS 5-STEP PROCESS ── */
+ [style*="repeat(5,1fr)"] {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+ }
 
-  /* ── WAITLIST CARD ── */
-  .waitlist-card { padding: 32px 20px !important; }
-  .spots-counter { font-size: 3.5rem !important; }
+ /* ── WAITLIST CARD ── */
+ .waitlist-card { padding: 32px 20px !important; }
+ .spots-counter { font-size: 3.5rem !important; }
 
-  /* ── NAV ── */
-  nav { padding: 14px 18px !important; }
+ /* ── NAV ── */
+ nav { padding: 14px 18px !important; }
 }
 
 @media(max-width:480px){
-  .inv-stat-grid { grid-template-columns: 1fr 1fr !important; }
-  .sec-title { font-size: clamp(1.6rem, 9vw, 2.4rem) !important; }
-  .page-hero { padding: 140px 14px 48px !important; }
-  section { padding: 48px 14px !important; }
-  [style*="padding:80px 64px"],
-  [style*="padding:100px 64px"],
-  [style*="padding:120px 64px"] { padding: 48px 14px !important; }
-  .filter-section { padding: 120px 14px 24px !important; }
+ .inv-stat-grid { grid-template-columns: 1fr 1fr !important; }
+ .sec-title { font-size: clamp(1.6rem, 9vw, 2.4rem) !important; }
+ 
+ section { padding: 48px 14px !important; }
+ [style*="padding:80px 64px"],
+ [style*="padding:100px 64px"],
+ [style*="padding:120px 64px"] { padding: 48px 14px !important; }
+ .filter-section { padding: 120px 14px 24px !important; }
 }
 </style>
 
@@ -327,50 +327,50 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 <div class="cursor-ring" id="cursorRing"></div>
 <canvas id="particles"></canvas>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="home.html" onclick="closeMobile()">Home</a>
-  <a href="startups.html" onclick="closeMobile()">Startups</a>
-  <a href="investors.html" onclick="closeMobile()">Investors</a>
-  <a href="about.html" onclick="closeMobile()">About</a>
-  <a href="contact.html" onclick="closeMobile()">Contact</a>
-  <a href="signup.html" class="active" onclick="closeMobile()" style="color:var(--gold)">Join Now →</a>
+ <a href="home.html" onclick="closeMobile()">Home</a>
+ <a href="startups.html" onclick="closeMobile()">Startups</a>
+ <a href="investors.html" onclick="closeMobile()">Investors</a>
+ <a href="about.html" onclick="closeMobile()">About</a>
+ <a href="contact.html" onclick="closeMobile()">Contact</a>
+ <a href="signup.html" class="active" onclick="closeMobile()" style="color:var(--gold)">Join Now →</a>
 </div>
 <nav>
-  <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-    <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
-    <span class="nav-logo-text">THE HOOK HUSTLERS</span>
-  </a>
-  <div class="nav-links">
-    <a href="home.html">Home</a>
-    <a href="startups.html">Startups</a>
-    <a href="investors.html">Investors</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </div>
-  <div class="nav-right">
-    <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
-    <a href="signup.html" class="nav-btn nav-btn-gold">Join Now</a>
-  </div>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+ <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+  <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
+  <span class="nav-logo-text">THE HOOK HUSTLERS</span>
+ </a>
+ <div class="nav-links">
+  <a href="home.html">Home</a>
+  <a href="startups.html">Startups</a>
+  <a href="investors.html">Investors</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+ </div>
+ <div class="nav-right">
+  <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+  <a href="signup.html" class="nav-btn nav-btn-gold">Join Now</a>
+ </div>
+ <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 <div class="ticker-wrap">
-  <div class="ticker">
-    <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
-    <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
-    <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
-    <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
-    <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
-    <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
-    <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
-    <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
-    <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
-    <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
-    <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
-    <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
-    <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
-    <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
-    <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
-    <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
-  </div>
+ <div class="ticker">
+  <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
+  <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
+  <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
+  <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
+  <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
+  <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
+  <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
+  <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
+  <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
+  <div class="ticker-item"><div class="dot"></div>📊 Only <span>2% of Indian startups</span> ever receive formal funding — The Hook Hustlers is here to change that ratio</div>
+  <div class="ticker-item"><div class="dot"></div>🏙️ <span>48% of India's startups</span> are from Tier 2 & 3 cities — yet most VC offices are in Bandra and Koramangala</div>
+  <div class="ticker-item"><div class="dot"></div>🏛️ Government Fund of Funds — <span>₹10,000 Crore</span> allocated for Indian startups. Is yours getting its share?</div>
+  <div class="ticker-item"><div class="dot"></div>🤖 Our AI doesn't sleep, doesn't have a bad day, and never loses your pitch deck — <span>AI-powered matching, 24/7</span></div>
+  <div class="ticker-item"><div class="dot"></div>🦁 <span>India produced 125 unicorns</span> — the next one could be from Lucknow, Bhopal or Patna. We're building for that future.</div>
+  <div class="ticker-item"><div class="dot"></div>📈 Indian startup funding is projected to recover to <span>$11.5–13.8 Billion in 2026</span> — the opportunity is now</div>
+  <div class="ticker-item"><div class="dot"></div>⚡ Every verified startup gets a <span>Funding Readiness Score</span> — know exactly where you stand before you pitch</div>
+ </div>
 </div>
 </div>
 
@@ -425,544 +425,544 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 
 <div class="auth-mesh"></div>
 <div class="auth-wrap" style="padding-top:130px;padding-bottom:60px;">
-  <div class="auth-box" style="max-width:600px;width:100%;">
+ <div class="auth-box" style="max-width:600px;width:100%;">
 
-    <!-- LOGO -->
-    <div class="auth-logo"><a href="home.html">THE HOOK HUSTLERS</a></div>
+  <!-- LOGO -->
+  <div class="auth-logo"><a href="home.html">THE HOOK HUSTLERS</a></div>
 
-    <!-- TYPE SELECTOR — shown only on step 1 -->
-    <div id="typeSelector">
-      <h2 class="auth-title" style="margin-bottom:8px;">Join The Platform</h2>
-      <p class="auth-sub">India's most verified startup-investor network 🇮🇳</p>
-      <div class="auth-tabs" id="typeTabs">
-        <div class="auth-tab active" id="tabStartup" onclick="selectType('startup')">🚀 I'm a Startup</div>
-        <div class="auth-tab" id="tabInvestor" onclick="selectType('investor')">💼 I'm an Investor</div>
-      </div>
+  <!-- TYPE SELECTOR — shown only on step 1 -->
+  <div id="typeSelector">
+   <h2 class="auth-title" style="margin-bottom:8px;">Join The Platform</h2>
+   <p class="auth-sub">India's most verified startup-investor network 🇮🇳</p>
+   <div class="auth-tabs" id="typeTabs">
+    <div class="auth-tab active" id="tabStartup" onclick="selectType('startup')">🚀 I'm a Startup</div>
+    <div class="auth-tab" id="tabInvestor" onclick="selectType('investor')">💼 I'm an Investor</div>
+   </div>
+  </div>
+
+  <!-- STEP INDICATOR -->
+  <div class="step-indicator" id="stepIndicator" style="display:none;margin-top:8px;">
+   <div style="display:flex;flex-direction:column;align-items:center;">
+    <div class="step-dot active" id="sd1">1</div>
+    <div class="step-label active" id="sl1">Account</div>
+   </div>
+   <div class="step-line" id="sl12" style="margin-bottom:20px;"></div>
+   <div style="display:flex;flex-direction:column;align-items:center;">
+    <div class="step-dot" id="sd2">2</div>
+    <div class="step-label" id="sl2">Profile</div>
+   </div>
+   <div class="step-line" id="sl23" style="margin-bottom:20px;"></div>
+   <div style="display:flex;flex-direction:column;align-items:center;">
+    <div class="step-dot" id="sd3">3</div>
+    <div class="step-label" id="sl3">Verify</div>
+   </div>
+  </div>
+
+  <!-- ═══ STARTUP FLOW ═══ -->
+  <div id="startupFlow" style="display:block;">
+
+   <!-- STEP 1: Account Basics -->
+   <div class="form-step active" id="s-step1">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+     <div class="form-group"><label>First Name *</label><input class="form-input" id="s_fname" type="text" placeholder="Aniket"/></div>
+     <div class="form-group"><label>Last Name *</label><input class="form-input" id="s_lname" type="text" placeholder="Singh"/></div>
+    </div>
+    <div class="form-group"><label>Email Address *</label><input class="form-input" id="s_email" type="email" placeholder="founder@mystartup.in"/></div>
+    <div class="form-group"><label>Phone / WhatsApp Number *</label><input class="form-input" id="s_phone" type="tel" placeholder="+91 98765 43210"/></div>
+    <div class="form-group"><label>Date of Birth *</label><input class="form-input" id="s_dob" type="date"/><div style="font-size:.68rem;color:var(--muted);margin-top:5px;">Platform is open to founders of all ages — including teenagers ✅</div></div>
+    <div class="form-group"><label>State *</label>
+     <select class="form-select" id="s_state">
+      <option value="">Select State...</option>
+      <option>Uttar Pradesh</option><option>Maharashtra</option><option>Karnataka</option><option>Delhi</option><option>Tamil Nadu</option><option>Rajasthan</option><option>Gujarat</option><option>West Bengal</option><option>Telangana</option><option>Madhya Pradesh</option><option>Bihar</option><option>Haryana</option><option>Punjab</option><option>Odisha</option><option>Assam</option><option>Jharkhand</option><option>Chhattisgarh</option><option>Uttarakhand</option><option>Himachal Pradesh</option><option>Other</option>
+     </select>
+    </div>
+    <div class="form-group"><label>City *</label><input class="form-input" id="s_city" type="text" placeholder="Lucknow"/></div>
+    <div class="form-group"><label>Password *</label><input class="form-input" id="s_pass" type="password" placeholder="Create a strong password (min 8 chars)"/></div>
+    <button class="form-submit" onclick="goStep('startup',2)">Continue → Profile Details</button>
+    <div class="auth-switch" style="margin-top:16px;">Already have an account? <a href="login.html">Login here</a></div>
+   </div>
+
+   <!-- STEP 2: Startup Profile -->
+   <div class="form-step" id="s-step2">
+    <div style="background:rgba(212,168,67,0.05);border:1px solid rgba(212,168,67,0.12);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:.8rem;color:var(--muted);line-height:1.7;">
+     🎓 <strong style="color:var(--gold);">No Degree Required.</strong> Minimum qualification is a Class 10th marksheet. Teenagers, dropouts, and self-taught builders are all welcome.
+    </div>
+    <div class="form-group"><label>Startup / Company Name *</label><input class="form-input" id="s_startupname" type="text" placeholder="MyStartup India"/></div>
+    <div class="form-group"><label>Highest Qualification *</label>
+     <select class="form-select" id="s_qual">
+      <option value="">Select Qualification...</option>
+      <option>Class 10th (Minimum Required)</option>
+      <option>Class 12th</option>
+      <option>Diploma / ITI</option>
+      <option>Undergraduate (Pursuing)</option>
+      <option>Undergraduate (Complete)</option>
+      <option>Postgraduate</option>
+      <option>Doctorate / PhD</option>
+      <option>Self-Taught / No Formal Degree</option>
+     </select>
+    </div>
+    <div class="form-group"><label>Sector *</label>
+     <select class="form-select" id="s_sector">
+      <option value="">Select Sector...</option>
+      <option>AgriTech</option><option>EdTech</option><option>HealthTech</option><option>AI & Deep Tech</option><option>D2C / E-commerce</option><option>SaaS / B2B</option><option>CleanTech / EV</option><option>Gaming</option><option>Logistics</option><option>FoodTech</option><option>SpaceTech</option><option>FinTech / BFSI</option><option>Social Impact</option><option>Cybersecurity</option><option>Other</option>
+     </select>
+    </div>
+    <div class="form-group"><label>Current Startup Stage *</label>
+     <div class="radio-pills" style="margin-top:4px;">
+      <input type="radio" name="s_stage" id="stage_idea" class="radio-pill" value="Idea Stage"><label for="stage_idea" class="radio-pill-label">💡 Idea Stage</label>
+      <input type="radio" name="s_stage" id="stage_mvp" class="radio-pill" value="MVP Built"><label for="stage_mvp" class="radio-pill-label">🔧 MVP Built</label>
+      <input type="radio" name="s_stage" id="stage_users" class="radio-pill" value="Early Users"><label for="stage_users" class="radio-pill-label">👥 Early Users</label>
+      <input type="radio" name="s_stage" id="stage_rev" class="radio-pill" value="Revenue Generating"><label for="stage_rev" class="radio-pill-label">💰 Revenue</label>
+      <input type="radio" name="s_stage" id="stage_scale" class="radio-pill" value="Scaling"><label for="stage_scale" class="radio-pill-label">🚀 Scaling</label>
+     </div>
+    </div>
+    <div class="form-group"><label>Describe Your Startup Idea *<span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;margin-left:8px;">(What problem? Who for? How?)</span></label>
+     <textarea class="form-textarea" id="s_idea" placeholder="Example: We are building an AI-powered platform that connects small farmers in rural UP to commodity buyers in real-time, eliminating middlemen and increasing farmer income by up to 40%..." maxlength="500" oninput="updateChar(this,'s_idea_count')"></textarea>
+     <div class="char-counter"><span id="s_idea_count">0</span>/500</div>
+    </div>
+    <div class="form-group"><label>Funding Stage Seeking *</label>
+     <select class="form-select" id="s_fundstage">
+      <option value="">Select Stage...</option>
+      <option>Pre-Seed (₹5L–₹50L)</option>
+      <option>Seed (₹50L–₹3Cr)</option>
+      <option>Pre-Series A (₹3Cr–₹10Cr)</option>
+      <option>Series A (₹10Cr+)</option>
+      <option>Not sure yet — need guidance</option>
+     </select>
+    </div>
+    <div class="form-group"><label>Team Size *</label>
+     <div class="radio-pills" style="margin-top:4px;">
+      <input type="radio" name="s_team" id="team1" class="radio-pill" value="Solo Founder"><label for="team1" class="radio-pill-label">Solo Founder</label>
+      <input type="radio" name="s_team" id="team2" class="radio-pill" value="2 people"><label for="team2" class="radio-pill-label">2 People</label>
+      <input type="radio" name="s_team" id="team3" class="radio-pill" value="3-5 people"><label for="team3" class="radio-pill-label">3–5 People</label>
+      <input type="radio" name="s_team" id="team4" class="radio-pill" value="6-10 people"><label for="team4" class="radio-pill-label">6–10 People</label>
+      <input type="radio" name="s_team" id="team5" class="radio-pill" value="10+"><label for="team5" class="radio-pill-label">10+ People</label>
+     </div>
+    </div>
+    <div class="form-group"><label>DPIIT Registration Number <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(optional — if you have it)</span></label>
+     <input class="form-input" id="s_dpiit" type="text" placeholder="DIPP12345 — we'll guide you if you don't have one yet" style="border-color:rgba(212,168,67,.1);"/>
+    </div>
+    <div class="form-group"><label>Website or Social Link <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(optional)</span></label>
+     <input class="form-input" id="s_website" type="url" placeholder="https://mystartup.in or instagram.com/mystartup"/>
+    </div>
+    <div class="form-group"><label>How did you hear about us?</label>
+     <select class="form-select" id="s_source">
+      <option value="">Select...</option>
+      <option>Instagram</option><option>LinkedIn</option><option>WhatsApp / Friend</option><option>Google Search</option><option>Twitter / X</option><option>YouTube</option><option>College / Institution</option><option>Other</option>
+     </select>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:8px;">
+     <button class="form-submit" onclick="goStep('startup',1)" style="background:var(--deep);color:var(--white);border:1px solid var(--border2);flex:0 0 auto;padding:15px 20px;">← Back</button>
+     <button class="form-submit" onclick="goStep('startup',3)" style="flex:1;">Continue → Upload Documents</button>
+    </div>
+   </div>
+
+   <!-- STEP 3: Document Upload -->
+   <div class="form-step" id="s-step3">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:24px;line-height:1.8;">Almost there! Upload your qualification proof. This is how we verify that real people are behind every listing — keeping the platform safe for investors.</p>
+
+    <div class="form-group">
+     <label>Qualification Proof * <span style="color:var(--crimson);font-size:.68rem;font-weight:700;">REQUIRED</span></label>
+     <div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;">Minimum: Class 10th marksheet. Accepted: marksheets, degree certificates, school ID cards. PDF or image, max 5MB.</div>
+     <div class="file-upload-wrap" id="qual-upload-wrap">
+      <input type="file" id="s_qualfile" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'qual-upload-name','qual-upload-wrap')"/>
+      <div class="file-upload-icon">📄</div>
+      <div class="file-upload-text">Click to upload or drag & drop<br/><span style="color:var(--gold);font-weight:600;">Class 10th marksheet or above</span></div>
+      <div class="file-upload-name" id="qual-upload-name"></div>
+     </div>
     </div>
 
-    <!-- STEP INDICATOR -->
-    <div class="step-indicator" id="stepIndicator" style="display:none;margin-top:8px;">
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        <div class="step-dot active" id="sd1">1</div>
-        <div class="step-label active" id="sl1">Account</div>
-      </div>
-      <div class="step-line" id="sl12" style="margin-bottom:20px;"></div>
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        <div class="step-dot" id="sd2">2</div>
-        <div class="step-label" id="sl2">Profile</div>
-      </div>
-      <div class="step-line" id="sl23" style="margin-bottom:20px;"></div>
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        <div class="step-dot" id="sd3">3</div>
-        <div class="step-label" id="sl3">Verify</div>
-      </div>
+    <div class="form-group" style="margin-top:24px;">
+     <label>DPIIT Certificate <span style="color:var(--muted);font-size:.68rem;font-weight:600;text-transform:none;letter-spacing:0;">Optional — upload if you have it</span></label>
+     <div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;">If you don't have DPIIT registration yet, our team will guide you through the process after you sign up.</div>
+     <div class="file-upload-wrap" id="dpiit-upload-wrap">
+      <input type="file" id="s_dpiitfile" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'dpiit-upload-name','dpiit-upload-wrap')"/>
+      <div class="file-upload-icon">🏛️</div>
+      <div class="file-upload-text">Click to upload DPIIT certificate<br/><span style="color:var(--muted);">PDF or image, max 5MB</span></div>
+      <div class="file-upload-name" id="dpiit-upload-name"></div>
+     </div>
     </div>
 
-    <!-- ═══ STARTUP FLOW ═══ -->
-    <div id="startupFlow" style="display:block;">
-
-      <!-- STEP 1: Account Basics -->
-      <div class="form-step active" id="s-step1">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-          <div class="form-group"><label>First Name *</label><input class="form-input" id="s_fname" type="text" placeholder="Aniket"/></div>
-          <div class="form-group"><label>Last Name *</label><input class="form-input" id="s_lname" type="text" placeholder="Singh"/></div>
-        </div>
-        <div class="form-group"><label>Email Address *</label><input class="form-input" id="s_email" type="email" placeholder="founder@mystartup.in"/></div>
-        <div class="form-group"><label>Phone / WhatsApp Number *</label><input class="form-input" id="s_phone" type="tel" placeholder="+91 98765 43210"/></div>
-        <div class="form-group"><label>Date of Birth *</label><input class="form-input" id="s_dob" type="date"/><div style="font-size:.68rem;color:var(--muted);margin-top:5px;">Platform is open to founders of all ages — including teenagers ✅</div></div>
-        <div class="form-group"><label>State *</label>
-          <select class="form-select" id="s_state">
-            <option value="">Select State...</option>
-            <option>Uttar Pradesh</option><option>Maharashtra</option><option>Karnataka</option><option>Delhi</option><option>Tamil Nadu</option><option>Rajasthan</option><option>Gujarat</option><option>West Bengal</option><option>Telangana</option><option>Madhya Pradesh</option><option>Bihar</option><option>Haryana</option><option>Punjab</option><option>Odisha</option><option>Assam</option><option>Jharkhand</option><option>Chhattisgarh</option><option>Uttarakhand</option><option>Himachal Pradesh</option><option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>City *</label><input class="form-input" id="s_city" type="text" placeholder="Lucknow"/></div>
-        <div class="form-group"><label>Password *</label><input class="form-input" id="s_pass" type="password" placeholder="Create a strong password (min 8 chars)"/></div>
-        <button class="form-submit" onclick="goStep('startup',2)">Continue → Profile Details</button>
-        <div class="auth-switch" style="margin-top:16px;">Already have an account? <a href="login.html">Login here</a></div>
-      </div>
-
-      <!-- STEP 2: Startup Profile -->
-      <div class="form-step" id="s-step2">
-        <div style="background:rgba(212,168,67,0.05);border:1px solid rgba(212,168,67,0.12);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:.8rem;color:var(--muted);line-height:1.7;">
-          🎓 <strong style="color:var(--gold);">No Degree Required.</strong> Minimum qualification is a Class 10th marksheet. Teenagers, dropouts, and self-taught builders are all welcome.
-        </div>
-        <div class="form-group"><label>Startup / Company Name *</label><input class="form-input" id="s_startupname" type="text" placeholder="MyStartup India"/></div>
-        <div class="form-group"><label>Highest Qualification *</label>
-          <select class="form-select" id="s_qual">
-            <option value="">Select Qualification...</option>
-            <option>Class 10th (Minimum Required)</option>
-            <option>Class 12th</option>
-            <option>Diploma / ITI</option>
-            <option>Undergraduate (Pursuing)</option>
-            <option>Undergraduate (Complete)</option>
-            <option>Postgraduate</option>
-            <option>Doctorate / PhD</option>
-            <option>Self-Taught / No Formal Degree</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Sector *</label>
-          <select class="form-select" id="s_sector">
-            <option value="">Select Sector...</option>
-            <option>AgriTech</option><option>EdTech</option><option>HealthTech</option><option>AI & Deep Tech</option><option>D2C / E-commerce</option><option>SaaS / B2B</option><option>CleanTech / EV</option><option>Gaming</option><option>Logistics</option><option>FoodTech</option><option>SpaceTech</option><option>FinTech / BFSI</option><option>Social Impact</option><option>Cybersecurity</option><option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Current Startup Stage *</label>
-          <div class="radio-pills" style="margin-top:4px;">
-            <input type="radio" name="s_stage" id="stage_idea" class="radio-pill" value="Idea Stage"><label for="stage_idea" class="radio-pill-label">💡 Idea Stage</label>
-            <input type="radio" name="s_stage" id="stage_mvp" class="radio-pill" value="MVP Built"><label for="stage_mvp" class="radio-pill-label">🔧 MVP Built</label>
-            <input type="radio" name="s_stage" id="stage_users" class="radio-pill" value="Early Users"><label for="stage_users" class="radio-pill-label">👥 Early Users</label>
-            <input type="radio" name="s_stage" id="stage_rev" class="radio-pill" value="Revenue Generating"><label for="stage_rev" class="radio-pill-label">💰 Revenue</label>
-            <input type="radio" name="s_stage" id="stage_scale" class="radio-pill" value="Scaling"><label for="stage_scale" class="radio-pill-label">🚀 Scaling</label>
-          </div>
-        </div>
-        <div class="form-group"><label>Describe Your Startup Idea *<span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;margin-left:8px;">(What problem? Who for? How?)</span></label>
-          <textarea class="form-textarea" id="s_idea" placeholder="Example: We are building an AI-powered platform that connects small farmers in rural UP to commodity buyers in real-time, eliminating middlemen and increasing farmer income by up to 40%..." maxlength="500" oninput="updateChar(this,'s_idea_count')"></textarea>
-          <div class="char-counter"><span id="s_idea_count">0</span>/500</div>
-        </div>
-        <div class="form-group"><label>Funding Stage Seeking *</label>
-          <select class="form-select" id="s_fundstage">
-            <option value="">Select Stage...</option>
-            <option>Pre-Seed (₹5L–₹50L)</option>
-            <option>Seed (₹50L–₹3Cr)</option>
-            <option>Pre-Series A (₹3Cr–₹10Cr)</option>
-            <option>Series A (₹10Cr+)</option>
-            <option>Not sure yet — need guidance</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Team Size *</label>
-          <div class="radio-pills" style="margin-top:4px;">
-            <input type="radio" name="s_team" id="team1" class="radio-pill" value="Solo Founder"><label for="team1" class="radio-pill-label">Solo Founder</label>
-            <input type="radio" name="s_team" id="team2" class="radio-pill" value="2 people"><label for="team2" class="radio-pill-label">2 People</label>
-            <input type="radio" name="s_team" id="team3" class="radio-pill" value="3-5 people"><label for="team3" class="radio-pill-label">3–5 People</label>
-            <input type="radio" name="s_team" id="team4" class="radio-pill" value="6-10 people"><label for="team4" class="radio-pill-label">6–10 People</label>
-            <input type="radio" name="s_team" id="team5" class="radio-pill" value="10+"><label for="team5" class="radio-pill-label">10+ People</label>
-          </div>
-        </div>
-        <div class="form-group"><label>DPIIT Registration Number <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(optional — if you have it)</span></label>
-          <input class="form-input" id="s_dpiit" type="text" placeholder="DIPP12345 — we'll guide you if you don't have one yet" style="border-color:rgba(212,168,67,.1);"/>
-        </div>
-        <div class="form-group"><label>Website or Social Link <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:.7rem;">(optional)</span></label>
-          <input class="form-input" id="s_website" type="url" placeholder="https://mystartup.in or instagram.com/mystartup"/>
-        </div>
-        <div class="form-group"><label>How did you hear about us?</label>
-          <select class="form-select" id="s_source">
-            <option value="">Select...</option>
-            <option>Instagram</option><option>LinkedIn</option><option>WhatsApp / Friend</option><option>Google Search</option><option>Twitter / X</option><option>YouTube</option><option>College / Institution</option><option>Other</option>
-          </select>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:8px;">
-          <button class="form-submit" onclick="goStep('startup',1)" style="background:var(--deep);color:var(--white);border:1px solid var(--border2);flex:0 0 auto;padding:15px 20px;">← Back</button>
-          <button class="form-submit" onclick="goStep('startup',3)" style="flex:1;">Continue → Upload Documents</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Document Upload -->
-      <div class="form-step" id="s-step3">
-        <p style="font-size:.85rem;color:var(--muted);margin-bottom:24px;line-height:1.8;">Almost there! Upload your qualification proof. This is how we verify that real people are behind every listing — keeping the platform safe for investors.</p>
-
-        <div class="form-group">
-          <label>Qualification Proof * <span style="color:var(--crimson);font-size:.68rem;font-weight:700;">REQUIRED</span></label>
-          <div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;">Minimum: Class 10th marksheet. Accepted: marksheets, degree certificates, school ID cards. PDF or image, max 5MB.</div>
-          <div class="file-upload-wrap" id="qual-upload-wrap">
-            <input type="file" id="s_qualfile" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'qual-upload-name','qual-upload-wrap')"/>
-            <div class="file-upload-icon">📄</div>
-            <div class="file-upload-text">Click to upload or drag & drop<br/><span style="color:var(--gold);font-weight:600;">Class 10th marksheet or above</span></div>
-            <div class="file-upload-name" id="qual-upload-name"></div>
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-top:24px;">
-          <label>DPIIT Certificate <span style="color:var(--muted);font-size:.68rem;font-weight:600;text-transform:none;letter-spacing:0;">Optional — upload if you have it</span></label>
-          <div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;">If you don't have DPIIT registration yet, our team will guide you through the process after you sign up.</div>
-          <div class="file-upload-wrap" id="dpiit-upload-wrap">
-            <input type="file" id="s_dpiitfile" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'dpiit-upload-name','dpiit-upload-wrap')"/>
-            <div class="file-upload-icon">🏛️</div>
-            <div class="file-upload-text">Click to upload DPIIT certificate<br/><span style="color:var(--muted);">PDF or image, max 5MB</span></div>
-            <div class="file-upload-name" id="dpiit-upload-name"></div>
-          </div>
-        </div>
-
-        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:10px;padding:16px;margin:24px 0;">
-          <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.7;text-transform:none;letter-spacing:0;font-weight:400;">
-            <input type="checkbox" id="s_terms" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;"/>
-            I agree to The Hook Hustlers <a href="terms.html" target="_blank" style="color:var(--gold);">Terms of Use</a> and <a href="privacy.html" target="_blank" style="color:var(--gold);">Privacy Policy</a>. I understand that deals cannot be closed outside the platform, and that a commission applies on successful funding.
-          </label>
-        </div>
-
-        <div style="background:rgba(0,208,132,0.05);border:1px solid rgba(0,208,132,0.12);border-radius:10px;padding:14px 16px;margin-bottom:20px;">
-          <div style="font-size:.78rem;color:rgba(0,208,132,0.8);line-height:1.8;">
-            ✅ Documents are reviewed within <strong>48 hours</strong><br/>
-            ✅ Your data is kept <strong>fully private</strong> — never shared without consent<br/>
-            ✅ You will receive a WhatsApp confirmation after submission
-          </div>
-        </div>
-
-        <div style="display:flex;gap:12px;">
-          <button class="form-submit" onclick="goStep('startup',2)" style="background:var(--deep);color:var(--white);border:1px solid var(--border2);flex:0 0 auto;padding:15px 20px;">← Back</button>
-          <button class="form-submit" onclick="submitStartup()" style="flex:1;">🚀 Submit My Application</button>
-        </div>
-        <div class="auth-switch" style="margin-top:16px;">Already have an account? <a href="login.html">Login here</a></div>
-      </div>
-
-      <!-- SUCCESS -->
-      <div class="form-step" id="s-success">
-        <div class="success-screen">
-          <div class="success-icon">🎉</div>
-          <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;margin-bottom:12px;">Application Submitted!</h2>
-          <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:24px;">Your startup profile has been received. Our team will review your documents and verify your profile within <strong style="color:var(--gold);">48 hours</strong>. You'll receive a confirmation on WhatsApp and email.</p>
-          <div style="background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.15);border-radius:12px;padding:20px;margin-bottom:28px;text-align:left;">
-            <div style="font-size:.78rem;color:var(--muted);line-height:2;">
-              📧 Check your email for confirmation<br/>
-              💬 WhatsApp message incoming from +91 89249 52608<br/>
-              ⏳ Verification complete within 48 hours<br/>
-              🚀 Once verified — your profile goes live to investors
-            </div>
-          </div>
-          <a href="home.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Back to Home →</a>
-        </div>
-      </div>
+    <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:10px;padding:16px;margin:24px 0;">
+     <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.7;text-transform:none;letter-spacing:0;font-weight:400;">
+      <input type="checkbox" id="s_terms" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;"/>
+      I agree to The Hook Hustlers <a href="terms.html" target="_blank" style="color:var(--gold);">Terms of Use</a> and <a href="privacy.html" target="_blank" style="color:var(--gold);">Privacy Policy</a>. I understand that deals cannot be closed outside the platform, and that a commission applies on successful funding.
+     </label>
     </div>
 
-    <!-- ═══ INVESTOR FLOW ═══ -->
-    <div id="investorFlow" style="display:none;">
-
-      <!-- STEP 1 -->
-      <div class="form-step active" id="i-step1">
-        <div class="inv-note">💼 Investor accounts are manually verified. Fill in your details honestly — our team reviews every application within 48 hours before granting access.</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-          <div class="form-group"><label>First Name *</label><input class="form-input" id="i_fname" type="text" placeholder="Rajiv"/></div>
-          <div class="form-group"><label>Last Name *</label><input class="form-input" id="i_lname" type="text" placeholder="Mehta"/></div>
-        </div>
-        <div class="form-group"><label>Email Address *</label><input class="form-input" id="i_email" type="email" placeholder="rajiv@vcfund.in"/></div>
-        <div class="form-group"><label>Phone / WhatsApp Number *</label><input class="form-input" id="i_phone" type="tel" placeholder="+91 98765 43210"/></div>
-        <div class="form-group"><label>LinkedIn Profile URL *</label><input class="form-input" id="i_linkedin" type="url" placeholder="https://linkedin.com/in/yourname"/></div>
-        <div class="form-group"><label>Investor Type *</label>
-          <select class="form-select" id="i_type">
-            <option value="">Select Type...</option>
-            <option>Angel Investor (Individual HNI)</option>
-            <option>Angel Network / Syndicate</option>
-            <option>Micro-VC / Seed Fund</option>
-            <option>Venture Capital Fund</option>
-            <option>Family Office</option>
-            <option>Corporate / Strategic Investor</option>
-            <option>Government / SIDBI Related</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Password *</label><input class="form-input" id="i_pass" type="password" placeholder="Create a strong password"/></div>
-        <button class="form-submit" onclick="goStep('investor',2)">Continue → Investment Mandate</button>
-        <div class="auth-switch" style="margin-top:16px;">Already have an account? <a href="login.html">Login here</a></div>
-      </div>
-
-      <!-- STEP 2 -->
-      <div class="form-step" id="i-step2">
-        <div class="form-group"><label>Preferred Sectors *</label><div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;">Select all that apply</div>
-          <div class="radio-pills" id="sector-pills">
-            <input type="checkbox" name="i_sectors" id="isec1" class="radio-pill" value="AgriTech"><label for="isec1" class="radio-pill-label">AgriTech</label>
-            <input type="checkbox" name="i_sectors" id="isec2" class="radio-pill" value="EdTech"><label for="isec2" class="radio-pill-label">EdTech</label>
-            <input type="checkbox" name="i_sectors" id="isec3" class="radio-pill" value="HealthTech"><label for="isec3" class="radio-pill-label">HealthTech</label>
-            <input type="checkbox" name="i_sectors" id="isec4" class="radio-pill" value="AI / Deep Tech"><label for="isec4" class="radio-pill-label">AI / Deep Tech</label>
-            <input type="checkbox" name="i_sectors" id="isec5" class="radio-pill" value="FinTech"><label for="isec5" class="radio-pill-label">FinTech</label>
-            <input type="checkbox" name="i_sectors" id="isec6" class="radio-pill" value="CleanTech"><label for="isec6" class="radio-pill-label">CleanTech / EV</label>
-            <input type="checkbox" name="i_sectors" id="isec7" class="radio-pill" value="SaaS / B2B"><label for="isec7" class="radio-pill-label">SaaS / B2B</label>
-            <input type="checkbox" name="i_sectors" id="isec8" class="radio-pill" value="D2C"><label for="isec8" class="radio-pill-label">D2C</label>
-            <input type="checkbox" name="i_sectors" id="isec9" class="radio-pill" value="Any"><label for="isec9" class="radio-pill-label">Any / Open</label>
-          </div>
-        </div>
-        <div class="form-group"><label>Typical Ticket Size *</label>
-          <select class="form-select" id="i_ticket">
-            <option value="">Select Range...</option>
-            <option>Under ₹10 Lakhs</option>
-            <option>₹10L – ₹50L</option>
-            <option>₹50L – ₹1 Crore</option>
-            <option>₹1Cr – ₹5Cr</option>
-            <option>₹5Cr – ₹20Cr</option>
-            <option>₹20Cr+</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Preferred Funding Stages *</label>
-          <div class="radio-pills" style="margin-top:4px;">
-            <input type="checkbox" name="i_stages" id="ist1" class="radio-pill" value="Pre-Seed"><label for="ist1" class="radio-pill-label">Pre-Seed</label>
-            <input type="checkbox" name="i_stages" id="ist2" class="radio-pill" value="Seed"><label for="ist2" class="radio-pill-label">Seed</label>
-            <input type="checkbox" name="i_stages" id="ist3" class="radio-pill" value="Pre-Series A"><label for="ist3" class="radio-pill-label">Pre-Series A</label>
-            <input type="checkbox" name="i_stages" id="ist4" class="radio-pill" value="Series A"><label for="ist4" class="radio-pill-label">Series A</label>
-            <input type="checkbox" name="i_stages" id="ist5" class="radio-pill" value="Any"><label for="ist5" class="radio-pill-label">Any Stage</label>
-          </div>
-        </div>
-        <div class="form-group"><label>Geographic Focus *</label>
-          <div class="radio-pills" style="margin-top:4px;">
-            <input type="radio" name="i_geo" id="geo1" class="radio-pill" value="Pan India"><label for="geo1" class="radio-pill-label">Pan India</label>
-            <input type="radio" name="i_geo" id="geo2" class="radio-pill" value="Tier 2 / 3 Focus"><label for="geo2" class="radio-pill-label">Tier 2 / 3 Focus</label>
-            <input type="radio" name="i_geo" id="geo3" class="radio-pill" value="Metro Cities"><label for="geo3" class="radio-pill-label">Metro Cities</label>
-            <input type="radio" name="i_geo" id="geo4" class="radio-pill" value="Specific Region"><label for="geo4" class="radio-pill-label">Specific Region</label>
-          </div>
-        </div>
-        <div class="form-group"><label>About Your Investment Background *</label>
-          <textarea class="form-textarea" id="i_bio" placeholder="Brief background — how many startups have you invested in? What sectors? Any notable exits or portfolio companies?" maxlength="400" oninput="updateChar(this,'i_bio_count')"></textarea>
-          <div class="char-counter"><span id="i_bio_count">0</span>/400</div>
-        </div>
-        <div class="form-group"><label>How did you hear about us?</label>
-          <select class="form-select" id="i_source">
-            <option value="">Select...</option>
-            <option>LinkedIn</option><option>Instagram</option><option>Colleague / Network</option><option>Google Search</option><option>News / Media</option><option>Other</option>
-          </select>
-        </div>
-
-        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:10px;padding:16px;margin:20px 0;">
-          <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.7;text-transform:none;letter-spacing:0;font-weight:400;">
-            <input type="checkbox" id="i_terms" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;"/>
-            I agree to The Hook Hustlers <a href="terms.html" target="_blank" style="color:var(--gold);">Terms of Use</a> and <a href="privacy.html" target="_blank" style="color:var(--gold);">Privacy Policy</a>. I understand investor access requires verification and is subject to approval.
-          </label>
-        </div>
-
-        <div style="display:flex;gap:12px;">
-          <button class="form-submit" onclick="goStep('investor',1)" style="background:var(--deep);color:var(--white);border:1px solid var(--border2);flex:0 0 auto;padding:15px 20px;">← Back</button>
-          <button class="form-submit" onclick="submitInvestor()" style="flex:1;">💼 Submit Investor Application</button>
-        </div>
-      </div>
-
-      <!-- SUCCESS -->
-      <div class="form-step" id="i-success">
-        <div class="success-screen">
-          <div class="success-icon">✅</div>
-          <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;margin-bottom:12px;">Application Received!</h2>
-          <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:24px;">Your investor profile is under review. Our team verifies all investors personally to maintain quality. Expect to hear back within <strong style="color:var(--gold);">48 hours</strong>.</p>
-          <a href="home.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Back to Home →</a>
-        </div>
-      </div>
+    <div style="background:rgba(0,208,132,0.05);border:1px solid rgba(0,208,132,0.12);border-radius:10px;padding:14px 16px;margin-bottom:20px;">
+     <div style="font-size:.78rem;color:rgba(0,208,132,0.8);line-height:1.8;">
+      ✅ Documents are reviewed within <strong>48 hours</strong><br/>
+      ✅ Your data is kept <strong>fully private</strong> — never shared without consent<br/>
+      ✅ You will receive a WhatsApp confirmation after submission
+     </div>
     </div>
 
-  </div><!-- /auth-box -->
+    <div style="display:flex;gap:12px;">
+     <button class="form-submit" onclick="goStep('startup',2)" style="background:var(--deep);color:var(--white);border:1px solid var(--border2);flex:0 0 auto;padding:15px 20px;">← Back</button>
+     <button class="form-submit" onclick="submitStartup()" style="flex:1;">🚀 Submit My Application</button>
+    </div>
+    <div class="auth-switch" style="margin-top:16px;">Already have an account? <a href="login.html">Login here</a></div>
+   </div>
+
+   <!-- SUCCESS -->
+   <div class="form-step" id="s-success">
+    <div class="success-screen">
+     <div class="success-icon">🎉</div>
+     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;margin-bottom:12px;">Application Submitted!</h2>
+     <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:24px;">Your startup profile has been received. Our team will review your documents and verify your profile within <strong style="color:var(--gold);">48 hours</strong>. You'll receive a confirmation on WhatsApp and email.</p>
+     <div style="background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.15);border-radius:12px;padding:20px;margin-bottom:28px;text-align:left;">
+      <div style="font-size:.78rem;color:var(--muted);line-height:2;">
+       📧 Check your email for confirmation<br/>
+       💬 WhatsApp message incoming from +91 89249 52608<br/>
+       ⏳ Verification complete within 48 hours<br/>
+       🚀 Once verified — your profile goes live to investors
+      </div>
+     </div>
+     <a href="home.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Back to Home →</a>
+    </div>
+   </div>
+  </div>
+
+  <!-- ═══ INVESTOR FLOW ═══ -->
+  <div id="investorFlow" style="display:none;">
+
+   <!-- STEP 1 -->
+   <div class="form-step active" id="i-step1">
+    <div class="inv-note">💼 Investor accounts are manually verified. Fill in your details honestly — our team reviews every application within 48 hours before granting access.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+     <div class="form-group"><label>First Name *</label><input class="form-input" id="i_fname" type="text" placeholder="Rajiv"/></div>
+     <div class="form-group"><label>Last Name *</label><input class="form-input" id="i_lname" type="text" placeholder="Mehta"/></div>
+    </div>
+    <div class="form-group"><label>Email Address *</label><input class="form-input" id="i_email" type="email" placeholder="rajiv@vcfund.in"/></div>
+    <div class="form-group"><label>Phone / WhatsApp Number *</label><input class="form-input" id="i_phone" type="tel" placeholder="+91 98765 43210"/></div>
+    <div class="form-group"><label>LinkedIn Profile URL *</label><input class="form-input" id="i_linkedin" type="url" placeholder="https://linkedin.com/in/yourname"/></div>
+    <div class="form-group"><label>Investor Type *</label>
+     <select class="form-select" id="i_type">
+      <option value="">Select Type...</option>
+      <option>Angel Investor (Individual HNI)</option>
+      <option>Angel Network / Syndicate</option>
+      <option>Micro-VC / Seed Fund</option>
+      <option>Venture Capital Fund</option>
+      <option>Family Office</option>
+      <option>Corporate / Strategic Investor</option>
+      <option>Government / SIDBI Related</option>
+     </select>
+    </div>
+    <div class="form-group"><label>Password *</label><input class="form-input" id="i_pass" type="password" placeholder="Create a strong password"/></div>
+    <button class="form-submit" onclick="goStep('investor',2)">Continue → Investment Mandate</button>
+    <div class="auth-switch" style="margin-top:16px;">Already have an account? <a href="login.html">Login here</a></div>
+   </div>
+
+   <!-- STEP 2 -->
+   <div class="form-step" id="i-step2">
+    <div class="form-group"><label>Preferred Sectors *</label><div style="font-size:.72rem;color:var(--muted);margin-bottom:10px;">Select all that apply</div>
+     <div class="radio-pills" id="sector-pills">
+      <input type="checkbox" name="i_sectors" id="isec1" class="radio-pill" value="AgriTech"><label for="isec1" class="radio-pill-label">AgriTech</label>
+      <input type="checkbox" name="i_sectors" id="isec2" class="radio-pill" value="EdTech"><label for="isec2" class="radio-pill-label">EdTech</label>
+      <input type="checkbox" name="i_sectors" id="isec3" class="radio-pill" value="HealthTech"><label for="isec3" class="radio-pill-label">HealthTech</label>
+      <input type="checkbox" name="i_sectors" id="isec4" class="radio-pill" value="AI / Deep Tech"><label for="isec4" class="radio-pill-label">AI / Deep Tech</label>
+      <input type="checkbox" name="i_sectors" id="isec5" class="radio-pill" value="FinTech"><label for="isec5" class="radio-pill-label">FinTech</label>
+      <input type="checkbox" name="i_sectors" id="isec6" class="radio-pill" value="CleanTech"><label for="isec6" class="radio-pill-label">CleanTech / EV</label>
+      <input type="checkbox" name="i_sectors" id="isec7" class="radio-pill" value="SaaS / B2B"><label for="isec7" class="radio-pill-label">SaaS / B2B</label>
+      <input type="checkbox" name="i_sectors" id="isec8" class="radio-pill" value="D2C"><label for="isec8" class="radio-pill-label">D2C</label>
+      <input type="checkbox" name="i_sectors" id="isec9" class="radio-pill" value="Any"><label for="isec9" class="radio-pill-label">Any / Open</label>
+     </div>
+    </div>
+    <div class="form-group"><label>Typical Ticket Size *</label>
+     <select class="form-select" id="i_ticket">
+      <option value="">Select Range...</option>
+      <option>Under ₹10 Lakhs</option>
+      <option>₹10L – ₹50L</option>
+      <option>₹50L – ₹1 Crore</option>
+      <option>₹1Cr – ₹5Cr</option>
+      <option>₹5Cr – ₹20Cr</option>
+      <option>₹20Cr+</option>
+     </select>
+    </div>
+    <div class="form-group"><label>Preferred Funding Stages *</label>
+     <div class="radio-pills" style="margin-top:4px;">
+      <input type="checkbox" name="i_stages" id="ist1" class="radio-pill" value="Pre-Seed"><label for="ist1" class="radio-pill-label">Pre-Seed</label>
+      <input type="checkbox" name="i_stages" id="ist2" class="radio-pill" value="Seed"><label for="ist2" class="radio-pill-label">Seed</label>
+      <input type="checkbox" name="i_stages" id="ist3" class="radio-pill" value="Pre-Series A"><label for="ist3" class="radio-pill-label">Pre-Series A</label>
+      <input type="checkbox" name="i_stages" id="ist4" class="radio-pill" value="Series A"><label for="ist4" class="radio-pill-label">Series A</label>
+      <input type="checkbox" name="i_stages" id="ist5" class="radio-pill" value="Any"><label for="ist5" class="radio-pill-label">Any Stage</label>
+     </div>
+    </div>
+    <div class="form-group"><label>Geographic Focus *</label>
+     <div class="radio-pills" style="margin-top:4px;">
+      <input type="radio" name="i_geo" id="geo1" class="radio-pill" value="Pan India"><label for="geo1" class="radio-pill-label">Pan India</label>
+      <input type="radio" name="i_geo" id="geo2" class="radio-pill" value="Tier 2 / 3 Focus"><label for="geo2" class="radio-pill-label">Tier 2 / 3 Focus</label>
+      <input type="radio" name="i_geo" id="geo3" class="radio-pill" value="Metro Cities"><label for="geo3" class="radio-pill-label">Metro Cities</label>
+      <input type="radio" name="i_geo" id="geo4" class="radio-pill" value="Specific Region"><label for="geo4" class="radio-pill-label">Specific Region</label>
+     </div>
+    </div>
+    <div class="form-group"><label>About Your Investment Background *</label>
+     <textarea class="form-textarea" id="i_bio" placeholder="Brief background — how many startups have you invested in? What sectors? Any notable exits or portfolio companies?" maxlength="400" oninput="updateChar(this,'i_bio_count')"></textarea>
+     <div class="char-counter"><span id="i_bio_count">0</span>/400</div>
+    </div>
+    <div class="form-group"><label>How did you hear about us?</label>
+     <select class="form-select" id="i_source">
+      <option value="">Select...</option>
+      <option>LinkedIn</option><option>Instagram</option><option>Colleague / Network</option><option>Google Search</option><option>News / Media</option><option>Other</option>
+     </select>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border2);border-radius:10px;padding:16px;margin:20px 0;">
+     <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.7;text-transform:none;letter-spacing:0;font-weight:400;">
+      <input type="checkbox" id="i_terms" style="margin-top:3px;accent-color:var(--gold);flex-shrink:0;"/>
+      I agree to The Hook Hustlers <a href="terms.html" target="_blank" style="color:var(--gold);">Terms of Use</a> and <a href="privacy.html" target="_blank" style="color:var(--gold);">Privacy Policy</a>. I understand investor access requires verification and is subject to approval.
+     </label>
+    </div>
+
+    <div style="display:flex;gap:12px;">
+     <button class="form-submit" onclick="goStep('investor',1)" style="background:var(--deep);color:var(--white);border:1px solid var(--border2);flex:0 0 auto;padding:15px 20px;">← Back</button>
+     <button class="form-submit" onclick="submitInvestor()" style="flex:1;">💼 Submit Investor Application</button>
+    </div>
+   </div>
+
+   <!-- SUCCESS -->
+   <div class="form-step" id="i-success">
+    <div class="success-screen">
+     <div class="success-icon">✅</div>
+     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;margin-bottom:12px;">Application Received!</h2>
+     <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:24px;">Your investor profile is under review. Our team verifies all investors personally to maintain quality. Expect to hear back within <strong style="color:var(--gold);">48 hours</strong>.</p>
+     <a href="home.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Back to Home →</a>
+    </div>
+   </div>
+  </div>
+
+ </div><!-- /auth-box -->
 </div><!-- /auth-wrap -->
 
 <script>
 var currentType = 'startup';
 
 function selectType(type) {
-  currentType = type;
-  document.getElementById('tabStartup').classList.toggle('active', type === 'startup');
-  document.getElementById('tabInvestor').classList.toggle('active', type === 'investor');
-  document.getElementById('startupFlow').style.display = type === 'startup' ? 'block' : 'none';
-  document.getElementById('investorFlow').style.display = type === 'investor' ? 'block' : 'none';
-  // reset both
-  showStep('startup', 1);
-  showStep('investor', 1);
-  updateStepUI(1);
+ currentType = type;
+ document.getElementById('tabStartup').classList.toggle('active', type === 'startup');
+ document.getElementById('tabInvestor').classList.toggle('active', type === 'investor');
+ document.getElementById('startupFlow').style.display = type === 'startup' ? 'block' : 'none';
+ document.getElementById('investorFlow').style.display = type === 'investor' ? 'block' : 'none';
+ // reset both
+ showStep('startup', 1);
+ showStep('investor', 1);
+ updateStepUI(1);
 }
 
 function showStep(flow, step) {
-  var prefix = flow === 'startup' ? 's' : 'i';
-  var steps = document.querySelectorAll('#' + (flow === 'startup' ? 'startupFlow' : 'investorFlow') + ' .form-step');
-  steps.forEach(function(s) { s.classList.remove('active'); });
-  var target = document.getElementById(prefix + '-step' + step);
-  if (target) target.classList.add('active');
+ var prefix = flow === 'startup' ? 's' : 'i';
+ var steps = document.querySelectorAll('#' + (flow === 'startup' ? 'startupFlow' : 'investorFlow') + ' .form-step');
+ steps.forEach(function(s) { s.classList.remove('active'); });
+ var target = document.getElementById(prefix + '-step' + step);
+ if (target) target.classList.add('active');
 }
 
 function updateStepUI(step) {
-  var maxStep = currentType === 'startup' ? 3 : 2;
-  [1,2,3].forEach(function(i) {
-    var dot = document.getElementById('sd' + i);
-    var label = document.getElementById('sl' + i);
-    if (!dot) return;
-    dot.classList.remove('active','done');
-    label.classList.remove('active','done');
-    if (i < step) { dot.classList.add('done'); dot.textContent = '✓'; label.classList.add('done'); }
-    else if (i === step) { dot.classList.add('active'); dot.textContent = i; label.classList.add('active'); }
-    else { dot.textContent = i; }
-  });
-  ['sl12','sl23'].forEach(function(id, idx) {
-    var el = document.getElementById(id);
-    if (el) el.classList.toggle('done', step > idx + 1);
-  });
-  var labels = ['Account','Profile','Verify'];
-  ['sl1','sl2','sl3'].forEach(function(id, idx) {
-    var el = document.getElementById(id);
-    if (el) el.textContent = labels[idx];
-  });
+ var maxStep = currentType === 'startup' ? 3 : 2;
+ [1,2,3].forEach(function(i) {
+  var dot = document.getElementById('sd' + i);
+  var label = document.getElementById('sl' + i);
+  if (!dot) return;
+  dot.classList.remove('active','done');
+  label.classList.remove('active','done');
+  if (i < step) { dot.classList.add('done'); dot.textContent = '✓'; label.classList.add('done'); }
+  else if (i === step) { dot.classList.add('active'); dot.textContent = i; label.classList.add('active'); }
+  else { dot.textContent = i; }
+ });
+ ['sl12','sl23'].forEach(function(id, idx) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('done', step > idx + 1);
+ });
+ var labels = ['Account','Profile','Verify'];
+ ['sl1','sl2','sl3'].forEach(function(id, idx) {
+  var el = document.getElementById(id);
+  if (el) el.textContent = labels[idx];
+ });
 }
 
 function goStep(flow, step) {
-  // Basic validation on step 1
-  if (step === 2 && flow === 'startup') {
-    var f = document.getElementById('s_fname').value.trim();
-    var e = document.getElementById('s_email').value.trim();
-    var p = document.getElementById('s_phone').value.trim();
-    var pw = document.getElementById('s_pass').value;
-    if (!f || !e || !p) { alert('Please fill in all required fields marked with *.'); return; }
-    if (!e.includes('@')) { alert('Please enter a valid email address.'); return; }
-    if (pw.length < 8) { alert('Password must be at least 8 characters.'); return; }
-    document.getElementById('stepIndicator').style.display = 'flex';
-    document.getElementById('typeSelector').querySelector('.auth-tabs').style.display = 'none';
-  }
-  if (step === 2 && flow === 'investor') {
-    var f = document.getElementById('i_fname').value.trim();
-    var e = document.getElementById('i_email').value.trim();
-    if (!f || !e) { alert('Please fill in all required fields.'); return; }
-    document.getElementById('stepIndicator').style.display = 'flex';
-    document.getElementById('typeSelector').querySelector('.auth-tabs').style.display = 'none';
-  }
-  if (step === 3 && flow === 'startup') {
-    var sn = document.getElementById('s_startupname').value.trim();
-    var idea = document.getElementById('s_idea').value.trim();
-    var qual = document.getElementById('s_qual').value;
-    var sector = document.getElementById('s_sector').value;
-    if (!sn || !idea || !qual || !sector) { alert('Please fill in all required fields.'); return; }
-    if (idea.length < 30) { alert('Please describe your startup idea in at least 30 characters.'); return; }
-  }
-  showStep(flow, step);
-  updateStepUI(step);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+ // Basic validation on step 1
+ if (step === 2 && flow === 'startup') {
+  var f = document.getElementById('s_fname').value.trim();
+  var e = document.getElementById('s_email').value.trim();
+  var p = document.getElementById('s_phone').value.trim();
+  var pw = document.getElementById('s_pass').value;
+  if (!f || !e || !p) { alert('Please fill in all required fields marked with *.'); return; }
+  if (!e.includes('@')) { alert('Please enter a valid email address.'); return; }
+  if (pw.length < 8) { alert('Password must be at least 8 characters.'); return; }
+  document.getElementById('stepIndicator').style.display = 'flex';
+  document.getElementById('typeSelector').querySelector('.auth-tabs').style.display = 'none';
+ }
+ if (step === 2 && flow === 'investor') {
+  var f = document.getElementById('i_fname').value.trim();
+  var e = document.getElementById('i_email').value.trim();
+  if (!f || !e) { alert('Please fill in all required fields.'); return; }
+  document.getElementById('stepIndicator').style.display = 'flex';
+  document.getElementById('typeSelector').querySelector('.auth-tabs').style.display = 'none';
+ }
+ if (step === 3 && flow === 'startup') {
+  var sn = document.getElementById('s_startupname').value.trim();
+  var idea = document.getElementById('s_idea').value.trim();
+  var qual = document.getElementById('s_qual').value;
+  var sector = document.getElementById('s_sector').value;
+  if (!sn || !idea || !qual || !sector) { alert('Please fill in all required fields.'); return; }
+  if (idea.length < 30) { alert('Please describe your startup idea in at least 30 characters.'); return; }
+ }
+ showStep(flow, step);
+ updateStepUI(step);
+ window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function updateChar(el, countId) {
-  document.getElementById(countId).textContent = el.value.length;
+ document.getElementById(countId).textContent = el.value.length;
 }
 
 function handleFile(input, nameId, wrapId) {
-  var file = input.files[0];
-  if (!file) return;
-  if (file.size > 5 * 1024 * 1024) { alert('File too large. Maximum size is 5MB.'); input.value = ''; return; }
-  var nameEl = document.getElementById(nameId);
-  nameEl.textContent = '✅ ' + file.name;
-  nameEl.style.display = 'block';
-  document.getElementById(wrapId).style.borderColor = 'rgba(0,208,132,0.4)';
-  document.getElementById(wrapId).style.background = 'rgba(0,208,132,0.04)';
+ var file = input.files[0];
+ if (!file) return;
+ if (file.size > 5 * 1024 * 1024) { alert('File too large. Maximum size is 5MB.'); input.value = ''; return; }
+ var nameEl = document.getElementById(nameId);
+ nameEl.textContent = '✅ ' + file.name;
+ nameEl.style.display = 'block';
+ document.getElementById(wrapId).style.borderColor = 'rgba(0,208,132,0.4)';
+ document.getElementById(wrapId).style.background = 'rgba(0,208,132,0.04)';
 }
 
 function submitStartup() {
-  var qualFile = document.getElementById('s_qualfile').files[0];
-  var terms = document.getElementById('s_terms').checked;
-  if (!qualFile) { alert('Please upload your qualification proof (minimum: Class 10th marksheet).'); return; }
-  if (!terms) { alert('Please agree to the Terms of Use to continue.'); return; }
-  // Show success
-  var steps = document.querySelectorAll('#startupFlow .form-step');
-  steps.forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('s-success').classList.add('active');
-  document.getElementById('stepIndicator').style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+ var qualFile = document.getElementById('s_qualfile').files[0];
+ var terms = document.getElementById('s_terms').checked;
+ if (!qualFile) { alert('Please upload your qualification proof (minimum: Class 10th marksheet).'); return; }
+ if (!terms) { alert('Please agree to the Terms of Use to continue.'); return; }
+ // Show success
+ var steps = document.querySelectorAll('#startupFlow .form-step');
+ steps.forEach(function(s) { s.classList.remove('active'); });
+ document.getElementById('s-success').classList.add('active');
+ document.getElementById('stepIndicator').style.display = 'none';
+ window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function submitInvestor() {
-  var terms = document.getElementById('i_terms').checked;
-  if (!terms) { alert('Please agree to the Terms of Use to continue.'); return; }
-  var steps = document.querySelectorAll('#investorFlow .form-step');
-  steps.forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('i-success').classList.add('active');
-  document.getElementById('stepIndicator').style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+ var terms = document.getElementById('i_terms').checked;
+ if (!terms) { alert('Please agree to the Terms of Use to continue.'); return; }
+ var steps = document.querySelectorAll('#investorFlow .form-step');
+ steps.forEach(function(s) { s.classList.remove('active'); });
+ document.getElementById('i-success').classList.add('active');
+ document.getElementById('stepIndicator').style.display = 'none';
+ window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-    <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
-    <span class="nav-logo-text">THE HOOK HUSTLERS</span>
-  </a>
-      <p>India's #1 startup-investor matchmaking platform. Connecting DPIIT-verified startups with verified investors across every state, sector and stage.</p>
-      <div class="footer-contact">
-        <a href="mailto:_thehookhustlers@gmail.com">📧 _thehookhustlers@gmail.com</a>
-        <a href="tel:+918924952608">📱 +91 89249 52608</a>
-        <a href="https://wa.me/918924952608" target="_blank">💬 WhatsApp Us</a>
-      </div>
-      <div class="footer-socials" style="margin-top:16px;">
-        <a href="https://instagram.com" target="_blank" class="social-icon">📸</a>
-        <a href="https://linkedin.com" target="_blank" class="social-icon">💼</a>
-        <a href="https://twitter.com" target="_blank" class="social-icon">🐦</a>
-        <a href="https://wa.me/918924952608" target="_blank" class="social-icon">💬</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h5>Platform</h5>
-      <a href="startups.html">For Startups</a>
-      <a href="investors.html">For Investors</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="signup.html">Join Now</a>
-      <a href="login.html">Login</a>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact</a>
-      <a href="reviews.html">Reviews</a>
-    </div>
-    <div class="footer-col">
-      <h5>Legal & Support</h5>
-      <a href="help.html">Help Centre</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </div>
+ <div class="footer-inner">
+  <div class="footer-brand">
+   <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+  <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
+  <span class="nav-logo-text">THE HOOK HUSTLERS</span>
+ </a>
+   <p>India's #1 startup-investor matchmaking platform. Connecting DPIIT-verified startups with verified investors across every state, sector and stage.</p>
+   <div class="footer-contact">
+    <a href="mailto:_thehookhustlers@gmail.com">📧 _thehookhustlers@gmail.com</a>
+    <a href="tel:+918924952608">📱 +91 89249 52608</a>
+    <a href="https://wa.me/918924952608" target="_blank">💬 WhatsApp Us</a>
+   </div>
+   <div class="footer-socials" style="margin-top:16px;">
+    <a href="https://instagram.com" target="_blank" class="social-icon">📸</a>
+    <a href="https://linkedin.com" target="_blank" class="social-icon">💼</a>
+    <a href="https://twitter.com" target="_blank" class="social-icon">🐦</a>
+    <a href="https://wa.me/918924952608" target="_blank" class="social-icon">💬</a>
+   </div>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-bottom-text">© 2026 The Hook Hustlers. All Rights Reserved. | Lucknow, Uttar Pradesh, India 🇮🇳</span>
-    <div class="footer-legal">
-      <a href="help.html">Help Centre</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </div>
+  <div class="footer-col">
+   <h5>Platform</h5>
+   <a href="startups.html">For Startups</a>
+   <a href="investors.html">For Investors</a>
+   <a href="pricing.html">Pricing</a>
+   <a href="signup.html">Join Now</a>
+   <a href="login.html">Login</a>
   </div>
+  <div class="footer-col">
+   <h5>Company</h5>
+   <a href="about.html">About Us</a>
+   <a href="contact.html">Contact</a>
+   <a href="reviews.html">Reviews</a>
+  </div>
+  <div class="footer-col">
+   <h5>Legal & Support</h5>
+   <a href="help.html">Help Centre</a>
+   <a href="privacy.html">Privacy Policy</a>
+   <a href="terms.html">Terms of Use</a>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 The Hook Hustlers. All Rights Reserved. | Lucknow, Uttar Pradesh, India 🇮🇳</span>
+  <div class="footer-legal">
+   <a href="help.html">Help Centre</a>
+   <a href="privacy.html">Privacy Policy</a>
+   <a href="terms.html">Terms of Use</a>
+  </div>
+ </div>
 </footer>
 <script>// SHARED JS FOR ALL PAGES
 document.addEventListener('DOMContentLoaded', function() {
-  // CURSOR
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  if(cursor && ring) {
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
-    });
-  }
+ // CURSOR
+ const cursor = document.getElementById('cursor');
+ const ring = document.getElementById('cursorRing');
+ if(cursor && ring) {
+  document.addEventListener('mousemove', e => {
+   cursor.style.left = e.clientX + 'px';
+   cursor.style.top = e.clientY + 'px';
+   ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+  });
+ }
 
-  // PARTICLES
-  const canvas = document.getElementById('particles');
-  if(canvas) {
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-    const particles = [];
-    const colors = ['rgba(212,168,67,','rgba(26,108,255,','rgba(0,208,132,','rgba(230,57,70,'];
-    for(let i=0;i<70;i++) particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:colors[Math.floor(Math.random()*colors.length)],opacity:Math.random()*.4+.1});
-    function animateP(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateP);}
-    animateP();
-  }
+ // PARTICLES
+ const canvas = document.getElementById('particles');
+ if(canvas) {
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+  const particles = [];
+  const colors = ['rgba(212,168,67,','rgba(26,108,255,','rgba(0,208,132,','rgba(230,57,70,'];
+  for(let i=0;i<70;i++) particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.3,dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,color:colors[Math.floor(Math.random()*colors.length)],opacity:Math.random()*.4+.1});
+  function animateP(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateP);}
+  animateP();
+ }
 
-  // HAMBURGER
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if(hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-  }
+ // HAMBURGER
+ const hamburger = document.getElementById('hamburger');
+ const mobileMenu = document.getElementById('mobileMenu');
+ if(hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+   hamburger.classList.toggle('open');
+   mobileMenu.classList.toggle('open');
+   document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+ }
 
-  // REVEAL
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
-  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
-  reveals.forEach(r => obs.observe(r));
+ // REVEAL
+ const reveals = document.querySelectorAll('.reveal');
+ const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => { if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
+ },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+ reveals.forEach(r => obs.observe(r));
 
-  // COUNTERS
-  const counterObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        const el=e.target,target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
-        let start=0;const step=target/(2000/16);
-        const timer=setInterval(()=>{start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=prefix+Math.floor(start).toLocaleString('en-IN')+suffix;},16);
-        counterObs.unobserve(el);
-      }
-    });
-  },{threshold:0.5});
-  document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
+ // COUNTERS
+ const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+   if(e.isIntersecting){
+    const el=e.target,target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
+    let start=0;const step=target/(2000/16);
+    const timer=setInterval(()=>{start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=prefix+Math.floor(start).toLocaleString('en-IN')+suffix;},16);
+    counterObs.unobserve(el);
+   }
+  });
+ },{threshold:0.5});
+ document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
 });
 
 function closeMobile(){
-  const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
-  if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
+ const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
+ if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
 }
 </script>
 
@@ -970,120 +970,120 @@ function closeMobile(){
 
 // Hide Login button if already logged in
 (function(){
-  if(localStorage.getItem('hhLoggedIn') === 'true'){
-    var loginBtns = document.querySelectorAll('a[href="login.html"], a[href="login.html?next=signup"]');
-    loginBtns.forEach(function(btn){
-      if(btn.classList.contains('nav-btn-outline') || btn.textContent.trim() === 'Login'){
-        btn.style.display = 'none';
-      }
-    });
-    // Show logged-in avatar with popup
-    var navRight = document.querySelector('.nav-right');
-    if(navRight && !document.getElementById('nav-user-badge')){
-      var name = localStorage.getItem('hhUserName') || 'Account';
-      var email = localStorage.getItem('hhUserEmail') || '';
-      var first = name.split(' ')[0];
-      var initial = first.charAt(0).toUpperCase();
+ if(localStorage.getItem('hhLoggedIn') === 'true'){
+  var loginBtns = document.querySelectorAll('a[href="login.html"], a[href="login.html?next=signup"]');
+  loginBtns.forEach(function(btn){
+   if(btn.classList.contains('nav-btn-outline') || btn.textContent.trim() === 'Login'){
+    btn.style.display = 'none';
+   }
+  });
+  // Show logged-in avatar with popup
+  var navRight = document.querySelector('.nav-right');
+  if(navRight && !document.getElementById('nav-user-badge')){
+   var name = localStorage.getItem('hhUserName') || 'Account';
+   var email = localStorage.getItem('hhUserEmail') || '';
+   var first = name.split(' ')[0];
+   var initial = first.charAt(0).toUpperCase();
 
-      // Inject popup CSS once
-      if(!document.getElementById('hhPopupStyle')){
-        var st = document.createElement('style');
-        st.id = 'hhPopupStyle';
-        st.textContent = `
-          #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;}
-          #nav-user-badge .hh-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;box-shadow:0 0 8px rgba(212,168,67,0.45),0 0 20px rgba(212,168,67,0.15);transition:box-shadow .2s;}
-          #nav-user-badge:hover .hh-av{box-shadow:0 0 16px rgba(212,168,67,0.7),0 0 30px rgba(212,168,67,0.3);}
-          #nav-user-badge .hh-name{font-family:'Rajdhani',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.03em;color:var(--gold);text-transform:none;max-width:65px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;line-height:1;}
-          #hh-popup{position:fixed;top:70px;right:12px;width:230px;background:#111;border:1px solid rgba(212,168,67,0.3);border-radius:14px;padding:20px 18px 16px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 0 0 1px rgba(212,168,67,0.08);opacity:0;transform:translateY(-8px) scale(.97);pointer-events:none;transition:all .2s ease;}
-          #hh-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
-          #hh-popup .pp-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin:0 auto 10px;box-shadow:0 0 16px rgba(212,168,67,0.5);}
-          #hh-popup .pp-uname{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
-          #hh-popup .pp-email{text-align:center;font-size:.72rem;color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;margin-bottom:14px;word-break:break-all;line-height:1.4;}
-          #hh-popup hr{border:none;border-top:1px solid rgba(212,168,67,0.12);margin-bottom:12px;}
-          #hh-popup .pp-signout{width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;border:none;cursor:pointer;margin-bottom:8px;transition:opacity .15s;}
-          #hh-popup .pp-signout:hover{opacity:.85;}
-          #hh-popup .pp-close{width:100%;padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(212,168,67,0.2);color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all .15s;}
-          #hh-popup .pp-close:hover{border-color:rgba(212,168,67,0.5);color:var(--gold);}
-          @media(max-width:768px){#hh-popup{right:-8px;width:210px;}}
-        `;
-        document.head.appendChild(st);
-      }
+   // Inject popup CSS once
+   if(!document.getElementById('hhPopupStyle')){
+    var st = document.createElement('style');
+    st.id = 'hhPopupStyle';
+    st.textContent = `
+     #nav-user-badge{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;z-index:10001;}
+     #nav-user-badge .hh-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;box-shadow:0 0 8px rgba(212,168,67,0.45),0 0 20px rgba(212,168,67,0.15);transition:box-shadow .2s;}
+     #nav-user-badge:hover .hh-av{box-shadow:0 0 16px rgba(212,168,67,0.7),0 0 30px rgba(212,168,67,0.3);}
+     #nav-user-badge .hh-name{font-family:'Rajdhani',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.03em;color:var(--gold);text-transform:none;max-width:65px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;line-height:1;}
+     #hh-popup{position:fixed;top:70px;right:12px;width:230px;background:#111;border:1px solid rgba(212,168,67,0.3);border-radius:14px;padding:20px 18px 16px;box-shadow:0 12px 40px rgba(0,0,0,0.7),0 0 0 1px rgba(212,168,67,0.08);opacity:0;transform:translateY(-8px) scale(.97);pointer-events:none;transition:all .2s ease;}
+     #hh-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+     #hh-popup .pp-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin:0 auto 10px;box-shadow:0 0 16px rgba(212,168,67,0.5);}
+     #hh-popup .pp-uname{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
+     #hh-popup .pp-email{text-align:center;font-size:.72rem;color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;margin-bottom:14px;word-break:break-all;line-height:1.4;}
+     #hh-popup hr{border:none;border-top:1px solid rgba(212,168,67,0.12);margin-bottom:12px;}
+     #hh-popup .pp-signout{width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;border:none;cursor:pointer;margin-bottom:8px;transition:opacity .15s;}
+     #hh-popup .pp-signout:hover{opacity:.85;}
+     #hh-popup .pp-close{width:100%;padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(212,168,67,0.2);color:rgba(240,237,232,0.4);font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.1em;cursor:pointer;transition:all .15s;}
+     #hh-popup .pp-close:hover{border-color:rgba(212,168,67,0.5);color:var(--gold);}
+     @media(max-width:768px){#hh-popup{right:-8px;width:210px;}}
+    `;
+    document.head.appendChild(st);
+   }
 
-      // Build badge
-      var badge = document.createElement('div');
-      badge.id = 'nav-user-badge';
-      badge.innerHTML = `
-        <div class="hh-av">${initial}</div>
-        <div class="hh-name">${name}</div>
-        <div id="hh-popup">
-          <div class="pp-av">${initial}</div>
-          <div class="pp-uname">${name.toUpperCase()}</div>
-          <div class="pp-email">${email}</div>
-          <hr/>
-          <button class="pp-signout" id="hh-signout-btn">SIGN OUT</button>
-          <button class="pp-close" id="hh-close-btn">✕ CLOSE</button>
-        </div>
-      `;
-      navRight.insertBefore(badge, navRight.firstChild);
+   // Build badge
+   var badge = document.createElement('div');
+   badge.id = 'nav-user-badge';
+   badge.innerHTML = `
+    <div class="hh-av">${initial}</div>
+    <div class="hh-name">${name}</div>
+    <div id="hh-popup">
+     <div class="pp-av">${initial}</div>
+     <div class="pp-uname">${name.toUpperCase()}</div>
+     <div class="pp-email">${email}</div>
+     <hr/>
+     <button class="pp-signout" id="hh-signout-btn">SIGN OUT</button>
+     <button class="pp-close" id="hh-close-btn">✕ CLOSE</button>
+    </div>
+   `;
+   navRight.insertBefore(badge, navRight.firstChild);
 
-      // Toggle popup
-      badge.addEventListener('click', function(e){
-        var popup = document.getElementById('hh-popup');
-        popup.classList.toggle('open');
-        e.stopPropagation();
-      });
+   // Toggle popup
+   badge.addEventListener('click', function(e){
+    var popup = document.getElementById('hh-popup');
+    popup.classList.toggle('open');
+    e.stopPropagation();
+   });
 
-      // Sign out
-      document.getElementById('hh-signout-btn').addEventListener('click', function(e){
-        e.stopPropagation();
-        localStorage.removeItem('hhLoggedIn');
-        localStorage.removeItem('hhUserName');
-        localStorage.removeItem('hhUserEmail');
-        localStorage.removeItem('hhUserPicture');
-        window.location.href = 'home.html';
-      });
+   // Sign out
+   document.getElementById('hh-signout-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    localStorage.removeItem('hhLoggedIn');
+    localStorage.removeItem('hhUserName');
+    localStorage.removeItem('hhUserEmail');
+    localStorage.removeItem('hhUserPicture');
+    window.location.href = 'home.html';
+   });
 
-      // Close btn
-      document.getElementById('hh-close-btn').addEventListener('click', function(e){
-        e.stopPropagation();
-        document.getElementById('hh-popup').classList.remove('open');
-      });
+   // Close btn
+   document.getElementById('hh-close-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    document.getElementById('hh-popup').classList.remove('open');
+   });
 
-      // Click outside closes
-      document.addEventListener('click', function(){
-        var p = document.getElementById('hh-popup');
-        if(p) p.classList.remove('open');
-      });
-    }
+   // Click outside closes
+   document.addEventListener('click', function(){
+    var p = document.getElementById('hh-popup');
+    if(p) p.classList.remove('open');
+   });
   }
+ }
 })();
 // Show pricing in nav only if user is logged in
 (function(){
-  if(localStorage.getItem('hhLoggedIn') === 'true') {
-    var links = document.querySelector('.nav-links');
-    var mobile = document.getElementById('mobileMenu');
-    if(links) {
-      // Only add Pricing if not already in nav
-      if(!links.querySelector('a[href="pricing.html"]')){
-        var a = document.createElement('a');
-        a.href = 'pricing.html';
-        a.textContent = 'Pricing';
-        var ref = links.querySelector('a[href="contact.html"]');
-        if(ref) links.insertBefore(a, ref);
-      }
-    }
-    if(mobile) {
-      // Only add Pricing to mobile if not already there
-      if(!mobile.querySelector('a[href="pricing.html"]')){
-        var ma = document.createElement('a');
-        ma.href = 'pricing.html';
-        ma.textContent = 'Pricing';
-        ma.onclick = function(){closeMobile();};
-        var mref = mobile.querySelector('a[href="contact.html"]');
-        if(mref) mobile.insertBefore(ma, mref);
-      }
-    }
+ if(localStorage.getItem('hhLoggedIn') === 'true') {
+  var links = document.querySelector('.nav-links');
+  var mobile = document.getElementById('mobileMenu');
+  if(links) {
+   // Only add Pricing if not already in nav
+   if(!links.querySelector('a[href="pricing.html"]')){
+    var a = document.createElement('a');
+    a.href = 'pricing.html';
+    a.textContent = 'Pricing';
+    var ref = links.querySelector('a[href="contact.html"]');
+    if(ref) links.insertBefore(a, ref);
+   }
   }
+  if(mobile) {
+   // Only add Pricing to mobile if not already there
+   if(!mobile.querySelector('a[href="pricing.html"]')){
+    var ma = document.createElement('a');
+    ma.href = 'pricing.html';
+    ma.textContent = 'Pricing';
+    ma.onclick = function(){closeMobile();};
+    var mref = mobile.querySelector('a[href="contact.html"]');
+    if(mref) mobile.insertBefore(ma, mref);
+   }
+  }
+ }
 })();
 </script>
 </body>
