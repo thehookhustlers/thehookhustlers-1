@@ -49,7 +49,9 @@ body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-seri
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 64px;background:rgba(5,5,8,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);animation:fadeDown .6s ease both;}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;background:linear-gradient(135deg,var(--gold),var(--gold2),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;text-decoration:none;}
+.nav-logo-text{background:linear-gradient(135deg,var(--gold),var(--gold2),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+@media(max-width:768px){.nav-logo img{height:32px;width:32px;}.nav-logo-text{font-size:1.3rem;}}
 .nav-links{display:flex;gap:32px;}
 .nav-links a{font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);transition:color .2s;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;}
 .nav-links a[href="home.html"]{color:rgba(240,237,232,0.65);font-weight:600;}
@@ -604,7 +606,10 @@ img{max-width:100%;height:auto;}
 
 <!-- NAV -->
 <nav>
-  <a href="home.html" class="nav-logo">THE HOOK HUSTLERS</a>
+  <a href="home.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <img src="logo.png" alt="The Hook Hustlers Logo" style="height:38px;width:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,168,67,0.5),0 0 20px rgba(212,168,67,0.2);flex-shrink:0;" onerror="this.style.display='none'"/>
+    <span class="nav-logo-text">THE HOOK HUSTLERS</span>
+  </a>
   <div class="nav-links">
     <a href="home.html">Home</a>
     <a href="startups.html">Startups</a>
