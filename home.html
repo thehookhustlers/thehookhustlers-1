@@ -51,7 +51,7 @@ body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-seri
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 64px;background:rgba(5,5,8,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);animation:fadeDown .6s ease both;}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;text-decoration:none;}
 .nav-logo-text{background:linear-gradient(135deg,var(--gold),var(--gold2),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-@media(max-width:768px){nav{padding:10px 16px;} .nav-logo{gap:6px;} .nav-logo img{height:28px;width:28px;} .nav-logo-text{font-size:1rem;letter-spacing:.04em;white-space:nowrap;}}
+@media(max-width:768px){nav{padding:10px 16px;} .nav-logo{gap:6px;} .nav-logo img{height:28px;width:28px;} .nav-logo-text{font-size:1rem;letter-spacing:.04em;white-space:nowrap;} .nav-links{display:none;} .nav-right .nav-btn,.nav-right a.nav-btn-outline{display:none !important;} .hamburger{display:flex;} .mobile-menu{display:flex;} section{padding:72px 20px;} .page-hero{padding:110px 20px 48px !important;} .footer-inner{grid-template-columns:1fr;gap:32px;} .footer-bottom{flex-direction:column;text-align:center;} .footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;} .ticker-wrap{top:48px;}}
 .nav-links{display:flex;gap:32px;}
 .nav-links a{font-family:'Rajdhani',sans-serif;font-size:.82rem;color:var(--muted);transition:color .2s;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;}
 .nav-links a[href="home.html"]{color:rgba(240,237,232,0.65);font-weight:600;}
@@ -384,7 +384,6 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
  .footer-inner{grid-template-columns:1fr;gap:32px;}
  .footer-bottom{flex-direction:column;text-align:center;}
  .footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;}
- .ticker-wrap{top:48px;} 
 }
 @media(max-width:480px){
  .hero h1{font-size:clamp(2.4rem,10vw,4rem);}
@@ -570,9 +569,6 @@ img{max-width:100%;height:auto;}
  /* ── WAITLIST CARD ── */
  .waitlist-card { padding: 32px 20px !important; }
  .spots-counter { font-size: 3.5rem !important; }
-
- /* ── NAV ── */
- nav { padding: 14px 18px !important; }
 }
 
 @media(max-width:480px){
@@ -810,7 +806,6 @@ img{max-width:100%;height:auto;}
  </div>
 </section>
 
-
 <!-- FEATURED STARTUPS -->
 <section class="startups-section" id="startups" style="background:var(--deep);">
  <div class="sec-inner">
@@ -985,8 +980,6 @@ img{max-width:100%;height:auto;}
  document.querySelectorAll('.chart-bar-track').forEach(function(t){barObs2.observe(t.parentElement.parentElement);});
 })();
 </script>
-
-
 
 <section class="investors-section" id="investors" style="background:var(--black);">
  <div class="sec-inner">
@@ -1283,7 +1276,6 @@ img{max-width:100%;height:auto;}
  </div>
 </section>
 
-
 <!-- CTA -->
 <!-- EARLY ACCESS WAITLIST -->
 <section style="background:var(--black);padding:120px 64px;position:relative;overflow:hidden;">
@@ -1358,7 +1350,6 @@ function joinWaitlist(){
 }
 </script>
 
-
 <!-- ── INDIA'S YOUNGEST FOUNDERS WELCOME ── -->
 <section style="background:linear-gradient(135deg,var(--deep),#070712,var(--navy));padding:100px 64px;overflow:hidden;position:relative;">
  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(212,168,67,0.06),transparent);pointer-events:none;"></div>
@@ -1409,7 +1400,6 @@ function joinWaitlist(){
   </div>
  </div>
 </section>
-
 
 <!-- ── INDIA'S FIRST TEEN-FOUNDER PLATFORM ── -->
 <section style="background:linear-gradient(135deg,var(--deep),#07071a);padding:100px 64px;position:relative;overflow:hidden;">
