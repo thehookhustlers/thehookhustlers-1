@@ -1439,7 +1439,11 @@ input:focus, textarea:focus, select:focus {
 
   <div class="form-group"><label>Email Address</label><input class="form-input" id="l_email" type="email" placeholder="your@email.com"/></div>
   <div class="form-group"><label>Password</label><input class="form-input" id="l_pass" type="password" placeholder="Enter your password"/></div>
-  <div style="text-align:right;margin-bottom:20px;"><a href="#" style="font-size:.78rem;color:var(--vivid2);text-decoration:none;">Forgot password?</a></div>
+  
+  <div style="text-align:right;margin-bottom:20px;">
+    <a href="#" onclick="handleForgotPassword(event)" style="font-size:.78rem;color:var(--vivid2);text-decoration:none;transition:0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--vivid2)'">Forgot password?</a>
+  </div>
+
 
   <!-- Google Sign In Button -->
   <button class="google-btn" onclick="googleSignIn()">
@@ -2357,7 +2361,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {passive: true});
   }
 });
+
+// Handle Password Reset
+async function handleForgotPassword(e) {
+  e.preventDefault();
+  const emailInput = document.getElementById('l_email').value.trim();
+  const email = emailInput || prompt("Please enter the email address associated with your account:");
+  
+  if (!email) return;
+
+  // Supabase sends a recovery email with a link pointing to reset-password.html
+  const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/reset-password.html'
+  });
+
+  if (error) {
+    alert("Error: " + error.message);
+  } else {
+    alert("Password reset link sent! Check your inbox for instructions.");
+  }
+}
 </script>
+
 </body>
 
 
