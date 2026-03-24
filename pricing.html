@@ -2382,6 +2382,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- GLOBAL AUTO-LOGIN TICKER -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(session) {
+      const navActions = document.querySelector('.nav-actions');
+      if(navActions) {
+        navActions.innerHTML = `
+          <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;">Dashboard</a>
+          <button onclick="window.supabaseClient.auth.signOut().then(()=>window.location.reload())" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);cursor:pointer;border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
+        `;
+      }
+    }
+  });
+</script>
+
 </body>
 
 
