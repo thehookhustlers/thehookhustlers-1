@@ -2546,6 +2546,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
 <!-- GLOBAL AUTO-LOGIN TICKER -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-client.js"></script>
@@ -2556,8 +2557,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
     const navLinks = document.querySelector('.nav-links');
+    const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
 
     if(session) {
+      // 1. Desktop: Show Dashboard + Sign Out in Nav-Right
       if(navRight) {
         navRight.innerHTML = `
           <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;text-shadow:0 0 10px rgba(6,182,212,0.3);">Dashboard</a>
@@ -2565,32 +2568,67 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       }
       
+      // 2. Desktop: Show Pricing in Nav-Links (Remove duplicate Dashboard)
       if(navLinks) {
-          // Add Dashboard to Tab list if not there
-          if(!navLinks.innerHTML.includes('dashboard.html')) {
-              const dashTab = document.createElement('a');
-              dashTab.href = 'dashboard.html';
-              dashTab.textContent = 'Dashboard';
-              navLinks.insertBefore(dashTab, navLinks.firstChild);
-          }
-          // Add Pricing if not there
+          // Remove duplicate Dashboard link from main menu bar
+          document.querySelectorAll('.nav-links a[href="dashboard.html"]').forEach(el => el.remove());
+          
           if(!navLinks.innerHTML.includes('pricing.html')) {
               const priceLink = document.createElement('a');
               priceLink.href = 'pricing.html';
               priceLink.textContent = 'Pricing';
               priceLink.style.color = 'var(--vivid2)';
-              
               const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
               if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
               else navLinks.appendChild(priceLink);
           }
       }
+
+      // 3. Mobile: Inject Dashboard/Pricing and Sign Out
+      if(mobileMenu) {
+          // Add Dashboard to top of mobile menu if not there
+          if(!mobileMenu.innerHTML.includes('dashboard.html')) {
+              const mDash = document.createElement('a');
+              mDash.href = 'dashboard.html';
+              mDash.onclick = () => { if(typeof closeMobile === 'function') closeMobile(); };
+              mDash.textContent = 'Dashboard';
+              mDash.style.color = 'var(--cyan)';
+              mobileMenu.insertBefore(mDash, mobileMenu.firstChild);
+          }
+          // Add Pricing if not there
+          if(!mobileMenu.innerHTML.includes('pricing.html')) {
+              const mPrice = document.createElement('a');
+              mPrice.href = 'pricing.html';
+              mPrice.onclick = () => { if(typeof closeMobile === 'function') closeMobile(); };
+              mPrice.textContent = 'Pricing';
+              mPrice.style.color = 'var(--vivid2)';
+              const aboutLink = Array.from(mobileMenu.children).find(a => a.href.includes('about.html'));
+              if(aboutLink) mobileMenu.insertBefore(mPrice, aboutLink);
+          }
+          // Replace Join/Login with Sign Out in mobile view
+          const joinBtn = Array.from(mobileMenu.querySelectorAll('a')).find(a => a.href.includes('login.html') || a.textContent.toLowerCase().includes('join'));
+          if(joinBtn) {
+              joinBtn.innerHTML = 'SIGN OUT';
+              joinBtn.style.color = 'var(--crimson)';
+              joinBtn.href = '#';
+              joinBtn.onclick = (e) => {
+                  e.preventDefault();
+                  window.supabaseClient.auth.signOut().then(() => {
+                      localStorage.removeItem('hhLoggedIn');
+                      window.location.href = 'home.html';
+                  });
+              };
+          }
+      }
     } else {
-        // Logged out state: ensure pricing and dashboard tabs are gone
-        if(navLinks) {
-            document.querySelectorAll('.nav-links a[href="pricing.html"]').forEach(el => el.remove());
-            document.querySelectorAll('.nav-links a[href="dashboard.html"]').forEach(el => el.remove());
-        }
+        // Logged out: CLEAN UP
+        document.querySelectorAll('a[href="pricing.html"]').forEach(el => el.remove());
+        document.querySelectorAll('a[href="dashboard.html"]').forEach(el => {
+            // Only remove if it's in nav-links or mobile-menu, keep the nav-right one if it exists (it shouldn't but safe)
+            if(el.parentElement.classList.contains('nav-links') || el.parentElement.classList.contains('mobile-menu')) {
+                el.remove();
+            }
+        });
     }
   });
 </script>
