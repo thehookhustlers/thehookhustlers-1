@@ -77,6 +77,12 @@
     .m-sub { font-size:.8rem; color:var(--muted); margin-bottom:12px; }
     .m-tag { display:inline-block; font-size:.65rem; background:rgba(6,182,212,0.15); color:var(--cyan); padding:3px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:.05em; margin-right:4px; margin-bottom:4px; }
 
+    
+    .nav-links { display:flex; gap:32px; align-items:center; }
+    .nav-links a { color:var(--white); text-decoration:none; font-family:'Rajdhani',sans-serif; font-size:.9rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; transition:color .2s; }
+    .nav-links a:hover { color:var(--vivid2); text-shadow:0 0 10px rgba(124,58,237,0.4); }
+    @media(max-width:900px) { .nav-links { display:none; } }
+
     @media(max-width:900px){ .grid-2 { grid-template-columns:1fr; } nav{padding:12px 24px;} .dashboard-wrap{padding:100px 24px 40px;} }
   
 /* ── UNIVERSAL TOUCH DEVICE FIX: Hide custom cursor on mobile/tablets to prevent sticking ── */
@@ -349,6 +355,14 @@
       <img src="logo.png" alt="Hook Hustlers Logo" onerror="this.style.display='none'"/>
       <span class="nav-logo-text">THE HOOK HUSTLERS</span>
     </a>
+    
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="startups.html">Startups</a>
+      <a href="investors.html">Investors</a>
+      <a href="about.html">About</a>
+    </div>
+
     <button onclick="handleSignOut()" class="nav-btn">Sign Out</button>
   </nav>
 
@@ -467,7 +481,14 @@
         <div class="glass-card">
           <div class="card-title">Investment Mandate</div>
           <div class="data-row"><span class="data-lbl">Target Ticket Size</span><span class="data-val" id="i-ticket">-</span></div>
-          <div class="data-row"><span class="data-lbl">KYC Status</span><span class="data-val" style="color:var(--emerald);">Verified ✔</span></div>
+          
+          <div class="data-row">
+            <span class="data-lbl">KYC Status</span>
+            <span class="data-val" id="i-kyc">
+              <span style="color:var(--crimson);">Pending</span>
+              <button onclick="alert('To complete KYC verification, please formally email your PAN and LinkedIn profile URL to compliance@thehookhustlers.com from your registered email address.\n\nOur team will review and verify your account within 24 hours.')" style="margin-left:10px; background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.4); color:var(--cyan); padding:4px 8px; border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.65rem; font-weight:700; text-transform:uppercase; cursor:pointer;" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">Verify Now</button>
+            </span>
+          </div>
         </div>
 
         <!-- Deal Flow Pipeline (Placeholder) -->
