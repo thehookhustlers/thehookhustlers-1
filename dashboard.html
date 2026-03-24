@@ -175,11 +175,16 @@
       }
 
       if(data.pitch_deck_url) {
-        let db = document.getElementById('deckBtn');
-        if(db) {
-           db.innerHTML = "Update Existing Deck";
-           db.style.background = "var(--cyan)";
-           db.style.color = "#000";
+        const deckSection = document.getElementById('deckBtn').parentElement;
+        if(deckSection) {
+          deckSection.innerHTML = `
+            <div style="background:rgba(16,217,157,0.05); border:1px solid rgba(16,217,157,0.2); padding:20px; border-radius:12px; text-align:center;">
+              <div style="color:var(--emerald); font-weight:700; margin-bottom:8px; font-size:1.1rem;">DECK SUBMITTED ✔</div>
+              <p style="color:var(--muted); font-size:0.85rem; line-height:1.5; margin:0;">
+                We are currently auditing your deck to match you with top-tier capital. Our analysts will reach out to you shortly via email with next steps.
+              </p>
+            </div>
+          `;
         }
       }
 
@@ -206,8 +211,22 @@
       const kycField = document.getElementById('i-kyc');
       if (data.is_kyc_verified === true) {
         kycField.innerHTML = '<span style="color:var(--emerald);font-weight:700;">Verified ✔</span>';
+        // Hide upload button if verified
+        const kycBtnWrap = document.getElementById('kycBtn')?.parentElement;
+        if(kycBtnWrap) kycBtnWrap.style.display = 'none';
       } else if (data.kyc_url) {
         kycField.innerHTML = '<span style="color:var(--cyan);font-weight:600;">Under Review ⏳</span>';
+        // Replace upload button with processing message
+        const kycBtnWrap = document.getElementById('kycBtn')?.parentElement;
+        if(kycBtnWrap) {
+          kycBtnWrap.parentElement.innerHTML = `
+            <div style="margin-top:15px; background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2); padding:15px; border-radius:8px;">
+              <p style="color:var(--muted); font-size:0.8rem; line-height:1.4; margin:0;">
+                ID received. Our compliance team is verifying your credentials to grant your platform license. Check back in 24 hours.
+              </p>
+            </div>
+          `;
+        }
       }
     }
 
@@ -442,13 +461,14 @@
     </a>
     
     <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
       <a href="home.html">Home</a>
       <a href="startups.html">Startups</a>
       <a href="investors.html">Investors</a>
       <a href="about.html">About</a>
     </div>
 
-    <button onclick="handleSignOut()" class="nav-btn">Sign Out</button>
+    <div class="nav-right"><button onclick="handleSignOut()" class="nav-btn">Sign Out</button></div>
   </nav>
 
   <div class="dashboard-wrap">
@@ -719,6 +739,56 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- GLOBAL AUTO-LOGIN TICKER -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    
+    const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
+    const navLinks = document.querySelector('.nav-links');
+
+    if(session) {
+      if(navRight) {
+        navRight.innerHTML = `
+          <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;text-shadow:0 0 10px rgba(6,182,212,0.3);">Dashboard</a>
+          <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);cursor:pointer;border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
+        `;
+      }
+      
+      if(navLinks) {
+          // Add Dashboard to Tab list if not there
+          if(!navLinks.innerHTML.includes('dashboard.html')) {
+              const dashTab = document.createElement('a');
+              dashTab.href = 'dashboard.html';
+              dashTab.textContent = 'Dashboard';
+              navLinks.insertBefore(dashTab, navLinks.firstChild);
+          }
+          // Add Pricing if not there
+          if(!navLinks.innerHTML.includes('pricing.html')) {
+              const priceLink = document.createElement('a');
+              priceLink.href = 'pricing.html';
+              priceLink.textContent = 'Pricing';
+              priceLink.style.color = 'var(--vivid2)';
+              
+              const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
+              if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
+              else navLinks.appendChild(priceLink);
+          }
+      }
+    } else {
+        // Logged out state: ensure pricing and dashboard tabs are gone
+        if(navLinks) {
+            document.querySelectorAll('.nav-links a[href="pricing.html"]').forEach(el => el.remove());
+            document.querySelectorAll('.nav-links a[href="dashboard.html"]').forEach(el => el.remove());
+        }
+    }
+  });
+</script>
+
 </body>
 
 

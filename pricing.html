@@ -8,9 +8,23 @@
   <!-- 8. Mobile browser chrome color -->
   <meta name="theme-color" content="#04040b">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
 <script>
 // Instant login-state class on <html lang="en"> before render
-if(localStorage.getItem('hhLoggedIn')==='true'){document.documentElement.classList.add('is-logged-in');}
+if(localStorage.getItem('hhLoggedIn')==='true'){
+  document.documentElement.classList.add('is-logged-in');
+} else {
+  // If no localStorage, we'll verify with Supabase as a backup/force-redirect
+  async function checkPricingAccess() {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(!session) {
+      window.location.href = 'login.html?next=pricing.html';
+    }
+  }
+  checkPricingAccess();
+}
 </script>
 <style>
 /* Hide Login button instantly when logged in — no flash */
@@ -2384,6 +2398,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+
 <!-- GLOBAL AUTO-LOGIN TICKER -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-client.js"></script>
@@ -2392,9 +2407,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if(typeof window.supabaseClient === 'undefined') return;
     const { data: { session } } = await window.supabaseClient.auth.getSession();
     
+    const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
+    const navLinks = document.querySelector('.nav-links');
+
     if(session) {
-      // 1. Swap Login/Join for Dashboard/SignOut
-      const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
       if(navRight) {
         navRight.innerHTML = `
           <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;text-shadow:0 0 10px rgba(6,182,212,0.3);">Dashboard</a>
@@ -2402,22 +2418,32 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       }
       
-      // 2. Reveal Pricing Link
-      const navLinks = document.querySelector('.nav-links');
-      if(navLinks && !navLinks.innerHTML.includes('pricing.html')) {
-          const priceLink = document.createElement('a');
-          priceLink.href = 'pricing.html';
-          priceLink.textContent = 'Pricing';
-          priceLink.style.color = 'var(--vivid2)';
-          priceLink.style.textShadow = '0 0 10px rgba(124,58,237,0.5)';
-          
-          const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
-          if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
-          else navLinks.appendChild(priceLink);
+      if(navLinks) {
+          // Add Dashboard to Tab list if not there
+          if(!navLinks.innerHTML.includes('dashboard.html')) {
+              const dashTab = document.createElement('a');
+              dashTab.href = 'dashboard.html';
+              dashTab.textContent = 'Dashboard';
+              navLinks.insertBefore(dashTab, navLinks.firstChild);
+          }
+          // Add Pricing if not there
+          if(!navLinks.innerHTML.includes('pricing.html')) {
+              const priceLink = document.createElement('a');
+              priceLink.href = 'pricing.html';
+              priceLink.textContent = 'Pricing';
+              priceLink.style.color = 'var(--vivid2)';
+              
+              const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
+              if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
+              else navLinks.appendChild(priceLink);
+          }
       }
     } else {
-        // Enforce Pricing is hidden for unauthenticated users
-        document.querySelectorAll('.nav-links a[href="pricing.html"]').forEach(el => el.remove());
+        // Logged out state: ensure pricing and dashboard tabs are gone
+        if(navLinks) {
+            document.querySelectorAll('.nav-links a[href="pricing.html"]').forEach(el => el.remove());
+            document.querySelectorAll('.nav-links a[href="dashboard.html"]').forEach(el => el.remove());
+        }
     }
   });
 </script>
