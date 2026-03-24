@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — The Hook Hustlers</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Supabase Database Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+
+  <style>
+    :root {
+      --black: #04040b; --deep: #070710; --card: #0c0c1e; --card2: #09091a;
+      --vivid: #7c3aed; --vivid2: #a855f7; --vivid-glow: rgba(124,58,237,0.3);
+      --cyan: #06b6d4; --emerald: #10d99d; --crimson: #f43f5e;
+      --white: #f0edf8; --muted: rgba(240,237,248,0.4);
+      --border: rgba(124,58,237,0.1); --border2: rgba(255,255,255,0.06);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body { background:var(--black); color:var(--white); font-family:'Rajdhani',sans-serif; overflow-x:hidden; }
+
+    /* Particles & Splashes */
+    .bg-mesh { position:fixed; inset:0; z-index:0; background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,58,237,0.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 90% 80%,rgba(6,182,212,0.04) 0%,transparent 60%); pointer-events:none; }
+
+    /* Nav */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px 64px; background:rgba(4,4,11,0.75); backdrop-filter:blur(24px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:.08em; text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .nav-logo-text { background:linear-gradient(135deg,var(--vivid2),var(--cyan),var(--vivid)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .nav-logo img { width:32px; height:32px; border-radius:50%; box-shadow:0 0 14px rgba(124,58,237,0.5); }
+    .nav-btn { font-family:'Rajdhani',sans-serif; font-weight:600; font-size:.82rem; padding:9px 22px; border-radius:6px; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; background:transparent; border:1px solid rgba(244,63,94,0.4); color:var(--crimson); }
+    .nav-btn:hover { background:rgba(244,63,94,0.1); }
+
+    /* Layout */
+    .dashboard-wrap { padding:120px 64px 60px; position:relative; z-index:1; max-width:1400px; margin:0 auto; min-height:100vh; }
+    
+    .loading-state { text-align:center; padding:100px 0; color:var(--vivid2); font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.1em; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+    /* Dashboard Modules */
+    .dash-header { margin-bottom:40px; border-bottom:1px solid var(--border2); padding-bottom:20px; }
+    .dash-title { font-family:'Bebas Neue',sans-serif; font-size:3rem; letter-spacing:.04em; margin-bottom:8px; }
+    .dash-sub { color:var(--muted); font-size:1rem; display:flex; align-items:center; gap:10px; }
+    .badge { font-family:'Rajdhani',sans-serif; font-size:.7rem; font-weight:700; padding:4px 10px; border-radius:4px; letter-spacing:.08em; text-transform:uppercase; }
+    .badge-startup { background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3); color:var(--vivid2); }
+    .badge-investor { background:rgba(16,217,157,0.15); border:1px solid rgba(16,217,157,0.3); color:var(--emerald); }
+
+    .grid-2 { display:grid; grid-template-columns:1fr 2fr; gap:32px; }
+    
+    /* Glass Cards */
+    .glass-card { background:rgba(12,12,30,0.65); backdrop-filter:blur(12px); border:1px solid rgba(124,58,237,0.12); border-radius:16px; padding:32px; transition:transform .3s; }
+    .glass-card:hover { border-color:rgba(124,58,237,0.4); box-shadow:0 10px 40px rgba(124,58,237,0.1); }
+
+    .card-title { font-family:'Rajdhani',sans-serif; font-size:.9rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--vivid2); margin-bottom:20px; border-bottom:1px solid var(--border2); padding-bottom:10px; }
+
+    /* Score Circle */
+    .score-wrap { position:relative; width:160px; height:160px; margin:0 auto 20px; }
+    .score-circle { width:100%; height:100%; border-radius:50%; background:conic-gradient(var(--emerald) 0%, var(--emerald) 85%, var(--deep) 85%, var(--deep) 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 0 30px rgba(16,217,157,0.2); }
+    .score-inner { width:140px; height:140px; background:var(--card); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .score-num { font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--white); line-height:1; }
+    .score-lbl { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; font-weight:600; }
+
+    /* Data List */
+    .data-row { display:flex; justify-content:space-between; margin-bottom:12px; font-size:.9rem; }
+    .data-lbl { color:var(--muted); }
+    .data-val { font-weight:600; color:var(--white); }
+
+    /* Match Cards */
+    .match-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:16px; }
+    .match-card { background:var(--deep); border:1px solid var(--border2); border-radius:12px; padding:20px; cursor:pointer; transition:all .2s; }
+    .match-card:hover { border-color:var(--cyan); transform:translateY(-2px); }
+    .m-name { font-size:1.1rem; font-weight:700; margin-bottom:4px; }
+    .m-sub { font-size:.8rem; color:var(--muted); margin-bottom:12px; }
+    .m-tag { display:inline-block; font-size:.65rem; background:rgba(6,182,212,0.15); color:var(--cyan); padding:3px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:.05em; margin-right:4px; margin-bottom:4px; }
+
+    @media(max-width:900px){ .grid-2 { grid-template-columns:1fr; } nav{padding:12px 24px;} .dashboard-wrap{padding:100px 24px 40px;} }
+  
+/* ── UNIVERSAL TOUCH DEVICE FIX: Hide custom cursor on mobile/tablets to prevent sticking ── */
+@media (hover: none) and (pointer: coarse), (max-width: 1024px) {
+  #cursor, #cursorRing, .cursor, .cursor-ring, #hh-cursor, #hh-ring, .hh-trail {
+    display: none !important; opacity: 0 !important; visibility: hidden !important;
+  }
+  body, html, * { cursor: auto !important; }
+}
+</style>
+
+
+  <script>
+    // 1. Auth Guard
+    async function checkAuth() {
+      const { data: { session }, error } = await supabaseClient.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return null;
+      }
+      return session.user;
+    }
+
+    // 2. Fetch User Profile (Determines if Startup or Investor)
+    async function loadDashboard() {
+      const user = await checkAuth();
+      if (!user) return; // Auth guard caught them
+
+      // Check Startups table
+      const { data: startupData, error: sErr } = await supabaseClient
+        .from('startups')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+      
+      if (startupData) {
+        renderStartupDashboard(startupData);
+        return;
+      }
+
+      // Check Investors table
+      const { data: investorData, error: iErr } = await supabaseClient
+        .from('investors')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+      
+      if (investorData) {
+        renderInvestorDashboard(investorData);
+        return;
+      }
+
+      // Fallback
+      document.getElementById('loadingState').innerHTML = "Error: Profile not found.";
+    }
+
+    function renderStartupDashboard(data) {
+      document.getElementById('loadingState').style.display = 'none';
+      const ui = document.getElementById('startupUI');
+      ui.style.display = 'block';
+
+      // Fill header
+      document.getElementById('s-title').textContent = 'Welcome, ' + data.founder_name;
+      document.getElementById('s-company').textContent = data.company_name;
+
+      // Fill profile card
+      document.getElementById('s-ind').textContent = data.industry || 'Unknown';
+      document.getElementById('s-stage').textContent = data.stage || 'Unknown';
+      document.getElementById('s-city').textContent = data.city || 'Unknown';
+      document.getElementById('s-dpiit').textContent = data.dpiit_number ? 'Verified' : 'Pending';
+      if(data.dpiit_number) {
+        document.getElementById('s-dpiit').style.color = 'var(--emerald)';
+      }
+
+      // Score logic based on completeness
+      let score = 50;
+      if(data.dpiit_number) score += 20;
+      if(data.pitch_deck_url) score += 15;
+      if(data.funding_needed) score += 15;
+      document.getElementById('s-score').textContent = score;
+      document.getElementById('scoreRing').style.background = `conic-gradient(var(--emerald) 0%, var(--emerald) ${score}%, var(--deep) ${score}%, var(--deep) 100%)`;
+    }
+
+    function renderInvestorDashboard(data) {
+      document.getElementById('loadingState').style.display = 'none';
+      const ui = document.getElementById('investorUI');
+      ui.style.display = 'block';
+
+      // Fill header
+      document.getElementById('i-title').textContent = 'Welcome, ' + data.full_name;
+      document.getElementById('i-type').textContent = data.investor_type || 'Investor';
+
+      // Fill profile
+      document.getElementById('i-ticket').textContent = data.ticket_size || 'Unknown';
+    }
+
+    async function handleSignOut() {
+      await window.supabaseClient.auth.signOut();
+      localStorage.removeItem('hhLoggedIn');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDashboard);
+  </script>
+</head>
+<body>
+  <div class="bg-mesh"></div>
+
+  <nav>
+    <a href="home.html" class="nav-logo">
+      <img src="logo.png" alt="Hook Hustlers Logo" onerror="this.style.display='none'"/>
+      <span class="nav-logo-text">THE HOOK HUSTLERS</span>
+    </a>
+    <button onclick="handleSignOut()" class="nav-btn">Sign Out</button>
+  </nav>
+
+  <div class="dashboard-wrap">
+    
+    <div id="loadingState" class="loading-state">
+      AUTHENTICATING PROFILE...
+    </div>
+
+    <!-- STARTUP DASHBOARD -->
+    <div id="startupUI" style="display:none;">
+      <div class="dash-header">
+        <h1 class="dash-title" id="s-title">Welcome</h1>
+        <div class="dash-sub">
+          <span class="badge badge-startup">STARTUP</span>
+          <span id="s-company" style="font-weight:600;color:var(--white);">Company Name</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Readiness Score -->
+        <div class="glass-card">
+          <div class="card-title">Funding Readiness</div>
+          <div class="score-wrap">
+            <div class="score-circle" id="scoreRing">
+              <div class="score-inner">
+                <span class="score-num" id="s-score">85</span>
+                <span class="score-lbl">Score</span>
+              </div>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:.85rem;color:var(--muted);line-height:1.6;">
+            A score above 80 makes your profile visible to premium institutional investors tracking your sector.
+          </p>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="glass-card">
+          <div class="card-title">Startup Profile Overview</div>
+          <div class="data-row"><span class="data-lbl">Industry</span><span class="data-val" id="s-ind">-</span></div>
+          <div class="data-row"><span class="data-lbl">Current Stage</span><span class="data-val" id="s-stage">-</span></div>
+          <div class="data-row"><span class="data-lbl">Location</span><span class="data-val" id="s-city">-</span></div>
+          <div class="data-row"><span class="data-lbl">DPIIT Status</span><span class="data-val" id="s-dpiit" style="color:#f43f5e;">-</span></div>
+          
+          <div style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border2);">
+            <div class="card-title" style="border:none;padding:0;margin-bottom:12px;font-size:.8rem;">Recommended Actions</div>
+            <div style="display:flex;gap:12px;">
+              <button style="background:linear-gradient(135deg,var(--vivid),var(--vivid2));border:none;padding:10px 20px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;opacity:0.6;cursor:not-allowed;" title="Coming soon">Upload Pitch Deck</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investor Matches -->
+      <div style="margin-top:40px;">
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:20px;">AI Matched Investors</h2>
+        <div class="match-grid">
+          <div class="match-card">
+            <div class="m-name">Peak XV Partners</div>
+            <div class="m-sub">Venture Capital • ₹8Cr - ₹40Cr</div>
+            <div>
+              <span class="m-tag">SAAS</span><span class="m-tag">FINTECH</span><span class="m-tag">AI</span>
+            </div>
+          </div>
+          <div class="match-card">
+            <div class="m-name">Blume Ventures</div>
+            <div class="m-sub">Micro VC • ₹2Cr - ₹12Cr</div>
+            <div>
+              <span class="m-tag">D2C</span><span class="m-tag">EDTECH</span>
+            </div>
+          </div>
+          <div class="match-card">
+            <div class="m-name">Rajesh Sawhney</div>
+            <div class="m-sub">Angel Investor • ₹20L - ₹1Cr</div>
+            <div>
+              <span class="m-tag">AGRITECH</span><span class="m-tag">SAAS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- INVESTOR DASHBOARD -->
+    <div id="investorUI" style="display:none;">
+      <div class="dash-header">
+        <h1 class="dash-title" id="i-title">Welcome</h1>
+        <div class="dash-sub">
+          <span class="badge badge-investor">ACCREDITED INVESTOR</span>
+          <span id="i-type" style="font-weight:600;color:var(--white);">Investor</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Profile Overview -->
+        <div class="glass-card">
+          <div class="card-title">Investment Mandate</div>
+          <div class="data-row"><span class="data-lbl">Target Ticket Size</span><span class="data-val" id="i-ticket">-</span></div>
+          <div class="data-row"><span class="data-lbl">KYC Status</span><span class="data-val" style="color:var(--emerald);">Verified ✔</span></div>
+        </div>
+
+        <!-- Deal Flow Pipeline (Placeholder) -->
+        <div class="glass-card">
+          <div class="card-title">Deal Flow Pipeline (Next 7 Days)</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+            <div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;margin-bottom:5px;color:var(--emerald);">24</div>
+              <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">Highly Matched Startups</div>
+            </div>
+            <div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:5px;color:var(--cyan);">08</div>
+              <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">DPIIT Verified</div>
+            </div>
+            <div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:5px;color:var(--vivid2);">12</div>
+              <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">In Diligence</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curated Startups -->
+      <div style="margin-top:40px;">
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:20px;">Curated Deal Flow</h2>
+        <div class="match-grid">
+          <div class="match-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div class="m-name">AgriSync Networks</div>
+              <span class="badge badge-startup" style="font-size:0.5rem;">Score: 92</span>
+            </div>
+            <div class="m-sub">Seed • ₹2Cr Requested • Lucknow</div>
+            <div>
+              <span class="m-tag">AGRITECH</span><span class="m-tag">B2B</span>
+            </div>
+          </div>
+          <div class="match-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div class="m-name">FinEdge Solutions</div>
+              <span class="badge badge-startup" style="font-size:0.5rem;color:var(--cyan);border-color:var(--cyan);">Score: 78</span>
+            </div>
+            <div class="m-sub">Pre-Seed • ₹50L Requested • Delhi</div>
+            <div>
+              <span class="m-tag">FINTECH</span><span class="m-tag">AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- PREMIUM MOBILE TOUCH RIPPLE -->
+<style>
+@media (pointer: coarse) {
+  .hh-touch-ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%) scale(0);
+    animation: hhTouchRippleAnim 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    mix-blend-mode: screen;
+  }
+  @keyframes hhTouchRippleAnim {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+    50%  { opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+  }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Only activate on touch devices
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    const splashColors = [
+      'rgba(124,58,237,0.7)', // Vivid Violet
+      'rgba(6,182,212,0.7)',  // Cyan
+      'rgba(16,217,157,0.7)', // Emerald
+      'rgba(244,63,94,0.7)'   // Crimson
+    ];
+    
+    document.addEventListener('touchstart', function(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      
+      const ripple = document.createElement('div');
+      ripple.className = 'hh-touch-ripple';
+      ripple.style.left = touch.clientX + 'px';
+      ripple.style.top = touch.clientY + 'px';
+      
+      // Randomize core size and color per tap
+      const size = 30 + Math.random() * 30;
+      ripple.style.width = size + 'px';
+      ripple.style.height = size + 'px';
+      
+      const color = splashColors[Math.floor(Math.random() * splashColors.length)];
+      ripple.style.background = `radial-gradient(circle, ${color} 0%, transparent 80%)`;
+      ripple.style.boxShadow = `0 0 30px ${color}`;
+      
+      document.body.appendChild(ripple);
+      
+      // Cleanup DOM after animation finishes
+      setTimeout(() => ripple.remove(), 700);
+    }, {passive: true});
+  }
+});
+</script>
+</body>
+
+</html>

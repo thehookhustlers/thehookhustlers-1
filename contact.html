@@ -751,23 +751,7 @@ body.page-exit { animation: pageFadeOut 0.3s ease forwards; }
   opacity: 1 !important;
 }
 
-/* 8. INPUT FLOAT LABEL */
-.form-group { position: relative; }
-.form-group label {
-  position: absolute; top: 50%; left: 16px;
-  transform: translateY(-50%);
-  transition: all 0.2s ease;
-  pointer-events: none; color: var(--muted); font-size: 0.9rem;
-  background: transparent; padding: 0 4px;
-}
-.form-group.has-value label,
-.form-group input:focus ~ label,
-.form-group textarea:focus ~ label {
-  top: 0; font-size: 0.72rem;
-  color: var(--vivid2);
-  background: var(--card);
-  border-radius: 3px;
-}
+/* 8. INPUT FLOAT LABEL REMOVED TO FIX OVERLAP */
 
 /* 9. ACTIVE NAV INDICATOR DOT */
 .nav-links a.active::before {
@@ -1342,7 +1326,16 @@ input:focus, textarea:focus, select:focus {
   -webkit-text-fill-color: transparent !important;
 }
 
+
+/* ── UNIVERSAL TOUCH DEVICE FIX: Hide custom cursor on mobile/tablets to prevent sticking ── */
+@media (hover: none) and (pointer: coarse), (max-width: 1024px) {
+  #cursor, #cursorRing, .cursor, .cursor-ring, #hh-cursor, #hh-ring, .hh-trail {
+    display: none !important; opacity: 0 !important; visibility: hidden !important;
+  }
+  body, html, * { cursor: auto !important; }
+}
 </style>
+
 
 
 <script type="application/ld+json">
@@ -1471,18 +1464,18 @@ input:focus, textarea:focus, select:focus {
     <h3>Send Us a Message</h3>
     <p>Fill in your details and we'll be in touch shortly.</p>
     <div class="form-row">
-     <div class="form-group"><label>Your Name</label><input class="form-input" placeholder="Rahul Sharma" type="text"/></div>
-     <div class="form-group"><label>Email Address</label><input class="form-input" placeholder="rahul@startup.in" type="email"/></div>
+     <div class="form-group"><label>Your Name</label><input id="c_name" class="form-input" placeholder="Rahul Sharma" type="text"/></div>
+     <div class="form-group"><label>Email Address</label><input id="c_email" class="form-input" placeholder="rahul@startup.in" type="email"/></div>
     </div>
     <div class="form-row">
-     <div class="form-group"><label>Phone Number</label><input class="form-input" placeholder="+91 98765 43210" type="tel"/></div>
+     <div class="form-group"><label>Phone Number</label><input id="c_phone" class="form-input" placeholder="+91 98765 43210" type="tel"/></div>
      <div class="form-group"><label>You Are</label>
-      <select class="form-select"><option value="">Select...</option><option>A Startup Founder</option><option>An Investor / VC</option><option>Angel Investor</option><option>Media / Press</option><option>Partnership Enquiry</option><option>Other</option></select>
+      <select id="c_type" class="form-select"><option value="">Select...</option><option>A Startup Founder</option><option>An Investor / VC</option><option>Angel Investor</option><option>Media / Press</option><option>Partnership Enquiry</option><option>Other</option></select>
      </div>
     </div>
-    <div class="form-group"><label>Subject</label><input class="form-input" placeholder="How can we help you?" type="text"/></div>
-    <div class="form-group"><label>Your Message</label><textarea class="form-textarea" placeholder="Tell us about your startup, investment thesis, or any questions you have..."></textarea></div>
-    <button class="form-submit" onclick="alert('Thank you! We will get back to you within 24 hours. 🙏')">Send Message →</button>
+    <div class="form-group"><label>Subject</label><input id="c_subject" class="form-input" placeholder="How can we help you?" type="text"/></div>
+    <div class="form-group"><label>Your Message</label><textarea id="c_message" class="form-textarea" placeholder="Tell us about your startup, investment thesis, or any questions you have..."></textarea></div>
+    <button id="contactSubmitBtn" class="form-submit" onclick="submitContact()">Send Message →</button>
    </div>
   </div>
  </div>
@@ -2212,5 +2205,123 @@ function closeMobile(){
 })();
 </script>
 
+
+<script>
+// Handle Contact Submission to Supabase
+async function submitContact() {
+  var name = document.getElementById('c_name').value.trim();
+  var email = document.getElementById('c_email').value.trim();
+  var phone = document.getElementById('c_phone').value.trim();
+  var type = document.getElementById('c_type').value;
+  var subject = document.getElementById('c_subject').value.trim();
+  var message = document.getElementById('c_message').value.trim();
+  var btn = document.getElementById('contactSubmitBtn');
+
+  if(!name || !email || !message) {
+    alert("Please fill out your Name, Email, and Message.");
+    return;
+  }
+
+  btn.innerHTML = "Sending...";
+  btn.style.opacity = "0.7";
+  btn.disabled = true;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('contacts')
+      .insert([
+        {
+          name: name,
+          email: email,
+          phone: phone,
+          user_type: type,
+          subject: subject,
+          message: message
+        }
+      ]);
+
+    if (error) throw error;
+    
+    btn.innerHTML = "Message Sent! ✓";
+    btn.style.background = "#10d99d";
+    alert("Thank you! Your message has been securely sent to our team. We'll be in touch within 24 hours.");
+    
+    // Clear inputs
+    document.getElementById('c_name').value = '';
+    document.getElementById('c_email').value = '';
+    document.getElementById('c_phone').value = '';
+    document.getElementById('c_type').value = '';
+    document.getElementById('c_subject').value = '';
+    document.getElementById('c_message').value = '';
+    
+  } catch (error) {
+    console.error("Supabase Error: ", error.message);
+    alert("Something went wrong while sending your message. Please try emailing us directly.");
+    btn.innerHTML = "Send Message →";
+  }
+  
+  btn.style.opacity = "1";
+  btn.disabled = false;
+}
+</script>
+
+<!-- PREMIUM MOBILE TOUCH RIPPLE -->
+<style>
+@media (pointer: coarse) {
+  .hh-touch-ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%) scale(0);
+    animation: hhTouchRippleAnim 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    mix-blend-mode: screen;
+  }
+  @keyframes hhTouchRippleAnim {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+    50%  { opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+  }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Only activate on touch devices
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    const splashColors = [
+      'rgba(124,58,237,0.7)', // Vivid Violet
+      'rgba(6,182,212,0.7)',  // Cyan
+      'rgba(16,217,157,0.7)', // Emerald
+      'rgba(244,63,94,0.7)'   // Crimson
+    ];
+    
+    document.addEventListener('touchstart', function(e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      
+      const ripple = document.createElement('div');
+      ripple.className = 'hh-touch-ripple';
+      ripple.style.left = touch.clientX + 'px';
+      ripple.style.top = touch.clientY + 'px';
+      
+      // Randomize core size and color per tap
+      const size = 30 + Math.random() * 30;
+      ripple.style.width = size + 'px';
+      ripple.style.height = size + 'px';
+      
+      const color = splashColors[Math.floor(Math.random() * splashColors.length)];
+      ripple.style.background = `radial-gradient(circle, ${color} 0%, transparent 80%)`;
+      ripple.style.boxShadow = `0 0 30px ${color}`;
+      
+      document.body.appendChild(ripple);
+      
+      // Cleanup DOM after animation finishes
+      setTimeout(() => ripple.remove(), 700);
+    }, {passive: true});
+  }
+});
+</script>
 </body>
+
+
 </html>
