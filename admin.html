@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Portal — The Hook Hustlers</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+
+  <style>
+    :root {
+      --bg: #04040b; --card: #0c0c1e;
+      --vivid: #7c3aed; --cyan: #06b6d4; --emerald: #10d99d; --crimson: #f43f5e;
+      --text: #f0edf8; --muted: rgba(240,237,248,0.5);
+      --border: rgba(124,58,237,0.2);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; margin:0; padding:40px; }
+    h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; margin-bottom: 5px; color: var(--cyan); letter-spacing: 0.05em; }
+    .sub { color: var(--muted); margin-bottom: 40px; font-size: 1rem; }
+    
+    .grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; overflow-x: auto; }
+    .card-title { font-size: 1.2rem; font-weight: 700; color: var(--vivid); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center; }
+    
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { padding: 12px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; text-transform: uppercase; }
+    td { padding: 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; }
+    tr:last-child td { border-bottom: none; }
+    
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .b-green { background: rgba(16,217,157,0.1); color: var(--emerald); }
+    .b-purple { background: rgba(124,58,237,0.1); color: var(--vivid); }
+    .b-red { background: rgba(244,63,94,0.1); color: var(--crimson); }
+    
+    .link { color: var(--cyan); text-decoration: none; }
+    .link:hover { text-decoration: underline; }
+
+    #authGuard { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .btn { background: var(--vivid); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-family: 'Rajdhani', sans-serif; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- SECURITY GUARD -->
+  <div id="authGuard">
+    <h1 style="color:var(--vivid);">SECURE ADMIN PORTAL</h1>
+    <p class="sub">Verifying Administrative Privileges...</p>
+    <div id="authError" style="color:var(--crimson);margin-top:20px;display:none;">Access Denied. You do not have admin rights.</div>
+    <button onclick="window.location.href='home.html'" class="btn" style="margin-top:20px;display:none;" id="goHomeBtn">Return Home</button>
+  </div>
+
+  <h1>Master Control</h1>
+  <p class="sub">Oversight dashboard for The Hook Hustlers database</p>
+
+  <div class="grid">
+    
+    <div class="table-card">
+      <div class="card-title">Registered Startups <span id="s-count" class="badge b-purple">0</span></div>
+      <table>
+        <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>DPIIT</th><th>Pitch Deck</th></tr></thead>
+        <tbody id="startupsTable"><tr><td colspan="6" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="table-card">
+      <div class="card-title">Registered Investors <span id="i-count" class="badge b-green">0</span></div>
+      <table>
+        <thead><tr><th>Entity Name</th><th>Type</th><th>Ticket Size</th><th>Status</th></tr></thead>
+        <tbody id="investorsTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="table-card">
+      <div class="card-title">Support Messages <span id="c-count" class="badge b-red">0</span></div>
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>User Type</th><th>Message</th></tr></thead>
+        <tbody id="contactsTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script>
+    // 1. ADMIN AUTHORIZATION
+    // Change this to the exact email address you use to log in
+    const ADMIN_EMAILS = [
+      'admin@thehookhustlers.com', 
+      'masteraniketsingh@gmail.com',
+      '_thehookhustlers@gmail.com'
+    ]; 
+
+    async function initAdmin() {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      
+      if (!session) {
+        document.getElementById('authError').style.display = 'block';
+        document.getElementById('authError').textContent = "Not Logged In. Please login via /login.html first.";
+        document.getElementById('goHomeBtn').style.display = 'block';
+        return;
+      }
+
+      const userEmail = session.user.email;
+      if (!ADMIN_EMAILS.includes(userEmail)) {
+        document.getElementById('authError').style.display = 'block';
+        document.getElementById('authError').textContent = `Access Denied for ${userEmail}.`;
+        document.getElementById('goHomeBtn').style.display = 'block';
+        return;
+      }
+
+      // Granted
+      document.getElementById('authGuard').style.display = 'none';
+      loadData();
+    }
+
+    async function loadData() {
+      // Load Startups
+      const { data: startups } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false });
+      const sBody = document.getElementById('startupsTable');
+      if(startups) {
+        document.getElementById('s-count').textContent = startups.length;
+        sBody.innerHTML = startups.map(s => {
+          let score = 50;
+          if(s.dpiit_number) score += 20; if(s.pitch_deck_url) score += 15; if(s.funding_needed) score += 15;
+          let deckHtml = s.pitch_deck_url ? `<a href="${s.pitch_deck_url}" target="_blank" class="link">View PDF</a>` : '<span style="color:#666;">No File</span>';
+          let dpiitHtml = s.dpiit_number ? `<span class="badge b-green">Yes</span>` : '<span class="badge b-red">No</span>';
+          return `<tr><td><b>${s.company_name}</b></td><td>${s.founder_name}</td><td>${s.industry}</td><td><span class="badge ${score>80?'b-green':'b-purple'}">${score}</span></td><td>${dpiitHtml}</td><td>${deckHtml}</td></tr>`;
+        }).join('');
+      } else { sBody.innerHTML = '<tr><td colspan="6">No startups found.</td></tr>'; }
+
+      // Load Investors
+      const { data: cols } = await supabaseClient.from('investors').select('*').order('created_at', { ascending: false });
+      const iBody = document.getElementById('investorsTable');
+      if(cols) {
+        document.getElementById('i-count').textContent = cols.length;
+        iBody.innerHTML = cols.map(i => `<tr><td><b>${i.full_name}</b></td><td>${i.investor_type}</td><td>${i.ticket_size}</td><td><span class="badge b-green">Verified</span></td></tr>`).join('');
+      } else { iBody.innerHTML = '<tr><td colspan="4">No investors found.</td></tr>'; }
+
+      // Load Contacts
+      const { data: msgs } = await supabaseClient.from('contacts').select('*').order('created_at', { ascending: false });
+      const cBody = document.getElementById('contactsTable');
+      if(msgs) {
+        document.getElementById('c-count').textContent = msgs.length;
+        cBody.innerHTML = msgs.map(m => `<tr><td><b>${m.name}</b></td><td><a href="mailto:${m.email}" class="link">${m.email}</a></td><td>${m.user_type||'-'}</td><td style="max-width:300px;opacity:0.8;">${m.message}</td></tr>`).join('');
+      } else { cBody.innerHTML = '<tr><td colspan="4">No messages found.</td></tr>'; }
+    }
+
+    document.addEventListener('DOMContentLoaded', initAdmin);
+  </script>
+</body>
+</html>

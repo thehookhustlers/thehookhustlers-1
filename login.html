@@ -1462,90 +1462,18 @@ input:focus, textarea:focus, select:focus {
  </div>
 </div>
 
-<!-- Google Sign-In SDK -->
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
+<!-- Google Sign-In handled via Supabase -->
 <script>
-// ── GOOGLE CLIENT ID ──
-// Replace this with your actual Google OAuth Client ID from console.cloud.google.com
-var GOOGLE_CLIENT_ID = '11657716794-qp7vu5t2toegcci3l4quqke1ft5rrdk8.apps.googleusercontent.com';
-
-function googleSignIn() {
- // Check if Google SDK loaded
- if (typeof google === 'undefined') {
-  // Fallback: show setup instructions if not configured yet
-  showGoogleNotice();
-  return;
- }
- google.accounts.id.initialize({
-  client_id: GOOGLE_CLIENT_ID,
-  callback: handleGoogleResponse,
-  auto_select: false,
-  cancel_on_tap_outside: true,
- });
- google.accounts.id.prompt(function(notification) {
-  if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-   // One Tap blocked — open full popup flow
-   google.accounts.oauth2.initTokenClient({
-    client_id: GOOGLE_CLIENT_ID,
-    scope: 'email profile',
-    callback: handleGoogleToken,
-   }).requestAccessToken();
+async function googleSignIn() {
+  const { data, error } = await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin + '/dashboard.html'
+    }
+  });
+  if (error) {
+    alert('Google Login failed: ' + error.message);
   }
- });
-}
-
-function handleGoogleResponse(response) {
- // Decode JWT credential to get user info
- var payload = JSON.parse(atob(response.credential.split('.')[1]));
- finishGoogleLogin(payload.name, payload.email, payload.picture);
-}
-
-function handleGoogleToken(tokenResponse) {
- if (tokenResponse && tokenResponse.access_token) {
-  // Fetch user info from Google
-  fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-   headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
-  })
-  .then(r => r.json())
-  .then(u => finishGoogleLogin(u.name, u.email, u.picture));
- }
-}
-
-function finishGoogleLogin(name, email, picture) {
- localStorage.setItem('hhLoggedIn', 'true');
- localStorage.setItem('hhUserName', name);
- localStorage.setItem('hhUserEmail', email);
- localStorage.setItem('hhUserPicture', picture || '');
- localStorage.setItem('hhLoginMethod', 'google');
-
- var urlParams = new URLSearchParams(window.location.search);
- var next = urlParams.get('next');
- if (next === 'signup') {
-  window.location.href = 'signup.html';
- } else {
-  window.location.href = 'home.html';
- }
-}
-
-function showGoogleNotice() {
- // Show a helpful modal if Google OAuth not yet configured
- var overlay = document.createElement('div');
- overlay.style.cssText = 'position:fixed;inset:0;background:rgba(5,5,8,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
- overlay.innerHTML = `
-  <div style="background:#0d0d1a;border:1px solid rgba(124,58,237,0.2);border-radius:20px;padding:40px;max-width:440px;text-align:center;">
-   <div style="font-size:2.5rem;margin-bottom:16px;">🔧</div>
-   <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;margin-bottom:12px;color:#7c3aed;">Google Sign-In Setup Needed</div>
-   <p style="font-size:.85rem;color:rgba(240,237,232,0.5);line-height:1.8;margin-bottom:24px;">To enable Google login, add your OAuth Client ID from <strong style="color:rgba(240,237,232,0.8);">Google Cloud Console</strong> to the login.html file. Replace <code style="color:#7c3aed;font-size:.78rem;">YOUR_GOOGLE_CLIENT_ID_HERE</code> with your actual Client ID.</p>
-   <div style="background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.12);border-radius:10px;padding:16px;margin-bottom:24px;font-size:.78rem;color:rgba(240,237,232,0.5);text-align:left;line-height:2;">
-    1. Go to <strong style="color:#7c3aed;">console.cloud.google.com</strong><br/>
-    2. Create OAuth 2.0 Client ID<br/>
-    3. Add your GitHub Pages domain to Authorized Origins<br/>
-    4. Replace the placeholder in login.html
-   </div>
-   <button onclick="this.closest('div[style*=fixed]').remove()" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;padding:12px 32px;border-radius:8px;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;">Got It</button>
-  </div>`;
- document.body.appendChild(overlay);
 }
 
 // Read ?next= param from URL
