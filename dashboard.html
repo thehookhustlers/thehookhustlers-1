@@ -223,6 +223,7 @@
         
         const { error: sErr } = await supabaseClient.from('startups').insert([{
           id: user.id,
+          email: user.email,
           founder_name: user.user_metadata?.full_name || 'Founder',
           company_name: name,
           industry: ind,
@@ -246,6 +247,7 @@
 
         const { error: iErr } = await supabaseClient.from('investors').insert([{
           id: user.id,
+          email: user.email,
           full_name: name,
           investor_type: 'Angel Investor',
           ticket_size: tkt
