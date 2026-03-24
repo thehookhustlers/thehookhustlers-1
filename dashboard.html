@@ -97,7 +97,23 @@
         window.location.href = 'login.html';
         return null;
       }
-      return session.user;
+      
+      const user = session.user;
+      
+      // UNIVERSAL USER LOGGING
+      // Passively logs EVERY user (Google or Email) that successfully reaches the dashboard into a master directory table
+      try {
+        await supabaseClient.from('users_directory').upsert({
+          id: user.id,
+          name: user.user_metadata?.full_name || 'System User',
+          email: user.email,
+          last_active: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch(err) {
+        console.warn('User directory log ignored - table might not exist yet.');
+      }
+      
+      return user;
     }
 
     // 2. Fetch User Profile (Determines if Startup or Investor)
