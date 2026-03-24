@@ -82,7 +82,7 @@
     <div class="table-card">
       <div class="card-title">Registered Investors <span id="i-count" class="badge b-green">0</span></div>
       <table>
-        <thead><tr><th>Entity Name</th><th>Type</th><th>Ticket Size</th><th>Status</th></tr></thead>
+        <thead><tr><th>Entity Name</th><th>Ticket Size</th><th>KYC Document</th><th>Verification Actions</th></tr></thead>
         <tbody id="investorsTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
       </table>
     </div>
@@ -129,6 +129,19 @@
       loadData();
     }
 
+    
+    async function approveKYC(investorId) {
+      if(!confirm("Are you sure you want to permanently mark this investor as VERIFIED on the platform?\n\nThis will unlock their account fully.")) return;
+      
+      const { error } = await supabaseClient.from('investors').update({ is_kyc_verified: true }).eq('id', investorId);
+      if(error) {
+        alert("Error approving KYC: " + error.message);
+      } else {
+        alert("Investor officially verified!");
+        loadData(); // reload tables
+      }
+    }
+
     async function loadData() {
       // Load All Universal Users
       const { data: usersData } = await supabaseClient.from('users_directory').select('*').order('last_active', { ascending: false });
@@ -159,7 +172,13 @@
       const iBody = document.getElementById('investorsTable');
       if(cols) {
         document.getElementById('i-count').textContent = cols.length;
-        iBody.innerHTML = cols.map(i => `<tr><td><b>${i.full_name}</b></td><td>${i.investor_type}</td><td>${i.ticket_size}</td><td><span class="badge b-green">Verified</span></td></tr>`).join('');
+        iBody.innerHTML = cols.map(i => {
+          let docLink = i.kyc_url ? `<a href="${i.kyc_url}" target="_blank" class="link" style="color:var(--cyan);text-decoration:underline;">View ID Image</a>` : '<span style="color:#666;">No File Uploaded</span>';
+          let statusHtml = i.is_kyc_verified 
+            ? '<span class="badge b-green">✔ Vetted & Verified</span>' 
+            : `<button onclick="approveKYC('${i.id}')" class="btn" style="background:var(--cyan);color:#000;padding:6px 12px;font-size:0.75rem;">Approve & Verify</button>`;
+          return `<tr><td><b>${i.full_name}</b></td><td>${i.ticket_size}</td><td>${docLink}</td><td>${statusHtml}</td></tr>`;
+        }).join('');
       } else { iBody.innerHTML = '<tr><td colspan="4">No investors found.</td></tr>'; }
 
       // Load Contacts
