@@ -1372,6 +1372,10 @@ input:focus, textarea:focus, select:focus {
   gtag('js', new Date());
   gtag('config', 'G-YOUR_TAG_HERE');
 </script>
+
+    <!-- Supabase Database Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -1880,27 +1884,100 @@ function handleFile(input, nameId, wrapId) {
  document.getElementById(wrapId).style.background = 'rgba(0,208,132,0.04)';
 }
 
-function submitStartup() {
+async function submitStartup() {
  var qualFile = document.getElementById('s_qualfile').files[0];
  var terms = document.getElementById('s_terms').checked;
  if (!qualFile) { alert('Please upload your qualification proof (minimum: Class 10th marksheet).'); return; }
  if (!terms) { alert('Please agree to the Terms of Use to continue.'); return; }
- // Show success
- var steps = document.querySelectorAll('#startupFlow .form-step');
- steps.forEach(function(s) { s.classList.remove('active'); });
- document.getElementById('s-success').classList.add('active');
- document.getElementById('stepIndicator').style.display = 'none';
- window.scrollTo({ top: 0, behavior: 'smooth' });
+ 
+ try {
+   // 1. Gather all form values
+   const email = document.getElementById('s_email').value.trim();
+   const pass = document.getElementById('s_pass').value;
+   const fname = document.getElementById('s_fname').value.trim();
+   const lname = document.getElementById('s_lname').value.trim();
+   const phone = document.getElementById('s_phone').value.trim();
+   const city = document.getElementById('s_city').value.trim();
+   const startupname = document.getElementById('s_startupname').value.trim();
+   const sector = document.getElementById('s_sector').value;
+   const fundstage = document.getElementById('s_fundstage').value;
+   const dpiit = document.getElementById('s_dpiit').value.trim();
+   
+   // Create auth user
+   const { data: authData, error: authError } = await window.supabaseClient.auth.signUp({
+     email: email,
+     password: pass,
+   });
+   if (authError) throw authError;
+   
+   // Insert into startups table
+   const { error: dbError } = await window.supabaseClient.from('startups').insert({
+     id: authData.user.id,
+     email: email,
+     company_name: startupname,
+     founder_name: fname + ' ' + lname,
+     phone: phone,
+     city: city,
+     industry: sector,
+     stage: fundstage,
+     dpiit_number: dpiit
+   });
+   if (dbError) throw dbError;
+   
+   // Show success
+   var steps = document.querySelectorAll('#startupFlow .form-step');
+   steps.forEach(function(s) { s.classList.remove('active'); });
+   document.getElementById('s-success').classList.add('active');
+   document.getElementById('stepIndicator').style.display = 'none';
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+   
+ } catch (error) {
+   alert('Error creating account: ' + (error.message || 'Unknown error occurred.'));
+ }
 }
 
-function submitInvestor() {
+async function submitInvestor() {
  var terms = document.getElementById('i_terms').checked;
  if (!terms) { alert('Please agree to the Terms of Use to continue.'); return; }
- var steps = document.querySelectorAll('#investorFlow .form-step');
- steps.forEach(function(s) { s.classList.remove('active'); });
- document.getElementById('i-success').classList.add('active');
- document.getElementById('stepIndicator').style.display = 'none';
- window.scrollTo({ top: 0, behavior: 'smooth' });
+ 
+ try {
+   const email = document.getElementById('i_email').value.trim();
+   const pass = document.getElementById('i_pass').value;
+   const fname = document.getElementById('i_fname').value.trim();
+   const lname = document.getElementById('i_lname').value.trim();
+   const phone = document.getElementById('i_phone').value.trim();
+   const linkedin = document.getElementById('i_linkedin').value.trim();
+   const type = document.getElementById('i_type').value;
+   const ticket = document.getElementById('i_ticket').value;
+   
+   // Create auth user
+   const { data: authData, error: authError } = await window.supabaseClient.auth.signUp({
+     email: email,
+     password: pass,
+   });
+   if (authError) throw authError;
+   
+   // Insert into investors table
+   const { error: dbError } = await window.supabaseClient.from('investors').insert({
+     id: authData.user.id,
+     email: email,
+     full_name: fname + ' ' + lname,
+     phone: phone,
+     linkedin_url: linkedin,
+     investor_type: type,
+     ticket_size: ticket
+   });
+   if (dbError) throw dbError;
+   
+   var steps = document.querySelectorAll('#investorFlow .form-step');
+   steps.forEach(function(s) { s.classList.remove('active'); });
+   document.getElementById('i-success').classList.add('active');
+   document.getElementById('stepIndicator').style.display = 'none';
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+   
+ } catch (error) {
+    alert('Error creating account: ' + (error.message || 'Unknown error occurred.'));
+ }
 }
 </script>
 <footer>
