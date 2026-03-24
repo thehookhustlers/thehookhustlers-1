@@ -351,6 +351,85 @@
       });
     }
 
+
+    async function uploadPitchDeck(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const user = await checkAuth();
+      if (!user) return;
+      
+      const deckBtn = document.getElementById('deckBtn');
+      const originalText = deckBtn.innerHTML;
+      deckBtn.innerHTML = "Uploading Document...";
+      deckBtn.style.opacity = "0.7";
+
+      try {
+        const fileExt = file.name.split('.').pop();
+        const filePath = `${user.id}/pitch_deck_${Date.now()}.${fileExt}`;
+        
+        // Force upload with upsert
+        const { error: uploadError } = await window.supabaseClient.storage.from('documents').upload(filePath, file, { cacheControl: '3600', upsert: true });
+        if (uploadError) throw uploadError;
+        
+        const { data: { publicUrl } } = window.supabaseClient.storage.from('documents').getPublicUrl(filePath);
+        
+        const { error: updateError } = await window.supabaseClient.from('startups').update({ pitch_deck_url: publicUrl }).eq('id', user.id);
+        if (updateError) throw updateError;
+        
+        deckBtn.style.background = "var(--emerald)";
+        deckBtn.style.color = "#000";
+        deckBtn.innerHTML = "Submission Successful!";
+        
+        alert("Success! Your Pitch Deck has been securely uploaded to our master database.\n\nOur internal team will review your deck and reach out to you shortly via email with next steps!");
+        setTimeout(() => window.location.reload(), 1500);
+        
+      } catch (err) {
+        alert("Upload Blocked: " + err.message + "\n\nPlease make sure your Supabase 'documents' bucket has public insert policies enabled.");
+        deckBtn.innerHTML = "Upload Failed";
+        setTimeout(() => { deckBtn.innerHTML = originalText; deckBtn.style.opacity = "1"; }, 3000);
+      }
+    }
+
+    async function uploadKYC(event) {
+      const file = event.target.files[0];
+      if (!file || !file.name) { alert("Please select a valid image or PDF."); return; }
+      
+      const user = await checkAuth();
+      if (!user) return;
+      
+      const kycBtn = document.getElementById('kycBtn');
+      const originalText = kycBtn.innerHTML;
+      kycBtn.innerHTML = "Uploading...";
+      kycBtn.style.opacity = "0.7";
+
+      try {
+        const fileExt = file.name.split('.').pop();
+        const filePath = `${user.id}/kyc_${Date.now()}.${fileExt}`;
+        
+        const { error: uploadError } = await window.supabaseClient.storage.from('documents').upload(filePath, file, { cacheControl: '3600', upsert: true });
+        if (uploadError) throw uploadError;
+        
+        const { data: { publicUrl } } = window.supabaseClient.storage.from('documents').getPublicUrl(filePath);
+        
+        const { error: updateError } = await window.supabaseClient.from('investors').update({ kyc_url: publicUrl }).eq('id', user.id);
+        if (updateError) throw updateError;
+        
+        kycBtn.style.background = "var(--vivid-glow)";
+        kycBtn.style.color = "var(--white)";
+        kycBtn.style.borderColor = "var(--vivid)";
+        kycBtn.innerHTML = "Submitted!";
+        
+        alert("Success! Your ID document has been securely uploaded and encrypted in our master database.\n\nOur verification team will review it within 24 hours. Your dashboard has been updated to 'Under Review ⏳'.");
+        setTimeout(() => window.location.reload(), 1500);
+        
+      } catch (err) {
+        alert("Upload Error: " + err.message + "\n\n(Did you create the documents storage bucket?)");
+        kycBtn.innerHTML = "Upload Failed";
+        setTimeout(() => { kycBtn.innerHTML = originalText; kycBtn.style.opacity = "1"; }, 3000);
+      }
+    }
+
 </script>
 </head>
 <body>
