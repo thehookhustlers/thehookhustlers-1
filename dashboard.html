@@ -449,17 +449,32 @@
         let type = inv.investor_type || 'Angel Investor';
         let ticket = inv.ticket_size || 'Flexible';
         
+        // GATING LOGIC
+        const isPremium = !!window.currentUserTier;
+        const isInterested = localStorage.getItem(`hh_interest_${inv.id}`) === 'true';
+
         let card = document.createElement('div');
         card.className = 'match-card';
-        // Check if already interested
-        const isInterested = localStorage.getItem(`hh_interest_${inv.id}`) === 'true';
+        
+        let interestBtnHtml = '';
+        if (isPremium) {
+          interestBtnHtml = `
+            <button onclick="window.toggleInterest('${inv.id}', this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="${isInterested ? '#f43f5e' : 'none'}" stroke="${isInterested ? '#f43f5e' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+          `;
+        } else {
+          interestBtnHtml = `
+            <button onclick="window.location.href='pricing.html'" class="interest-btn" title="Upgrade to Unlock" style="background:rgba(255,255,255,0.05); color:var(--muted);">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </button>
+          `;
+        }
 
         card.innerHTML = `
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div class="m-name">${name}</div>
-              <button onclick="window.toggleInterest('${inv.id}', this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="${isInterested ? '#f43f5e' : 'none'}" stroke="${isInterested ? '#f43f5e' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-              </button>
+              ${interestBtnHtml}
             </div>
             <div class="m-sub">${type} • ${ticket}</div>
             <div style="margin-top:10px;">
@@ -488,6 +503,10 @@
         let ind = (st.industry || 'Tech').toUpperCase();
         let city = st.city || 'India';
         
+        // GATING LOGIC
+        const isPremium = !!window.currentUserTier;
+        const isInterested = localStorage.getItem(`hh_interest_${st.id}`) === 'true';
+
         // Calculate dynamic score based on profile completion
         let score = 50;
         if(st.dpiit_number) score += 20;
@@ -496,24 +515,35 @@
         
         let card = document.createElement('div');
         card.className = 'match-card';
-        // Check if already interested
-        const isInterested = localStorage.getItem(`hh_interest_${st.id}`) === 'true';
+        
+        let interestBtnHtml = '';
+        if (isPremium) {
+          interestBtnHtml = `
+            <button onclick="window.toggleInterest('${st.id}', this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="${isInterested ? '#f43f5e' : 'none'}" stroke="${isInterested ? '#f43f5e' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+          `;
+        } else {
+          interestBtnHtml = `
+            <button onclick="window.location.href='pricing.html'" class="interest-btn" title="Upgrade to Unlock" style="background:rgba(255,255,255,0.05); color:var(--muted);">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </button>
+          `;
+        }
 
         card.innerHTML = `
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div class="m-name">${name}</div>
               <div style="display:flex;gap:8px;align-items:center;">
                 <span class="badge badge-startup" style="font-size:0.5rem;${score>=85 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
-                <button onclick="window.toggleInterest('${st.id}', this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="${isInterested ? '#f43f5e' : 'none'}" stroke="${isInterested ? '#f43f5e' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </button>
+                ${interestBtnHtml}
               </div>
             </div>
             <div class="m-sub">${stage} • ${city}</div>
             <div style="margin-top:10px;">
               <span class="m-tag" style="background:rgba(124,58,237,0.15);color:var(--vivid2);">${ind}</span>
               ${st.dpiit_number ? '<span class="m-tag" style="background:rgba(16,217,157,0.1);color:var(--emerald);">DPIIT</span>' : ''}
-              ${st.pitch_deck_url ? `<span class="m-tag" style="background:rgba(6,182,212,0.1);color:var(--cyan);cursor:pointer;" onclick="window.trackInteraction('${st.id}', 'view'); window.open('${st.pitch_deck_url}', '_blank')">DECK</span>` : ''}
+              ${st.pitch_deck_url ? (isPremium ? `<span class="m-tag" style="background:rgba(6,182,212,0.1);color:var(--cyan);cursor:pointer;" onclick="window.trackInteraction('${st.id}', 'view'); window.open('${st.pitch_deck_url}', '_blank')">DECK</span>` : `<span class="m-tag" style="background:rgba(255,255,255,0.05);color:var(--muted);cursor:pointer;" onclick="window.location.href='pricing.html'">DECK ❤️</span>`) : ''}
             </div>
         `;
         grid.appendChild(card);
