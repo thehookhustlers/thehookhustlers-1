@@ -52,34 +52,26 @@ html.is-logged-in a.nav-btn-outline { display:none !important; }
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>/* SHARED STYLES FOR ALL PAGES */
 :root {
- --black: #04040b;
- --deep: #070710;
- --card: #0c0c1e;
- --card2: #09091a;
- --vivid: #7c3aed;
- --vivid2: #a855f7;
- --vivid-dim: rgba(124,58,237,0.12);
- --vivid-glow: rgba(124,58,237,0.3);
- --cyan: #06b6d4;
- --cyan2: #22d3ee;
- --cyan-dim: rgba(6,182,212,0.1);
- --cyan-glow: rgba(6,182,212,0.25);
- --navy: #0a0f28;
- --blue: #06b6d4;
- --blue-dim: rgba(6,182,212,0.1);
- --emerald: #10d99d;
- --emerald-dim: rgba(16,217,157,0.1);
- --crimson: #f43f5e;
- --crimson-dim: rgba(244,63,94,0.1);
- --white: #f0edf8;
- --muted: rgba(240,237,248,0.4);
- --border: rgba(124,58,237,0.1);
- --border2: rgba(255,255,255,0.06);
- /* legacy aliases so inline styles still work */
- --gold: var(--vivid);
- --gold2: var(--vivid2);
- --gold-dim: var(--vivid-dim);
- --gold-glow: var(--vivid-glow);
+  --black: #04040b;
+  --deep: #070710;
+  --card: rgba(12, 12, 30, 0.65);
+  --card2: rgba(9, 9, 26, 0.65);
+  --vivid: #7c3aed;
+  --vivid2: #a855f7;
+  --vivid-dim: rgba(124, 58, 237, 0.12);
+  --vivid-glow: rgba(124, 58, 237, 0.3);
+  --cyan: #06b6d4;
+  --cyan2: #22d3ee;
+  --cyan-dim: rgba(6, 182, 212, 0.1);
+  --cyan-glow: rgba(6, 182, 212, 0.25);
+  --emerald: #10d99d;
+  --emerald-dim: rgba(16, 217, 157, 0.1);
+  --crimson: #f43f5e;
+  --crimson-dim: rgba(244, 63, 94, 0.1);
+  --white: #f0edf8;
+  --muted: rgba(240, 237, 248, 0.4);
+  --border: rgba(124, 58, 237, 0.15);
+  --border2: rgba(255, 255, 255, 0.08);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -1439,10 +1431,83 @@ input:focus, textarea:focus, select:focus {
  </div>
  <div class="nav-right">
   <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
-  <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='dashboard.html';}" class="nav-btn nav-btn-gold">Join Now</a>
+  <a href="login.html?next=signup" class="nav-btn nav-btn-gold">Join Now</a>
  </div>
  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    
+    // Initial check
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    updateAuthUI(session);
+
+    // Listen for changes
+    window.supabaseClient.auth.onAuthStateChange((_event, session) => {
+      updateAuthUI(session);
+    });
+
+    function updateAuthUI(session) {
+      const navRight = document.querySelector('.nav-right');
+      const navLinks = document.querySelector('.nav-links');
+      const mobileMenu = document.querySelector('.mobile-menu');
+
+      if(session) {
+        localStorage.setItem('hhLoggedIn', 'true');
+        if(navRight) {
+          navRight.innerHTML = `
+            <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;">Dashboard</a>
+            <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
+          `;
+        }
+        if(navLinks) {
+          navLinks.querySelectorAll('a[href="dashboard.html"]').forEach(el => el.remove());
+          if(!navLinks.innerHTML.includes('pricing.html')) {
+            const priceLink = document.createElement('a');
+            priceLink.href = 'pricing.html';
+            priceLink.textContent = 'Pricing';
+            priceLink.style.color = 'var(--vivid2)';
+            navLinks.appendChild(priceLink);
+          }
+        }
+        if(mobileMenu) {
+          if(!mobileMenu.innerHTML.includes('dashboard.html')) {
+            const mDash = document.createElement('a');
+            mDash.href = 'dashboard.html';
+            mDash.textContent = 'Dashboard';
+            mDash.style.color = 'var(--cyan)';
+            mobileMenu.insertBefore(mDash, mobileMenu.firstChild);
+          }
+          if(!mobileMenu.innerHTML.includes('pricing.html')) {
+            const mPrice = document.createElement('a');
+            mPrice.href = 'pricing.html';
+            mPrice.textContent = 'Pricing';
+            mPrice.style.color = 'var(--vivid2)';
+            const contactLink = Array.from(mobileMenu.children).find(a => a.href.includes('contact.html'));
+            if(contactLink) mobileMenu.insertBefore(mPrice, contactLink);
+          }
+          const joinBtn = Array.from(mobileMenu.querySelectorAll('a')).find(a => a.href.includes('login.html') || a.textContent.toLowerCase().includes('join'));
+          if(joinBtn) {
+            joinBtn.innerHTML = 'SIGN OUT';
+            joinBtn.style.color = 'var(--crimson)';
+            joinBtn.href = '#';
+            joinBtn.onclick = (e) => {
+              e.preventDefault();
+              window.supabaseClient.auth.signOut().then(() => {
+                localStorage.removeItem('hhLoggedIn');
+                window.location.href = 'home.html';
+              });
+            };
+          }
+        }
+      } else {
+        localStorage.removeItem('hhLoggedIn');
+      }
+    }
+  });
+</script>
 <div class="ticker-wrap">
  <div class="ticker">
   <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>

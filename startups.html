@@ -57,11 +57,21 @@ html.is-logged-in a.nav-btn-outline { display:none !important; }
  --deep: #070710;
  --card: #0c0c1e;
  --card2: #09091a;
- --vivid: #7c3aed;
- --vivid2: #a855f7;
- --vivid-dim: rgba(124,58,237,0.12);
- --vivid-glow: rgba(124,58,237,0.3);
+ /* ── VIVID PALETTE ── */
+ --vivid: #a855f7;
+ --vivid2: #06b6d4;
+ --violet: #7c3aed;
  --cyan: #06b6d4;
+ --emerald: #10d99d;
+ --crimson: #f43f5e;
+ --vivid-glow: rgba(124,58,237,0.4);
+ --vivid-dim: rgba(124,58,237,0.08);
+
+ /* Legacy Aliases for Compatibility */
+ --gold: var(--vivid);
+ --gold2: var(--vivid2);
+ --gold-dim: var(--vivid-dim);
+ --gold-glow: var(--vivid-glow);
  --cyan2: #22d3ee;
  --cyan-dim: rgba(6,182,212,0.1);
  --cyan-glow: rgba(6,182,212,0.25);
@@ -97,7 +107,23 @@ body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-seri
  .nav-logo-text { transition: text-shadow 0.3s ease; }
  nav .nav-logo:hover .nav-logo-text { text-shadow: 0 0 20px rgba(168,85,247,0.7); }
 
- /* ── UNIVERSAL CURSOR HOVER GLOW ── */
+  /* ── BLURRED PREVIEWS (SEO) ── */
+  .startups-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+  .startup-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; position: relative; overflow: hidden; transition: transform .3s, border-color .3s; }
+  .startup-card:hover { transform: translateY(-5px); border-color: var(--vivid-glow); }
+  .startup-card .s-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .05em; color: var(--vivid2); margin-bottom: 4px; }
+  .startup-card .s-sub { font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
+  .startup-card .s-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .startup-card .s-tag { font-size: .65rem; padding: 4px 10px; border-radius: 100px; background: rgba(255,255,255,0.04); border: 1px solid var(--border2); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  
+  /* Blur Layer */
+  .blur-preview .blur-overlay { position: absolute; inset: 0; background: rgba(12,12,30,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; transition: opacity .3s; }
+  .blur-preview .lock-icon { font-size: 1.8rem; margin-bottom: 12px; filter: drop-shadow(0 0 10px var(--vivid)); }
+  .blur-preview .lock-text { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--white); text-transform: uppercase; margin-bottom: 16px; }
+  .blur-preview .lock-btn { background: var(--vivid2); color: #000; border: none; padding: 8px 20px; border-radius: 8px; font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .05em; cursor: pointer; transition: transform .2s; text-decoration: none; }
+  .blur-preview .lock-btn:hover { transform: scale(1.05); }
+  
+  /* ── UNIVERSAL CURSOR HOVER GLOW ── */
  body:has(*:hover) #cursor { transform: translate(-50%,-50%) scale(1.4); }
 
 #particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
@@ -1136,201 +1162,6 @@ h2 .cr-accent { color: #f43f5e !important; }
  .filter-section { padding: 120px 14px 24px !important; }
 }
 
-/* ════════════════════════════════════════════════════════
-   GOLD → VIVID MULTICOLOR OVERRIDE (final cleanup)
-   ════════════════════════════════════════════════════════ */
-
-/* Kill ALL gold variable aliases — force vivid palette */
-:root {
-  --gold: #a855f7 !important;
-  --gold2: #06b6d4 !important;
-  --gold-dim: rgba(124,58,237,0.08) !important;
-  --gold-glow: rgba(124,58,237,0.35) !important;
-}
-
-/* Stat numbers — vivid gradient per position */
-.stat-number, .stat-num {
-  background: linear-gradient(135deg, #a855f7, #06b6d4) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-.stat-box:nth-child(1) .stat-number,
-.stat-box:nth-child(1) .stat-num {
-  background: linear-gradient(135deg, #a855f7, #c084fc) !important;
-}
-.stat-box:nth-child(2) .stat-number,
-.stat-box:nth-child(2) .stat-num {
-  background: linear-gradient(135deg, #06b6d4, #22d3ee) !important;
-}
-.stat-box:nth-child(3) .stat-number,
-.stat-box:nth-child(3) .stat-num {
-  background: linear-gradient(135deg, #10d99d, #34d399) !important;
-}
-.stat-box:nth-child(4) .stat-number,
-.stat-box:nth-child(4) .stat-num {
-  background: linear-gradient(135deg, #f43f5e, #fb7185) !important;
-}
-
-/* VC card stat numbers */
-.vc-stat-val {
-  background: linear-gradient(135deg, #06b6d4, #10d99d) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-/* Sector/chart progress bar overrides — vivid per row */
-.sector-bar, .chart-bar-fill {
-  background: linear-gradient(90deg, #7c3aed, #a855f7) !important;
-}
-.sector-card:nth-child(1) .sector-bar,
-.chart-bar-row:nth-child(1) .chart-bar-fill {
-  background: linear-gradient(90deg, #7c3aed, #a855f7) !important;
-}
-.sector-card:nth-child(2) .sector-bar,
-.chart-bar-row:nth-child(2) .chart-bar-fill {
-  background: linear-gradient(90deg, #06b6d4, #22d3ee) !important;
-}
-.sector-card:nth-child(3) .sector-bar,
-.chart-bar-row:nth-child(3) .chart-bar-fill {
-  background: linear-gradient(90deg, #10d99d, #34d399) !important;
-}
-.sector-card:nth-child(4) .sector-bar,
-.chart-bar-row:nth-child(4) .chart-bar-fill {
-  background: linear-gradient(90deg, #f43f5e, #fb7185) !important;
-}
-.sector-card:nth-child(5) .sector-bar,
-.chart-bar-row:nth-child(5) .chart-bar-fill {
-  background: linear-gradient(90deg, #a855f7, #06b6d4) !important;
-}
-.sector-card:nth-child(6) .sector-bar,
-.chart-bar-row:nth-child(6) .chart-bar-fill {
-  background: linear-gradient(90deg, #06b6d4, #10d99d) !important;
-}
-
-/* Section title gradient — always multi-color not gold */
-.sec-title, .sec-heading {
-  background: linear-gradient(135deg, #f8f8fc, #a855f7) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Specific section titles with accent words */
-.sec-title span {
-  background: linear-gradient(135deg, #06b6d4, #10d99d) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Feature glow dots — multi-color per position */
-.feat:nth-child(1) .feat-glow { background: #7c3aed !important; }
-.feat:nth-child(2) .feat-glow { background: #06b6d4 !important; }
-.feat:nth-child(3) .feat-glow { background: #10d99d !important; }
-.feat:nth-child(4) .feat-glow { background: #f43f5e !important; }
-.feat:nth-child(5) .feat-glow { background: #a855f7 !important; }
-.feat:nth-child(6) .feat-glow { background: #06b6d4 !important; }
-
-/* Feature icon backgrounds — tinted per position */
-.feat:nth-child(1) .feat-icon { background: rgba(124,58,237,0.12) !important; }
-.feat:nth-child(2) .feat-icon { background: rgba(6,182,212,0.12) !important; }
-.feat:nth-child(3) .feat-icon { background: rgba(16,217,157,0.12) !important; }
-.feat:nth-child(4) .feat-icon { background: rgba(244,63,94,0.12) !important; }
-.feat:nth-child(5) .feat-icon { background: rgba(168,85,247,0.12) !important; }
-.feat:nth-child(6) .feat-icon { background: rgba(6,182,212,0.12) !important; }
-
-/* Feature titles — color per position */
-.feat:nth-child(1) h3 { color: #a855f7 !important; }
-.feat:nth-child(2) h3 { color: #06b6d4 !important; }
-.feat:nth-child(3) h3 { color: #10d99d !important; }
-.feat:nth-child(4) h3 { color: #f43f5e !important; }
-.feat:nth-child(5) h3 { color: #a855f7 !important; }
-.feat:nth-child(6) h3 { color: #06b6d4 !important; }
-
-/* Step numbers — vivid gradient circle instead of gold */
-.step-num, .journey-num {
-  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
-  color: #fff !important;
-}
-
-/* Waitlist / spots counter */
-.spots-counter, #spotsLeft {
-  background: linear-gradient(135deg, #f43f5e, #a855f7, #06b6d4) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-.spots-bar {
-  background: linear-gradient(90deg, #7c3aed, #06b6d4, #10d99d) !important;
-}
-
-/* Joined avatar dots */
-.joined-dot {
-  background: linear-gradient(135deg, #a855f7, #06b6d4) !important;
-}
-
-/* User badge avatar */
-.hh-av, .pp-av {
-  background: linear-gradient(135deg, #a855f7, #06b6d4) !important;
-}
-
-/* Age badge */
-.age-badge {
-  background: linear-gradient(135deg, #f43f5e, #a855f7) !important;
-  box-shadow: 0 8px 24px rgba(244,63,94,0.3) !important;
-}
-
-/* Founder name gradient */
-.founder-content h2 {
-  background: linear-gradient(135deg, #f8f8fc, #06b6d4) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Reviews placeholder */
-.reviews-placeholder::before {
-  background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.08)) !important;
-}
-
-/* Price button gold → vivid */
-.price-btn-gold {
-  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
-}
-.price-btn-gold:hover {
-  box-shadow: 0 8px 28px rgba(124,58,237,0.5) !important;
-}
-
-/* Badge gold */
-.badge-gold {
-  background: rgba(124,58,237,0.08) !important;
-  color: #a855f7 !important;
-  border-color: rgba(124,58,237,0.2) !important;
-}
-
-/* Signout button */
-.pp-signout {
-  background: linear-gradient(135deg, #f43f5e, #a855f7) !important;
-}
-
-/* Tab btn active */
-.tab-btn.active, .tab-btn:hover {
-  background: rgba(124,58,237,0.08) !important;
-  border-color: #a855f7 !important;
-  color: #a855f7 !important;
-}
-
-/* Step cards — alternating top-border accent colors */
-.step:nth-child(1) { border-top: 2px solid #a855f7 !important; }
-.step:nth-child(2) { border-top: 2px solid #06b6d4 !important; }
-.step:nth-child(3) { border-top: 2px solid #10d99d !important; }
-.step:nth-child(4) { border-top: 2px solid #f43f5e !important; }
-
-/* Problem cards — colored titles */
-.problem-title, .feat h3[style*="color"], h3[class*="problem"] {
-  color: #f43f5e !important;
-}
 
 /* City cards — "HUGE POTENTIAL" text vivid color cycling */
 .tier-card:nth-child(odd) .tier-label { color: #10d99d !important; }
@@ -2319,6 +2150,58 @@ function closeMobile(){
  const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
  if(h&&m){h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}
 }
+
+// ── BLURRED PREVIEWS ENGINE ──
+async function fetchPublicStartups() {
+  const grid = document.querySelector('.startups-grid');
+  if(!grid) return;
+
+  const isLoggedIn = localStorage.getItem('hhLoggedIn') === 'true';
+  const { data, error } = await window.supabaseClient.from('startups').select('*').order('created_at', { ascending: false }).limit(6);
+
+  if(error || !data || data.length === 0) return;
+
+  // Clear grid but keep the "Be Among The First" block as a fallback at the bottom if we want
+  // For now, let's prepend them
+  data.forEach(st => {
+    const card = document.createElement('div');
+    card.className = 'startup-card reveal' + (!isLoggedIn ? ' blur-preview' : '');
+    
+    const name = st.company_name || 'Stealth Startup';
+    const industry = st.industry || 'Tech';
+    const stage = st.stage || 'Idea Stage';
+    const city = st.city || 'India';
+    
+    card.innerHTML = `
+      ${!isLoggedIn ? `
+        <div class="blur-overlay">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-text">Premium Listing Locked</div>
+          <a href="login.html" class="lock-btn">Login to View Details</a>
+        </div>
+      ` : ''}
+      <div class="s-name">${name}</div>
+      <div class="s-sub">${industry} • ${stage}</div>
+      <div class="s-tags">
+        <span class="s-tag">${city}</span>
+        <span class="s-tag">Verified</span>
+        ${st.dpiit_number ? '<span class="s-tag" style="border-color:var(--emerald);color:var(--emerald);">DPIIT</span>' : ''}
+      </div>
+    `;
+    grid.insertBefore(card, grid.firstChild);
+  });
+  
+  // Re-observe new elements
+  if(window.revObs) {
+    document.querySelectorAll('.startup-card.reveal').forEach(el => window.revObs.observe(el));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(window.location.pathname.includes('startups.html')) {
+    fetchPublicStartups();
+  }
+});
 </script>
 
 <script>
@@ -2782,7 +2665,7 @@ document.querySelectorAll('.sector-card').forEach(function(c){
   document.querySelectorAll('form').forEach(form=>{
     form.addEventListener('submit', function(e){
       // Don't stop default here — just show toast
-      setTimeout(()=>{ window.hhToast('Message sent! We'll be in touch soon. 🚀', 'success'); }, 100);
+      setTimeout(()=>{ window.hhToast("Message sent! We'll be in touch soon. 🚀", 'success'); }, 100);
     });
   });
 
@@ -2971,83 +2854,72 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     if(typeof window.supabaseClient === 'undefined') return;
-    const { data: { session } } = await window.supabaseClient.auth.getSession();
     
-    const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
-    const navLinks = document.querySelector('.nav-links');
-    const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
+    // Initial check
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    updateAuthUI(session);
 
-    if(session) {
-      localStorage.setItem('hhLoggedIn', 'true');
-      // 1. Desktop: Show Dashboard + Sign Out in Nav-Right
-      if(navRight) {
-        navRight.innerHTML = `
-          <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;text-shadow:0 0 10px rgba(6,182,212,0.3);">Dashboard</a>
-          <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');localStorage.removeItem('hh_deck_submitted');localStorage.removeItem('hh_kyc_submitted');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);cursor:pointer;border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
-        `;
-      }
-      
-      // 2. Desktop: Show Pricing in Nav-Links (Remove duplicate Dashboard)
-      if(navLinks) {
-          // Remove duplicate Dashboard link from main menu bar
-          document.querySelectorAll('.nav-links a[href="dashboard.html"]').forEach(el => el.remove());
-          
+    // Listen for changes
+    window.supabaseClient.auth.onAuthStateChange((_event, session) => {
+      updateAuthUI(session);
+    });
+
+    function updateAuthUI(session) {
+      const navRight = document.querySelector('.nav-right');
+      const navLinks = document.querySelector('.nav-links');
+      const mobileMenu = document.querySelector('.mobile-menu');
+
+      if(session) {
+        localStorage.setItem('hhLoggedIn', 'true');
+        if(navRight) {
+          navRight.innerHTML = `
+            <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;">Dashboard</a>
+            <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
+          `;
+        }
+        if(navLinks) {
+          navLinks.querySelectorAll('a[href="dashboard.html"]').forEach(el => el.remove());
           if(!navLinks.innerHTML.includes('pricing.html')) {
-              const priceLink = document.createElement('a');
-              priceLink.href = 'pricing.html';
-              priceLink.textContent = 'Pricing';
-              priceLink.style.color = 'var(--vivid2)';
-              const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
-              if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
-              else navLinks.appendChild(priceLink);
+            const priceLink = document.createElement('a');
+            priceLink.href = 'pricing.html';
+            priceLink.textContent = 'Pricing';
+            priceLink.style.color = 'var(--vivid2)';
+            navLinks.appendChild(priceLink);
           }
-      }
-
-      // 3. Mobile: Inject Dashboard/Pricing and Sign Out
-      if(mobileMenu) {
-          // Add Dashboard to top of mobile menu if not there
+        }
+        if(mobileMenu) {
           if(!mobileMenu.innerHTML.includes('dashboard.html')) {
-              const mDash = document.createElement('a');
-              mDash.href = 'dashboard.html';
-              mDash.onclick = () => { if(typeof closeMobile === 'function') closeMobile(); };
-              mDash.textContent = 'Dashboard';
-              mDash.style.color = 'var(--cyan)';
-              mobileMenu.insertBefore(mDash, mobileMenu.firstChild);
+            const mDash = document.createElement('a');
+            mDash.href = 'dashboard.html';
+            mDash.textContent = 'Dashboard';
+            mDash.style.color = 'var(--cyan)';
+            mobileMenu.insertBefore(mDash, mobileMenu.firstChild);
           }
-          // Add Pricing if not there
           if(!mobileMenu.innerHTML.includes('pricing.html')) {
-              const mPrice = document.createElement('a');
-              mPrice.href = 'pricing.html';
-              mPrice.onclick = () => { if(typeof closeMobile === 'function') closeMobile(); };
-              mPrice.textContent = 'Pricing';
-              mPrice.style.color = 'var(--vivid2)';
-              const aboutLink = Array.from(mobileMenu.children).find(a => a.href.includes('about.html'));
-              if(aboutLink) mobileMenu.insertBefore(mPrice, aboutLink);
+            const mPrice = document.createElement('a');
+            mPrice.href = 'pricing.html';
+            mPrice.textContent = 'Pricing';
+            mPrice.style.color = 'var(--vivid2)';
+            const aboutL = Array.from(mobileMenu.children).find(a => a.href.includes('about.html'));
+            if(aboutL) mobileMenu.insertBefore(mPrice, aboutL);
           }
-          // Replace Join/Login with Sign Out in mobile view
           const joinBtn = Array.from(mobileMenu.querySelectorAll('a')).find(a => a.href.includes('login.html') || a.textContent.toLowerCase().includes('join'));
           if(joinBtn) {
-              joinBtn.innerHTML = 'SIGN OUT';
-              joinBtn.style.color = 'var(--crimson)';
-              joinBtn.href = '#';
-              joinBtn.onclick = (e) => {
-                  e.preventDefault();
-                  window.supabaseClient.auth.signOut().then(() => {
-                      localStorage.removeItem('hhLoggedIn');localStorage.removeItem('hh_deck_submitted');localStorage.removeItem('hh_kyc_submitted');
-                      window.location.href = 'home.html';
-                  });
-              };
+            joinBtn.innerHTML = 'SIGN OUT';
+            joinBtn.style.color = 'var(--crimson)';
+            joinBtn.href = '#';
+            joinBtn.onclick = (e) => {
+              e.preventDefault();
+              window.supabaseClient.auth.signOut().then(() => {
+                localStorage.removeItem('hhLoggedIn');
+                window.location.href = 'home.html';
+              });
+            };
           }
+        }
+      } else {
+        localStorage.removeItem('hhLoggedIn');
       }
-    } else {
-        // Logged out: CLEAN UP
-        document.querySelectorAll('a[href="pricing.html"]').forEach(el => el.remove());
-        document.querySelectorAll('a[href="dashboard.html"]').forEach(el => {
-            // Only remove if it's in nav-links or mobile-menu, keep the nav-right one if it exists (it shouldn't but safe)
-            if(el.parentElement.classList.contains('nav-links') || el.parentElement.classList.contains('mobile-menu')) {
-                el.remove();
-            }
-        });
     }
   });
 </script>

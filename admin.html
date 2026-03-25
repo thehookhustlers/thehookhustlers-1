@@ -65,7 +65,7 @@
     <div class="table-card">
       <div class="card-title">All Logged-In Users (Google & Email) <span id="u-count" class="badge b-purple" style="background:rgba(6,182,212,0.1);color:var(--cyan);">0</span></div>
       <table>
-        <thead><tr><th>Name</th><th>Email ID</th><th>Type</th><th>Last Active</th></tr></thead>
+        <thead><tr><th>Name</th><th>Email ID</th><th>Type</th><th>Communication</th><th>Last Active</th></tr></thead>
         <tbody id="directoryTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
       </table>
     </div>
@@ -74,7 +74,7 @@
 
       <div class="card-title">Registered Startups <span id="s-count" class="badge b-purple">0</span></div>
       <table>
-        <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>DPIIT</th><th>Pitch Deck</th></tr></thead>
+        <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>Comm</th><th>DPIIT</th><th>Pitch Deck</th></tr></thead>
         <tbody id="startupsTable"><tr><td colspan="6" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
       </table>
     </div>
@@ -148,7 +148,11 @@
       const uBody = document.getElementById('directoryTable');
       if(usersData && usersData.length > 0) {
         document.getElementById('u-count').textContent = usersData.length;
-        uBody.innerHTML = usersData.map(u => `<tr><td><b>${u.name}</b></td><td><a href="mailto:${u.email}" class="link">${u.email}</a></td><td><span class="badge ${u.user_type === 'Startup' ? 'b-purple' : (u.user_type==='Investor' ? 'b-green' : 'b-red')}">${u.user_type || 'Pending'}</span></td><td style="color:var(--muted);font-size:0.8rem;">${new Date(u.last_active).toLocaleString()}</td></tr>`).join('');
+        uBody.innerHTML = usersData.map(u => {
+          const emailLink = `<a href="mailto:${u.email}" title="Send Email" style="text-decoration:none;margin-right:10px;">📧</a>`;
+          const waLink = `<a href="https://wa.me/918235282276?text=Hi%20${encodeURIComponent(u.name)},%20this%20is%20The%20Hook%20Hustlers%20Support." target="_blank" title="WhatsApp Message" style="text-decoration:none;">🟢</a>`;
+          return `<tr><td><b>${u.name}</b></td><td><a href="mailto:${u.email}" class="link">${u.email}</a></td><td><span class="badge ${u.user_type === 'Startup' ? 'b-purple' : (u.user_type==='Investor' ? 'b-green' : 'b-red')}">${u.user_type || 'Pending'}</span></td><td>${emailLink}${waLink}</td><td style="color:var(--muted);font-size:0.8rem;">${new Date(u.last_active).toLocaleString()}</td></tr>`;
+        }).join('');
       } else { 
         uBody.innerHTML = '<tr><td colspan="4">No users tracked yet.</td></tr>'; 
       }
@@ -163,7 +167,8 @@
           if(s.dpiit_number) score += 20; if(s.pitch_deck_url) score += 15; if(s.funding_needed) score += 15;
           let deckHtml = s.pitch_deck_url ? `<a href="${s.pitch_deck_url}" target="_blank" class="link">View PDF</a>` : '<span style="color:#666;">No File</span>';
           let dpiitHtml = s.dpiit_number ? `<span class="badge b-green">Yes</span>` : '<span class="badge b-red">No</span>';
-          return `<tr><td><b>${s.company_name}</b></td><td>${s.founder_name}</td><td>${s.industry}</td><td><span class="badge ${score>80?'b-green':'b-purple'}">${score}</span></td><td>${dpiitHtml}</td><td>${deckHtml}</td></tr>`;
+          const comms = `<a href="mailto:${s.founder_email || ''}" title="Email Founder" style="text-decoration:none;margin-right:8px;">📧</a><a href="https://wa.me/918235282276?text=Hi%20TheHookHustlers%20Admin%20here." target="_blank" style="text-decoration:none;">🟢</a>`;
+          return `<tr><td><b>${s.company_name}</b></td><td>${s.founder_name}</td><td>${s.industry}</td><td><span class="badge ${score>80?'b-green':'b-purple'}">${score}</span></td><td>${comms}</td><td>${dpiitHtml}</td><td>${deckHtml}</td></tr>`;
         }).join('');
       } else { sBody.innerHTML = '<tr><td colspan="6">No startups found.</td></tr>'; }
 

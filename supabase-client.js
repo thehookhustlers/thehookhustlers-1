@@ -6,4 +6,34 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // We attach it to the window object so it can be accessed globally by any page
 window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// Track User Interactions (Deck Views, Express Interest)
+// This uses the 'contacts' table as a lightweight activity log for now
+// to avoid schema migration overhead for the user.
+window.trackInteraction = async (targetId, type) => {
+    try {
+        const { data: { user } } = await window.supabaseClient.auth.getUser();
+        if (!user) return;
+
+        // Log to 'contacts' table which we use for messaging/interests
+        await window.supabaseClient
+            .from('contacts')
+            .insert([{
+                user_id: user.id,
+                target_id: targetId,
+                type: type, // 'view' or 'interest'
+                created_at: new Date()
+            }]);
+            
+        console.log(`📊 Interaction Tracked: ${type} -> ${targetId}`);
+        
+        // If type is 'interest', we also set a local flag to prevent double-click
+        if (type === 'interest') {
+            localStorage.setItem(`hh_interest_${targetId}`, 'true');
+        }
+    } catch (err) {
+        console.error('Failed to track interaction:', err);
+    }
+};
+
 console.log('✅ Supabase Client Successfully Initialized');
+
