@@ -371,7 +371,7 @@
     }
 
 
-    async function uploadPitchDeck(event) {
+    window.uploadPitchDeck = async function(event) {
       const file = event.target.files[0];
       if (!file) return;
       
@@ -410,7 +410,7 @@
       }
     }
 
-    async function uploadKYC(event) {
+    window.uploadKYC = async function(event) {
       const file = event.target.files[0];
       if (!file || !file.name) { alert("Please select a valid image or PDF."); return; }
       
@@ -450,6 +450,7 @@
     }
 
 </script>
+<style>@media(max-width:768px){.nav-right{display:none !important;}}</style>
 </head>
 <body>
   <div class="bg-mesh"></div>
