@@ -37,7 +37,7 @@ window.processPayment = async function(planName, amountPaise) {
     }
 
     const options = {
-      "key": "rzp_test_YourKeyHere", // USER SHOULD REPLACE WITH THEIR ACTUAL KEY
+      "key": "rzp_test_SVXWzCa0NaX3Wp", // Your actual Test Key ID
       "amount": amountPaise,
       "currency": "INR",
       "name": "The Hook Hustlers",
@@ -2311,7 +2311,7 @@ function closeMobile(){
   document.querySelectorAll('form').forEach(form=>{
     form.addEventListener('submit', function(e){
       // Don't stop default here — just show toast
-      setTimeout(()=>{ window.hhToast('Message sent! We'll be in touch soon. 🚀', 'success'); }, 100);
+      setTimeout(()=>{ window.hhToast('Message sent! We\'ll be in touch soon. 🚀', 'success'); }, 100);
     });
   });
 
