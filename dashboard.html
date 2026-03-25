@@ -174,11 +174,16 @@
         document.getElementById('s-dpiit').style.color = 'var(--emerald)';
       }
 
-      if(data.pitch_deck_url) {
-        const deckSection = document.getElementById('deckBtn').parentElement;
-        if(deckSection) {
-          deckSection.innerHTML = `
-            <div style="background:rgba(16,217,157,0.05); border:1px solid rgba(16,217,157,0.2); padding:20px; border-radius:12px; text-align:center;">
+      // Handle Pitch Deck Status
+      const deckBtn = document.getElementById('deckBtn');
+      // Hybrid check: DB OR localStorage (for immediate refresh sync)
+      const hasSubmittedDeck = data.pitch_deck_url || localStorage.getItem('hh_deck_submitted') === 'true';
+      
+      if(hasSubmittedDeck) {
+        const deckBtnWrap = deckBtn?.parentElement;
+        if(deckBtnWrap) {
+          deckBtnWrap.innerHTML = `
+            <div style="background:rgba(16,217,157,0.05); border:1px solid rgba(16,217,157,0.2); padding:20px; border-radius:12px; text-align:center; min-width:280px;">
               <div style="color:var(--emerald); font-weight:700; margin-bottom:8px; font-size:1.1rem;">DECK SUBMITTED ✔</div>
               <p style="color:var(--muted); font-size:0.85rem; line-height:1.5; margin:0;">
                 We are currently auditing your deck to match you with top-tier capital. Our analysts will reach out to you shortly via email with next steps.
@@ -191,7 +196,7 @@
       // Score logic based on completeness
       let score = 50;
       if(data.dpiit_number) score += 20;
-      if(data.pitch_deck_url) score += 15;
+      if(hasSubmittedDeck) score += 15;
       if(data.funding_needed) score += 15;
       document.getElementById('s-score').textContent = score;
       document.getElementById('scoreRing').style.background = `conic-gradient(var(--emerald) 0%, var(--emerald) ${score}%, var(--deep) ${score}%, var(--deep) 100%)`;
@@ -209,18 +214,30 @@
       // Fill profile
       document.getElementById('i-ticket').textContent = data.ticket_size || 'Unknown';
       const kycField = document.getElementById('i-kyc');
+      const kycStatusTxt = document.getElementById('kycStatusTxt');
+      const kycBtn = document.getElementById('kycBtn');
+
+      // Hybrid check: DB OR localStorage
+      const hasSubmittedKYC = data.kyc_url || localStorage.getItem('hh_kyc_submitted') === 'true';
+
       if (data.is_kyc_verified === true) {
-        kycField.innerHTML = '<span style="color:var(--emerald);font-weight:700;">Verified ✔</span>';
-        // Hide upload button if verified
-        const kycBtnWrap = document.getElementById('kycBtn')?.parentElement;
-        if(kycBtnWrap) kycBtnWrap.style.display = 'none';
-      } else if (data.kyc_url) {
-        kycField.innerHTML = '<span style="color:var(--cyan);font-weight:600;">Under Review ⏳</span>';
+        if(kycStatusTxt) {
+          kycStatusTxt.textContent = 'Verified ✔';
+          kycStatusTxt.style.color = 'var(--emerald)';
+          kycStatusTxt.style.fontWeight = '700';
+        }
+        if(kycBtn && kycBtn.parentElement) kycBtn.parentElement.style.display = 'none';
+      } else if (hasSubmittedKYC) {
+        if(kycStatusTxt) {
+          kycStatusTxt.textContent = 'Under Review ⏳';
+          kycStatusTxt.style.color = 'var(--cyan)';
+          kycStatusTxt.style.fontWeight = '600';
+        }
         // Replace upload button with processing message
-        const kycBtnWrap = document.getElementById('kycBtn')?.parentElement;
+        const kycBtnWrap = kycBtn?.parentElement;
         if(kycBtnWrap) {
-          kycBtnWrap.parentElement.innerHTML = `
-            <div style="margin-top:15px; background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2); padding:15px; border-radius:8px;">
+          kycBtnWrap.innerHTML = `
+            <div style="margin-top:15px; background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2); padding:15px; border-radius:8px; min-width:240px;">
               <p style="color:var(--muted); font-size:0.8rem; line-height:1.4; margin:0;">
                 ID received. Our compliance team is verifying your credentials to grant your platform license. Check back in 24 hours.
               </p>
@@ -231,8 +248,12 @@
     }
 
     async function handleSignOut() {
-      await window.supabaseClient.auth.signOut();
+      await window.supabaseClient.auth.getSession().then(({data:{session}})=>{
+        if(session) window.supabaseClient.auth.signOut();
+      });
       localStorage.removeItem('hhLoggedIn');
+      localStorage.removeItem('hh_deck_submitted');
+      localStorage.removeItem('hh_kyc_submitted');
       window.location.href = 'login.html';
     }
 
@@ -396,6 +417,9 @@
         const { error: updateError } = await window.supabaseClient.from('startups').update({ pitch_deck_url: publicUrl }).eq('id', user.id);
         if (updateError) throw updateError;
         
+        // Sync hybrid state
+        localStorage.setItem('hh_deck_submitted', 'true');
+
         deckBtn.style.background = "var(--emerald)";
         deckBtn.style.color = "#000";
         deckBtn.innerHTML = "Submission Successful!";
@@ -434,6 +458,9 @@
         const { error: updateError } = await window.supabaseClient.from('investors').update({ kyc_url: publicUrl }).eq('id', user.id);
         if (updateError) throw updateError;
         
+        // Sync hybrid state
+        localStorage.setItem('hh_kyc_submitted', 'true');
+
         kycBtn.style.background = "var(--vivid-glow)";
         kycBtn.style.color = "var(--white)";
         kycBtn.style.borderColor = "var(--vivid)";
@@ -790,6 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
 
     if(session) {
+      localStorage.setItem('hhLoggedIn', 'true');
       // 1. Desktop: Show Dashboard + Sign Out in Nav-Right
       if(navRight) {
         navRight.innerHTML = `

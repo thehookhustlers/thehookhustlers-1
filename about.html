@@ -1439,7 +1439,7 @@ input:focus, textarea:focus, select:focus {
  </div>
  <div class="nav-right">
   <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
-  <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="nav-btn nav-btn-gold">Join Now</a>
+  <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='dashboard.html';}" class="nav-btn nav-btn-gold">Join Now</a>
  </div>
  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -1703,7 +1703,7 @@ input:focus, textarea:focus, select:focus {
    <p style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-style:italic;color:rgba(240,237,232,0.75);line-height:1.65;margin:0 auto 28px;max-width:620px;">"We are not building a feature. We are building the infrastructure that will help fund India's next thousand startups — from every city, every sector, every background."</p>
    <div style="font-family:'Rajdhani',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vivid2);font-weight:700;">— Aniket Singh, 17 · Founder & Chief Hustler · Lucknow, UP</div>
    <div style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}" class="btn-primary">Join the Platform →</a>
+    <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='dashboard.html';}" class="btn-primary">Join the Platform →</a>
     <a href="contact.html" class="btn-secondary">Talk to Aniket</a>
    </div>
   </div>
@@ -1735,7 +1735,7 @@ input:focus, textarea:focus, select:focus {
    <a href="startups.html">For Startups</a>
    <a href="investors.html">For Investors</a>
    <a href="pricing.html">Pricing</a>
-   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='signup.html';}">Join Now</a>
+   <a href="login.html?next=signup" onclick="if(localStorage.getItem('hhLoggedIn')==='true'){event.preventDefault();window.location.href='dashboard.html';}">Join Now</a>
    <a href="login.html">Login</a>
   </div>
   <div class="footer-col">
@@ -1993,7 +1993,7 @@ function closeMobile(){
    // Sign out
    document.getElementById('hh-signout-btn').addEventListener('click', function(e){
     e.stopPropagation();
-    localStorage.removeItem('hhLoggedIn');
+    localStorage.removeItem('hhLoggedIn');localStorage.removeItem('hh_deck_submitted');localStorage.removeItem('hh_kyc_submitted');
     localStorage.removeItem('hhUserName');
     localStorage.removeItem('hhUserEmail');
     localStorage.removeItem('hhUserPicture');
@@ -2562,11 +2562,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
 
     if(session) {
+      localStorage.setItem('hhLoggedIn', 'true');
       // 1. Desktop: Show Dashboard + Sign Out in Nav-Right
       if(navRight) {
         navRight.innerHTML = `
           <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;text-shadow:0 0 10px rgba(6,182,212,0.3);">Dashboard</a>
-          <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);cursor:pointer;border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
+          <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');localStorage.removeItem('hh_deck_submitted');localStorage.removeItem('hh_kyc_submitted');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);cursor:pointer;border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
         `;
       }
       
@@ -2616,7 +2617,7 @@ document.addEventListener('DOMContentLoaded', () => {
               joinBtn.onclick = (e) => {
                   e.preventDefault();
                   window.supabaseClient.auth.signOut().then(() => {
-                      localStorage.removeItem('hhLoggedIn');
+                      localStorage.removeItem('hhLoggedIn');localStorage.removeItem('hh_deck_submitted');localStorage.removeItem('hh_kyc_submitted');
                       window.location.href = 'home.html';
                   });
               };

@@ -181,6 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {passive: true});
   }
 });
+
+// Session Observer Sync
+document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(session) {
+      localStorage.setItem('hhLoggedIn', 'true');
+    }
+});
 </script>
 </body>
 

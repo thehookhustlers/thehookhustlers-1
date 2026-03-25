@@ -2381,6 +2381,16 @@ async function handleForgotPassword(e) {
     alert("Password reset link sent! Check your inbox for instructions.");
   }
 }
+
+// Session Observer Sync + Login Guard
+document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(session) {
+      localStorage.setItem('hhLoggedIn', 'true');
+      window.location.replace('dashboard.html');
+    }
+});
 </script>
 
 </body>

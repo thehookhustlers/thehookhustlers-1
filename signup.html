@@ -2322,6 +2322,16 @@ function closeMobile(){
   }
  }
 })();
+
+// Session Observer Sync + Signup Guard
+document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(session) {
+      localStorage.setItem('hhLoggedIn', 'true');
+      window.location.replace('dashboard.html');
+    }
+});
 </script>
 
 <script>
@@ -2823,6 +2833,15 @@ document.addEventListener('DOMContentLoaded', () => {
       createSpark(touch.clientX, touch.clientY);
     }, {passive: true});
   }
+});
+
+// Session Observer Sync
+document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(session) {
+      localStorage.setItem('hhLoggedIn', 'true');
+    }
 });
 </script>
 </body>
