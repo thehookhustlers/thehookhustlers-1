@@ -449,8 +449,34 @@
       }
     }
 
+    // Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('open');
+          mobileMenu.classList.toggle('open');
+        });
+      }
+      window.closeMobile = function() {
+        if (hamburger) hamburger.classList.remove('open');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+      };
+    });
 </script>
-<style>@media(max-width:768px){.nav-right{display:none !important;}}</style>
+<style>
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--vivid2);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,5,8,.98);backdrop-filter:blur(20px);z-index:20000;flex-direction:column;align-items:center;justify-content:center;padding-top:80px;padding-bottom:30px;gap:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .3s;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;padding:10px 0;display:block;width:100%;text-align:center;}
+.mobile-menu a:hover{color:var(--vivid2);}
+@media(max-width:768px){ .hamburger{display:flex;} .mobile-menu{display:flex;} .nav-right{display:none !important;} .nav-links{display:none;} nav{padding:10px 16px;} }
+</style>
 </head>
 <body>
   <div class="bg-mesh"></div>
@@ -470,7 +496,16 @@
     </div>
 
     <div class="nav-right"><button onclick="handleSignOut()" class="nav-btn">Sign Out</button></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="home.html" onclick="closeMobile()">Home</a>
+    <a href="startups.html" onclick="closeMobile()">Startups</a>
+    <a href="investors.html" onclick="closeMobile()">Investors</a>
+    <a href="about.html" onclick="closeMobile()">About</a>
+    <a href="#" onclick="handleSignOut(); closeMobile();" style="color:var(--vivid2); margin-top:20px;">Sign Out</a>
+  </div>
 
   <div class="dashboard-wrap">
     
