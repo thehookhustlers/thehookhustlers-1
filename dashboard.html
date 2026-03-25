@@ -416,6 +416,27 @@
       window.location.reload();
     }
 
+    // Advanced Match Scoring Engine
+    function calculateMatchScore(item, type) {
+      let score = 40; // Base score
+      
+      if (type === 'startup') {
+        if (item.company_name) score += 10;
+        if (item.stage && item.stage !== 'Idea Stage') score += 10;
+        if (item.industry) score += 5;
+        if (item.dpiit_number) score += 15;
+        if (item.pitch_deck_url) score += 15;
+        if (item.city && item.city !== 'India') score += 5;
+      } else {
+        // Investor scoring
+        if (item.full_name) score += 10;
+        if (item.investor_type && item.investor_type.includes('VC')) score += 20;
+        if (item.ticket_size && item.ticket_size !== 'Flexible') score += 15;
+        if (item.bio) score += 15;
+      }
+      return Math.min(score, 100);
+    }
+
     // Social & Tracking Logic
     window.toggleInterest = async function(targetId, btn) {
       if (localStorage.getItem(`hh_interest_${targetId}`) === 'true') {
@@ -449,9 +470,10 @@
         let type = inv.investor_type || 'Angel Investor';
         let ticket = inv.ticket_size || 'Flexible';
         
-        // GATING LOGIC
+        // GATING & SCORING LOGIC
         const isPremium = !!window.currentUserTier;
         const isInterested = localStorage.getItem(`hh_interest_${inv.id}`) === 'true';
+        const score = calculateMatchScore(inv, 'investor');
 
         let card = document.createElement('div');
         card.className = 'match-card';
@@ -474,7 +496,10 @@
         card.innerHTML = `
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div class="m-name">${name}</div>
-              ${interestBtnHtml}
+              <div style="display:flex;gap:8px;align-items:center;">
+                <span class="badge badge-investor" style="font-size:0.5rem;${score>=80 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
+                ${interestBtnHtml}
+              </div>
             </div>
             <div class="m-sub">${type} • ${ticket}</div>
             <div style="margin-top:10px;">
@@ -503,16 +528,11 @@
         let ind = (st.industry || 'Tech').toUpperCase();
         let city = st.city || 'India';
         
-        // GATING LOGIC
+        // GATING & SCORING LOGIC
         const isPremium = !!window.currentUserTier;
         const isInterested = localStorage.getItem(`hh_interest_${st.id}`) === 'true';
+        const score = calculateMatchScore(st, 'startup');
 
-        // Calculate dynamic score based on profile completion
-        let score = 50;
-        if(st.dpiit_number) score += 20;
-        if(st.pitch_deck_url) score += 15;
-        if(st.funding_needed) score += 15;
-        
         let card = document.createElement('div');
         card.className = 'match-card';
         
@@ -535,7 +555,7 @@
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div class="m-name">${name}</div>
               <div style="display:flex;gap:8px;align-items:center;">
-                <span class="badge badge-startup" style="font-size:0.5rem;${score>=85 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
+                <span class="badge badge-startup" style="font-size:0.5rem;${score>=80 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
                 ${interestBtnHtml}
               </div>
             </div>
@@ -1050,6 +1070,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 </script>
 
+  <script src="hh-ux-effects.js"></script>
 </body>
 
 

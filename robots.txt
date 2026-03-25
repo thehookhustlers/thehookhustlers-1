@@ -1,4 +1,7 @@
 User-agent: *
+Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /reset-password.html
 Allow: /
 
 Sitemap: https://thehookhustlers.com/sitemap.xml
