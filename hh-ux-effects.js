@@ -1,46 +1,115 @@
 (function() {
     // Only run on mobile machines/screens
     if (window.matchMedia('(max-width: 768px)').matches) {
-        // Inject CSS dynamically so we don't have to touch every <style> block
-        const style = document.createElement('style');
-        style.textContent = `
-            .touch-glow {
-                position: fixed;
-                width: 80px;
-                height: 80px;
-                background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, rgba(6, 182, 212, 0.2) 40%, transparent 70%);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-                opacity: 0;
-                transition: opacity 0.4s ease, transform 0.05s linear;
-                mix-blend-mode: screen;
-                filter: blur(12px);
+        // Inject Canvas dynamically
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.id = 'hh-mobile-ux-canvas';
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '99999';
+        document.body.appendChild(canvas);
+
+        let width, height;
+        let particles = [];
+        const maxParticles = 25;
+        let touchX = -100;
+        let touchY = -100;
+        let isActive = false;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 15 + 5;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.color = Math.random() > 0.5 ? '#7c3aed' : '#06b6d4'; // Violet or Cyan
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
             }
-        `;
-        document.head.appendChild(style);
 
-        // Bootstrap the Glow Element
-        const glow = document.createElement('div');
-        glow.className = 'touch-glow';
-        document.body.appendChild(glow);
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= this.decay;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
 
-        // Touch event captures
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createParticles(x, y) {
+            if (particles.length < maxParticles) {
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            if (isActive) {
+                // Main soft glow at touch point
+                const gradient = ctx.createRadialGradient(touchX, touchY, 0, touchX, touchY, 50);
+                gradient.addColorStop(0, 'rgba(124, 58, 237, 0.3)');
+                gradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.1)');
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(touchX - 75, touchY - 75, 150, 150);
+                
+                createParticles(touchX, touchY);
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
         document.addEventListener('touchstart', (e) => {
-            glow.style.opacity = '1';
-            updateGlow(e.touches[0]);
-        }, {passive:true});
+            isActive = true;
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
+        }, {passive: true});
 
         document.addEventListener('touchmove', (e) => {
-            updateGlow(e.touches[0]);
-        }, {passive:true});
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
+            // Density boost on move
+            createParticles(touchX, touchY);
+        }, {passive: true});
 
         document.addEventListener('touchend', () => {
-            glow.style.opacity = '0';
-        });
-
-        function updateGlow(touch) {
-            glow.style.transform = `translate(${touch.clientX - 40}px, ${touch.clientY - 40}px)`;
-        }
+            isActive = false;
+        }, {passive: true});
     }
 })();
