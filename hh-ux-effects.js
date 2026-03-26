@@ -15,11 +15,11 @@
         document.body.appendChild(canvas);
 
         let width, height;
-        let particles = [];
-        const maxParticles = 25;
-        let touchX = -100;
-        let touchY = -100;
+        let targetX = -200, targetY = -200;
+        let currentX = -200, currentY = -200;
         let isActive = false;
+        let rotation = 0;
+        let ringPulse = 0;
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -29,67 +29,74 @@
         window.addEventListener('resize', resize);
         resize();
 
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 15 + 5;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.color = Math.random() > 0.5 ? '#7c3aed' : '#06b6d4'; // Violet or Cyan
-                this.alpha = 1;
-                this.decay = Math.random() * 0.02 + 0.015;
-            }
+        function drawHUD(x, y, opacity) {
+            if (opacity <= 0) return;
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.alpha -= this.decay;
-                if (this.size > 0.2) this.size -= 0.1;
-            }
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            ctx.strokeStyle = `rgba(6, 182, 212, ${opacity * 0.4})`; // Cyan
+            ctx.lineWidth = 1;
 
-            draw() {
+            // Inner Rotating Ring
+            ctx.beginPath();
+            ctx.arc(0, 0, 25 + Math.sin(ringPulse) * 2, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Outer Dashed Ring (Opposite Rotation)
+            ctx.save();
+            ctx.rotate(-rotation * 1.5);
+            ctx.strokeStyle = `rgba(124, 58, 237, ${opacity * 0.3})`; // Violet
+            ctx.setLineDash([5, 15]);
+            ctx.beginPath();
+            ctx.arc(0, 0, 40, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+
+            // Corner Brackets (Targeting feel)
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`;
+            const bSize = 12;
+            const bOffset = 45;
+            
+            for (let i = 0; i < 4; i++) {
                 ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = this.color;
-                ctx.fillStyle = this.color;
+                ctx.rotate((Math.PI / 2) * i);
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.moveTo(bOffset - bSize, bOffset);
+                ctx.lineTo(bOffset, bOffset);
+                ctx.lineTo(bOffset, bOffset - bSize);
+                ctx.stroke();
                 ctx.restore();
             }
-        }
 
-        function createParticles(x, y) {
-            if (particles.length < maxParticles) {
-                particles.push(new Particle(x, y));
-            }
+            // Central faint glow
+            const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 60);
+            gradient.addColorStop(0, `rgba(124, 58, 237, ${opacity * 0.15})`);
+            gradient.addColorStop(1, 'transparent');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(0, 0, 60, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            
-            if (isActive) {
-                // Main soft glow at touch point
-                const gradient = ctx.createRadialGradient(touchX, touchY, 0, touchX, touchY, 50);
-                gradient.addColorStop(0, 'rgba(124, 58, 237, 0.3)');
-                gradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.1)');
-                gradient.addColorStop(1, 'transparent');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(touchX - 75, touchY - 75, 150, 150);
-                
-                createParticles(touchX, touchY);
-            }
 
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].alpha <= 0) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
+            // Smooth following (Easing/Lerp)
+            currentX += (targetX - currentX) * 0.15;
+            currentY += (targetY - currentY) * 0.15;
+            
+            rotation += 0.02;
+            ringPulse += 0.05;
+
+            const opacity = isActive ? 1 : 0;
+            // Additional check to keep drawing while fading
+            // (We could add a dedicated alpha lerp here if we wanted longer trails)
+            
+            drawHUD(currentX, currentY, opacity);
+
             requestAnimationFrame(animate);
         }
 
@@ -97,15 +104,18 @@
 
         document.addEventListener('touchstart', (e) => {
             isActive = true;
-            touchX = e.touches[0].clientX;
-            touchY = e.touches[0].clientY;
+            targetX = e.touches[0].clientX;
+            targetY = e.touches[0].clientY;
+            // Instant snap on first touch to avoid flying in from corner
+            if (currentX < 0) {
+                currentX = targetX;
+                currentY = targetY;
+            }
         }, {passive: true});
 
         document.addEventListener('touchmove', (e) => {
-            touchX = e.touches[0].clientX;
-            touchY = e.touches[0].clientY;
-            // Density boost on move
-            createParticles(touchX, touchY);
+            targetX = e.touches[0].clientX;
+            targetY = e.touches[0].clientY;
         }, {passive: true});
 
         document.addEventListener('touchend', () => {
