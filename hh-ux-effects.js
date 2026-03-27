@@ -23,24 +23,59 @@
         const cleanupInterval = setInterval(cleanupLegacy, 500);
         setTimeout(() => clearInterval(cleanupInterval), 3000);
 
-        // 2. INJECT SIMPLE RIPPLE CSS
+        // 2. INJECT SUBTLE RIPPLE & LAYOUT CSS
         const style = document.createElement('style');
         style.textContent = `
+            /* Fix excessive padding and blank spaces on mobile */
+            section, .page-hero, .cta-section, .how, .stats, .tier-section, .features-section, .founder-section, .reviews-section {
+                min-height: 0 !important;
+                height: auto !important;
+                padding: 40px 16px !important;
+            }
+            .sec-inner, .stats-inner {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .hero { 
+                padding: 90px 16px 40px !important; 
+                min-height: 0 !important;
+            }
+            /* Eliminate massive gaps between text elements */
+            h1, h2, h3, h4, p, .sec-title, .sec-sub, .sec-label, .journey-header, .how-head, .hero-sub, .hero-actions, .hero-trust {
+                margin-bottom: 16px !important;
+                margin-top: 0 !important;
+            }
+            /* Tighten grids and cards */
+            .steps, .feat-grid, .vc-grid, .tier-grid, .sectors-grid, .how-grid {
+                gap: 16px !important;
+                margin-bottom: 24px !important;
+            }
+            .stat-box, .step, .feat, .price-card, .vc-card, .tier-card, .sector-card, .journey-col {
+                padding: 24px 16px !important;
+                margin-bottom: 12px !important;
+            }
+            .footer-inner {
+                gap: 24px !important;
+            }
+            footer {
+                padding: 40px 16px 20px !important;
+            }
+
+            /* Subtle Touch Ripple */
             .hh-touch-ripple {
                 position: fixed;
-                width: 40px;
-                height: 40px;
-                background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%);
-                border: 1.5px solid rgba(6, 182, 212, 0.5);
+                width: 16px;
+                height: 16px;
+                background: rgba(124, 58, 237, 0.6);
                 border-radius: 50%;
                 pointer-events: none;
                 z-index: 999999;
                 transform: translate(-50%, -50%) scale(0.5);
                 opacity: 0;
-                transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+                transition: transform 0.3s ease-out, opacity 0.3s ease-out;
             }
             .hh-touch-ripple.active {
-                transform: translate(-50%, -50%) scale(1.5);
+                transform: translate(-50%, -50%) scale(1.2);
                 opacity: 1;
             }
             /* Force hide legacy elements via CSS as well */
