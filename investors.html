@@ -138,7 +138,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .ticker-item span{color:var(--emerald);font-weight:600;}
 .ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--vivid2);flex-shrink:0;}
 section{padding:120px 64px;position:relative;z-index:1;}
-.page-hero{padding:160px 64px 80px;position:relative;z-index:1;overflow:hidden;}
+.page-hero{padding:250px 64px 80px;position:relative;z-index:1;overflow:hidden;}
 .page-hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,58,237,0.09) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(6,182,212,0.05) 0%,transparent 60%);}
 .page-hero-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(124,58,237,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 100%);}
 .page-hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;text-align:center;}
@@ -176,20 +176,20 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:72px 64
 @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
-@media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:140px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
+@media(max-width:1024px){nav{padding:16px 32px;}section{padding:90px 32px;}.page-hero{padding:170px 32px 60px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
 @media(max-width:768px){nav{padding:10px 16px;} .nav-logo{gap:6px;} .nav-logo img{height:28px;width:28px;} .nav-logo-text{font-size:1rem;letter-spacing:.04em;white-space:nowrap;} .nav-links{display:none;} .nav-right .nav-btn,.nav-right a.nav-btn-outline{display:none !important;} .hamburger{display:flex;} .mobile-menu{display:flex;} section{padding:72px 20px;} .page-hero{padding:110px 20px 48px !important;} .footer-inner{grid-template-columns:1fr;gap:32px;} .footer-bottom{flex-direction:column;text-align:center;} .footer-legal{flex-wrap:wrap;justify-content:center;gap:16px;} .ticker-wrap{top:48px;}}
 
 .inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
-.inv-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;transition:all .3s;position:relative;overflow:hidden;}
+.inv-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;transition:all .3s;position:relative;overflow:hidden;text-align:center;}
 .inv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold),var(--emerald));opacity:0;transition:opacity .3s;}
 .inv-card:hover{transform:translateY(-4px);border-color:rgba(6,182,212,0.3);box-shadow:0 20px 60px rgba(0,0,0,.5);}
 .inv-card:hover::before{opacity:1;}
-.inv-avatar{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px;}
+.inv-avatar{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px;margin-left:auto;margin-right:auto;}
 .inv-name{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;}
 .inv-partner{font-size:.8rem;color:var(--muted);margin-bottom:6px;}
 .inv-city{font-size:.75rem;color:var(--vivid2);letter-spacing:.08em;margin-bottom:16px;}
 .inv-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:16px;}
-.inv-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.inv-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;justify-content:center;}
 .inv-tag{font-size:.68rem;padding:3px 9px;border-radius:4px;background:var(--cyan-dim);color:var(--cyan2);border:1px solid rgba(6,182,212,0.2);font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
 .inv-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border2);}
 .inv-check{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--vivid2);}
@@ -1217,7 +1217,7 @@ h2 .cr-accent { color: #f43f5e !important; }
  <div class="page-hero-mesh"></div><div class="page-hero-lines"></div>
  <div class="page-hero-content">
   <div class="sec-label" style="animation:fadeUp .7s .1s ease both;opacity:0;">Investor Network</div>
-  <h1 class="sec-title" style="animation:fadeUp .7s .2s ease both;opacity:0;">India's Most Verified<br/>Investor Directory</h1>
+  <h1 class="sec-title" style="animation:fadeUp .7s .2s ease both;opacity:0;">India's Most Verified <br>Investor Directory</h1>
   <p class="sec-sub" style="animation:fadeUp .7s .3s ease both;opacity:0;">Every investor on The Hook Hustlers is verified via LinkedIn + AUM proof. Angels, VCs, PE firms, corporate investors, and government funds — all in one place.</p>
  </div>
 </div>
@@ -1273,32 +1273,32 @@ h2 .cr-accent { color: #f43f5e !important; }
    <p class="sec-sub" style="margin:16px auto 0;max-width:580px;">Early investors on The Hook Hustlers don't just get access — they get priority. The platform is being shaped around your needs right now, while there's still time to influence it.</p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
-   <div class="reveal" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(124,58,237,0.02));border:1px solid rgba(124,58,237,0.15);border-radius:20px;padding:36px;">
+   <div class="reveal" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(124,58,237,0.02));border:1px solid rgba(124,58,237,0.15);border-radius:20px;padding:36px;text-align:center;">
     <div style="font-size:2rem;margin-bottom:16px;">🎯</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vivid2);margin-bottom:10px;">Mandate-Perfect Deals</div>
     <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">You set your investment thesis once — sector, stage, ticket size, geography. Every startup surfaced to you is matched against it. No inbox noise. No wasted calls.</div>
    </div>
-   <div class="reveal" style="background:linear-gradient(135deg,rgba(6,182,212,0.06),rgba(6,182,212,0.02));border:1px solid rgba(6,182,212,0.15);border-radius:20px;padding:36px;" data-delay="100">
+   <div class="reveal" style="background:linear-gradient(135deg,rgba(6,182,212,0.06),rgba(6,182,212,0.02));border:1px solid rgba(6,182,212,0.15);border-radius:20px;padding:36px;text-align:center;" data-delay="100">
     <div style="font-size:2rem;margin-bottom:16px;">🔍</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;">Pre-Diligenced Profiles</div>
     <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Every startup comes with a verified DPIIT certificate, Funding Readiness Score, full financials and pitch deck. You walk into every first call already informed.</div>
    </div>
-   <div class="reveal" style="background:linear-gradient(135deg,rgba(0,208,132,0.06),rgba(0,208,132,0.02));border:1px solid rgba(0,208,132,0.15);border-radius:20px;padding:36px;" data-delay="200">
+   <div class="reveal" style="background:linear-gradient(135deg,rgba(0,208,132,0.06),rgba(0,208,132,0.02));border:1px solid rgba(0,208,132,0.15);border-radius:20px;padding:36px;text-align:center;" data-delay="200">
     <div style="font-size:2rem;margin-bottom:16px;">🦁</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--emerald);margin-bottom:10px;">Tier 2 & 3 Deal Flow</div>
     <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">The next Meesho, Nykaa or Zepto may not come from Bangalore. Our platform specifically surfaces high-quality startups from India's underserved markets — where valuations are still rational.</div>
    </div>
-   <div class="reveal" style="background:linear-gradient(135deg,rgba(181,123,255,0.06),rgba(181,123,255,0.02));border:1px solid rgba(181,123,255,0.15);border-radius:20px;padding:36px;" data-delay="100">
+   <div class="reveal" style="background:linear-gradient(135deg,rgba(181,123,255,0.06),rgba(181,123,255,0.02));border:1px solid rgba(181,123,255,0.15);border-radius:20px;padding:36px;text-align:center;" data-delay="100">
     <div style="font-size:2rem;margin-bottom:16px;">⚖️</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:#a78bfa;margin-bottom:10px;">Legally Protected Introductions</div>
     <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Every introduction is logged and governed by our platform T&Cs. No founder can close a deal introduced through our platform without our involvement — protecting your intro rights.</div>
    </div>
-   <div class="reveal" style="background:linear-gradient(135deg,rgba(230,57,70,0.06),rgba(230,57,70,0.02));border:1px solid rgba(230,57,70,0.15);border-radius:20px;padding:36px;" data-delay="200">
+   <div class="reveal" style="background:linear-gradient(135deg,rgba(230,57,70,0.06),rgba(230,57,70,0.02));border:1px solid rgba(230,57,70,0.15);border-radius:20px;padding:36px;text-align:center;" data-delay="200">
     <div style="font-size:2rem;margin-bottom:16px;">📊</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--crimson);margin-bottom:10px;">Portfolio Dashboard</div>
     <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Track all your expressions of interest, active conversations and closed deals in one place. Simple, clean, and built for investors who manage multiple parallel deals.</div>
    </div>
-   <div class="reveal" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(124,58,237,0.02));border:1px solid rgba(124,58,237,0.15);border-radius:20px;padding:36px;" data-delay="300">
+   <div class="reveal" style="background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(124,58,237,0.02));border:1px solid rgba(124,58,237,0.15);border-radius:20px;padding:36px;text-align:center;" data-delay="300">
     <div style="font-size:2rem;margin-bottom:16px;">🔑</div>
     <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vivid2);margin-bottom:10px;">Founding Member Status</div>
     <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Early investors get a permanent Founding Investor badge, locked-in annual membership fee, and direct access to Aniket to shape what the platform becomes next.</div>
@@ -1896,57 +1896,88 @@ async function fetchPublicInvestors() {
   if(!grid) return;
 
   const isLoggedIn = localStorage.getItem('hhLoggedIn') === 'true';
-  const { data, error } = await window.supabaseClient.from('investors').select('*').order('created_at', { ascending: false }).limit(6);
 
-  // Fallback Data if DB is empty
-  const fallbackData = [
-    { company_name: "Sequoia Surge", investor_type: "VC Firm", city: "Bengaluru" },
-    { company_name: "Elevation Capital", investor_type: "VC Firm", city: "Gurugram" },
-    { company_name: "Kalaari Capital", investor_type: "VC Firm", city: "Bengaluru" }
-  ];
-
-  const finalData = (data && data.length > 0) ? data : fallbackData;
-
-  // Clear current placeholder if we have real/fallback data
-  if(finalData.length > 0) {
-    grid.innerHTML = ''; 
+  // Only fetch investors that have been verified by admin panel
+  let verifiedInvestors = [];
+  try {
+    const { data, error } = await window.supabaseClient
+      .from('investors')
+      .select('*')
+      .eq('admin_verified', true)
+      .order('created_at', { ascending: false })
+      .limit(6);
+    if(!error && data && data.length > 0) {
+      verifiedInvestors = data;
+    }
+  } catch(e) {
+    console.log('Investor fetch skipped:', e.message);
   }
 
-  finalData.forEach(inv => {
-    const card = document.createElement('div');
-    card.className = 'inv-card reveal glow-card' + (!isLoggedIn ? ' blur-preview' : '');
-    
-    const name = inv.company_name || inv.full_name || 'Global Investor';
-    const type = inv.investor_type || 'Angel / VC';
-    const location = inv.city || 'India';
-    
-    card.innerHTML = `
-      ${!isLoggedIn ? `
+  // Clear placeholder
+  grid.innerHTML = '';
+
+  // If we have admin-verified investors, show them
+  if(verifiedInvestors.length > 0) {
+    verifiedInvestors.forEach(inv => {
+      const card = document.createElement('div');
+      card.className = 'inv-card reveal glow-card' + (!isLoggedIn ? ' blur-preview' : '');
+
+      const name = inv.company_name || inv.full_name || 'Verified Investor';
+      const type = inv.investor_type || 'Angel / VC';
+      const location = inv.city || 'India';
+
+      card.innerHTML = `
+        ${!isLoggedIn ? `
+          <div class="blur-overlay">
+            <div class="lock-icon">🔒</div>
+            <div class="lock-text">Premium Network Locked</div>
+            <a href="login.html" class="lock-btn">Login to View Details</a>
+          </div>
+        ` : ''}
+        <div class="inv-avatar" style="background:var(--vivid-dim);color:var(--vivid2);">
+          ${name.charAt(0)}
+        </div>
+        <div class="inv-name">${name}</div>
+        <div class="inv-partner">${type}</div>
+        <div class="inv-city">${location}</div>
+        <div class="inv-desc">${inv.bio || 'Verified investor on The Hook Hustlers platform.'}</div>
+        <div class="inv-tags">
+          <span class="inv-tag">Verified ✓</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  } else {
+    // No admin-verified investors yet — show blurred placeholder cards
+    const placeholders = [
+      { name: 'Premium Investor', type: 'Angel / VC', city: 'India' },
+      { name: 'Premium Investor', type: 'VC Firm', city: 'India' }
+    ];
+    placeholders.forEach(inv => {
+      const card = document.createElement('div');
+      card.className = 'inv-card reveal glow-card blur-preview';
+      card.innerHTML = `
         <div class="blur-overlay">
           <div class="lock-icon">🔒</div>
           <div class="lock-text">Premium Network Locked</div>
           <a href="login.html" class="lock-btn">Login to View Details</a>
         </div>
-      ` : ''}
-      <div class="inv-avatar" style="background:var(--vivid-dim);color:var(--vivid2);">
-        ${name.charAt(0)}
-      </div>
-      <div class="inv-name">${name}</div>
-      <div class="inv-partner">${type}</div>
-      <div class="inv-city">${location}</div>
-      <div class="inv-desc">Actively looking for disruptive startups in Tech, Fintech, and SaaS sectors.</div>
-      <div class="inv-tags">
-        <span class="inv-tag">Active Pool</span>
-        <span class="inv-tag">Verified</span>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
+        <div class="inv-avatar" style="background:var(--vivid-dim);color:var(--vivid2);">P</div>
+        <div class="inv-name">${inv.name}</div>
+        <div class="inv-partner">${inv.type}</div>
+        <div class="inv-city">${inv.city}</div>
+        <div class="inv-desc">Verified investor on The Hook Hustlers platform.</div>
+        <div class="inv-tags">
+          <span class="inv-tag">Coming Soon</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
 
   // Add the "Join Onboarding" card as the last item
   const joinCard = document.createElement('div');
   joinCard.className = 'inv-card reveal glow-card';
-  joinCard.style.textAlign = 'center';
   joinCard.innerHTML = `
     <div style="font-size:2.5rem;margin-bottom:12px;">💼</div>
     <div class="inv-name">Your Profile Here</div>
@@ -1955,7 +1986,7 @@ async function fetchPublicInvestors() {
     <a href="login.html?next=signup" class="inv-connect" style="display:inline-block;margin-top:10px;">Apply to Join</a>
   `;
   grid.appendChild(joinCard);
-  
+
   if(window.revObs) {
     document.querySelectorAll('.inv-card.reveal').forEach(el => window.revObs.observe(el));
   }
