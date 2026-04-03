@@ -2284,19 +2284,22 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       }
       
-      // 2. Desktop: Show Pricing in Nav-Links (Remove duplicate Dashboard)
+      // 2. Desktop: Show Pricing + Dashboard in Nav-Links
       if(navLinks) {
-          // Remove duplicate Dashboard link from main menu bar
-          document.querySelectorAll('.nav-links a[href="dashboard.html"]').forEach(el => el.remove());
-          
           if(!navLinks.innerHTML.includes('pricing.html')) {
               const priceLink = document.createElement('a');
               priceLink.href = 'pricing.html';
               priceLink.textContent = 'Pricing';
-              priceLink.style.color = 'var(--vivid2)';
               const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
               if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
               else navLinks.appendChild(priceLink);
+          }
+          if(!navLinks.querySelector('a[href="dashboard.html"]')) {
+              const dashLink = document.createElement('a');
+              dashLink.href = 'dashboard.html';
+              dashLink.textContent = 'Dashboard';
+              dashLink.style.color = 'var(--cyan)';
+              navLinks.appendChild(dashLink);
           }
       }
 

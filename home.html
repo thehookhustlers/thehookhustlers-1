@@ -3554,13 +3554,18 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
         }
         if(navLinks) {
-          navLinks.querySelectorAll('a[href="dashboard.html"]').forEach(el => el.remove());
           if(!navLinks.innerHTML.includes('pricing.html')) {
             const priceLink = document.createElement('a');
             priceLink.href = 'pricing.html';
             priceLink.textContent = 'Pricing';
-            priceLink.style.color = 'var(--vivid2)';
             navLinks.appendChild(priceLink);
+          }
+          if(!navLinks.querySelector('a[href="dashboard.html"]')) {
+            const dashLink = document.createElement('a');
+            dashLink.href = 'dashboard.html';
+            dashLink.textContent = 'Dashboard';
+            dashLink.style.color = 'var(--cyan)';
+            navLinks.appendChild(dashLink);
           }
         }
         if(mobileMenu) {
