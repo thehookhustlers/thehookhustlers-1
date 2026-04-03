@@ -278,26 +278,32 @@
       // Hybrid check: DB OR localStorage
       const hasSubmittedKYC = data.kyc_url || localStorage.getItem('hh_kyc_submitted') === 'true';
 
+      // Always sync: if DB has kyc_url, ensure localStorage is set too
+      if(data.kyc_url) localStorage.setItem('hh_kyc_submitted', 'true');
+
       if (data.is_kyc_verified === true) {
         if(kycStatusTxt) {
           kycStatusTxt.textContent = 'Verified ✔';
           kycStatusTxt.style.color = 'var(--emerald)';
           kycStatusTxt.style.fontWeight = '700';
         }
-        if(kycBtn && kycBtn.parentElement) kycBtn.parentElement.style.display = 'none';
+        // Completely remove the upload button and its wrapper
+        const kycBtnWrap = kycBtn?.parentElement;
+        if(kycBtnWrap) kycBtnWrap.remove();
       } else if (hasSubmittedKYC) {
         if(kycStatusTxt) {
           kycStatusTxt.textContent = 'Under Review ⏳';
           kycStatusTxt.style.color = 'var(--cyan)';
           kycStatusTxt.style.fontWeight = '600';
         }
-        // Replace upload button with processing message
+        // Completely replace upload button wrapper with status card
         const kycBtnWrap = kycBtn?.parentElement;
         if(kycBtnWrap) {
           kycBtnWrap.innerHTML = `
-            <div style="margin-top:15px; background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2); padding:15px; border-radius:8px; min-width:240px;">
-              <p style="color:var(--muted); font-size:0.8rem; line-height:1.4; margin:0;">
-                ID received. Our compliance team is verifying your credentials to grant your platform license. Check back in 24 hours.
+            <div style="margin-top:8px; background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2); padding:14px 16px; border-radius:8px; max-width:320px;">
+              <p style="color:var(--cyan); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 6px;">Document Received</p>
+              <p style="color:var(--muted); font-size:0.78rem; line-height:1.5; margin:0;">
+                Our compliance team is verifying your Aadhaar/PAN. This typically takes 24–48 hours. You'll receive an email once verified.
               </p>
             </div>
           `;

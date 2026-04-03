@@ -1516,6 +1516,67 @@ input:focus, textarea:focus, select:focus {
     }
   });
 </script>
+<script>
+  // Dynamic pricing card highlighting based on user type
+  document.addEventListener('DOMContentLoaded', async () => {
+    if(typeof window.supabaseClient === 'undefined') return;
+    const { data: { session } } = await window.supabaseClient.auth.getSession();
+    if(!session) return;
+
+    const userId = session.user.id;
+    const cards = document.querySelectorAll('.pricing-grid .price-card');
+    if(cards.length < 3) return;
+
+    const startupCard = cards[0]; // Startup Plan
+    const investorCard = cards[1]; // Investor Plan
+    const postDealCard = cards[2]; // Post-Deal Plan
+
+    // Check if user is an investor
+    const { data: invData } = await window.supabaseClient.from('investors').select('id').eq('id', userId).maybeSingle();
+    // Check if user is a startup
+    const { data: stData } = await window.supabaseClient.from('startups').select('id').eq('id', userId).maybeSingle();
+
+    if(invData) {
+      // User is an investor — highlight Investor Plan
+      startupCard.classList.remove('featured');
+      postDealCard.classList.remove('featured');
+      investorCard.classList.add('featured');
+
+      // Move featured tag
+      const existingTag = document.querySelector('.featured-tag');
+      if(existingTag) existingTag.remove();
+      const tag = document.createElement('div');
+      tag.className = 'featured-tag';
+      tag.textContent = 'Recommended for You';
+      investorCard.prepend(tag);
+
+      // Swap button styles
+      const invBtn = investorCard.querySelector('.price-btn');
+      const stBtn = startupCard.querySelector('.price-btn');
+      if(invBtn) { invBtn.className = 'price-btn price-btn-gold'; }
+      if(stBtn) { stBtn.className = 'price-btn price-btn-outline'; }
+    } else if(stData) {
+      // User is a startup — highlight Startup Plan
+      investorCard.classList.remove('featured');
+      postDealCard.classList.remove('featured');
+      startupCard.classList.add('featured');
+
+      // Move featured tag  
+      const existingTag = document.querySelector('.featured-tag');
+      if(existingTag) existingTag.remove();
+      const tag = document.createElement('div');
+      tag.className = 'featured-tag';
+      tag.textContent = 'Recommended for You';
+      startupCard.prepend(tag);
+
+      // Swap button styles
+      const stBtn = startupCard.querySelector('.price-btn');
+      const invBtn = investorCard.querySelector('.price-btn');
+      if(stBtn) { stBtn.className = 'price-btn price-btn-gold'; }
+      if(invBtn) { invBtn.className = 'price-btn price-btn-outline'; }
+    }
+  });
+</script>
 <div class="ticker-wrap">
  <div class="ticker">
   <div class="ticker-item"><div class="dot"></div>🇮🇳 India has <span>6,53,000+ DPIIT-registered startups</span> — and most investors haven't heard of 99% of them</div>
