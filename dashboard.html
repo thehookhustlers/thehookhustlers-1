@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard — The Hook Hustlers</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <!-- Supabase Database Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-client.js"></script>
+
+  <!-- EmailJS Integration for Automation -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // Initializes EmailJS. Requires user to replace with actual Public Key from EmailJS Dashboard.
+    emailjs.init({ publicKey: "eKyFJq1Wc-iNOuZpMY" });
+  </script>
 
   <style>
     :root {
@@ -36,101 +46,433 @@
       --border: rgba(124, 58, 237, 0.15);
       --border2: rgba(255, 255, 255, 0.08);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body { background:var(--black); color:var(--white); font-family:'Rajdhani',sans-serif; overflow-x:hidden; }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
 
     /* Particles & Splashes */
-    .bg-mesh { position:fixed; inset:0; z-index:0; background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,58,237,0.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 90% 80%,rgba(6,182,212,0.04) 0%,transparent 60%); pointer-events:none; }
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.06) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 90% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
 
     /* Nav */
-    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px 64px; background:rgba(4,4,11,0.75); backdrop-filter:blur(24px); border-bottom:1px solid var(--border); }
-    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:.08em; text-decoration:none; display:flex; align-items:center; gap:10px; }
-    .nav-logo-text { background:linear-gradient(135deg,var(--vivid2),var(--cyan),var(--vivid)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .nav-logo img { width:32px; height:32px; border-radius:50%; box-shadow:0 0 14px rgba(124,58,237,0.5); }
-    .nav-btn { font-family:'Rajdhani',sans-serif; font-weight:600; font-size:.82rem; padding:9px 22px; border-radius:6px; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; background:transparent; border:1px solid rgba(244,63,94,0.4); color:var(--crimson); }
-    .nav-btn:hover { background:rgba(244,63,94,0.1); }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 64px;
+      background: rgba(4, 4, 11, 0.75);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: .08em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-text {
+      background: linear-gradient(135deg, var(--vivid2), var(--cyan), var(--vivid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(124, 58, 237, 0.5);
+    }
+
+    .nav-btn {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 9px 22px;
+      border-radius: 6px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: var(--crimson);
+    }
+
+    .nav-btn:hover {
+      background: rgba(244, 63, 94, 0.1);
+    }
 
     /* Layout */
-    .dashboard-wrap { padding:120px 64px 60px; position:relative; z-index:1; max-width:1400px; margin:0 auto; min-height:100vh; }
-    
-    .loading-state { text-align:center; padding:100px 0; color:var(--vivid2); font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.1em; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+    .dashboard-wrap {
+      padding: 120px 64px 60px;
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 100px 0;
+      color: var(--vivid2);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
 
     /* Dashboard Modules */
-    .dash-header { margin-bottom:40px; border-bottom:1px solid var(--border2); padding-bottom:20px; }
-    .dash-title { font-family:'Bebas Neue',sans-serif; font-size:3rem; letter-spacing:.04em; margin-bottom:8px; }
-    .dash-sub { color:var(--muted); font-size:1rem; display:flex; align-items:center; gap:10px; }
-    .badge { font-family:'Rajdhani',sans-serif; font-size:.7rem; font-weight:700; padding:4px 10px; border-radius:4px; letter-spacing:.08em; text-transform:uppercase; }
-    .badge-startup { background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3); color:var(--vivid2); }
-    .badge-investor { background:rgba(16,217,157,0.15); border:1px solid rgba(16,217,157,0.3); color:var(--emerald); }
+    .dash-header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 20px;
+    }
 
-    .grid-2 { display:grid; grid-template-columns:1fr 2fr; gap:32px; }
-    
+    .dash-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: .04em;
+      margin-bottom: 8px;
+    }
+
+    .dash-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .badge-startup {
+      background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      color: var(--vivid2);
+    }
+
+    .badge-investor {
+      background: rgba(16, 217, 157, 0.15);
+      border: 1px solid rgba(16, 217, 157, 0.3);
+      color: var(--emerald);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+    }
+
     /* Glass Cards */
-    .glass-card { 
+    .glass-card {
       background: var(--card) !important;
       backdrop-filter: blur(16px) saturate(1.4) !important;
       -webkit-backdrop-filter: blur(16px) saturate(1.4) !important;
       border: 1px solid var(--border) !important;
-      border-radius: 16px; padding: 32px; transition: transform .3s, border-color .3s, box-shadow 0.3s;
-    }
-    .glass-card:hover { 
-      transform: translateY(-4px);
-      border-color: rgba(124, 58, 237, 0.4) !important; 
-      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15), 0 0 20px rgba(6, 182, 212, 0.1); 
+      border-radius: 16px;
+      padding: 32px;
+      transition: transform .3s, border-color .3s, box-shadow 0.3s;
     }
 
-    .card-title { font-family:'Rajdhani',sans-serif; font-size:.9rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--vivid2); margin-bottom:20px; border-bottom:1px solid var(--border2); padding-bottom:10px; }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124, 58, 237, 0.4) !important;
+      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15), 0 0 20px rgba(6, 182, 212, 0.1);
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--vivid2);
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 10px;
+    }
 
     /* Score Circle */
-    .score-wrap { position:relative; width:160px; height:160px; margin:0 auto 20px; }
-    .score-circle { width:100%; height:100%; border-radius:50%; background:conic-gradient(var(--emerald) 0%, var(--emerald) 85%, var(--deep) 85%, var(--deep) 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 0 30px rgba(16,217,157,0.2); }
-    .score-inner { width:140px; height:140px; background:var(--card); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-    .score-num { font-family:'Bebas Neue',sans-serif; font-size:3.5rem; color:var(--white); line-height:1; }
-    .score-lbl { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; font-weight:600; }
+    .score-wrap {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 20px;
+    }
+
+    .score-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(var(--emerald) 0%, var(--emerald) 85%, var(--deep) 85%, var(--deep) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(16, 217, 157, 0.2);
+    }
+
+    .score-inner {
+      width: 140px;
+      height: 140px;
+      background: var(--card);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .score-lbl {
+      font-size: .75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 600;
+    }
 
     /* Data List */
-    .data-row { display:flex; justify-content:space-between; margin-bottom:12px; font-size:.9rem; }
-    .data-lbl { color:var(--muted); }
-    .data-val { font-weight:600; color:var(--white); }
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: .9rem;
+    }
+
+    .data-lbl {
+      color: var(--muted);
+    }
+
+    .data-val {
+      font-weight: 600;
+      color: var(--white);
+    }
 
     /* Match Cards */
-    .match-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:16px; }
-    .match-card { background:var(--deep); border:1px solid var(--border2); border-radius:12px; padding:20px; cursor:pointer; transition:all .2s; }
-    .match-card:hover { border-color:var(--cyan); transform:translateY(-2px); }
-    .m-name { font-size:1.1rem; font-weight:700; margin-bottom:4px; }
-    .m-sub { font-size:.8rem; color:var(--muted); margin-bottom:12px; }
-    .m-tag { display:inline-block; font-size:.65rem; background:rgba(6,182,212,0.15); color:var(--cyan); padding:3px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:.05em; margin-right:4px; margin-bottom:4px; }
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
 
-    
-    .nav-links { display:flex; gap:32px; align-items:center; }
-    .nav-links a { color:var(--white); text-decoration:none; font-family:'Rajdhani',sans-serif; font-size:.9rem; font-weight:600; text-transform:uppercase; letter-spacing:.08em; transition:color .2s; }
-    .nav-links a:hover { color:var(--vivid2); text-shadow:0 0 10px rgba(124,58,237,0.4); }
-    @media(max-width:900px) { .nav-links { display:none; } }
+    .match-card {
+      background: var(--deep);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all .2s;
+    }
 
-    @media(max-width:900px){ .grid-2 { grid-template-columns:1fr; } nav{padding:12px 24px;} .dashboard-wrap{padding:100px 24px 40px;} }
-  
-/* ── UNIVERSAL TOUCH DEVICE FIX: Hide custom cursor on mobile/tablets to prevent sticking ── */
-@media (hover: none) and (pointer: coarse), (max-width: 1024px) {
-  #cursor, #cursorRing, .cursor, .cursor-ring, #hh-cursor, #hh-ring, .hh-trail {
-    display: none !important; opacity: 0 !important; visibility: hidden !important;
-  }
-  body, html, * { cursor: auto !important; }
-}
-</style>
+    .match-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .m-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .m-sub {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .m-tag {
+      display: inline-block;
+      font-size: .65rem;
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--cyan);
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--vivid2);
+      text-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+    }
+
+    @media(max-width:900px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media(max-width:900px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        padding: 12px 24px;
+      }
+
+      .dashboard-wrap {
+        padding: 100px 24px 40px;
+      }
+    }
+
+    /* ── UNIVERSAL TOUCH DEVICE FIX: Hide custom cursor on mobile/tablets to prevent sticking ── */
+    @media (hover: none) and (pointer: coarse),
+    (max-width: 1024px) {
+
+      #cursor,
+      #cursorRing,
+      .cursor,
+      .cursor-ring,
+      #hh-cursor,
+      #hh-ring,
+      .hh-trail {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+
+      body,
+      html,
+      * {
+        cursor: auto !important;
+      }
+    }
+
+    /* Toast Notification Styles */
+    .hh-toast {
+      position: fixed;
+      top: 20px;
+      right: -300px;
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--vivid2);
+      color: var(--white);
+      padding: 16px 24px;
+      border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 999999;
+    }
+
+    .hh-toast.show {
+      right: 20px;
+    }
+
+    .hh-toast.success {
+      border-left-color: var(--emerald);
+    }
+
+    .hh-toast.error {
+      border-left-color: var(--crimson);
+    }
+  </style>
 
 
   <script>
+    // Global Toast Notification Helper
+    window.showToast = function (message, type = 'success') {
+      let toast = document.getElementById('hhToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'hhToast';
+        document.body.appendChild(toast);
+      }
+      toast.className = `hh-toast ${type} show`;
+      toast.textContent = message;
+      setTimeout(() => { toast.classList.remove('show'); }, 3500);
+    };
+
     // 1. Auth Guard
     async function checkAuth() {
+
       const { data: { session }, error } = await supabaseClient.auth.getSession();
       if (!session) {
         window.location.href = 'login.html';
         return null;
       }
-      
+
       const user = session.user;
-      
+
       // UNIVERSAL USER LOGGING & TIER FETCH
       try {
         const { data: dirData } = await supabaseClient.from('users_directory').upsert({
@@ -139,14 +481,14 @@
           email: user.email,
           last_active: new Date().toISOString()
         }, { onConflict: 'id' }).select('tier').single();
-        
+
         if (dirData && dirData.tier) {
           user.tier = dirData.tier;
         }
-      } catch(err) {
+      } catch (err) {
         console.warn('User directory log ignored:', err);
       }
-      
+
       return user;
     }
 
@@ -154,7 +496,7 @@
     async function loadDashboard() {
       const user = await checkAuth();
       if (!user) return; // Auth guard caught them
-      
+
       window.currentUserTier = user.tier;
 
       // Check Startups table
@@ -163,7 +505,7 @@
         .select('*')
         .eq('id', user.id)
         .single();
-      
+
       if (startupData) {
         renderStartupDashboard(startupData);
         return;
@@ -175,7 +517,7 @@
         .select('*')
         .eq('id', user.id)
         .single();
-      
+
       if (investorData) {
         renderInvestorDashboard(investorData);
         return;
@@ -194,7 +536,7 @@
       // Fill header
       document.getElementById('s-title').textContent = 'Welcome, ' + data.founder_name;
       document.getElementById('s-company').textContent = data.company_name;
-      
+
       // Tier Badge
       if (window.currentUserTier) {
         const tierBadge = document.createElement('span');
@@ -211,7 +553,7 @@
       document.getElementById('s-stage').textContent = data.stage || 'Unknown';
       document.getElementById('s-city').textContent = data.city || 'Unknown';
       document.getElementById('s-dpiit').textContent = data.dpiit_number ? 'Verified' : 'Pending';
-      if(data.dpiit_number) {
+      if (data.dpiit_number) {
         document.getElementById('s-dpiit').style.color = 'var(--emerald)';
       }
 
@@ -219,10 +561,10 @@
       const deckBtn = document.getElementById('deckBtn');
       // Hybrid check: DB OR localStorage (for immediate refresh sync)
       const hasSubmittedDeck = data.pitch_deck_url || localStorage.getItem('hh_deck_submitted') === 'true';
-      
-      if(hasSubmittedDeck) {
+
+      if (hasSubmittedDeck) {
         const deckBtnWrap = deckBtn?.parentElement;
-        if(deckBtnWrap) {
+        if (deckBtnWrap) {
           deckBtnWrap.innerHTML = `
             <div style="background:rgba(16,217,157,0.05); border:1px solid rgba(16,217,157,0.2); padding:20px; border-radius:12px; text-align:center; min-width:280px;">
               <div style="color:var(--emerald); font-weight:700; margin-bottom:8px; font-size:1.1rem;">DECK SUBMITTED ✔</div>
@@ -236,17 +578,20 @@
 
       // Score logic based on completeness
       let score = 50;
-      if(data.dpiit_number) score += 20;
-      if(hasSubmittedDeck) score += 15;
-      if(data.funding_needed) score += 15;
+      if (data.dpiit_number) score += 20;
+      if (hasSubmittedDeck) score += 15;
+      if (data.funding_needed) score += 15;
       document.getElementById('s-score').textContent = score;
       document.getElementById('scoreRing').style.background = `conic-gradient(var(--emerald) 0%, var(--emerald) ${score}%, var(--deep) ${score}%, var(--deep) 100%)`;
 
       // New: Analytics section
       const analyticsContainer = document.createElement('div');
       analyticsContainer.id = 's-analytics';
-      ui.querySelector('.db-card:first-child').appendChild(analyticsContainer);
+      ui.querySelector('.db-card:first-child')?.appendChild(analyticsContainer);
       fetchAnalytics(data.id, 's-analytics');
+
+      // Fetch AI Matches for Startup
+      fetchStartupMatches();
     }
 
     function renderInvestorDashboard(data) {
@@ -279,26 +624,26 @@
       const hasSubmittedKYC = data.kyc_url || localStorage.getItem('hh_kyc_submitted') === 'true';
 
       // Always sync: if DB has kyc_url, ensure localStorage is set too
-      if(data.kyc_url) localStorage.setItem('hh_kyc_submitted', 'true');
+      if (data.kyc_url) localStorage.setItem('hh_kyc_submitted', 'true');
 
       if (data.is_kyc_verified === true) {
-        if(kycStatusTxt) {
+        if (kycStatusTxt) {
           kycStatusTxt.textContent = 'Verified ✔';
           kycStatusTxt.style.color = 'var(--emerald)';
           kycStatusTxt.style.fontWeight = '700';
         }
         // Completely remove the upload button and its wrapper
         const kycBtnWrap = kycBtn?.parentElement;
-        if(kycBtnWrap) kycBtnWrap.remove();
+        if (kycBtnWrap) kycBtnWrap.remove();
       } else if (hasSubmittedKYC) {
-        if(kycStatusTxt) {
+        if (kycStatusTxt) {
           kycStatusTxt.textContent = 'Under Review ⏳';
           kycStatusTxt.style.color = 'var(--cyan)';
           kycStatusTxt.style.fontWeight = '600';
         }
         // Completely replace upload button wrapper with status card
         const kycBtnWrap = kycBtn?.parentElement;
-        if(kycBtnWrap) {
+        if (kycBtnWrap) {
           kycBtnWrap.innerHTML = `
             <div style="margin-top:8px; background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2); padding:14px 16px; border-radius:8px; max-width:320px;">
               <p style="color:var(--cyan); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 6px;">Document Received</p>
@@ -313,13 +658,16 @@
       // New: Analytics section
       const analyticsContainer = document.createElement('div');
       analyticsContainer.id = 'i-analytics';
-      ui.querySelector('.db-card:first-child').appendChild(analyticsContainer);
+      ui.querySelector('.db-card:first-child')?.appendChild(analyticsContainer);
       fetchAnalytics(data.id, 'i-analytics');
+
+      // Fetch AI Matches for Investor
+      fetchInvestorMatches();
     }
 
     async function fetchAnalytics(userId, containerId) {
       const container = document.getElementById(containerId);
-      if(!container) return;
+      if (!container) return;
 
       try {
         // Fetch Deck Views (Target is Me)
@@ -351,8 +699,8 @@
     }
 
     async function handleSignOut() {
-      await window.supabaseClient.auth.getSession().then(({data:{session}})=>{
-        if(session) window.supabaseClient.auth.signOut();
+      await window.supabaseClient.auth.getSession().then(({ data: { session } }) => {
+        if (session) window.supabaseClient.auth.signOut();
       });
       localStorage.removeItem('hhLoggedIn');
       localStorage.removeItem('hh_deck_submitted');
@@ -361,7 +709,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', loadDashboard);
-  
+
     async function completeGoogleOnboarding(type) {
       const user = await checkAuth();
       if (!user) return;
@@ -374,8 +722,8 @@
       if (type === 'startup') {
         const name = document.getElementById('ob-s-name').value;
         const ind = document.getElementById('ob-s-ind').value;
-        if (!name) { alert("Please enter Startup Name"); btn.textContent = "Launch Dashboard →"; btn.style.opacity="1"; return; }
-        
+        if (!name) { alert("Please enter Startup Name"); btn.textContent = "Launch Dashboard →"; btn.style.opacity = "1"; return; }
+
         const { error: sErr } = await supabaseClient.from('startups').insert([{
           id: user.id,
           email: user.email,
@@ -385,20 +733,20 @@
           stage: 'Idea Stage',
           city: 'India'
         }]);
-        
+
         if (sErr) {
           alert("Database Error: " + sErr.message + "\n\n(You likely need to update your RLS policies in Supabase to allow INSERTs!)");
-          btn.textContent = "Launch Dashboard →"; btn.style.opacity="1";
+          btn.textContent = "Launch Dashboard →"; btn.style.opacity = "1";
           return;
         }
-        
+
         // Sync to universal directory
         await supabaseClient.from('users_directory').update({ user_type: 'Startup' }).eq('id', user.id);
 
       } else {
         const name = document.getElementById('ob-i-name').value;
         const tkt = document.getElementById('ob-i-ticket').value;
-        if (!name) { alert("Please enter Entity Name"); btn.textContent = "Launch Dashboard →"; btn.style.opacity="1"; return; }
+        if (!name) { alert("Please enter Entity Name"); btn.textContent = "Launch Dashboard →"; btn.style.opacity = "1"; return; }
 
         const { error: iErr } = await supabaseClient.from('investors').insert([{
           id: user.id,
@@ -407,17 +755,17 @@
           investor_type: 'Angel Investor',
           ticket_size: tkt
         }]);
-        
+
         if (iErr) {
           alert("Database Error: " + iErr.message + "\n\n(You likely need to update your RLS policies in Supabase to allow INSERTs!)");
-          btn.textContent = "Launch Dashboard →"; btn.style.opacity="1";
+          btn.textContent = "Launch Dashboard →"; btn.style.opacity = "1";
           return;
         }
 
         // Sync to universal directory
         await supabaseClient.from('users_directory').update({ user_type: 'Investor' }).eq('id', user.id);
       }
-      
+
       // Reload to show correct dashboard payload
       window.location.reload();
     }
@@ -425,7 +773,7 @@
     // Advanced Match Scoring Engine
     function calculateMatchScore(item, type) {
       let score = 40; // Base score
-      
+
       if (type === 'startup') {
         if (item.company_name) score += 10;
         if (item.stage && item.stage !== 'Idea Stage') score += 10;
@@ -444,20 +792,60 @@
     }
 
     // Social & Tracking Logic
-    window.toggleInterest = async function(targetId, btn) {
+    window.toggleInterest = async function (targetId, targetEmail, targetName, sourceName, btn) {
       if (localStorage.getItem(`hh_interest_${targetId}`) === 'true') {
-        alert("You have already expressed interest in this profile! Our team is processing the connection.");
+        window.showToast("You have already connected with them!", "error");
         return;
       }
-      
+
+      const user = await checkAuth();
+      if (!user) return;
+
       const svg = btn.querySelector('svg');
-      svg.style.fill = '#f43f5e';
-      svg.style.stroke = '#f43f5e';
+      if (svg) {
+        svg.style.fill = '#f43f5e';
+        svg.style.stroke = '#f43f5e';
+      }
       btn.classList.add('active');
-      
-      await window.trackInteraction(targetId, 'interest');
-      alert("Interest Sent! ❤️\n\nThe Hook Hustlers matching engine has notified the partner. If there's a mutual match, you'll see them in your priority incoming inbox shortly!");
-    }
+
+      // 1. Record Database Interaction
+      const { error } = await supabaseClient.from('contacts').insert([{
+        user_id: user.id,
+        target_id: targetId,
+        type: 'interest',
+        message: 'Platform Auto Match Request',
+        user_type: window.currentUserTier || 'Free'
+      }]);
+
+      if (error) {
+        window.showToast("Database Error: " + error.message, "error");
+        return;
+      }
+
+      localStorage.setItem(`hh_interest_${targetId}`, 'true');
+      window.showToast("Match request recorded locally!", "success");
+
+      // 2. Automated Email via EmailJS
+      // NOTE: User must provide SERVICE_ID and TEMPLATE_ID in EmailJS dashboard.
+      try {
+        await emailjs.send(
+          "service_vb6tp67", // TODO: Replace with Service ID
+          "template_bl3wlq9", // TODO: Replace with Template ID
+          {
+            to_name: targetName,
+            to_email: targetEmail,
+            from_name: sourceName,
+            name: sourceName, // Duplicate for default template
+            email: user.email, // Passing the sender's email for the Reply-To field!
+            message: `Great news! ${sourceName} has requested to connect with you via your Hook Hustlers profile.`
+          }
+        );
+        console.log("Email sent successfully!");
+        window.showToast("Connection email sent!", "success");
+      } catch (err) {
+        console.warn('EmailJS not configured fully. Request saved to DB.', err);
+      }
+    };
 
 
     async function fetchStartupMatches() {
@@ -465,17 +853,17 @@
       const { data, error } = await supabaseClient.from('investors').select('*').limit(12);
       const grid = document.getElementById('liveInvestorGrid');
       grid.innerHTML = '';
-      
+
       if (error || !data || data.length === 0) {
         grid.innerHTML = '<div style="color:var(--muted);">No investors found matching your exact profile yet. Check back soon!</div>';
         return;
       }
-      
+
       data.forEach(inv => {
         let name = inv.full_name || 'Anonymous Investor';
         let type = inv.investor_type || 'Angel Investor';
         let ticket = inv.ticket_size || 'Flexible';
-        
+
         // GATING & SCORING LOGIC
         const isPremium = !!window.currentUserTier;
         const isInterested = localStorage.getItem(`hh_interest_${inv.id}`) === 'true';
@@ -483,11 +871,11 @@
 
         let card = document.createElement('div');
         card.className = 'match-card';
-        
+
         let interestBtnHtml = '';
         if (isPremium) {
           interestBtnHtml = `
-            <button onclick="window.toggleInterest('${inv.id}', this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
+            <button onclick="window.toggleInterest('${inv.id}', '${inv.email}', '${name}', document.getElementById('s-company').textContent, this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="${isInterested ? '#f43f5e' : 'none'}" stroke="${isInterested ? '#f43f5e' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             </button>
           `;
@@ -503,7 +891,7 @@
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div class="m-name">${name}</div>
               <div style="display:flex;gap:8px;align-items:center;">
-                <span class="badge badge-investor" style="font-size:0.5rem;${score>=80 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
+                <span class="badge badge-investor" style="font-size:0.5rem;${score >= 80 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
                 ${interestBtnHtml}
               </div>
             </div>
@@ -522,18 +910,18 @@
       const { data, error } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false }).limit(12);
       const grid = document.getElementById('liveStartupGrid');
       grid.innerHTML = '';
-      
+
       if (error || !data || data.length === 0) {
         grid.innerHTML = '<div style="color:var(--muted);">No new startups found matching your thesis.</div>';
         return;
       }
-      
+
       data.forEach(st => {
         let name = st.company_name || 'Stealth Startup';
         let stage = st.stage || 'Idea Stage';
         let ind = (st.industry || 'Tech').toUpperCase();
         let city = st.city || 'India';
-        
+
         // GATING & SCORING LOGIC
         const isPremium = !!window.currentUserTier;
         const isInterested = localStorage.getItem(`hh_interest_${st.id}`) === 'true';
@@ -541,11 +929,11 @@
 
         let card = document.createElement('div');
         card.className = 'match-card';
-        
+
         let interestBtnHtml = '';
         if (isPremium) {
           interestBtnHtml = `
-            <button onclick="window.toggleInterest('${st.id}', this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
+            <button onclick="window.toggleInterest('${st.id}', '${st.founder_email || st.email}', '${name}', document.getElementById('i-title').textContent, this)" class="interest-btn ${isInterested ? 'active' : ''}" title="Express Interest">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="${isInterested ? '#f43f5e' : 'none'}" stroke="${isInterested ? '#f43f5e' : 'currentColor'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             </button>
           `;
@@ -561,7 +949,7 @@
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div class="m-name">${name}</div>
               <div style="display:flex;gap:8px;align-items:center;">
-                <span class="badge badge-startup" style="font-size:0.5rem;${score>=80 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
+                <span class="badge badge-startup" style="font-size:0.5rem;${score >= 80 ? 'color:var(--emerald);border-color:rgba(16,217,157,0.3);background:rgba(16,217,157,0.1);' : ''}">Score: ${score}</span>
                 ${interestBtnHtml}
               </div>
             </div>
@@ -577,13 +965,13 @@
     }
 
 
-    window.uploadPitchDeck = async function(event) {
+    window.uploadPitchDeck = async function (event) {
       const file = event.target.files[0];
       if (!file) return;
-      
+
       const user = await checkAuth();
       if (!user) return;
-      
+
       const deckBtn = document.getElementById('deckBtn');
       const originalText = deckBtn.innerHTML;
       deckBtn.innerHTML = "Uploading Document...";
@@ -592,26 +980,26 @@
       try {
         const fileExt = file.name.split('.').pop();
         const filePath = `${user.id}/pitch_deck_${Date.now()}.${fileExt}`;
-        
+
         // Force upload with upsert
         const { error: uploadError } = await window.supabaseClient.storage.from('documents').upload(filePath, file, { cacheControl: '3600', upsert: true });
         if (uploadError) throw uploadError;
-        
+
         const { data: { publicUrl } } = window.supabaseClient.storage.from('documents').getPublicUrl(filePath);
-        
+
         const { error: updateError } = await window.supabaseClient.from('startups').update({ pitch_deck_url: publicUrl }).eq('id', user.id);
         if (updateError) throw updateError;
-        
+
         // Sync hybrid state
         localStorage.setItem('hh_deck_submitted', 'true');
 
         deckBtn.style.background = "var(--emerald)";
         deckBtn.style.color = "#000";
         deckBtn.innerHTML = "Submission Successful!";
-        
+
         alert("Success! Your Pitch Deck has been securely uploaded to our master database.\n\nOur internal team will review your deck and reach out to you shortly via email with next steps!");
         setTimeout(() => window.location.reload(), 1500);
-        
+
       } catch (err) {
         alert("Upload Blocked: " + err.message + "\n\nPlease make sure your Supabase 'documents' bucket has public insert policies enabled.");
         deckBtn.innerHTML = "Upload Failed";
@@ -619,13 +1007,13 @@
       }
     }
 
-    window.uploadKYC = async function(event) {
+    window.uploadKYC = async function (event) {
       const file = event.target.files[0];
       if (!file || !file.name) { alert("Please select a valid image or PDF."); return; }
-      
+
       const user = await checkAuth();
       if (!user) return;
-      
+
       const kycBtn = document.getElementById('kycBtn');
       const originalText = kycBtn.innerHTML;
       kycBtn.innerHTML = "Uploading...";
@@ -634,15 +1022,15 @@
       try {
         const fileExt = file.name.split('.').pop();
         const filePath = `${user.id}/kyc_${Date.now()}.${fileExt}`;
-        
+
         const { error: uploadError } = await window.supabaseClient.storage.from('documents').upload(filePath, file, { cacheControl: '3600', upsert: true });
         if (uploadError) throw uploadError;
-        
+
         const { data: { publicUrl } } = window.supabaseClient.storage.from('documents').getPublicUrl(filePath);
-        
+
         const { error: updateError } = await window.supabaseClient.from('investors').update({ kyc_url: publicUrl }).eq('id', user.id);
         if (updateError) throw updateError;
-        
+
         // Sync hybrid state
         localStorage.setItem('hh_kyc_submitted', 'true');
 
@@ -650,10 +1038,10 @@
         kycBtn.style.color = "var(--white)";
         kycBtn.style.borderColor = "var(--vivid)";
         kycBtn.innerHTML = "Submitted!";
-        
+
         alert("Success! Your ID document has been securely uploaded and encrypted in our master database.\n\nOur verification team will review it within 24 hours. Your dashboard has been updated to 'Under Review ⏳'.");
         setTimeout(() => window.location.reload(), 1500);
-        
+
       } catch (err) {
         alert("Upload Error: " + err.message + "\n\n(Did you create the documents storage bucket?)");
         kycBtn.innerHTML = "Upload Failed";
@@ -671,34 +1059,118 @@
           mobileMenu.classList.toggle('open');
         });
       }
-      window.closeMobile = function() {
+      window.closeMobile = function () {
         if (hamburger) hamburger.classList.remove('open');
         if (mobileMenu) mobileMenu.classList.remove('open');
       };
     });
-</script>
-<style>
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-.hamburger span{display:block;width:24px;height:2px;background:var(--vivid2);border-radius:2px;transition:all .3s;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,5,8,.98);backdrop-filter:blur(20px);z-index:20000;flex-direction:column;align-items:center;justify-content:center;padding-top:80px;padding-bottom:30px;gap:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .3s;}
-.mobile-menu.open{opacity:1;pointer-events:all;}
-.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.1em;color:var(--white);text-decoration:none;transition:color .2s;padding:10px 0;display:block;width:100%;text-align:center;}
-.mobile-menu a:hover{color:var(--vivid2);}
-@media(max-width:768px){ .hamburger{display:flex;} .mobile-menu{display:flex;} .nav-right{display:none !important;} .nav-links{display:none;} nav{padding:10px 16px;} }
-</style>
+  </script>
+  <style>
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--vivid2);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 8, .98);
+      backdrop-filter: blur(20px);
+      z-index: 20000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      padding-bottom: 30px;
+      gap: 0;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: .1em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color .2s;
+      padding: 10px 0;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--vivid2);
+    }
+
+    @media(max-width:768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
+      .nav-right {
+        display: none !important;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      nav {
+        padding: 10px 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <div class="bg-mesh"></div>
 
   <nav>
     <a href="home.html" class="nav-logo">
-      <img src="logo.png" alt="Hook Hustlers Logo" onerror="this.style.display='none'"/>
+      <img src="logo.png" alt="Hook Hustlers Logo" onerror="this.style.display='none'" />
       <span class="nav-logo-text">THE HOOK HUSTLERS</span>
     </a>
-    
+
     <div class="nav-links">
       <a href="dashboard.html">Dashboard</a>
       <a href="home.html">Home</a>
@@ -720,7 +1192,7 @@
   </div>
 
   <div class="dashboard-wrap">
-    
+
     <div id="loadingState" class="loading-state">
       AUTHENTICATING PROFILE...
     </div>
@@ -728,33 +1200,70 @@
     <!-- GOOGLE ONBOARDING OVERLAY -->
     <div id="onboardingUI" style="display:none;max-width:600px;margin:100px auto;">
       <div class="glass-card" style="text-align:center;border-color:rgba(6,182,212,0.3);">
-        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:3rem;margin-bottom:10px;background:linear-gradient(135deg,var(--vivid2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Finish Account Setup</h2>
-        <p style="color:var(--muted);font-size:.9rem;margin-bottom:30px;">Because you signed in with Google, we just need one more detail to build your matchmaking pipeline.</p>
-        
+        <h2
+          style="font-family:'Bebas Neue',sans-serif;font-size:3rem;margin-bottom:10px;background:linear-gradient(135deg,var(--vivid2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+          Finish Account Setup</h2>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:30px;">Because you signed in with Google, we just
+          need one more detail to build your matchmaking pipeline.</p>
+
         <div style="display:flex;gap:16px;margin-bottom:30px;">
-          <button onclick="document.getElementById('ob-startup').style.display='block';document.getElementById('ob-investor').style.display='none';" style="flex:1;padding:16px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);color:var(--white);border-radius:10px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;transition:0.3s;" onmouseover="this.style.background='rgba(124,58,237,0.2)'" onmouseout="this.style.background='rgba(124,58,237,0.1)'">🚀 I am a Startup</button>
-          
-          <button onclick="document.getElementById('ob-investor').style.display='block';document.getElementById('ob-startup').style.display='none';" style="flex:1;padding:16px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:var(--white);border-radius:10px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;transition:0.3s;" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">💼 I am an Investor</button>
+          <button
+            onclick="document.getElementById('ob-startup').style.display='block';document.getElementById('ob-investor').style.display='none';"
+            style="flex:1;padding:16px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);color:var(--white);border-radius:10px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;transition:0.3s;"
+            onmouseover="this.style.background='rgba(124,58,237,0.2)'"
+            onmouseout="this.style.background='rgba(124,58,237,0.1)'">🚀 I am a Startup</button>
+
+          <button
+            onclick="document.getElementById('ob-investor').style.display='block';document.getElementById('ob-startup').style.display='none';"
+            style="flex:1;padding:16px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:var(--white);border-radius:10px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;transition:0.3s;"
+            onmouseover="this.style.background='rgba(6,182,212,0.2)'"
+            onmouseout="this.style.background='rgba(6,182,212,0.1)'">💼 I am an Investor</button>
         </div>
 
         <div id="ob-startup" style="display:none;text-align:left;">
-          <div style="margin-bottom:15px;"><label style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Startup Name *</label><input type="text" id="ob-s-name" style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;"/></div>
-          <div style="margin-bottom:20px;"><label style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Industry / Sector</label>
-            <select id="ob-s-ind" style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;">
-              <option>AgriTech</option><option>EdTech</option><option>HealthTech</option><option>FinTech</option><option>SaaS</option><option>Other</option>
+          <div style="margin-bottom:15px;"><label
+              style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Startup Name
+              *</label><input type="text" id="ob-s-name"
+              style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;" />
+          </div>
+          <div style="margin-bottom:20px;"><label
+              style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Industry /
+              Sector</label>
+            <select id="ob-s-ind"
+              style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;">
+              <option>AgriTech</option>
+              <option>EdTech</option>
+              <option>HealthTech</option>
+              <option>FinTech</option>
+              <option>SaaS</option>
+              <option>Other</option>
             </select>
           </div>
-          <button id="ob-s-btn" onclick="completeGoogleOnboarding('startup')" style="width:100%;background:linear-gradient(135deg,var(--vivid),var(--vivid2));border:none;padding:14px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;">Launch Dashboard →</button>
+          <button id="ob-s-btn" onclick="completeGoogleOnboarding('startup')"
+            style="width:100%;background:linear-gradient(135deg,var(--vivid),var(--vivid2));border:none;padding:14px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;">Launch
+            Dashboard →</button>
         </div>
 
         <div id="ob-investor" style="display:none;text-align:left;">
-          <div style="margin-bottom:15px;"><label style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Entity / Full Name *</label><input type="text" id="ob-i-name" style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;"/></div>
-          <div style="margin-bottom:20px;"><label style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Target Ticket Size</label>
-            <select id="ob-i-ticket" style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;">
-              <option>₹10L - ₹50L</option><option>₹50L - ₹2Cr</option><option>₹2Cr - ₹10Cr</option><option>₹10Cr+</option>
+          <div style="margin-bottom:15px;"><label
+              style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Entity / Full
+              Name *</label><input type="text" id="ob-i-name"
+              style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;" />
+          </div>
+          <div style="margin-bottom:20px;"><label
+              style="display:block;margin-bottom:5px;font-size:.8rem;color:var(--muted);font-weight:700;">Target Ticket
+              Size</label>
+            <select id="ob-i-ticket"
+              style="width:100%;padding:14px;background:var(--deep);border:1px solid var(--border2);border-radius:6px;color:var(--white);font-family:'Rajdhani',sans-serif;outline:none;">
+              <option>₹10L - ₹50L</option>
+              <option>₹50L - ₹2Cr</option>
+              <option>₹2Cr - ₹10Cr</option>
+              <option>₹10Cr+</option>
             </select>
           </div>
-          <button id="ob-i-btn" onclick="completeGoogleOnboarding('investor')" style="width:100%;background:linear-gradient(135deg,var(--cyan),var(--vivid));border:none;padding:14px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;">Launch Dashboard →</button>
+          <button id="ob-i-btn" onclick="completeGoogleOnboarding('investor')"
+            style="width:100%;background:linear-gradient(135deg,var(--cyan),var(--vivid));border:none;padding:14px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;">Launch
+            Dashboard →</button>
         </div>
       </div>
     </div>
@@ -789,19 +1298,32 @@
 
         <!-- Profile Details -->
         <div class="glass-card">
-          <div class="card-title">Startup Profile Overview</div>
+          <div
+            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border2); padding-bottom:10px;">
+            <div class="card-title" style="margin-bottom:0; border:none; padding:0;">Startup Profile</div>
+            <button
+              onclick="window.showToast('Profile edits require compliance re-verification. Please email admin@thehookhustlers.com or use the Contact page.', 'error')"
+              style="background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border2); border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.7rem; font-weight:700; padding:4px 8px; cursor:pointer;">EDIT</button>
+          </div>
           <div class="data-row"><span class="data-lbl">Industry</span><span class="data-val" id="s-ind">-</span></div>
-          <div class="data-row"><span class="data-lbl">Current Stage</span><span class="data-val" id="s-stage">-</span></div>
+          <div class="data-row"><span class="data-lbl">Current Stage</span><span class="data-val" id="s-stage">-</span>
+          </div>
           <div class="data-row"><span class="data-lbl">Location</span><span class="data-val" id="s-city">-</span></div>
-          <div class="data-row"><span class="data-lbl">DPIIT Status</span><span class="data-val" id="s-dpiit" style="color:#f43f5e;">-</span></div>
-          
+          <div class="data-row"><span class="data-lbl">DPIIT Status</span><span class="data-val" id="s-dpiit"
+              style="color:#f43f5e;">-</span></div>
+
           <div style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border2);">
-            <div class="card-title" style="border:none;padding:0;margin-bottom:12px;font-size:.8rem;">Recommended Actions</div>
+            <div class="card-title" style="border:none;padding:0;margin-bottom:12px;font-size:.8rem;">Recommended
+              Actions</div>
             <div style="display:flex;gap:12px;">
-              
+
               <div style="position:relative; display:inline-block;">
-                <button id="deckBtn" style="background:linear-gradient(135deg,var(--vivid),var(--vivid2));border:none;padding:10px 20px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;transition:0.3s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Upload PDF Deck</button>
-                <input type="file" accept=".pdf" onchange="uploadPitchDeck(event)" style="position:absolute; inset:0; opacity:0; cursor:pointer;" title="Upload PDF"/>
+                <button id="deckBtn"
+                  style="background:linear-gradient(135deg,var(--vivid),var(--vivid2));border:none;padding:10px 20px;border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;transition:0.3s;"
+                  onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='none'">Upload PDF
+                  Deck</button>
+                <input type="file" accept=".pdf" onchange="uploadPitchDeck(event)"
+                  style="position:absolute; inset:0; opacity:0; cursor:pointer;" title="Upload PDF" />
               </div>
 
             </div>
@@ -811,7 +1333,8 @@
 
       <!-- Investor Matches (Live) -->
       <div style="margin-top:40px;">
-        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:20px;">AI Matched Investors</h2>
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:20px;">AI
+          Matched Investors</h2>
         <div class="match-grid" id="liveInvestorGrid">
           <div style="color:var(--muted);font-size:0.9rem;">Fetching live investors...</div>
         </div>
@@ -832,16 +1355,27 @@
       <div class="grid-2">
         <!-- Profile Overview -->
         <div class="glass-card">
-          <div class="card-title">Investment Mandate</div>
-          <div class="data-row"><span class="data-lbl">Target Ticket Size</span><span class="data-val" id="i-ticket">-</span></div>
-          
+          <div
+            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border2); padding-bottom:10px;">
+            <div class="card-title" style="margin-bottom:0; border:none; padding:0;">Investment Mandate</div>
+            <button
+              onclick="window.showToast('Profile edits require compliance re-verification. Please email admin@thehookhustlers.com or use the Contact page.', 'error')"
+              style="background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border2); border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.7rem; font-weight:700; padding:4px 8px; cursor:pointer;">EDIT</button>
+          </div>
+          <div class="data-row"><span class="data-lbl">Target Ticket Size</span><span class="data-val"
+              id="i-ticket">-</span></div>
+
           <div class="data-row" style="align-items:center;">
             <span class="data-lbl">KYC Status</span>
             <span class="data-val" id="i-kyc" style="display:flex;align-items:center;">
               <span style="color:var(--crimson);" id="kycStatusTxt">Pending</span>
               <div style="position:relative; display:inline-block; margin-left:10px;">
-                <button id="kycBtn" style="background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.4); color:var(--cyan); padding:6px 10px; border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.65rem; font-weight:700; text-transform:uppercase; cursor:pointer; transition:0.3s;" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">Upload Aadhaar/PAN</button>
-                <input type="file" accept="image/*,.pdf" onchange="uploadKYC(event)" style="position:absolute; inset:0; opacity:0; cursor:pointer;" title="Upload Aadhaar/PAN Image"/>
+                <button id="kycBtn"
+                  style="background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.4); color:var(--cyan); padding:6px 10px; border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.65rem; font-weight:700; text-transform:uppercase; cursor:pointer; transition:0.3s;"
+                  onmouseover="this.style.background='rgba(6,182,212,0.2)'"
+                  onmouseout="this.style.background='rgba(6,182,212,0.1)'">Upload Aadhaar/PAN</button>
+                <input type="file" accept="image/*,.pdf" onchange="uploadKYC(event)"
+                  style="position:absolute; inset:0; opacity:0; cursor:pointer;" title="Upload Aadhaar/PAN Image" />
               </div>
             </span>
           </div>
@@ -852,16 +1386,28 @@
           <div class="card-title">Deal Flow Pipeline (Next 7 Days)</div>
           <div style="display:flex;justify-content:space-between;align-items:flex-end;">
             <div>
-              <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;margin-bottom:5px;color:var(--emerald);">24</div>
-              <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">Highly Matched Startups</div>
+              <div
+                style="font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;margin-bottom:5px;color:var(--emerald);">
+                24</div>
+              <div
+                style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">
+                Highly Matched Startups</div>
             </div>
             <div>
-              <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:5px;color:var(--cyan);">08</div>
-              <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">DPIIT Verified</div>
+              <div
+                style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:5px;color:var(--cyan);">
+                08</div>
+              <div
+                style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">
+                DPIIT Verified</div>
             </div>
             <div>
-              <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:5px;color:var(--vivid2);">12</div>
-              <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">In Diligence</div>
+              <div
+                style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;margin-bottom:5px;color:var(--vivid2);">
+                12</div>
+              <div
+                style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;">
+                In Diligence</div>
             </div>
           </div>
         </div>
@@ -869,7 +1415,8 @@
 
       <!-- Curated Startups (Live) -->
       <div style="margin-top:40px;">
-        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:20px;">Curated Deal Flow</h2>
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;margin-bottom:20px;">Curated
+          Deal Flow</h2>
         <div class="match-grid" id="liveStartupGrid">
           <div style="color:var(--muted);font-size:0.9rem;">Fetching live startups...</div>
         </div>
@@ -879,205 +1426,205 @@
   </div>
 
 
-<!-- PREMIUM MOBILE STARBURST EFFECT -->
-<style>
-@media (pointer: coarse) {
-  .hh-spark {
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 999999;
-    mix-blend-mode: screen;
-    will-change: transform, opacity;
-  }
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.matchMedia("(pointer: coarse)").matches) {
-    const splashColors = [
-      '#7c3aed', // Vivid Violet
-      '#a855f7', // Violet Light
-      '#06b6d4', // Cyan
-      '#10d99d', // Emerald
-      '#f43f5e'  // Crimson
-    ];
-    
-    let sparks = [];
-    
-    function createSpark(x, y) {
-      const el = document.createElement('div');
-      el.className = 'hh-spark';
-      
-      const size = 3 + Math.random() * 6; // 3px to 9px
-      const color = splashColors[Math.floor(Math.random() * splashColors.length)];
-      
-      el.style.width = size + 'px';
-      el.style.height = size + 'px';
-      el.style.background = color;
-      el.style.boxShadow = `0 0 ${size*2}px ${color}`;
-      
-      // Starting position
-      el.style.left = x + 'px';
-      el.style.top = y + 'px';
-      
-      document.body.appendChild(el);
-      
-      // Physics properties
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 2 + Math.random() * 6;
-      
-      sparks.push({
-        el: el,
-        x: x,
-        y: y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 2, // Slight upward bias initially
-        life: 1.0,
-        decay: 0.02 + Math.random() * 0.03
-      });
-    }
-    
-    function animateSparks() {
-      for (let i = sparks.length - 1; i >= 0; i--) {
-        let p = sparks[i];
-        
-        p.life -= p.decay;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.2; // Gravity
-        
-        if (p.life <= 0) {
-          if(p.el.parentNode) p.el.parentNode.removeChild(p.el);
-          sparks.splice(i, 1);
-        } else {
-          p.el.style.transform = `translate(-50%, -50%) translate(${p.x - parseFloat(p.el.style.left)}px, ${p.y - parseFloat(p.el.style.top)}px) scale(${p.life})`;
-          p.el.style.opacity = p.life;
-        }
+  <!-- PREMIUM MOBILE STARBURST EFFECT -->
+  <style>
+    @media (pointer: coarse) {
+      .hh-spark {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 999999;
+        mix-blend-mode: screen;
+        will-change: transform, opacity;
       }
-      requestAnimationFrame(animateSparks);
     }
-    requestAnimationFrame(animateSparks);
-    
-    // Spawn on tap
-    document.addEventListener('touchstart', function(e) {
-      if (!e.touches || e.touches.length === 0) return;
-      for(let t=0; t<e.touches.length; t++) {
-        const touch = e.touches[t];
-        // Spawn 12 sparks per tap
-        for(let i=0; i<12; i++) {
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.matchMedia("(pointer: coarse)").matches) {
+        const splashColors = [
+          '#7c3aed', // Vivid Violet
+          '#a855f7', // Violet Light
+          '#06b6d4', // Cyan
+          '#10d99d', // Emerald
+          '#f43f5e'  // Crimson
+        ];
+
+        let sparks = [];
+
+        function createSpark(x, y) {
+          const el = document.createElement('div');
+          el.className = 'hh-spark';
+
+          const size = 3 + Math.random() * 6; // 3px to 9px
+          const color = splashColors[Math.floor(Math.random() * splashColors.length)];
+
+          el.style.width = size + 'px';
+          el.style.height = size + 'px';
+          el.style.background = color;
+          el.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+
+          // Starting position
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+
+          document.body.appendChild(el);
+
+          // Physics properties
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 2 + Math.random() * 6;
+
+          sparks.push({
+            el: el,
+            x: x,
+            y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2, // Slight upward bias initially
+            life: 1.0,
+            decay: 0.02 + Math.random() * 0.03
+          });
+        }
+
+        function animateSparks() {
+          for (let i = sparks.length - 1; i >= 0; i--) {
+            let p = sparks[i];
+
+            p.life -= p.decay;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.2; // Gravity
+
+            if (p.life <= 0) {
+              if (p.el.parentNode) p.el.parentNode.removeChild(p.el);
+              sparks.splice(i, 1);
+            } else {
+              p.el.style.transform = `translate(-50%, -50%) translate(${p.x - parseFloat(p.el.style.left)}px, ${p.y - parseFloat(p.el.style.top)}px) scale(${p.life})`;
+              p.el.style.opacity = p.life;
+            }
+          }
+          requestAnimationFrame(animateSparks);
+        }
+        requestAnimationFrame(animateSparks);
+
+        // Spawn on tap
+        document.addEventListener('touchstart', function (e) {
+          if (!e.touches || e.touches.length === 0) return;
+          for (let t = 0; t < e.touches.length; t++) {
+            const touch = e.touches[t];
+            // Spawn 12 sparks per tap
+            for (let i = 0; i < 12; i++) {
+              createSpark(touch.clientX, touch.clientY);
+            }
+          }
+        }, { passive: true });
+
+        // Spawn on drag
+        let lastMove = 0;
+        document.addEventListener('touchmove', function (e) {
+          const now = Date.now();
+          if (now - lastMove < 30) return; // limit spawn rate
+          lastMove = now;
+
+          if (!e.touches || e.touches.length === 0) return;
+          const touch = e.touches[0];
+          // Spawn 2 sparks per move trail
           createSpark(touch.clientX, touch.clientY);
-        }
+          createSpark(touch.clientX, touch.clientY);
+        }, { passive: true });
       }
-    }, {passive: true});
-    
-    // Spawn on drag
-    let lastMove = 0;
-    document.addEventListener('touchmove', function(e) {
-      const now = Date.now();
-      if (now - lastMove < 30) return; // limit spawn rate
-      lastMove = now;
-      
-      if (!e.touches || e.touches.length === 0) return;
-      const touch = e.touches[0];
-      // Spawn 2 sparks per move trail
-      createSpark(touch.clientX, touch.clientY);
-      createSpark(touch.clientX, touch.clientY);
-    }, {passive: true});
-  }
-});
-</script>
+    });
+  </script>
 
 
-<!-- GLOBAL AUTO-LOGIN TICKER -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-client.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    if(typeof window.supabaseClient === 'undefined') return;
-    const { data: { session } } = await window.supabaseClient.auth.getSession();
-    
-    const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
-    const navLinks = document.querySelector('.nav-links');
-    const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
+  <!-- GLOBAL AUTO-LOGIN TICKER -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (typeof window.supabaseClient === 'undefined') return;
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
 
-    if(session) {
-      localStorage.setItem('hhLoggedIn', 'true');
-      // 1. Desktop: Show Dashboard + Sign Out in Nav-Right
-      if(navRight) {
-        navRight.innerHTML = `
+      const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-actions');
+      const navLinks = document.querySelector('.nav-links');
+      const mobileMenu = document.querySelector('.mobile-menu') || document.getElementById('mobile-menu');
+
+      if (session) {
+        localStorage.setItem('hhLoggedIn', 'true');
+        // 1. Desktop: Show Dashboard + Sign Out in Nav-Right
+        if (navRight) {
+          navRight.innerHTML = `
           <a href="dashboard.html" class="nav-btn nav-btn-outline" style="border-color:var(--cyan);color:var(--cyan);margin-right:12px;text-shadow:0 0 10px rgba(6,182,212,0.3);">Dashboard</a>
           <button onclick="window.supabaseClient.auth.signOut().then(()=>{localStorage.removeItem('hhLoggedIn');window.location.href='home.html'})" class="nav-btn nav-btn-solid" style="background:rgba(244,63,94,0.1);color:var(--crimson);cursor:pointer;border:1px solid rgba(244,63,94,0.4);">Sign Out</button>
         `;
-      }
-      
-      // 2. Desktop: Show Pricing + Dashboard in Nav-Links
-      if(navLinks) {
-          if(!navLinks.innerHTML.includes('pricing.html')) {
-              const priceLink = document.createElement('a');
-              priceLink.href = 'pricing.html';
-              priceLink.textContent = 'Pricing';
-              const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
-              if(aboutLink) navLinks.insertBefore(priceLink, aboutLink);
-              else navLinks.appendChild(priceLink);
-          }
-          if(!navLinks.querySelector('a[href="dashboard.html"]')) {
-              const dashLink = document.createElement('a');
-              dashLink.href = 'dashboard.html';
-              dashLink.textContent = 'Dashboard';
-              dashLink.style.color = 'var(--cyan)';
-              navLinks.appendChild(dashLink);
-          }
-      }
+        }
 
-      // 3. Mobile: Inject Dashboard/Pricing and Sign Out
-      if(mobileMenu) {
+        // 2. Desktop: Show Pricing + Dashboard in Nav-Links
+        if (navLinks) {
+          if (!navLinks.innerHTML.includes('pricing.html')) {
+            const priceLink = document.createElement('a');
+            priceLink.href = 'pricing.html';
+            priceLink.textContent = 'Pricing';
+            const aboutLink = Array.from(navLinks.children).find(a => a.href.includes('about.html'));
+            if (aboutLink) navLinks.insertBefore(priceLink, aboutLink);
+            else navLinks.appendChild(priceLink);
+          }
+          if (!navLinks.querySelector('a[href="dashboard.html"]')) {
+            const dashLink = document.createElement('a');
+            dashLink.href = 'dashboard.html';
+            dashLink.textContent = 'Dashboard';
+            dashLink.style.color = 'var(--cyan)';
+            navLinks.appendChild(dashLink);
+          }
+        }
+
+        // 3. Mobile: Inject Dashboard/Pricing and Sign Out
+        if (mobileMenu) {
           // Add Dashboard to top of mobile menu if not there
-          if(!mobileMenu.innerHTML.includes('dashboard.html')) {
-              const mDash = document.createElement('a');
-              mDash.href = 'dashboard.html';
-              mDash.onclick = () => { if(typeof closeMobile === 'function') closeMobile(); };
-              mDash.textContent = 'Dashboard';
-              mDash.style.color = 'var(--cyan)';
-              mobileMenu.insertBefore(mDash, mobileMenu.firstChild);
+          if (!mobileMenu.innerHTML.includes('dashboard.html')) {
+            const mDash = document.createElement('a');
+            mDash.href = 'dashboard.html';
+            mDash.onclick = () => { if (typeof closeMobile === 'function') closeMobile(); };
+            mDash.textContent = 'Dashboard';
+            mDash.style.color = 'var(--cyan)';
+            mobileMenu.insertBefore(mDash, mobileMenu.firstChild);
           }
           // Add Pricing if not there
-          if(!mobileMenu.innerHTML.includes('pricing.html')) {
-              const mPrice = document.createElement('a');
-              mPrice.href = 'pricing.html';
-              mPrice.onclick = () => { if(typeof closeMobile === 'function') closeMobile(); };
-              mPrice.textContent = 'Pricing';
-              mPrice.style.color = 'var(--vivid2)';
-              const aboutLink = Array.from(mobileMenu.children).find(a => a.href.includes('about.html'));
-              if(aboutLink) mobileMenu.insertBefore(mPrice, aboutLink);
+          if (!mobileMenu.innerHTML.includes('pricing.html')) {
+            const mPrice = document.createElement('a');
+            mPrice.href = 'pricing.html';
+            mPrice.onclick = () => { if (typeof closeMobile === 'function') closeMobile(); };
+            mPrice.textContent = 'Pricing';
+            mPrice.style.color = 'var(--vivid2)';
+            const aboutLink = Array.from(mobileMenu.children).find(a => a.href.includes('about.html'));
+            if (aboutLink) mobileMenu.insertBefore(mPrice, aboutLink);
           }
           // Replace Join/Login with Sign Out in mobile view
           const joinBtn = Array.from(mobileMenu.querySelectorAll('a')).find(a => a.href.includes('login.html') || a.textContent.toLowerCase().includes('join'));
-          if(joinBtn) {
-              joinBtn.innerHTML = 'SIGN OUT';
-              joinBtn.style.color = 'var(--crimson)';
-              joinBtn.href = '#';
-              joinBtn.onclick = (e) => {
-                  e.preventDefault();
-                  window.supabaseClient.auth.signOut().then(() => {
-                      localStorage.removeItem('hhLoggedIn');
-                      window.location.href = 'home.html';
-                  });
-              };
+          if (joinBtn) {
+            joinBtn.innerHTML = 'SIGN OUT';
+            joinBtn.style.color = 'var(--crimson)';
+            joinBtn.href = '#';
+            joinBtn.onclick = (e) => {
+              e.preventDefault();
+              window.supabaseClient.auth.signOut().then(() => {
+                localStorage.removeItem('hhLoggedIn');
+                window.location.href = 'home.html';
+              });
+            };
           }
-      }
-    } else {
+        }
+      } else {
         // Logged out: CLEAN UP
         document.querySelectorAll('a[href="pricing.html"]').forEach(el => el.remove());
         document.querySelectorAll('a[href="dashboard.html"]').forEach(el => {
-            // Only remove if it's in nav-links or mobile-menu, keep the nav-right one if it exists (it shouldn't but safe)
-            if(el.parentElement.classList.contains('nav-links') || el.parentElement.classList.contains('mobile-menu')) {
-                el.remove();
-            }
+          // Only remove if it's in nav-links or mobile-menu, keep the nav-right one if it exists (it shouldn't but safe)
+          if (el.parentElement.classList.contains('nav-links') || el.parentElement.classList.contains('mobile-menu')) {
+            el.remove();
+          }
         });
-    }
-  });
-</script>
+      }
+    });
+  </script>
 
   <script src="hh-ux-effects.js"></script>
 </body>

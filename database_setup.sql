@@ -18,6 +18,11 @@ create table if not exists public.contacts (
     message text
 );
 
+-- Analytics & Matchmaking additions
+alter table public.contacts add column if not exists user_id uuid references auth.users (id);
+alter table public.contacts add column if not exists target_id uuid references auth.users (id);
+alter table public.contacts add column if not exists type text;
+
 -- Enable RLS but allow anyone to insert a contact message (Public form)
 alter table public.contacts enable row level security;
 create policy "Public can insert contacts" on public.contacts for insert with check (true);
