@@ -1,12 +1,13 @@
 // Supabase Configuration
-const SUPABASE_URL = 'https://gnybxtlstxvzpijolsaz.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdueWJ4dGxzdHh2enBpam9sc2F6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNjEwODUsImV4cCI6MjA4OTkzNzA4NX0._a6mEmM-fqJbe7Xapq81N244YExar3rffy5GxUkJjN4';
+// Using window wrapper to prevent crashes if this file is imported twice
+if (!window.SUPABASE_ANON_KEY) {
+    window.SUPABASE_URL = 'https://gnybxtlstxvzpijolsaz.supabase.co';
+    window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdueWJ4dGxzdHh2enBpam9sc2F6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNjEwODUsImV4cCI6MjA4OTkzNzA4NX0._a6mEmM-fqJbe7Xapq81N244YExar3rffy5GxUkJjN4';
 
-// Initialize the Supabase Client
-// We attach it to the window object so it can be accessed globally by any page
-window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Initialize the Supabase Client
+    // We attach it to the window object so it can be accessed globally by any page
+    window.supabaseClient = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
 
-// Track User Interactions (Deck Views, Express Interest)
 // This uses the 'contacts' table as a lightweight activity log for now
 // to avoid schema migration overhead for the user.
 window.trackInteraction = async (targetId, type) => {
@@ -36,4 +37,5 @@ window.trackInteraction = async (targetId, type) => {
 };
 
 console.log('✅ Supabase Client Successfully Initialized');
+}
 
