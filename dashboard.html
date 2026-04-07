@@ -855,7 +855,7 @@
       grid.innerHTML = '';
 
       if (error || !data || data.length === 0) {
-        grid.innerHTML = '<div style="color:var(--muted);">No investors found matching your exact profile yet. Check back soon!</div>';
+        grid.innerHTML = '<div style="background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.1);border-radius:16px;padding:60px 20px;text-align:center;color:var(--muted);width:100%;grid-column:1 / -1;"><div style="font-size:2rem;margin-bottom:12px;">🔭</div><h4 style="font-family:\'Rajdhani\',sans-serif;color:var(--white);font-size:1.1rem;margin-bottom:4px;letter-spacing:0.04em;">No Matches Yet</h4><p style="font-size:0.85rem;max-width:300px;margin:0 auto;line-height:1.6;">No investors found matching your exact profile. Our AI is scanning for new capital 24/7. Check back soon!</p></div>';
         return;
       }
 
@@ -912,7 +912,7 @@
       grid.innerHTML = '';
 
       if (error || !data || data.length === 0) {
-        grid.innerHTML = '<div style="color:var(--muted);">No new startups found matching your thesis.</div>';
+        grid.innerHTML = '<div style="background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.1);border-radius:16px;padding:60px 20px;text-align:center;color:var(--muted);width:100%;grid-column:1 / -1;"><div style="font-size:2rem;margin-bottom:12px;">📡</div><h4 style="font-family:\'Rajdhani\',sans-serif;color:var(--white);font-size:1.1rem;margin-bottom:4px;letter-spacing:0.04em;">Scouting for Deal Flow</h4><p style="font-size:0.85rem;max-width:300px;margin:0 auto;line-height:1.6;">No new startups found matching your thesis. We are constantly verifying new founders. Come back later.</p></div>';
         return;
       }
 

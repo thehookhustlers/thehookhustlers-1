@@ -15,92 +15,213 @@
 
   <style>
     :root {
-      --bg: #04040b; --card: #0c0c1e;
-      --vivid: #7c3aed; --cyan: #06b6d4; --emerald: #10d99d; --crimson: #f43f5e;
+      --bg: #04040b; --card: #0c0c1e; --deep: #070710;
+      --vivid: #7c3aed; --vivid2: #a855f7; --vivid-glow: rgba(124,58,237,0.3);
+      --cyan: #06b6d4; --cyan2: #22d3ee;
+      --emerald: #10d99d; --crimson: #f43f5e;
       --text: #f0edf8; --muted: rgba(240,237,248,0.5);
-      --border: rgba(124,58,237,0.2);
+      --border: rgba(124,58,237,0.2); --border2: rgba(255,255,255,0.06);
     }
-    body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; margin:0; padding:40px; }
-    h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; margin-bottom: 5px; color: var(--cyan); letter-spacing: 0.05em; }
-    .sub { color: var(--muted); margin-bottom: 40px; font-size: 1rem; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
     
-    .grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-    .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; overflow-x: auto; }
-    .card-title { font-size: 1.2rem; font-weight: 700; color: var(--vivid); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center; }
-    
-    table { width: 100%; border-collapse: collapse; text-align: left; }
-    th { padding: 12px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; text-transform: uppercase; }
-    td { padding: 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; }
-    tr:last-child td { border-bottom: none; }
-    
-    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-    .b-green { background: rgba(16,217,157,0.1); color: var(--emerald); }
-    .b-purple { background: rgba(124,58,237,0.1); color: var(--vivid); }
-    .b-red { background: rgba(244,63,94,0.1); color: var(--crimson); }
-    
-    .link { color: var(--cyan); text-decoration: none; }
-    .link:hover { text-decoration: underline; }
+    /* BACKGROUND FX */
+    .bg-mesh { position: fixed; inset: 0; z-index: -2; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 90% 80%, rgba(6,182,212,0.06) 0%, transparent 60%); pointer-events: none; }
+    .bg-lines { position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%); }
 
-    #authGuard { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .btn { background: var(--vivid); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-family: 'Rajdhani', sans-serif; font-weight: 700; cursor: pointer; }
+    /* LAYOUT */
+    .admin-nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; background: rgba(4,4,11,0.85); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.08em; background: linear-gradient(135deg, var(--vivid2), var(--cyan), var(--emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; display: flex; align-items: baseline; gap: 10px; }
+    .nav-tag { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; color: var(--crimson); text-transform: uppercase; border: 1px solid rgba(244,63,94,0.4); padding: 2px 8px; border-radius: 4px; background: rgba(244,63,94,0.1); }
+    
+    .main-content { padding: 40px; max-width: 1400px; margin: 0 auto; }
+    .header-group { margin-bottom: 40px; }
+    h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; margin-bottom: 10px; letter-spacing: 0.04em; }
+    .sub { color: var(--muted); font-size: 1.1rem; }
+    
+    /* TOP METRICS */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 40px; }
+    .metric-card { background: rgba(12,12,30,0.65); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; align-items: center; gap: 20px; transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+    .metric-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(124,58,237,0.15); border-color: rgba(124,58,237,0.4); }
+    .metric-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .icon-p { background: rgba(168,85,247,0.15); color: var(--vivid2); box-shadow: 0 0 20px rgba(168,85,247,0.2); }
+    .icon-e { background: rgba(16,217,157,0.15); color: var(--emerald); box-shadow: 0 0 20px rgba(16,217,157,0.2); }
+    .icon-c { background: rgba(6,182,212,0.15); color: var(--cyan); box-shadow: 0 0 20px rgba(6,182,212,0.2); }
+    .icon-r { background: rgba(244,63,94,0.15); color: var(--crimson); box-shadow: 0 0 20px rgba(244,63,94,0.2); }
+    .metric-info { display: flex; flex-direction: column; }
+    .metric-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .metric-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+
+    /* TABLES SECTION */
+    .grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .table-wrapper { background: rgba(12,12,30,0.65); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .table-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+    .card-title { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 12px; margin: 0; color: #fff;}
+    
+    .table-scroll { overflow-x: auto; width: 100%; }
+    table { width: 100%; border-collapse: collapse; text-align: left; min-width: 800px; }
+    th { padding: 16px 24px; border-bottom: 2px solid rgba(124,58,237,0.3); color: rgba(240,237,232,0.7); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; white-space: nowrap; background: rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 10;}
+    td { padding: 16px 24px; border-bottom: 1px solid var(--border2); font-size: 0.95rem; color: rgba(240,237,232,0.9); }
+    tr { transition: background 0.2s; }
+    tr:hover { background: rgba(255,255,255,0.03); }
+    tr:last-child td { border-bottom: none; }
+    td b { color: #fff; font-weight: 600; }
+    
+    /* BADGES */
+    .badge { padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; }
+    .b-green { background: rgba(16,217,157,0.12); color: var(--emerald); border: 1px solid rgba(16,217,157,0.3); box-shadow: 0 0 10px rgba(16,217,157,0.1); }
+    .b-purple { background: rgba(124,58,237,0.15); color: var(--vivid2); border: 1px solid rgba(124,58,237,0.3); box-shadow: 0 0 10px rgba(124,58,237,0.1); }
+    .b-red { background: rgba(244,63,94,0.12); color: var(--crimson); border: 1px solid rgba(244,63,94,0.3); box-shadow: 0 0 10px rgba(244,63,94,0.1); }
+    .b-cyan { background: rgba(6,182,212,0.15); color: var(--cyan2); border: 1px solid rgba(6,182,212,0.3); box-shadow: 0 0 10px rgba(6,182,212,0.1); }
+    
+    .link { color: var(--cyan); text-decoration: none; font-weight: 600; border-bottom: 1px dashed rgba(6,182,212,0.4); transition: all 0.2s; display: inline-block; padding-bottom: 2px;}
+    .link:hover { color: var(--cyan2); border-bottom-color: var(--cyan2); text-shadow: 0 0 8px rgba(6,182,212,0.4); }
+
+    .btn-primary { background: linear-gradient(135deg, var(--vivid), var(--cyan)); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.25s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.4); }
+
+    /* MODAL GUARD */
+    #authGuard { position: fixed; inset: 0; background: rgba(4,4,11,0.95); backdrop-filter: blur(20px); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .guard-box { background: rgba(12,12,30,0.8); border: 1px solid rgba(244,63,94,0.4); border-radius: 20px; padding: 50px; text-align: center; max-width: 500px; box-shadow: 0 0 60px rgba(244,63,94,0.15); animation: fadeUp 0.6s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .guard-box h1 { color: var(--crimson); text-shadow: 0 0 20px rgba(244,63,94,0.4); margin-bottom: 10px; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.05em; }
+    .auth-error-msg { background: rgba(244,63,94,0.1); color: var(--crimson); padding: 16px; border-radius: 8px; font-weight: 600; margin: 24px 0; border: 1px dashed rgba(244,63,94,0.3); display: none; }
+    .btn-red { background: linear-gradient(135deg, #e11d48, #be123c); color: #fff; border: none; padding: 14px 32px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.25s; text-decoration: none; display: inline-block;}
+    .btn-red:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(225,29,72,0.4); }
+
+    .loader { animation: spin 1s linear infinite; display: inline-block; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    @media(max-width: 768px){ .admin-nav { padding: 16px; } .main-content { padding: 24px 16px; } h1 { font-size: 2.5rem; } }
   </style>
 </head>
 <body>
 
-  <!-- SECURITY GUARD -->
+  <!-- BACKGROUND FX -->
+  <div class="bg-mesh"></div>
+  <div class="bg-lines"></div>
+
+  <!-- SECURITY GUARD MODAL -->
   <div id="authGuard">
-    <h1 style="color:var(--vivid);">SECURE ADMIN PORTAL</h1>
-    <p class="sub">Verifying Administrative Privileges...</p>
-    <div id="authError" style="color:var(--crimson);margin-top:20px;display:none;">Access Denied. You do not have admin rights.</div>
-    <button onclick="window.location.href='home.html'" class="btn" style="margin-top:20px;display:none;" id="goHomeBtn">Return Home</button>
+    <div class="guard-box">
+      <div style="font-size: 3rem; margin-bottom: 16px;">🛡️</div>
+      <h1>RESTRICTED ZONE</h1>
+      <p class="sub" style="margin-bottom:0;" id="authStatusText">Verifying Administrative Privileges...</p>
+      <div id="authError" class="auth-error-msg">Access Denied. You do not have admin rights.</div>
+      <a href="home.html" class="btn-red" style="display:none; margin-top:10px;" id="goHomeBtn">Return to Safety</a>
+    </div>
   </div>
 
-  <h1>Master Control</h1>
-  <p class="sub">Oversight dashboard for The Hook Hustlers database</p>
+  <!-- NAVIGATION -->
+  <nav class="admin-nav">
+    <a href="home.html" class="nav-logo">THE HOOK HUSTLERS <span class="nav-tag">ADMIN</span></a>
+    <div>
+      <span style="color:var(--muted); font-size: 0.9rem; margin-right: 16px;" id="adminEmailDisplay">Admin Mode</span>
+    </div>
+  </nav>
 
-  <div class="grid">
-    
-    
-    <!-- UNIVERSAL DIRECTORY -->
-    <div class="table-card">
-      <div class="card-title">All Logged-In Users (Google & Email) <span id="u-count" class="badge b-purple" style="background:rgba(6,182,212,0.1);color:var(--cyan);">0</span></div>
-      <table>
-        <thead><tr><th>Name</th><th>Email ID</th><th>Type</th><th>Communication</th><th>Last Active</th></tr></thead>
-        <tbody id="directoryTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
-      </table>
+  <div class="main-content">
+    <div class="header-group">
+      <h1>Master Control</h1>
+      <p class="sub">Platform Oversight & Moderation Dashboard</p>
     </div>
 
-    <div class="table-card">
-
-      <div class="card-title">Registered Startups <span id="s-count" class="badge b-purple">0</span></div>
-      <table>
-        <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>Comm</th><th>DPIIT</th><th>Pitch Deck</th></tr></thead>
-        <tbody id="startupsTable"><tr><td colspan="6" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
-      </table>
+    <!-- METRICS GRID -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon icon-p">👥</div>
+        <div class="metric-info">
+          <div class="metric-val" id="top-u-count">-</div>
+          <div class="metric-label">Registered Users</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon icon-c">🚀</div>
+        <div class="metric-info">
+          <div class="metric-val" id="top-s-count">-</div>
+          <div class="metric-label">Startups Active</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon icon-e">💼</div>
+        <div class="metric-info">
+          <div class="metric-val" id="top-i-count">-</div>
+          <div class="metric-label">Investors Onboarded</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon icon-r">🎧</div>
+        <div class="metric-info">
+          <div class="metric-val" id="top-c-count">-</div>
+          <div class="metric-label">Support Inquiries</div>
+        </div>
+      </div>
     </div>
 
-    <div class="table-card">
-      <div class="card-title">Registered Investors <span id="i-count" class="badge b-green">0</span></div>
-      <table>
-        <thead><tr><th>Entity Name</th><th>Ticket Size</th><th>KYC Document</th><th>Verification Actions</th></tr></thead>
-        <tbody id="investorsTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
-      </table>
-    </div>
+    <!-- TABLES GRID -->
+    <div class="grid">
+      
+      <!-- UNIVERSAL DIRECTORY -->
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h2 class="card-title">🌐 Universal Directory</h2>
+          <span class="badge b-cyan" id="badge-u-count">0 Users</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Name</th><th>Email ID</th><th>Account Type</th><th>Comms</th><th>Last Active</th></tr></thead>
+            <tbody id="directoryTable"><tr><td colspan="5" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
 
-    <div class="table-card">
-      <div class="card-title">Support Messages <span id="c-count" class="badge b-red">0</span></div>
-      <table>
-        <thead><tr><th>Name</th><th>Email</th><th>User Type</th><th>Message</th></tr></thead>
-        <tbody id="contactsTable"><tr><td colspan="4" style="text-align:center;color:#666;">Loading...</td></tr></tbody>
-      </table>
-    </div>
+      <!-- STARTUPS -->
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h2 class="card-title">🚀 Registered Startups</h2>
+          <span class="badge b-purple" id="badge-s-count">0 Startups</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>Comms</th><th>DPIIT</th><th>Pitch Deck</th></tr></thead>
+            <tbody id="startupsTable"><tr><td colspan="7" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
 
+      <!-- INVESTORS -->
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h2 class="card-title">💼 Registered Investors</h2>
+          <span class="badge b-green" id="badge-i-count">0 Investors</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Entity Name</th><th>Ticket Size / Thesis</th><th>KYC / Identity Doc</th><th>Verification Status</th></tr></thead>
+            <tbody id="investorsTable"><tr><td colspan="4" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SUPPORT MESSAGES -->
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h2 class="card-title">🎧 Support & Inquiries</h2>
+          <span class="badge b-red" id="badge-c-count">0 Messages</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Name</th><th>System Email</th><th>User Type</th><th>Message Outline</th></tr></thead>
+            <tbody id="contactsTable"><tr><td colspan="4" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <script>
     // 1. ADMIN AUTHORIZATION
-    // IMPORTANT: Change these to the EXACT email addresses you and your team use to log in!
-    // If your email is not in this list, YOU WILL BE LOCKED OUT OF THIS ADMIN PANEL.
     const ADMIN_EMAILS = [
       'thehookhustlers@gmail.com', 
       'aniketsingh292008@gmail.com',
@@ -110,36 +231,41 @@
     async function initAdmin() {
       const { data: { session } } = await supabaseClient.auth.getSession();
       
-      if (!session) {
+      const setGuardError = (msg) => {
+        document.getElementById('authStatusText').style.display = 'none';
         document.getElementById('authError').style.display = 'block';
-        document.getElementById('authError').textContent = "Not Logged In. Please login via /login.html first.";
-        document.getElementById('goHomeBtn').style.display = 'block';
+        document.getElementById('authError').textContent = msg;
+        document.getElementById('goHomeBtn').style.display = 'inline-block';
+      };
+
+      if (!session) {
+        setGuardError("Unauthorized Session. Please login into your admin account first.");
         return;
       }
 
       const userEmail = session.user.email;
       if (!ADMIN_EMAILS.includes(userEmail)) {
-        document.getElementById('authError').style.display = 'block';
-        document.getElementById('authError').textContent = `Access Denied for ${userEmail}.`;
-        document.getElementById('goHomeBtn').style.display = 'block';
+        setGuardError(`Access Denied: ${userEmail} is not an administrator.`);
         return;
       }
 
       // Granted
-      document.getElementById('authGuard').style.display = 'none';
+      document.getElementById('authGuard').style.opacity = '0';
+      setTimeout(() => document.getElementById('authGuard').style.display = 'none', 600);
+      document.getElementById('adminEmailDisplay').innerHTML = `Logged in as: <b style="color:var(--text);">${userEmail}</b>`;
+      
       loadData();
     }
 
-    
     async function approveKYC(investorId) {
-      if(!confirm("Are you sure you want to permanently mark this investor as VERIFIED on the platform?\n\nThis will unlock their account fully.")) return;
+      if(!confirm("Are you sure you want to permanently mark this investor as VERIFIED on the platform?\n\nThis will unlock their account fully within the matching engine.")) return;
       
       const { error } = await supabaseClient.from('investors').update({ is_kyc_verified: true }).eq('id', investorId);
       if(error) {
         alert("Error approving KYC: " + error.message);
       } else {
         alert("Investor officially verified!");
-        loadData(); // reload tables
+        loadData(); // reload tables to reflect UI changes immediately
       }
     }
 
@@ -148,56 +274,71 @@
       const { data: usersData } = await supabaseClient.from('users_directory').select('*').order('last_active', { ascending: false });
       const uBody = document.getElementById('directoryTable');
       if(usersData && usersData.length > 0) {
-        document.getElementById('u-count').textContent = usersData.length;
+        document.getElementById('top-u-count').textContent = usersData.length;
+        document.getElementById('badge-u-count').textContent = `${usersData.length} Users`;
         uBody.innerHTML = usersData.map(u => {
-          const emailLink = `<a href="mailto:${u.email}" title="Send Email" style="text-decoration:none;margin-right:10px;">📧</a>`;
-          const waLink = `<a href="https://wa.me/918235282276?text=Hi%20${encodeURIComponent(u.name)},%20this%20is%20The%20Hook%20Hustlers%20Support." target="_blank" title="WhatsApp Message" style="text-decoration:none;">🟢</a>`;
-          return `<tr><td><b>${u.name}</b></td><td><a href="mailto:${u.email}" class="link">${u.email}</a></td><td><span class="badge ${u.user_type === 'Startup' ? 'b-purple' : (u.user_type==='Investor' ? 'b-green' : 'b-red')}">${u.user_type || 'Pending'}</span></td><td>${emailLink}${waLink}</td><td style="color:var(--muted);font-size:0.8rem;">${new Date(u.last_active).toLocaleString()}</td></tr>`;
+          const emailLink = `<a href="mailto:${u.email}" title="Send Email" style="text-decoration:none;font-size:1.2rem;margin-right:12px;filter:grayscale(1) brightness(1.5);">✉️</a>`;
+          const waLink = `<a href="https://wa.me/918235282276?text=Hi%20${encodeURIComponent(u.name)},%20this%20is%20The%20Hook%20Hustlers%20Support." target="_blank" title="WhatsApp Message" style="text-decoration:none;font-size:1.2rem;">💬</a>`;
+          const uTypeBadge = u.user_type === 'Startup' ? 'b-purple' : (u.user_type === 'Investor' ? 'b-green' : 'b-red');
+          return `<tr><td><b>${u.name}</b></td><td><a href="mailto:${u.email}" class="link">${u.email}</a></td><td><span class="badge ${uTypeBadge}">${u.user_type || 'Pending Setup'}</span></td><td>${emailLink}${waLink}</td><td style="color:var(--muted);font-size:0.85rem;">${new Date(u.last_active).toLocaleString()}</td></tr>`;
         }).join('');
       } else { 
-        uBody.innerHTML = '<tr><td colspan="4">No users tracked yet.</td></tr>'; 
+        document.getElementById('top-u-count').textContent = '0';
+        uBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px;">No users found in directory.</td></tr>'; 
       }
 
       // Load Startups
       const { data: startups } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false });
       const sBody = document.getElementById('startupsTable');
-      if(startups) {
-        document.getElementById('s-count').textContent = startups.length;
+      if(startups && startups.length > 0) {
+        document.getElementById('top-s-count').textContent = startups.length;
+        document.getElementById('badge-s-count').textContent = `${startups.length} Startups`;
         sBody.innerHTML = startups.map(s => {
           let score = 50;
           if(s.dpiit_number) score += 20; if(s.pitch_deck_url) score += 15; if(s.funding_needed) score += 15;
-          let deckHtml = s.pitch_deck_url ? `<a href="${s.pitch_deck_url}" target="_blank" class="link">View PDF</a>` : '<span style="color:#666;">No File</span>';
-          let dpiitHtml = s.dpiit_number ? `<span class="badge b-green">Yes</span>` : '<span class="badge b-red">No</span>';
-          const comms = `<a href="mailto:${s.founder_email || ''}" title="Email Founder" style="text-decoration:none;margin-right:8px;">📧</a><a href="https://wa.me/918235282276?text=Hi%20TheHookHustlers%20Admin%20here." target="_blank" style="text-decoration:none;">🟢</a>`;
-          return `<tr><td><b>${s.company_name}</b></td><td>${s.founder_name}</td><td>${s.industry}</td><td><span class="badge ${score>80?'b-green':'b-purple'}">${score}</span></td><td>${comms}</td><td>${dpiitHtml}</td><td>${deckHtml}</td></tr>`;
+          let deckHtml = s.pitch_deck_url ? `<a href="${s.pitch_deck_url}" target="_blank" class="link">View Deck</a>` : '<span style="color:var(--muted);">No File</span>';
+          let dpiitHtml = s.dpiit_number ? `<span class="badge b-green">DPIIT ✔</span>` : '<span class="badge b-red">No DPIIT</span>';
+          let scoreBadge = score > 80 ? 'b-green' : (score > 60 ? 'b-cyan' : 'b-purple');
+          const comms = `<a href="mailto:${s.founder_email || ''}" title="Email Founder" style="text-decoration:none;font-size:1.2rem;margin-right:12px;filter:grayscale(1) brightness(1.5);">✉️</a><a href="https://wa.me/918235282276?text=Hi%20TheHookHustlers%20Admin%20here." target="_blank" style="text-decoration:none;font-size:1.2rem;">💬</a>`;
+          return `<tr><td><b>${s.company_name}</b></td><td>${s.founder_name}</td><td>${s.industry}</td><td><span class="badge ${scoreBadge}">${score} / 100</span></td><td>${comms}</td><td>${dpiitHtml}</td><td>${deckHtml}</td></tr>`;
         }).join('');
-      } else { sBody.innerHTML = '<tr><td colspan="6">No startups found.</td></tr>'; }
+      } else { 
+        document.getElementById('top-s-count').textContent = '0';
+        sBody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:30px;">No startups found.</td></tr>'; 
+      }
 
       // Load Investors
       const { data: cols } = await supabaseClient.from('investors').select('*').order('created_at', { ascending: false });
       const iBody = document.getElementById('investorsTable');
-      if(cols) {
-        document.getElementById('i-count').textContent = cols.length;
+      if(cols && cols.length > 0) {
+        document.getElementById('top-i-count').textContent = cols.length;
+        document.getElementById('badge-i-count').textContent = `${cols.length} Investors`;
         iBody.innerHTML = cols.map(i => {
-          let docLink = i.kyc_url ? `<a href="${i.kyc_url}" target="_blank" class="link" style="color:var(--cyan);text-decoration:underline;">View ID Image</a>` : '<span style="color:#666;">No File Uploaded</span>';
+          let docLink = i.kyc_url ? `<a href="${i.kyc_url}" target="_blank" class="link">View ID / Passport</a>` : '<span style="color:var(--muted);">Pending Upload</span>';
           let statusHtml = i.is_kyc_verified 
-            ? '<span class="badge b-green">✔ Vetted & Verified</span>' 
-            : `<button onclick="approveKYC('${i.id}')" class="btn" style="background:var(--cyan);color:#000;padding:6px 12px;font-size:0.75rem;">Approve & Verify</button>`;
-          return `<tr><td><b>${i.full_name}</b></td><td>${i.ticket_size}</td><td>${docLink}</td><td>${statusHtml}</td></tr>`;
+            ? '<span class="badge b-green" style="font-size:0.8rem;padding:6px 12px;">✔ Active & Verified</span>' 
+            : `<button onclick="approveKYC('${i.id}')" class="btn-primary">Approve KYC</button>`;
+          return `<tr><td><b>${i.full_name}</b></td><td><span style="opacity:0.9;">${i.ticket_size}</span></td><td>${docLink}</td><td>${statusHtml}</td></tr>`;
         }).join('');
-      } else { iBody.innerHTML = '<tr><td colspan="4">No investors found.</td></tr>'; }
+      } else { 
+        document.getElementById('top-i-count').textContent = '0';
+        iBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:30px;">No investors found.</td></tr>'; 
+      }
 
       // Load Contacts
       const { data: msgs } = await supabaseClient.from('contacts').select('*').order('created_at', { ascending: false });
       const cBody = document.getElementById('contactsTable');
-      if(msgs) {
-        document.getElementById('c-count').textContent = msgs.length;
-        cBody.innerHTML = msgs.map(m => `<tr><td><b>${m.name}</b></td><td><a href="mailto:${m.email}" class="link">${m.email}</a></td><td>${m.user_type||'-'}</td><td style="max-width:300px;opacity:0.8;">${m.message}</td></tr>`).join('');
-      } else { cBody.innerHTML = '<tr><td colspan="4">No messages found.</td></tr>'; }
+      if(msgs && msgs.length > 0) {
+        document.getElementById('top-c-count').textContent = msgs.length;
+        document.getElementById('badge-c-count').textContent = `${msgs.length} Tickets`;
+        cBody.innerHTML = msgs.map(m => `<tr><td><b>${m.name}</b></td><td><a href="mailto:${m.email}" class="link">${m.email}</a></td><td><span class="badge b-purple">${m.user_type||'Guest'}</span></td><td style="max-width:350px;opacity:0.85;line-height:1.5;">${m.message}</td></tr>`).join('');
+      } else { 
+        document.getElementById('top-c-count').textContent = '0';
+        cBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:30px;">Inbox zero! No pending messages.</td></tr>'; 
+      }
     }
 
     document.addEventListener('DOMContentLoaded', initAdmin);
   </script>
-  <script src="hh-ux-effects.js"></script>
 </body>
 </html>
