@@ -40,7 +40,7 @@
     .sub { color: var(--muted); font-size: 1.1rem; }
     
     /* TOP METRICS */
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 40px; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 40px; }
     .metric-card { background: rgba(12,12,30,0.65); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; align-items: center; gap: 20px; transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
     .metric-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(124,58,237,0.15); border-color: rgba(124,58,237,0.4); }
     .metric-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
@@ -48,6 +48,7 @@
     .icon-e { background: rgba(16,217,157,0.15); color: var(--emerald); box-shadow: 0 0 20px rgba(16,217,157,0.2); }
     .icon-c { background: rgba(6,182,212,0.15); color: var(--cyan); box-shadow: 0 0 20px rgba(6,182,212,0.2); }
     .icon-r { background: rgba(244,63,94,0.15); color: var(--crimson); box-shadow: 0 0 20px rgba(244,63,94,0.2); }
+    .icon-m { background: rgba(34,211,238,0.15); color: #22d3ee; box-shadow: 0 0 20px rgba(34,211,238,0.2); }
     .metric-info { display: flex; flex-direction: column; }
     .metric-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; letter-spacing: 0.05em; margin-bottom: 4px; }
     .metric-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
@@ -77,8 +78,10 @@
     .link { color: var(--cyan); text-decoration: none; font-weight: 600; border-bottom: 1px dashed rgba(6,182,212,0.4); transition: all 0.2s; display: inline-block; padding-bottom: 2px;}
     .link:hover { color: var(--cyan2); border-bottom-color: var(--cyan2); text-shadow: 0 0 8px rgba(6,182,212,0.4); }
 
-    .btn-primary { background: linear-gradient(135deg, var(--vivid), var(--cyan)); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.25s; }
+    .btn-primary { background: linear-gradient(135deg, var(--vivid), var(--vivid2)); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.25s; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.4); }
+    .action-icon { cursor: pointer; opacity: 0.5; transition: opacity 0.2s; font-size: 1.2rem; text-decoration: none; }
+    .action-icon:hover { opacity: 1; }
 
     /* MODAL GUARD */
     #authGuard { position: fixed; inset: 0; background: rgba(4,4,11,0.95); backdrop-filter: blur(20px); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -123,7 +126,7 @@
   <div class="main-content">
     <div class="header-group">
       <h1>Master Control</h1>
-      <p class="sub">Platform Oversight & Moderation Dashboard</p>
+      <p class="sub">Platform Oversight & Matchmaking Management Dashboard</p>
     </div>
 
     <!-- METRICS GRID -->
@@ -133,6 +136,13 @@
         <div class="metric-info">
           <div class="metric-val" id="top-u-count">-</div>
           <div class="metric-label">Registered Users</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon icon-m">🤝</div>
+        <div class="metric-info">
+          <div class="metric-val" id="top-m-count">-</div>
+          <div class="metric-label">Successful Matches</div>
         </div>
       </div>
       <div class="metric-card">
@@ -153,7 +163,7 @@
         <div class="metric-icon icon-r">🎧</div>
         <div class="metric-info">
           <div class="metric-val" id="top-c-count">-</div>
-          <div class="metric-label">Support Inquiries</div>
+          <div class="metric-label">Support Tickets</div>
         </div>
       </div>
     </div>
@@ -161,15 +171,29 @@
     <!-- TABLES GRID -->
     <div class="grid">
       
-      <!-- UNIVERSAL DIRECTORY -->
+      <!-- MATCHMAKING LOG -->
       <div class="table-wrapper">
         <div class="table-header">
-          <h2 class="card-title">🌐 Universal Directory</h2>
-          <span class="badge b-cyan" id="badge-u-count">0 Users</span>
+          <h2 class="card-title">🤝 Matchmaking Central (Deal Flow)</h2>
+          <span class="badge b-cyan" id="badge-m-count">0 Match Interests</span>
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Name</th><th>Email ID</th><th>Account Type</th><th>Comms</th><th>Last Active</th></tr></thead>
+            <thead><tr><th>Timestamp</th><th>Investor Name</th><th>Target Startup</th><th>Interest Summary</th><th>Action</th></tr></thead>
+            <tbody id="matchesTable"><tr><td colspan="5" style="text-align:center;color:#666;padding:40px;">No match requests yet.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- UNIVERSAL DIRECTORY -->
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h2 class="card-title">🌐 Universal User Directory</h2>
+          <span class="badge b-purple" id="badge-u-count">0 Users</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Name</th><th>Email ID</th><th>Account Type</th><th>Last Active</th><th>Moderation</th></tr></thead>
             <tbody id="directoryTable"><tr><td colspan="5" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
           </table>
         </div>
@@ -183,7 +207,7 @@
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>Comms</th><th>DPIIT</th><th>Pitch Deck</th></tr></thead>
+            <thead><tr><th>Company</th><th>Founder</th><th>Sector</th><th>Score</th><th>DPIIT</th><th>Pitch Deck</th><th>Action</th></tr></thead>
             <tbody id="startupsTable"><tr><td colspan="7" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
           </table>
         </div>
@@ -197,7 +221,7 @@
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Entity Name</th><th>Ticket Size / Thesis</th><th>KYC / Identity Doc</th><th>Verification Status</th></tr></thead>
+            <thead><tr><th>Entity Name</th><th>Invest Thesis</th><th>ID Verification</th><th>Account Status</th></tr></thead>
             <tbody id="investorsTable"><tr><td colspan="4" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
           </table>
         </div>
@@ -206,14 +230,25 @@
       <!-- SUPPORT MESSAGES -->
       <div class="table-wrapper">
         <div class="table-header">
-          <h2 class="card-title">🎧 Support & Inquiries</h2>
+          <h2 class="card-title">🎧 Support & General Inquiries</h2>
           <span class="badge b-red" id="badge-c-count">0 Messages</span>
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Name</th><th>System Email</th><th>User Type</th><th>Message Outline</th></tr></thead>
+            <thead><tr><th>From</th><th>Email</th><th>Role</th><th>Message Outline</th></tr></thead>
             <tbody id="contactsTable"><tr><td colspan="4" style="text-align:center;color:#666;padding:40px;">Loading database...</td></tr></tbody>
           </table>
+        </div>
+      </div>
+
+      <!-- DIAGNOSTICS -->
+      <div class="table-wrapper" style="border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.05);">
+        <div class="table-header" style="border-bottom-color: rgba(6,182,212,0.2);">
+          <h2 class="card-title" style="color:var(--cyan2);">🛠️ System Diagnostics</h2>
+        </div>
+        <div style="padding:24px; display:flex; gap:16px;">
+          <a href="test_email.html" class="btn-primary" style="background:var(--cyan);">Run Email System Diagnostic</a>
+          <button onclick="loadData()" class="btn-primary" style="background:var(--vivid);">Force DB Refresh</button>
         </div>
       </div>
 
@@ -221,7 +256,6 @@
   </div>
 
   <script>
-    // 1. ADMIN AUTHORIZATION
     const ADMIN_EMAILS = [
       'thehookhustlers@gmail.com', 
       'aniketsingh292008@gmail.com',
@@ -245,11 +279,10 @@
 
       const userEmail = session.user.email;
       if (!ADMIN_EMAILS.includes(userEmail)) {
-        setGuardError(`Access Denied: ${userEmail} is not an administrator.`);
+        setGuardError(`Access Denied: ${userEmail} is not registered as an administrator.`);
         return;
       }
 
-      // Granted
       document.getElementById('authGuard').style.opacity = '0';
       setTimeout(() => document.getElementById('authGuard').style.display = 'none', 600);
       document.getElementById('adminEmailDisplay').innerHTML = `Logged in as: <b style="color:var(--text);">${userEmail}</b>`;
@@ -258,84 +291,97 @@
     }
 
     async function approveKYC(investorId) {
-      if(!confirm("Are you sure you want to permanently mark this investor as VERIFIED on the platform?\n\nThis will unlock their account fully within the matching engine.")) return;
-      
+      if(!confirm("Approve this investor? This unlocks their full platform capabilities.")) return;
       const { error } = await supabaseClient.from('investors').update({ is_kyc_verified: true }).eq('id', investorId);
-      if(error) {
-        alert("Error approving KYC: " + error.message);
-      } else {
-        alert("Investor officially verified!");
-        loadData(); // reload tables to reflect UI changes immediately
-      }
+      if(error) alert(error.message); else loadData();
+    }
+
+    async function deleteEntry(table, id) {
+      if(!confirm(`⚠️ PERMANENT DELETE: Are you sure you want to remove this ${table} entry?`)) return;
+      const { error } = await supabaseClient.from(table).delete().eq('id', id);
+      if(error) alert(error.message); else loadData();
     }
 
     async function loadData() {
-      // Load All Universal Users
-      const { data: usersData } = await supabaseClient.from('users_directory').select('*').order('last_active', { ascending: false });
-      const uBody = document.getElementById('directoryTable');
-      if(usersData && usersData.length > 0) {
-        document.getElementById('top-u-count').textContent = usersData.length;
-        document.getElementById('badge-u-count').textContent = `${usersData.length} Users`;
-        uBody.innerHTML = usersData.map(u => {
-          const emailLink = `<a href="mailto:${u.email}" title="Send Email" style="text-decoration:none;font-size:1.2rem;margin-right:12px;filter:grayscale(1) brightness(1.5);">✉️</a>`;
-          const waLink = `<a href="https://wa.me/918235282276?text=Hi%20${encodeURIComponent(u.name)},%20this%20is%20The%20Hook%20Hustlers%20Support." target="_blank" title="WhatsApp Message" style="text-decoration:none;font-size:1.2rem;">💬</a>`;
-          const uTypeBadge = u.user_type === 'Startup' ? 'b-purple' : (u.user_type === 'Investor' ? 'b-green' : 'b-red');
-          return `<tr><td><b>${u.name}</b></td><td><a href="mailto:${u.email}" class="link">${u.email}</a></td><td><span class="badge ${uTypeBadge}">${u.user_type || 'Pending Setup'}</span></td><td>${emailLink}${waLink}</td><td style="color:var(--muted);font-size:0.85rem;">${new Date(u.last_active).toLocaleString()}</td></tr>`;
-        }).join('');
-      } else { 
-        document.getElementById('top-u-count').textContent = '0';
-        uBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px;">No users found in directory.</td></tr>'; 
-      }
+      // 1. Fetch data
+      const { data: uAll } = await supabaseClient.from('users_directory').select('*').order('last_active', { ascending: false });
+      const { data: sAll } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false });
+      const { data: iAll } = await supabaseClient.from('investors').select('*').order('created_at', { ascending: false });
+      const { data: cLog } = await supabaseClient.from('contacts').select('*').order('created_at', { ascending: false });
 
-      // Load Startups
-      const { data: startups } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false });
-      const sBody = document.getElementById('startupsTable');
-      if(startups && startups.length > 0) {
-        document.getElementById('top-s-count').textContent = startups.length;
-        document.getElementById('badge-s-count').textContent = `${startups.length} Startups`;
-        sBody.innerHTML = startups.map(s => {
-          let score = 50;
-          if(s.dpiit_number) score += 20; if(s.pitch_deck_url) score += 15; if(s.funding_needed) score += 15;
-          let deckHtml = s.pitch_deck_url ? `<a href="${s.pitch_deck_url}" target="_blank" class="link">View Deck</a>` : '<span style="color:var(--muted);">No File</span>';
-          let dpiitHtml = s.dpiit_number ? `<span class="badge b-green">DPIIT ✔</span>` : '<span class="badge b-red">No DPIIT</span>';
-          let scoreBadge = score > 80 ? 'b-green' : (score > 60 ? 'b-cyan' : 'b-purple');
-          const comms = `<a href="mailto:${s.founder_email || ''}" title="Email Founder" style="text-decoration:none;font-size:1.2rem;margin-right:12px;filter:grayscale(1) brightness(1.5);">✉️</a><a href="https://wa.me/918235282276?text=Hi%20TheHookHustlers%20Admin%20here." target="_blank" style="text-decoration:none;font-size:1.2rem;">💬</a>`;
-          return `<tr><td><b>${s.company_name}</b></td><td>${s.founder_name}</td><td>${s.industry}</td><td><span class="badge ${scoreBadge}">${score} / 100</span></td><td>${comms}</td><td>${dpiitHtml}</td><td>${deckHtml}</td></tr>`;
-        }).join('');
-      } else { 
-        document.getElementById('top-s-count').textContent = '0';
-        sBody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:30px;">No startups found.</td></tr>'; 
-      }
+      // 2. Filter Contacts into Matches and Support
+      const matches = cLog ? cLog.filter(c => c.type === 'match_interest') : [];
+      const support = cLog ? cLog.filter(c => c.type !== 'match_interest') : [];
 
-      // Load Investors
-      const { data: cols } = await supabaseClient.from('investors').select('*').order('created_at', { ascending: false });
-      const iBody = document.getElementById('investorsTable');
-      if(cols && cols.length > 0) {
-        document.getElementById('top-i-count').textContent = cols.length;
-        document.getElementById('badge-i-count').textContent = `${cols.length} Investors`;
-        iBody.innerHTML = cols.map(i => {
-          let docLink = i.kyc_url ? `<a href="${i.kyc_url}" target="_blank" class="link">View ID / Passport</a>` : '<span style="color:var(--muted);">Pending Upload</span>';
-          let statusHtml = i.is_kyc_verified 
-            ? '<span class="badge b-green" style="font-size:0.8rem;padding:6px 12px;">✔ Active & Verified</span>' 
-            : `<button onclick="approveKYC('${i.id}')" class="btn-primary">Approve KYC</button>`;
-          return `<tr><td><b>${i.full_name}</b></td><td><span style="opacity:0.9;">${i.ticket_size}</span></td><td>${docLink}</td><td>${statusHtml}</td></tr>`;
-        }).join('');
-      } else { 
-        document.getElementById('top-i-count').textContent = '0';
-        iBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:30px;">No investors found.</td></tr>'; 
-      }
+      // 3. Update Top Metrics
+      document.getElementById('top-u-count').textContent = uAll ? uAll.length : '0';
+      document.getElementById('top-s-count').textContent = sAll ? sAll.length : '0';
+      document.getElementById('top-i-count').textContent = iAll ? iAll.length : '0';
+      document.getElementById('top-c-count').textContent = support.length;
+      document.getElementById('top-m-count').textContent = matches.length;
 
-      // Load Contacts
-      const { data: msgs } = await supabaseClient.from('contacts').select('*').order('created_at', { ascending: false });
-      const cBody = document.getElementById('contactsTable');
-      if(msgs && msgs.length > 0) {
-        document.getElementById('top-c-count').textContent = msgs.length;
-        document.getElementById('badge-c-count').textContent = `${msgs.length} Tickets`;
-        cBody.innerHTML = msgs.map(m => `<tr><td><b>${m.name}</b></td><td><a href="mailto:${m.email}" class="link">${m.email}</a></td><td><span class="badge b-purple">${m.user_type||'Guest'}</span></td><td style="max-width:350px;opacity:0.85;line-height:1.5;">${m.message}</td></tr>`).join('');
-      } else { 
-        document.getElementById('top-c-count').textContent = '0';
-        cBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:30px;">Inbox zero! No pending messages.</td></tr>'; 
-      }
+      // 4. Render Tables
+      
+      // Matches
+      document.getElementById('badge-m-count').textContent = `${matches.length} Matches`;
+      document.getElementById('matchesTable').innerHTML = matches.length ? matches.map(m => `
+        <tr>
+          <td style="font-size:0.75rem; color:var(--muted);">${new Date(m.created_at).toLocaleString()}</td>
+          <td><b>${m.name}</b></td>
+          <td><span class="badge b-cyan">Startup User ID: ${m.target_id ? m.target_id.split('-')[0] : 'Unknown'}</span></td>
+          <td style="font-size:0.85rem; opacity:0.8;">${m.message}</td>
+          <td><button class="btn-primary" style="padding:6px 12px; font-size:0.75rem; background:rgba(244,63,94,0.1); color:var(--crimson); border:1px solid var(--crimson);" onclick="deleteEntry('contacts','${m.id}')">Archived</button></td>
+        </tr>
+      `).join('') : '<tr><td colspan="5" style="text-align:center; color:var(--muted); padding:30px;">No deal flow activity yet.</td></tr>';
+
+      // Directory
+      document.getElementById('badge-u-count').textContent = `${uAll ? uAll.length : 0} Users`;
+      document.getElementById('directoryTable').innerHTML = uAll ? uAll.map(u => `
+        <tr>
+          <td><b>${u.name}</b></td>
+          <td><a href="mailto:${u.email}" class="link">${u.email}</a></td>
+          <td><span class="badge ${u.user_type==='Startup'?'b-purple':'b-green'}">${u.user_type||'Guest'}</span></td>
+          <td style="font-size:0.75rem; color:var(--muted);">${new Date(u.last_active).toLocaleString()}</td>
+          <td><a href="mailto:${u.email}" class="action-icon" title="Email User">✉️</a> <a href="#" class="action-icon" title="Delete User" onclick="deleteEntry('users_directory','${u.id}')">🗑️</a></td>
+        </tr>
+      `).join('') : '';
+
+      // Startups
+      document.getElementById('badge-s-count').textContent = `${sAll ? sAll.length : 0} Startups`;
+      document.getElementById('startupsTable').innerHTML = sAll ? sAll.map(s => {
+        let score = 50 + (s.dpiit_number?20:0) + (s.pitch_deck_url?30:0);
+        return `<tr>
+          <td><b>${s.company_name}</b></td>
+          <td>${s.founder_name}</td>
+          <td style="font-size:0.85rem;">${s.industry}</td>
+          <td><span class="badge ${score>80?'b-green':'b-purple'}">${score}/100</span></td>
+          <td>${s.dpiit_number ? '<span class="badge b-green">✔ Verified</span>' : '<span class="badge b-red">No DPIIT</span>'}</td>
+          <td>${s.pitch_deck_url ? `<a href="${s.pitch_deck_url}" target="_blank" class="link">View Deck</a>` : '<span style="color:var(--muted);">No File</span>'}</td>
+          <td><button class="btn-primary" style="padding:6px 12px; font-size:0.75rem; background:rgba(244,63,94,0.1); color:var(--crimson);" onclick="deleteEntry('startups','${s.id}')">Remove</button></td>
+        </tr>`;
+      }).join('') : '';
+
+      // Investors
+      document.getElementById('badge-i-count').textContent = `${iAll ? iAll.length : 0} Investors`;
+      document.getElementById('investorsTable').innerHTML = iAll ? iAll.map(i => `
+        <tr>
+          <td><b>${i.full_name}</b></td>
+          <td style="font-size:0.85rem;">${i.ticket_size}</td>
+          <td>${i.kyc_url ? `<a href="${i.kyc_url}" target="_blank" class="link">View ID Doc</a>` : 'Pending'}</td>
+          <td>${i.is_kyc_verified ? '<span class="badge b-green">Verified</span>' : `<button class="btn-primary" onclick="approveKYC('${i.id}')" style="font-size:0.7rem; padding:6px 10px;">Approve Now</button>`}</td>
+        </tr>
+      `).join('') : '';
+
+      // Support
+      document.getElementById('badge-c-count').textContent = `${support.length} Tickets`;
+      document.getElementById('contactsTable').innerHTML = support.map(c => `
+        <tr>
+          <td><b>${c.name}</b></td>
+          <td><a href="mailto:${c.email}" class="link">${c.email}</a></td>
+          <td><span class="badge b-purple">${c.user_type||'Guest'}</span></td>
+          <td style="max-width:300px; font-size:0.85rem; opacity:0.8;">${c.message}</td>
+        </tr>
+      `).join('');
     }
 
     document.addEventListener('DOMContentLoaded', initAdmin);
