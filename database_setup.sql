@@ -6,6 +6,7 @@ values ('documents', 'documents', true)
 on conflict (id) do nothing;
 
 -- Ensure anyone can upload to the documents bucket (since your website uses upsert without strict auth)
+drop policy if exists "Public Access to Documents" on storage.objects;
 create policy "Public Access to Documents" on storage.objects for all using ( bucket_id = 'documents' );
 
 -- 2. Create Contacts Table
@@ -25,7 +26,9 @@ alter table public.contacts add column if not exists type text;
 
 -- Enable RLS but allow anyone to insert a contact message (Public form)
 alter table public.contacts enable row level security;
+drop policy if exists "Public can insert contacts" on public.contacts;
 create policy "Public can insert contacts" on public.contacts for insert with check (true);
+drop policy if exists "Admins can view contacts" on public.contacts;
 create policy "Admins can view contacts" on public.contacts for select using (true); -- simplify to true for admin panel access
 
 
@@ -41,6 +44,7 @@ create table if not exists public.users_directory (
 
 -- Turn off strict RLS here so the auto-login ticker can update their last_active status
 alter table public.users_directory enable row level security;
+drop policy if exists "Anyone can modify users directory" on public.users_directory;
 create policy "Anyone can modify users directory" on public.users_directory for all using (true);
 
 
