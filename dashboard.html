@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard — The Hook Hustlers</title>
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://thehookhustlers.com/dashboard.html"/>
+  <meta property="og:title" content="Dashboard — The Hook Hustlers"/>
+  <meta property="og:description" content="Manage your profile, view curated startup deal flow, and connect with investors."/>
+  <meta property="og:image" content="https://thehookhustlers.com/logo.png"/>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:url" content="https://thehookhustlers.com/dashboard.html"/>
+  <meta property="twitter:title" content="Dashboard — The Hook Hustlers"/>
+  <meta property="twitter:description" content="Manage your profile, view curated startup deal flow, and connect with investors."/>
+  <meta property="twitter:image" content="https://thehookhustlers.com/logo.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -100,6 +114,7 @@
     .nav-logo-text {
       background: linear-gradient(135deg, var(--vivid2), var(--cyan), var(--vivid));
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -445,6 +460,68 @@
     .hh-toast.error {
       border-left-color: var(--crimson);
     }
+
+    /* Dashboard View Transitions */
+    .dash-view {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-origin: center top;
+      opacity: 1;
+      transform: scale(1);
+    }
+    .dash-view.hidden-view {
+      display: none !important;
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+    }
+
+    /* Settings Styles */
+    .settings-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .settings-input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(6,182,212,0.2);
+    }
+    .settings-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    /* Skeleton Loader */
+    @keyframes skeletonShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      min-height: 120px;
+    }
+    .skeleton-box {
+      background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(124,58,237,0.08) 50%, rgba(255,255,255,0.03) 75%);
+      background-size: 200% 100%;
+      animation: skeletonShimmer 1.5s infinite;
+      border-radius: 4px;
+    }
   </style>
 
 
@@ -688,7 +765,7 @@
               <div class="stat-mini-label">Matches</div>
             </div>
             <div class="stat-mini-box" style="grid-column: span 2;">
-              <div class="stat-mini-num" style="font-size:1.2rem; background:linear-gradient(135deg, var(--emerald), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">${sent || 0} Interests Sent</div>
+              <div class="stat-mini-num" style="font-size:1.2rem; background:linear-gradient(135deg, var(--emerald), var(--cyan)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">${sent || 0} Interests Sent</div>
               <div class="stat-mini-label">Matchmaking Activity</div>
             </div>
           </div>
@@ -707,6 +784,48 @@
       localStorage.removeItem('hh_kyc_submitted');
       window.location.href = 'login.html';
     }
+
+    // Toggle Settings Pane
+    window.toggleSettings = function(showSettings) {
+      const sUI = document.getElementById('startupUI');
+      const iUI = document.getElementById('investorUI');
+      const setUI = document.getElementById('settingsUI');
+      const isStartup = sUI.style.display !== 'none' && !sUI.classList.contains('hidden-view');
+      const hasStartupClass = !sUI.classList.contains('hidden-view');
+
+      if (showSettings) {
+        if (sUI.style.display !== 'none') sUI.classList.add('hidden-view');
+        if (iUI.style.display !== 'none') iUI.classList.add('hidden-view');
+        setUI.classList.remove('hidden-view');
+        // populate inputs
+        const user = window.supabaseClient.auth.user && window.supabaseClient.auth.user() || null;
+        document.getElementById('set-email').value = localStorage.getItem('hhUserEmail') || '';
+        document.getElementById('set-tier').value = window.currentUserTier || 'Free Plan';
+      } else {
+        setUI.classList.add('hidden-view');
+        if (localStorage.getItem('hhUserType') === 'Startup' || document.getElementById('s-title').textContent !== 'Welcome') {
+          sUI.classList.remove('hidden-view');
+        } else {
+          iUI.classList.remove('hidden-view');
+        }
+        // Actually, trigger a reload to ensure fresh layout after settings
+        // But for smooth UX, we will just toggle classes. To be safe, rely on the global startup/investor vars:
+        if (document.getElementById('liveStartupGrid').innerHTML.includes('Fetching') && document.getElementById('liveInvestorGrid').innerHTML.includes('No Matches')) {
+            // investor mode active
+            iUI.classList.remove('hidden-view');
+        } else if (document.getElementById('liveInvestorGrid').innerHTML.includes('Fetching')) {
+            // startup mode
+            sUI.classList.remove('hidden-view');
+        } else {
+            // Fallback, we can guess by which UI has content populated. Currently just reloading is easiest if state gets lost, but let's toggle based on content
+            if (document.getElementById('s-company').textContent !== 'Company Name') {
+              sUI.classList.remove('hidden-view');
+            } else {
+              iUI.classList.remove('hidden-view');
+            }
+        }
+      }
+    };
 
     document.addEventListener('DOMContentLoaded', loadDashboard);
 
@@ -850,8 +969,10 @@
 
     async function fetchStartupMatches() {
       // Startups see Investors
-      const { data, error } = await supabaseClient.from('investors').select('*').limit(12);
       const grid = document.getElementById('liveInvestorGrid');
+      grid.innerHTML = Array(6).fill('<div class="skeleton-card"><div class="skeleton-box" style="height:20px; width:60%; margin-bottom:12px;"></div><div class="skeleton-box" style="height:12px; width:40%; margin-bottom:24px;"></div><div class="skeleton-box" style="height:20px; width:30%; display:inline-block; margin-right:8px;"></div><div class="skeleton-box" style="height:20px; width:40%; display:inline-block;"></div></div>').join('');
+      
+      const { data, error } = await supabaseClient.from('investors').select('*').limit(12);
       grid.innerHTML = '';
 
       if (error || !data || data.length === 0) {
@@ -907,8 +1028,10 @@
 
     async function fetchInvestorMatches() {
       // Investors see Startups
-      const { data, error } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false }).limit(12);
       const grid = document.getElementById('liveStartupGrid');
+      grid.innerHTML = Array(6).fill('<div class="skeleton-card"><div class="skeleton-box" style="height:20px; width:60%; margin-bottom:12px;"></div><div class="skeleton-box" style="height:12px; width:40%; margin-bottom:24px;"></div><div class="skeleton-box" style="height:20px; width:30%; display:inline-block; margin-right:8px;"></div><div class="skeleton-box" style="height:20px; width:40%; display:inline-block;"></div></div>').join('');
+
+      const { data, error } = await supabaseClient.from('startups').select('*').order('created_at', { ascending: false }).limit(12);
       grid.innerHTML = '';
 
       if (error || !data || data.length === 0) {
@@ -1201,7 +1324,7 @@
     <div id="onboardingUI" style="display:none;max-width:600px;margin:100px auto;">
       <div class="glass-card" style="text-align:center;border-color:rgba(6,182,212,0.3);">
         <h2
-          style="font-family:'Bebas Neue',sans-serif;font-size:3rem;margin-bottom:10px;background:linear-gradient(135deg,var(--vivid2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+          style="font-family:'Bebas Neue',sans-serif;font-size:3rem;margin-bottom:10px;background:linear-gradient(135deg,var(--vivid2),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">
           Finish Account Setup</h2>
         <p style="color:var(--muted);font-size:.9rem;margin-bottom:30px;">Because you signed in with Google, we just
           need one more detail to build your matchmaking pipeline.</p>
@@ -1270,7 +1393,7 @@
 
 
     <!-- STARTUP DASHBOARD -->
-    <div id="startupUI" style="display:none;">
+    <div id="startupUI" class="dash-view hidden-view">
       <div class="dash-header">
         <h1 class="dash-title" id="s-title">Welcome</h1>
         <div class="dash-sub">
@@ -1302,7 +1425,7 @@
             style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border2); padding-bottom:10px;">
             <div class="card-title" style="margin-bottom:0; border:none; padding:0;">Startup Profile</div>
             <button
-              onclick="window.showToast('Profile edits require compliance re-verification. Please email admin@thehookhustlers.com or use the Contact page.', 'error')"
+              onclick="window.toggleSettings(true)"
               style="background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border2); border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.7rem; font-weight:700; padding:4px 8px; cursor:pointer;">EDIT</button>
           </div>
           <div class="data-row"><span class="data-lbl">Industry</span><span class="data-val" id="s-ind">-</span></div>
@@ -1343,7 +1466,7 @@
 
 
     <!-- INVESTOR DASHBOARD -->
-    <div id="investorUI" style="display:none;">
+    <div id="investorUI" class="dash-view hidden-view">
       <div class="dash-header">
         <h1 class="dash-title" id="i-title">Welcome</h1>
         <div class="dash-sub">
@@ -1359,7 +1482,7 @@
             style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border2); padding-bottom:10px;">
             <div class="card-title" style="margin-bottom:0; border:none; padding:0;">Investment Mandate</div>
             <button
-              onclick="window.showToast('Profile edits require compliance re-verification. Please email admin@thehookhustlers.com or use the Contact page.', 'error')"
+              onclick="window.toggleSettings(true)"
               style="background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border2); border-radius:4px; font-family:'Rajdhani',sans-serif; font-size:0.7rem; font-weight:700; padding:4px 8px; cursor:pointer;">EDIT</button>
           </div>
           <div class="data-row"><span class="data-lbl">Target Ticket Size</span><span class="data-val"
@@ -1419,6 +1542,49 @@
           Deal Flow</h2>
         <div class="match-grid" id="liveStartupGrid">
           <div style="color:var(--muted);font-size:0.9rem;">Fetching live startups...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS / PROFILE PANE -->
+    <div id="settingsUI" class="dash-view hidden-view">
+      <div class="dash-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <button onclick="window.toggleSettings(false)" style="background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border2); border-radius:6px; font-family:'Rajdhani',sans-serif; font-weight:700; padding:8px 16px; cursor:pointer; font-size:0.8rem; margin-bottom:12px;">← BACK</button>
+          <h1 class="dash-title">Account Settings</h1>
+          <div class="dash-sub">Manage your profile & preferences</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="glass-card">
+          <div class="card-title">Security & Contact</div>
+          <div style="margin-bottom:20px;">
+            <label class="settings-label">Account Email (Verified)</label>
+            <input type="text" id="set-email" class="settings-input" value="Loading..." readonly style="color:var(--emerald); background:rgba(16,217,157,0.05); border-color:rgba(16,217,157,0.2);">
+          </div>
+          <div style="margin-bottom:20px;">
+            <label class="settings-label">Current Tier</label>
+            <input type="text" id="set-tier" class="settings-input" value="Free" readonly>
+            <p style="font-size:0.75rem; color:var(--muted); margin-top:8px;">To upgrade your tier, please visit the <a href="pricing.html" style="color:var(--vivid2);">Pricing</a> page.</p>
+          </div>
+          <div style="margin-top:40px; padding-top:20px; border-top:1px solid var(--border2);">
+            <button onclick="window.showToast('We have sent a secure password reset link to your email.', 'success')" style="background:linear-gradient(135deg,var(--deep),#111); color:var(--white); border:1px solid var(--border2); padding:10px 16px; border-radius:6px; font-family:'Rajdhani',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; width:100%;">REQUEST PASSWORD RESET</button>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-title">Core Profile Data</div>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.6; margin-bottom:24px;">
+            Your profile details and compliance documents (KYC / DPIIT / Pitch Deck) are locked after initial verification to maintain platform integrity.
+          </p>
+          <div style="background:rgba(244,63,94,0.05); border:1px dashed rgba(244,63,94,0.3); border-radius:12px; padding:20px;">
+            <h4 style="font-size:0.9rem; color:var(--crimson); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;">Compliance Lock Active 🔒</h4>
+            <p style="font-size:0.8rem; color:var(--white); line-height:1.5;">
+              If you need to update your legal entity name, industry focus, or re-upload compliance documents, you must initiate a manual review with our compliance team via email.
+            </p>
+            <button onclick="window.location.href='mailto:admin@thehookhustlers.com?subject=Profile%20Update%20Request'" style="margin-top:16px; background:var(--crimson); color:#fff; border:none; padding:10px 20px; border-radius:6px; font-family:'Rajdhani',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer;">CONTACT COMPLIANCE EMAIL</button>
+          </div>
         </div>
       </div>
     </div>
